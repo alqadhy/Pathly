@@ -1,3 +1,468 @@
-# Pathly Desin System
+# Pathly Design System
 
-## Brand Identity
+## Colors
+
+### Brand Colors
+
+**Primary Colors**
+
+- primary-light: `#eeebfd`;
+- primary-light-hover: `#e6e2fb`;
+- primary-light-active: `#cac2f7`;
+
+- primary: `#553be6`;
+- primary-hover: `#4d35cf`;
+- primary-active: `#442fb8`;
+
+- primary-dark: `#402cad`;
+- primary-dark-hover: `#33238a`;
+- primary-dark-active: `#261b67`;
+- primary-darker: `#1e1551`;
+
+**Secondary Colors**
+
+- secondary-light: `#eaf8fa`;
+- secondary-light-hover: `#e0f5f8`;
+- secondary-light-active: `#beeaf0`;
+
+- secondary: `#2ebccf`;
+- secondary-hover: `#29a9ba`;
+- secondary-active: `#2596a6`;
+
+- secondary-dark: `#238d9b`;
+- secondary-dark-hover: `#1c717c`;
+- secondary-dark-active: `#15555d`;
+- secondary-darker: `#104248`;
+
+---
+
+#### Neutral Colors
+
+- light: `#f0f1f2`;
+- light-hover: `#e9eaec`;
+- light-active: `#d1d3d8`;
+
+- normal: `#6b7280`;
+- normal-hover: `#606773`;
+- normal-active: `#565b66`;
+
+- dark: `#505660`;
+- dark-hover: `#40444d`;
+- dark-active: `#30333a`;
+- darker: `#25282d`;
+
+---
+
+#### Semantic Colors
+
+- background: `#ffffff`;
+
+- foreground: `var(--darker)`;
+
+- card: `#ffffff`;
+- card-foreground: `var(--darker)`;
+
+- popover: `#ffffff`;
+- popover-foreground: `var(--darker)`;
+
+- muted: `var(--light)`;
+- muted-foreground: `var(--normal)`;
+
+- accent: `var(--primary-light)`;
+- accent-foreground: `var(--primary)`;
+
+- border: `var(--light-active)`;
+- input: `var(--light-active)`;
+
+- ring: `var(--primary)`;
+
+- destructive: `var(--danger)`;
+
+---
+
+### Status Colors
+
+**Warning Colors**
+
+- warning-light: `#fff5e7`;
+- warning-light-hover: `#fff0db`;
+- warning-light-active: `#ffe0b4`;
+
+- warning: `#fe9b0e`;
+- warning-hover: `#e58c0d`;
+- warning-active: `#cb7c0b`;
+
+- warning-dark: `#bf740b`;
+- warning-dark-hover: `#985d08`;
+- warning-dark-active: `#724606`;
+- warning-darker: `#593605`;
+
+**Success Colors**
+
+- success-light: `#e7f5ef`;
+- success-light-hover: `#dbf0e7`;
+- success-light-active: `#b4e1ce`;
+
+- success: `#0c9d61`;
+- success-hover: `#0b8d57`;
+- success-active: `#0a7e4e`;
+
+- success-dark: `#097649`;
+- success-dark-hover: `#075e3a`;
+- success-dark-active: `#05472c`;
+- success-darker: `#043722`;
+
+**Danger Colors**
+
+- danger-light: `#fdeaea`;
+- danger-light-hover: `#fce0e0`;
+- danger-light-active: `#f9bebf`;
+
+- danger: `#ec2d30`;
+- danger-hover: `#d4292b`;
+- danger-active: `#bd2426`;
+
+- danger-dark: `#b12224`;
+- danger-dark-hover: `#8e1b1d`;
+- danger-dark-active: `#6a1416`;
+- danger-darker: `#531011`;
+
+---
+
+#### Info
+
+- info-light: `#ebf1fc`;
+- info-light-hover: `#e1eafb`;
+- info-light-active: `#c2d3f6`;
+
+- info: `#3a70e2`;
+- info-hover: `#3465cb`;
+- info-active: `#2e5ab5`;
+
+- info-dark: `#2c54aa`;
+- info-dark-hover: `#234388`;
+- info-dark-active: `#1a3266`;
+- info-darker: `#14274f`;
+
+---
+
+## Typography
+
+### Font Family
+
+- Primary Font: `"Inter", sans-serif`
+
+---
+
+### Headings
+
+| Heading | Font Size | Line Height | Weight         |
+| ------- | --------- | ----------- | -------------- |
+| Display | `48px`    | `60px`      | Bold (700)     |
+| H1      | `40px`    | `60px`      | Bold (700)     |
+| H2      | `32px`    | `48px`      | SemiBold (600) |
+| H3      | `24px`    | `36px`      | SemiBold (600) |
+| H4      | `20px`    | `30px`      | SemiBold (600) |
+| H5      | `18px`    | `27px`      | SemiBold (600) |
+| H6      | `16px`    | `24px`      | SemiBold (600) |
+
+---
+
+### Body Text
+
+| Title       | Font Size | Line Height | Weight       |
+| ----------- | --------- | ----------- | ------------ |
+| Body Large  | `18px`    | `27px`      | Medium (500) |
+| Body Medium | `16px`    | `24px`      | Medium (500) |
+| Body Small  | `14px`    | `21px`      | Medium (500) |
+
+---
+
+## Spacing System
+
+Base spacing system follows:
+
+**4px grid system**
+
+Spacing values:
+
+- xs → `4px`
+- sm → `8px`
+- md → `16px`
+- lg → `24px`
+- xl → `36px`
+- 2xl → `48px`
+- 3xl → `64px`
+- 4xl → `80px`
+
+Usage guidelines:
+
+- `8px` → Between related elements
+- `16px` → Between components inside same section
+- `24px–32px` → Between cards and content blocks
+- `48px–80px` → Between major sections
+
+---
+
+## Shadows
+
+Small Shadow:
+
+```css
+0px 2px 8px rgba(0,0,0,0.10)
+```
+
+Medium Shadow:
+
+```css
+0px 8px 24px rgba(0,0,0,0.12)
+```
+
+Card Shadow:
+
+```css
+0px 12px 32px rgba(0,0,0,0.15)
+```
+
+---
+
+## Border Radius
+
+- xs → `4px`
+- sm → `8px`
+- md → `12px`
+- lg → `16px`
+- xl → `20px`
+- 2xl → `24px`
+- full → `9999px`
+
+---
+
+## CSS Variables
+
+```css
+:root {
+  /* ===========================
+    COLORS
+  =========================== */
+
+  /* Natural Colors */
+  --light: #f0f1f2;
+  --light-hover: #e9eaec;
+  --light-active: #d1d3d8;
+
+  --normal: #6b7280;
+  --normal-hover: #606773;
+  --normal-active: #565b66;
+
+  --dark: #505660;
+  --dark-hover: #40444d;
+  --dark-active: #30333a;
+  --darker: #25282d;
+
+  /* Primary Colors */
+  --primary-light: #eeebfd;
+  --primary-light-hover: #e6e2fb;
+  --primary-light-active: #cac2f7;
+
+  --primary: #553be6;
+  --primary-hover: #4d35cf;
+  --primary-active: #442fb8;
+
+  --primary-dark: #402cad;
+  --primary-dark-hover: #33238a;
+  --primary-dark-active: #261b67;
+  --primary-darker: #1e1551;
+
+  /* Secondary Colors */
+  --secondary-light: #eaf8fa;
+  --secondary-light-hover: #e0f5f8;
+  --secondary-light-active: #beeaf0;
+
+  --secondary: #2ebccf;
+  --secondary-hover: #29a9ba;
+  --secondary-active: #2596a6;
+
+  --secondary-dark: #238d9b;
+  --secondary-dark-hover: #1c717c;
+  --secondary-dark-active: #15555d;
+  --secondary-darker: #104248;
+
+  /* Info Colors */
+  --info-light: #ebf1fc;
+  --info-light-hover: #e1eafb;
+  --info-light-active: #c2d3f6;
+
+  --info: #3a70e2;
+  --info-hover: #3465cb;
+  --info-active: #2e5ab5;
+
+  --info-dark: #2c54aa;
+  --info-dark-hover: #234388;
+  --info-dark-active: #1a3266;
+  --info-darker: #14274f;
+
+  /* Warning Colors */
+  --warning-light: #fff5e7;
+  --warning-light-hover: #fff0db;
+  --warning-light-active: #ffe0b4;
+
+  --warning: #fe9b0e;
+  --warning-hover: #e58c0d;
+  --warning-active: #cb7c0b;
+
+  --warning-dark: #bf740b;
+  --warning-dark-hover: #985d08;
+  --warning-dark-active: #724606;
+  --warning-darker: #593605;
+
+  /* Success Colors */
+  --success-light: #e7f5ef;
+  --success-light-hover: #dbf0e7;
+  --success-light-active: #b4e1ce;
+
+  --success: #0c9d61;
+  --success-hover: #0b8d57;
+  --success-active: #0a7e4e;
+
+  --success-dark: #097649;
+  --success-dark-hover: #075e3a;
+  --success-dark-active: #05472c;
+  --success-darker: #043722;
+
+  /* Danger Colors */
+  --danger-light: #fdeaea;
+  --danger-light-hover: #fce0e0;
+  --danger-light-active: #f9bebf;
+
+  --danger: #ec2d30;
+  --danger-hover: #d4292b;
+  --danger-active: #bd2426;
+
+  --danger-dark: #b12224;
+  --danger-dark-hover: #8e1b1d;
+  --danger-dark-active: #6a1416;
+  --danger-darker: #531011;
+
+  /* ===========================
+    SEMANTIC TOKENS
+  =========================== */
+  --background: #ffffff;
+  --foreground: var(--darker);
+
+  --card: #ffffff;
+  --card-foreground: var(--darker);
+
+  --popover: #ffffff;
+  --popover-foreground: var(--darker);
+
+  --muted: var(--light);
+  --muted-foreground: var(--normal);
+
+  --accent: var(--primary-light);
+  --accent-foreground: var(--primary);
+
+  --border: var(--light-active);
+  --input: var(--light-active);
+
+  --ring: var(--primary);
+
+  --destructive: var(--danger);
+
+  /* ===========================
+    TYPOGRAPHY
+  =========================== */
+  --font-sans: "Inter Variable", sans-serif;
+
+  --display-size: 48px;
+  --display-line-height: 60px;
+
+  --h1-size: 40px;
+  --h1-line-height: 60px;
+
+  --h2-size: 32px;
+  --h2-line-height: 48px;
+
+  --h3-size: 24px;
+  --h3-line-height: 36px;
+
+  --h4-size: 20px;
+  --h4-line-height: 30px;
+
+  --h5-size: 18px;
+  --h5-line-height: 27px;
+
+  --h6-size: 16px;
+  --h6-line-height: 24px;
+
+  --body-sm: 14px;
+  --body-md: 16px;
+  --body-lg: 18px;
+
+  /* ===========================
+    SPACING
+  =========================== */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 36px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 80px;
+
+  /* ===========================
+    BORDER RADIUS
+  =========================== */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* ===========================
+    SHADOWS
+  =========================== */
+  --shadow-sm: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0px 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-card: 0px 12px 32px rgba(0, 0, 0, 0.15);
+
+  /* ===========================
+    LAYOUT
+  =========================== */
+  --container-width: 800px;
+  --sidebar-width: 280px;
+  --header-height: 64px;
+
+  /* ===========================
+    TRANSITIONS
+  =========================== */
+  --transition-fast: 150ms;
+  --transition-normal: 300ms;
+  --transition-slow: 500ms;
+
+  /* ===========================
+    Z INDEX
+  =========================== */
+  --z-dropdown: 1000;
+  --z-sticky: 1010;
+  --z-fixed: 1020;
+  --z-modal: 1030;
+  --z-toast: 1040;
+  --z-tooltip: 1050;
+}
+```
+
+---
+
+## Design Principles
+
+- Use semantic tokens instead of raw colors
+- Avoid hardcoded values inside components
+- Maintain 4px spacing consistency
+- Prefer reusable component variants
+- Use status colors only for meaning
+- Maintain accessible contrast ratios
+- Build components using design tokens only
