@@ -110,6 +110,8 @@
   --text-primary: #111827;
   --text-secondary: #000000;
 
+  --overlay: #0e0f2a;
+
   --card: #ffffff;
   --card-foreground: var(--darker);
 
@@ -192,7 +194,6 @@
   /* ===========================
     LAYOUT
   =========================== */
-  --container-width: 800px;
   --sidebar-width: 280px;
   --header-height: 64px;
 
