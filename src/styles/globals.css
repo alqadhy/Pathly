@@ -104,7 +104,7 @@
   /* ===========================
     SEMANTIC TOKENS
   =========================== */
-  --background: #ffffff;
+  --background: #f8f9fc;
   --foreground: var(--darker);
 
   --text-primary: #111827;
@@ -125,7 +125,7 @@
   --accent-foreground: var(--primary);
 
   --border: var(--light-active);
-  --input: var(--light-active);
+  --input: #f2f4f7;
 
   --ring: var(--primary);
 
@@ -249,4 +249,18 @@ h5 {
 
 h6 {
   font-size: var(--h6-size);
+}
+
+:where(input, textarea) {
+  caret-color: var(--text-primary);
+}
+
+:where(input, textarea)::placeholder {
+  color: var(--normal);
+}
+
+img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
 }
