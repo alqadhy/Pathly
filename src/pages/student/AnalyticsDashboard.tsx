@@ -49,7 +49,7 @@ function AnalyticsDashboard() {
         <div className="col-span-1 h-full">
           <ProfileStrength />
         </div>
-        <div className="col-span-1 h-full">
+        <div className="col-span-1">
           <ScoreTrendsChart />
         </div>
       </div>
@@ -60,7 +60,7 @@ function AnalyticsDashboard() {
           <SkillsGapAnalysis />
         </div>
 
-        {/* الكارت المُجمّع للـ Roadmap والـ Courses */}
+        {/* Roadmap & Active Courses */}
         <div className="col-span-1 bg-card border border-border rounded-2xl p-4 md:p-6 shadow-sm flex flex-col h-full">
           <Roadmap />
           <ActiveCourses />

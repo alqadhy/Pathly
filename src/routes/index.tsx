@@ -2,49 +2,50 @@ import { createBrowserRouter } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
 // Layouts
-import MainLayout from "../layout/MainLayout";
 import AuthLayout from "../layout/AuthLayout";
-import StudentDashboardLayout from "../layout/StudentDashboardLayout";
+import DashboardLayout from "../layout/DashboardLayout";
 
-// Page Loader
+// Loaders
 import PageLoader from "../components/layout/PageLoader";
+import Loader from "../components/layout/Loader";
 
 // Pages
 const Home = lazy(() => import("../pages/Home"));
 const Login = lazy(() => import("../pages/auth/Login"));
 const Dashboard = lazy(() => import("../pages/student/Dashboard"));
+const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
 
 const router = createBrowserRouter([
-  // Home + Dashboard Routes
+  // Landing Page
   {
-    element: <MainLayout />,
+    path: "/",
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <Home />
+      </Suspense>
+    ),
+  },
+
+  // Student Dashboard Routes
+  {
+    element: <DashboardLayout />,
+
     children: [
       {
-        path: "/",
+        path: "/student/dashboard",
         element: (
-          <Suspense fallback={<PageLoader />}>
-            <Home />
+          <Suspense fallback={<Loader />}>
+            <Dashboard />
           </Suspense>
         ),
       },
       {
-        element: <StudentDashboardLayout />,
-        children: [
-          {
-            path: "/student/dashboard",
-            element: (
-              <Suspense fallback={<PageLoader />}>
-                <Dashboard />
-              </Suspense>
-            ),
-          },
-          {
-            path: "/student/courses",
-            element: (
-              <Suspense fallback={<PageLoader />}>{/* <Courses /> */}</Suspense>
-            ),
-          },
-        ],
+        path: "/student/analytics",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Analytics />
+          </Suspense>
+        ),
       },
     ],
   },
@@ -52,11 +53,12 @@ const router = createBrowserRouter([
   // Auth Routes
   {
     element: <AuthLayout />,
+
     children: [
       {
         path: "/auth/login",
         element: (
-          <Suspense fallback={<PageLoader />}>
+          <Suspense fallback={<Loader />}>
             <Login />
           </Suspense>
         ),
