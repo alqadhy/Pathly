@@ -1,11 +1,20 @@
 // Components
 import { Button } from "../ui/button";
 
-function IconButton({ children }: { children: React.ReactElement }) {
+function IconButton({
+  children,
+  title,
+  className = "",
+}: {
+  children: React.ReactElement;
+  title: string;
+  className?: string;
+}) {
   return (
     <Button
       size="icon"
-      className="bg-input w-12 h-12 rounded-full [&_svg]:h-6! [&_svg]:w-6! hover:bg-light-hover"
+      title={title}
+      className={`bg-input w-12 h-12 rounded-full [&_svg]:h-6! [&_svg]:w-6! hover:bg-light-hover ${className}`}
     >
       {children}
     </Button>

@@ -109,6 +109,7 @@
 
   --text-primary: #111827;
   --text-secondary: #000000;
+  --text-light: #a8b3c9;
 
   --overlay: #0e0f2a;
 
@@ -203,6 +204,7 @@
   --transition-fast: 150ms;
   --transition-normal: 300ms;
   --transition-slow: 500ms;
+  --transition-very-slow: 800ms;
 
   /* ===========================
     Z INDEX
@@ -257,6 +259,10 @@ h6 {
 
 :where(input, textarea)::placeholder {
   color: var(--normal);
+}
+
+button {
+  cursor: pointer;
 }
 
 img {

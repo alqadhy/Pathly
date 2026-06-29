@@ -1,0 +1,12 @@
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.7);
+  }
+}
+
+.animate-scale {
+  animation: scale var(--transition-very-slow) ease-in-out alternate infinite;
+}
