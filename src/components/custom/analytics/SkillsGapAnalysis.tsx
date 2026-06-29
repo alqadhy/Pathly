@@ -1,53 +1,23 @@
 import React from "react";
 // components
 import ProgressBar from "../ProgressBar";
+// json
+import mockData from "../../../../public/mock/AnalyticsDashboard.json";
+
+// types
+import type { SkillGapItem } from "../../../types/analytics";
 
 const SkillsGapAnalysis: React.FC = () => {
-  const skills = [
-    {
-      id: 1,
-      title: "TypeScript",
-      priority: "High Priority",
-      priorityClass: "bg-danger-light text-danger",
-      value: 94,
-    },
-    {
-      id: 2,
-      title: "Jest / Vitest",
-      priority: "High Priority",
-      priorityClass: "bg-danger-light text-danger",
-      value: 94,
-    },
-    {
-      id: 3,
-      title: "AWS / Cloud",
-      priority: "Medium Priority",
-      priorityClass: "bg-warning-light text-warning-dark",
-      value: 94,
-    },
-    {
-      id: 4,
-      title: "GraphQL",
-      priority: "Medium Priority",
-      priorityClass: "bg-warning-light text-warning-dark",
-      value: 94,
-    },
-    {
-      id: 5,
-      title: "Docker",
-      priority: "Low Priority",
-      priorityClass: "bg-light text-normal",
-      value: 94,
-    },
-  ];
+  //SkillsGapAnalysis Data
+  const skills: SkillGapItem[] = mockData.skillsGapAnalysis;
 
   return (
-    <div className="bg-card border border-border rounded-2xl p-6 shadow-sm w-full h-full flex flex-col">
-      <h3 className="text-h4 font-bold text-foreground mb-6">
+    <div className="bg-card border border-border rounded-2xl p-4 md:p-6 shadow-sm w-full h-full flex flex-col">
+      <h3 className="text-h5 md:text-h4 font-bold text-foreground mb-4 md:mb-6">
         Skills Gap Analysis
       </h3>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 md:gap-3">
         {skills.map((skill) => (
           <ProgressBar
             key={skill.id}
@@ -59,11 +29,11 @@ const SkillsGapAnalysis: React.FC = () => {
             labelRight={
               <div className="flex flex-col items-end">
                 <span
-                  className={`px-2 py-0.5 rounded-full text-[10px] font-bold mb-1 ${skill.priorityClass}`}
+                  className={`px-2 py-0.5 rounded-full text-[9px] md:text-[10px] font-bold mb-1 whitespace-nowrap ${skill.priorityClass}`}
                 >
                   {skill.priority}
                 </span>
-                <span>{skill.value}%</span>
+                <span className="text-xs md:text-sm">{skill.value}%</span>
               </div>
             }
           />

@@ -18,10 +18,12 @@ const SegmentedProgressBar: React.FC<SegmentedProgressBarProps> = ({
       {/* HEader */}
       <div className="flex justify-between items-start mb-1">
         <div>
-          <h4 className="text-body-md font-semibold text-foreground">
+          <h4 className=" text-body-sm md:text-body-md font-semibold text-foreground">
             {title}
           </h4>
-          <p className="text-body-sm text-normal mt-1">{subtitle}</p>
+          <p className="text-body-sm md:text-body-md text-normal mt-1">
+            {subtitle}
+          </p>
         </div>
         <span className={`text-h3 font-bold ${textClass}`}>{value}%</span>
       </div>

@@ -3,8 +3,9 @@ import type { ReactNode } from "react";
 // stat item type
 export interface StatItem {
   id: number;
-  icon: ReactNode;
+  iconName: string;
   iconBg: string;
+  iconColor: string;
   badgeText: string;
   badgeClass: string;
   value: string;
@@ -21,6 +22,7 @@ export interface ProgressBarProps {
   labelRightClass?: string;
 }
 
+// segmented progress bar type
 export interface SegmentedProgressBarProps {
   title: string;
   subtitle: string;
@@ -28,4 +30,25 @@ export interface SegmentedProgressBarProps {
   totalSegments?: number;
   colorClass?: string;
   textClass?: string;
+}
+
+// AI Insight type
+export interface AIInsightItem {
+  id: number;
+  title: string;
+  description: string;
+  actionText: string;
+  iconName: string;
+  containerClass: string;
+  titleClass: string;
+  textClass: string;
+  linkClass: string;
+}
+// skill gap type
+export interface SkillGapItem {
+  id: number;
+  title: string;
+  priority: string;
+  priorityClass: string;
+  value: number;
 }

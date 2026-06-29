@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 // Charts
 import { Bar } from "react-chartjs-2";
-// Chart.js
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,6 +11,9 @@ import {
   Legend,
   type ChartOptions,
 } from "chart.js";
+
+// json
+import mockData from "../../../../public/mock/AnalyticsDashboard.json";
 
 // Register
 ChartJS.register(
@@ -24,7 +26,6 @@ ChartJS.register(
 );
 
 const WeeklyActivityChart: React.FC = () => {
-  // Create a reference to the chart and a state for hidden items
   const chartRef = useRef<any>(null);
   const [hiddenDatasets, setHiddenDatasets] = useState<number[]>([]);
 
@@ -36,7 +37,6 @@ const WeeklyActivityChart: React.FC = () => {
       chart.setDatasetVisibility(datasetIndex, !isVisible);
       chart.update();
 
-      // Update state to apply line-through styling
       if (isVisible) {
         setHiddenDatasets((prev) => [...prev, datasetIndex]);
       } else {
@@ -47,30 +47,12 @@ const WeeklyActivityChart: React.FC = () => {
 
   // Data
   const data = {
-    labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-    datasets: [
-      {
-        label: "Applications",
-        data: [1, 0, 2, 0, 1, 0, 0],
-        backgroundColor: "#553be6",
-        borderRadius: 4,
-        barThickness: 12,
-      },
-      {
-        label: "Courses",
-        data: [0, 0, 0, 0, 0, 2, 0],
-        backgroundColor: "#0c9d61",
-        borderRadius: 4,
-        barThickness: 12,
-      },
-      {
-        label: "Jobs Browsed",
-        data: [0, 0, 0, 0, 0, 0, 2],
-        backgroundColor: "#fe9b0e",
-        borderRadius: 4,
-        barThickness: 12,
-      },
-    ],
+    labels: mockData.weeklyActivity.labels,
+    datasets: mockData.weeklyActivity.datasets.map((dataset) => ({
+      ...dataset,
+      borderRadius: 4,
+      barThickness: 12,
+    })),
   };
 
   const options: ChartOptions<"bar"> = {
@@ -78,10 +60,10 @@ const WeeklyActivityChart: React.FC = () => {
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        display: true,
+        display: false,
       },
       tooltip: {
-        backgroundColor: "#25282d", // var(--darker)
+        backgroundColor: "#25282d",
         titleFont: { family: "Inter Variable" },
         bodyFont: { family: "Inter Variable" },
         padding: 12,
@@ -94,7 +76,7 @@ const WeeklyActivityChart: React.FC = () => {
         max: 8,
         ticks: {
           stepSize: 2,
-          color: "#d1d3d8", // var(--light-active)
+          color: "#d1d3d8",
           font: { family: "Inter Variable", size: 12 },
           padding: 10,
         },
@@ -103,21 +85,17 @@ const WeeklyActivityChart: React.FC = () => {
           dash: [4, 4],
         },
         grid: {
-          color: "#f0f1f2", // var(--light)
+          color: "#f0f1f2",
           drawTicks: false,
         },
       },
       x: {
-        grid: {
-          display: false,
-        },
+        grid: { display: false },
         ticks: {
-          color: "#d1d3d8", // var(--light-active)
+          color: "#d1d3d8",
           font: { family: "Inter Variable", size: 12 },
         },
-        border: {
-          display: false,
-        },
+        border: { display: false },
       },
     },
     interaction: {
@@ -126,7 +104,6 @@ const WeeklyActivityChart: React.FC = () => {
     },
   };
 
-  // Array for custom legend items to map them easily
   const customLegendItems = [
     { label: "Applications", colorClass: "bg-primary", index: 0 },
     { label: "Courses", colorClass: "bg-success", index: 1 },
@@ -134,12 +111,13 @@ const WeeklyActivityChart: React.FC = () => {
   ];
 
   return (
-    <div className="bg-card border border-border rounded-2xl p-6 shadow-sm w-full h-[500px] flex flex-col ">
-      <div className="flex justify-between items-center mb-6">
-        <h3 className="text-h4 font-bold text-foreground">Weekly Activity</h3>
+    <div className="bg-card border border-border rounded-2xl p-4 md:p-6 shadow-sm w-full h-[400px] md:h-[500px] flex flex-col">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 md:gap-0">
+        <h3 className="text-h5 md:text-h4 font-bold text-foreground">
+          Weekly Activity
+        </h3>
 
-        {/* Render Custom Interactive Legend */}
-        <div className="flex items-center gap-4 text-normal">
+        <div className="flex flex-wrap items-center gap-3 md:gap-4 text-normal">
           {customLegendItems.map((item) => (
             <div
               key={item.index}
@@ -153,14 +131,15 @@ const WeeklyActivityChart: React.FC = () => {
               <span
                 className={`w-3 h-3 rounded-full ${item.colorClass}`}
               ></span>
-              <span className="text-body-sm text-inherit">{item.label}</span>
+              <span className="text-[11px] sm:text-body-sm text-inherit whitespace-nowrap">
+                {item.label}
+              </span>
             </div>
           ))}
         </div>
       </div>
 
       <div className="grow w-full relative">
-        {/* Pass the ref to the Bar chart */}
         <Bar ref={chartRef} data={data} options={options} />
       </div>
     </div>

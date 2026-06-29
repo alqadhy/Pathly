@@ -1,31 +1,20 @@
 import React from "react";
+// components
 import ProgressBar from "../ProgressBar";
+// json file
+import mockData from "../../../../public/mock/AnalyticsDashboard.json";
 
 const ActiveCourses: React.FC = () => {
-  const courses = [
-    {
-      id: 1,
-      title: "UI/UX Design Bootcamp",
-      timeLeft: "6 hrs left",
-      progress: 78,
-      colorClass: "bg-primary",
-      textClass: "text-primary",
-    },
-    {
-      id: 2,
-      title: "Product Management Fundamentals",
-      timeLeft: "~8 hrs left",
-      progress: 45,
-      colorClass: "bg-secondary",
-      textClass: "text-secondary",
-    },
-  ];
+  // activeCourses Data
+  const courses = mockData.activeCourses;
 
   return (
-    <div className="w-full flex flex-col mt-8">
-      <h3 className="text-h4 font-bold text-foreground mb-6">Active Courses</h3>
+    <div className="w-full flex flex-col mt-6 md:mt-8">
+      <h3 className="text-h5 md:text-h4 font-bold text-foreground mb-4 md:mb-6">
+        Active Courses
+      </h3>
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-3 md:gap-4">
         {courses.map((course) => (
           <ProgressBar
             key={course.id}
@@ -34,11 +23,13 @@ const ActiveCourses: React.FC = () => {
             colorClass={course.colorClass}
             labelRightClass={course.textClass}
             labelRight={
-              <div className="flex items-center gap-2">
-                <span className="text-normal font-medium text-xs">
+              <div className="flex items-center gap-1.5 md:gap-2">
+                <span className="text-normal font-medium text-[10px] sm:text-xs whitespace-nowrap">
                   {course.timeLeft}
                 </span>
-                <span>{course.progress}%</span>
+                <span className="text-xs sm:text-sm md:text-base">
+                  {course.progress}%
+                </span>
               </div>
             }
           />
