@@ -85,7 +85,7 @@ function Sidebar() {
               <BookOpen /> Learning
             </Link>
             <Link
-              to={APP_ROUTES.community.profile}
+              to={APP_ROUTES.student.community}
               title="Community"
               className="px-4 py-3 flex gap-2 rounded-lg transition hover:bg-light-hover hover:text-primary"
             >

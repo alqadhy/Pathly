@@ -1,39 +1,37 @@
 import { Building2, Users } from "lucide-react";
-import { Link } from "react-router-dom";
 
-import { APP_ROUTES } from "../../../constants";
 import type { CommunityViewId } from "./useCommunityPageData";
 
-const communityTabs: Array<{ id: CommunityViewId; label: string; to: string; icon: typeof Users }> = [
+const communityTabs: Array<{ id: CommunityViewId; label: string; icon: typeof Users }> = [
   {
     id: "profiles",
     label: "Profiles",
-    to: APP_ROUTES.community.profile,
     icon: Users,
   },
   {
     id: "companies",
     label: "Companies",
-    to: APP_ROUTES.community.companies,
     icon: Building2,
   },
 ];
 
-export default function CommunityTabs({
-  activeTab,
-}: {
+type CommunityTabsProps = {
   activeTab: CommunityViewId;
-}) {
+  onTabChange: (tab: CommunityViewId) => void;
+};
+
+export default function CommunityTabs({ activeTab, onTabChange }: CommunityTabsProps) {
   return (
     <section className="rounded-2xl bg-white p-1 shadow-[0_6px_18px_rgba(15,23,42,0.05)] ring-1 ring-border/50 backdrop-blur-sm">
       <div className="grid grid-cols-2 gap-1">
-        {communityTabs.map(({ id, label, to, icon: Icon }) => {
+        {communityTabs.map(({ id, label, icon: Icon }) => {
           const isActive = id === activeTab;
 
           return (
-            <Link
+            <button
               key={id}
-              to={to}
+              type="button"
+              onClick={() => onTabChange(id)}
               aria-current={isActive ? "page" : undefined}
               className={`group flex h-11 items-center justify-center gap-2 rounded-[14px] text-sm font-semibold transition-all duration-200 ${
                 isActive
@@ -43,10 +41,11 @@ export default function CommunityTabs({
             >
               <Icon className={`size-4 transition-transform duration-200 ${isActive ? "scale-105" : "group-hover:scale-105"}`} />
               <span>{label}</span>
-            </Link>
+            </button>
           );
         })}
       </div>
     </section>
   );
 }
+
