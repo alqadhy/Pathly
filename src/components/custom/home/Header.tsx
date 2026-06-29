@@ -43,10 +43,10 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
        
         <a href="/" className="flex items-center gap-2.5 shrink-0">
-          <div className="w-9 h-9 rounded-xl flex items-center justify-center overflow-hidden bg-primary">
-            <img src={logo} alt="Pathly" className="w-6 h-6 object-contain" />
-          </div>
-          <span className="font-bold text-darker text-h5-size">Pathly</span>
+          {/* <div className="w-9 h-9  flex items-center justify-center overflow-hidden bg-primary"> */}
+            <img src={logo} alt="Pathly" className="w-8 h-8 object-contain" />
+          {/* </div> */}
+          <span className="font-bold text-darker text-xl">Pathly</span>
         </a>
 
      

@@ -8,7 +8,7 @@ export default function CTASection() {
       <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none bg-secondary-light-active/20" />
 
       <div className=" mx-auto text-center relative z-10 space-y-6">
-        <h2 className="font-extrabold text-white leading-tight text-4xl md:text-5xl lg:text-6xl">
+        <h2 className="font-extrabold text-white! leading-tight text-4xl md:text-5xl lg:text-6xl">
           Ready to accelerate?
         </h2>
         <p className="text-white/70 leading-relaxed text-lg md:text-xl">

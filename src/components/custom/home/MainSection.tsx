@@ -28,7 +28,7 @@ export default function MainSection() {
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white!  leading-tight mb-6">
               Land Your First Role.
               <br />
               <span className="text-transparent bg-clip-text"
@@ -88,7 +88,7 @@ export default function MainSection() {
               <div className="flex justify-between items-start mb-1">
                 <div className="mb-4">
                   <p className="text-sm text-white/60">AI Roadmap</p>
-                  <h6 className="text-xl font-bold text-white">
+                  <h6 className="text-xl font-bold text-white!">
                     Frontend Developer Path
                   </h6>
                 </div>

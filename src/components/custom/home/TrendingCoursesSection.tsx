@@ -1,82 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { User, Star, Clock, GraduationCap, ShoppingCart, ArrowRight } from "lucide-react";
-import webDevImg     from "@/assets/imgs/coursesSection1.png";
-import pythonImg     from "@/assets/imgs/CoursesSection2.png";
-import reactImg      from "@/assets/imgs/CoursesSection3.png";
-import javascriptImg from "@/assets/imgs/CoursesSection4.png";
-
-const courseImages = {
-  webDev:     webDevImg,
-  python:     pythonImg,
-  react:      reactImg,
-  javascript: javascriptImg,
-};
-
-// ── Types ─────────────────────────────────────────────────────────────────────
-interface Course {
-  id: number;
-  title: string;
-  instructor: string;
-  rating: number;
-  reviews: string;
-  duration: string;
-  level: string;
-  hasCertificate: boolean;
-  price: number;
-  image: string;
-}
-
-const courses: Course[] = [
-  { 
-    id: 1, 
-    title: "Web Development Bootcamp", 
-    instructor: "Mohamad karim",
-    rating: 4, 
-    reviews: "3.2k", 
-    duration: "12 weeks", 
-    level: "Beginner", 
-    hasCertificate: true,
-    price: 1500, 
-    image: courseImages.webDev 
-  },
-  { 
-    id: 2, 
-    title: "Data Science & AI Mastery", 
-    instructor: "Sara Ahmed",
-    rating: 4.8, 
-    reviews: "1.8k", 
-    duration: "16 weeks", 
-    level: "Intermediate", 
-    hasCertificate: true,
-    price: 1499, 
-    image: courseImages.python 
-  },
-  { 
-    id: 3, 
-    title: "Advanced React.js Strategies", 
-    instructor: "John Doe",
-    rating: 4.7, 
-    reviews: "950", 
-    duration: "8 weeks", 
-    level: "Advanced", 
-    hasCertificate: false,
-    price: 1299, 
-    image: courseImages.react 
-  },
-  { 
-    id: 4, 
-    title: "Javascript Mastery", 
-    instructor: "Dr. Emily",
-    rating: 5, 
-    reviews: "3.1k", 
-    duration: "6 weeks", 
-    level: "All Levels", 
-    hasCertificate: true,
-    price: 2499, 
-    image: courseImages.javascript 
-  },
-];
+import { User, Star, Clock, GraduationCap, ArrowRight } from "lucide-react";
+import { courses } from "@/data/courses.data";
+import type { Course } from "@/types/courses.types";
 
 function StarRating({ rating }: { rating: number }) {
   return (
@@ -113,7 +39,7 @@ export default function TrendingCoursesSection() {
               Curated paths for modern careers
             </h2>
           </div>
-            <Button
+          <Button
             variant="ghost"
             className="text-primary cursor-pointer font-semibold hover:text-primary-hover hover:bg-primary-light gap-1.5 hidden md:flex"
           >
@@ -121,14 +47,12 @@ export default function TrendingCoursesSection() {
           </Button>
         </div>
 
-       
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {courses.map((course) => (
+          {courses.map((course: Course) => (
             <Card
               key={course.id}
-              className="group border   border-light-active rounded-2xl overflow-hidden shadow-sm hover:shadow-card hover:-translate-y-1 transition-all duration-300 bg-card flex flex-col p-0  "
+              className="group border border-light-active rounded-2xl overflow-hidden shadow-sm hover:shadow-card hover:-translate-y-1 transition-all duration-300 bg-card flex flex-col p-0"
             >
-          
               <div className="relative h-44 w-full overflow-hidden bg-[#0B182F] rounded-t-2xl">
                 <img
                   src={course.image}
@@ -137,10 +61,7 @@ export default function TrendingCoursesSection() {
                 />
               </div>
 
-            
-              <CardContent className=" flex flex-col grow p-5">
-                
-              
+              <CardContent className="flex flex-col grow p-5">
                 <h3 className="font-bold text-darker leading-snug mb-2 text-body-md">
                   {course.title}
                 </h3>
@@ -150,7 +71,6 @@ export default function TrendingCoursesSection() {
                   <span>{course.instructor}</span>
                 </div>
 
-             
                 <div className="flex items-center gap-2 mb-2">
                   <StarRating rating={course.rating} />
                   <span className="text-sm font-semibold text-darker">
@@ -161,7 +81,6 @@ export default function TrendingCoursesSection() {
                   </span>
                 </div>
 
-             
                 <div className="flex items-center gap-4 text-normal text-sm mb-2">
                   <div className="flex items-center gap-1.5">
                     <Clock size={14} className="text-normal" />
@@ -171,15 +90,14 @@ export default function TrendingCoursesSection() {
                   <span>{course.level}</span>
                 </div>
 
-              
                 <div className="flex items-center gap-2 text-normal text-sm mb-4">
                   <GraduationCap size={14} className="text-normal" />
                   <span>{course.hasCertificate ? "Certificate" : "No Certificate"}</span>
                 </div>
 
                 <div className="flex items-center mt-auto">
-                  <Button 
-                    className="flex-1 bg-primary hover:bg-primary-hover cursor-pointer text-white  font-medium h-10"
+                  <Button
+                    className="flex-1 bg-primary hover:bg-primary-hover cursor-pointer text-white font-medium h-10"
                   >
                     View Details
                   </Button>
@@ -187,19 +105,17 @@ export default function TrendingCoursesSection() {
                     {course.price} EGP
                   </div>
                 </div>
-
               </CardContent>
             </Card>
           ))}
         </div>
 
-      
         <div className="mt-8 flex justify-center md:hidden">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             className="border-primary cursor-pointer text-primary hover:bg-primary-light gap-1.5"
           >
-            View All <ArrowRight size={16}  />
+            View All <ArrowRight size={16} />
           </Button>
         </div>
       </div>
