@@ -19,8 +19,14 @@ export const APP_ROUTES = {
     jobs: "/student/jobs",
     saved: "/student/saved",
     learning: "/student/learning",
-    community: "/student/community",
     profile: "/student/profile",
     settings: "/student/settings",
+  },
+
+  // Community Routes
+  community: {
+    root: "/community",
+    profile: "/community/profile",
+    companies: "/community/companies",
   },
 };

@@ -1,9 +1,12 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
 // Layouts
 import AuthLayout from "../layout/AuthLayout";
 import DashboardLayout from "../layout/DashboardLayout";
+
+// Constants
+import { APP_ROUTES } from "../constants";
 
 // Loaders
 import PageLoader from "../components/layout/PageLoader";
@@ -14,6 +17,9 @@ const Home = lazy(() => import("../pages/Home"));
 const Login = lazy(() => import("../pages/auth/Login"));
 const Dashboard = lazy(() => import("../pages/student/Dashboard"));
 const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
+const Community = lazy(() => import("../pages/Community/Community"));
+const Profiles = lazy(() => import("../pages/Community/Profiles"));
+const Companies = lazy(() => import("../pages/Community/Companies"));
 
 const router = createBrowserRouter([
   // Landing Page
@@ -46,6 +52,36 @@ const router = createBrowserRouter([
             <Analytics />
           </Suspense>
         ),
+      },
+      {
+        path: APP_ROUTES.community.root,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <Community />
+          </Suspense>
+        ),
+        children: [
+          {
+            index: true,
+            element: <Navigate to={APP_ROUTES.community.profile} replace />,
+          },
+          {
+            path: "profile",
+            element: (
+              <Suspense fallback={<PageLoader />}>
+                <Profiles />
+              </Suspense>
+            ),
+          },
+          {
+            path: "companies",
+            element: (
+              <Suspense fallback={<PageLoader />}>
+                <Companies />
+              </Suspense>
+            ),
+          },
+        ],
       },
     ],
   },
