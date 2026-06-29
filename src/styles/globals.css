@@ -204,6 +204,7 @@
   --transition-fast: 150ms;
   --transition-normal: 300ms;
   --transition-slow: 500ms;
+  --transition-very-slow: 800ms;
 
   /* ===========================
     Z INDEX

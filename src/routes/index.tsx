@@ -5,7 +5,8 @@ import { lazy, Suspense } from "react";
 import AuthLayout from "../layout/AuthLayout";
 import DashboardLayout from "../layout/DashboardLayout";
 
-// Page Loader
+// Loaders
+import PageLoader from "../components/layout/PageLoader";
 import Loader from "../components/layout/Loader";
 
 // Pages
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<PageLoader />}>
         <Home />
       </Suspense>
     ),
