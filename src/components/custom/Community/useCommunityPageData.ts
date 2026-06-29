@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import type { CommunityPageData } from "../../types/Community";
+import type { CommunityPageData } from "../../../types/Community";
 
 export type CommunityViewId = "profiles" | "companies";
 

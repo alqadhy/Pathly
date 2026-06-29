@@ -1,5 +1,5 @@
-import type { CommunitySection } from "../../types/Community";
-import Card from "../../components/custom/Card";
+import type { CommunitySection } from "../../../types/Community";
+import Card from "../Card";
 
 export default function CommunitySectionList({
   sections,

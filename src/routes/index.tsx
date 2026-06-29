@@ -17,9 +17,9 @@ const Home = lazy(() => import("../pages/Home"));
 const Login = lazy(() => import("../pages/auth/Login"));
 const Dashboard = lazy(() => import("../pages/student/Dashboard"));
 const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
-const Community = lazy(() => import("../pages/Community/Community"));
-const Profiles = lazy(() => import("../pages/Community/Profiles"));
-const Companies = lazy(() => import("../pages/Community/Companies"));
+const Community = lazy(() => import("../components/custom/Community/Community"));
+const Profiles = lazy(() => import("../components/custom/Community/Profiles"));
+const Companies = lazy(() => import("../components/custom/Community/Companies"));
 
 const router = createBrowserRouter([
   // Landing Page

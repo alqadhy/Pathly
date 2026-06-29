@@ -1,7 +1,7 @@
 import { Building2, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import { APP_ROUTES } from "../../constants";
+import { APP_ROUTES } from "../../../constants";
 import type { CommunityViewId } from "./useCommunityPageData";
 
 const communityTabs: Array<{ id: CommunityViewId; label: string; to: string; icon: typeof Users }> = [
