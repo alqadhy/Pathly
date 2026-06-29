@@ -13,6 +13,7 @@ import Loader from "../components/layout/Loader";
 const Home = lazy(() => import("../pages/Home"));
 const Login = lazy(() => import("../pages/auth/Login"));
 const Dashboard = lazy(() => import("../pages/student/Dashboard"));
+const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
 
 const router = createBrowserRouter([
   // Landing Page
@@ -35,6 +36,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <Dashboard />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/student/analytics",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Analytics />
           </Suspense>
         ),
       },

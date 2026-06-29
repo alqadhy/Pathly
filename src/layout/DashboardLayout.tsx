@@ -11,7 +11,7 @@ function DashboardLayout() {
       <DashboardHeader />
       <div className="flex">
         <Sidebar />
-        <div className="grow p-6">
+        <div className="w-full lg:w-(--dashboard-container-width) p-6">
           <Outlet />
         </div>
       </div>

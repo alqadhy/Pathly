@@ -196,6 +196,7 @@
     LAYOUT
   =========================== */
   --sidebar-width: 280px;
+  --dashboard-container-width: calc(100% - var(--sidebar-width));
   --header-height: 64px;
 
   /* ===========================

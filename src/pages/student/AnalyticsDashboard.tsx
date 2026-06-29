@@ -11,9 +11,8 @@ import ApplicationPipelineChart from "../../components/custom/analytics/Applicat
 
 function AnalyticsDashboard() {
   return (
-    <div className="min-h-screen bg-background p-10">
-      {/* Header */}
-      <div className="flex flex-row items-center justify-between mb-8">
+    <div className="min-h-screen bg-background">
+      <div className="flex flex-wrap items-center justify-between gap-x-15 gap-y-3 mb-8">
         <div>
           <h1 className="text-h3 font-bold text-foreground">
             Analytics Dashboard
@@ -33,27 +32,27 @@ function AnalyticsDashboard() {
       <StatCards />
 
       {/* Weekly Activity & Application Pipeline - Row 2 */}
-      <div className="grid grid-cols-3 gap-6 mb-6">
-        <div className="col-span-2">
+      <div className="grid md:grid-cols-3 gap-6 mb-6">
+        <div className="md:col-span-2">
           <WeeklyActivityChart />
         </div>
-        <div className="col-span-1 h-full">
+        <div className="col-span-1">
           <ApplicationPipelineChart />
         </div>
       </div>
 
       {/* Profile Strength & Score Trends - Row 3 */}
-      <div className="grid grid-cols-2 gap-6 mb-6">
-        <div className="col-span-1 h-full">
+      <div className="grid md:grid-cols-2 gap-6 mb-6">
+        <div className="col-span-1">
           <ProfileStrength />
         </div>
-        <div className="col-span-1 h-full">
+        <div className="col-span-1">
           <ScoreTrendsChart />
         </div>
       </div>
 
       {/* Skills Gap Analysis & Roadmap - Row 4 */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-6">
         <div className="col-span-1 h-full">
           <SkillsGapAnalysis />
         </div>
