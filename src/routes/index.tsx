@@ -18,6 +18,7 @@ const Login = lazy(() => import("../pages/auth/Login"));
 const Dashboard = lazy(() => import("../pages/student/Dashboard"));
 const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
 const Community = lazy(() => import("../pages/student/Community"));
+const Profile = lazy(() => import("../pages/student/Profile"));
 // const Profiles = lazy(() => import("../components/custom/Community/Profiles"));
 // const Companies = lazy(() => import("../components/custom/Community/Companies"));
 
@@ -58,6 +59,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <Community />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.profile,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Profile />
           </Suspense>
         ),
       },

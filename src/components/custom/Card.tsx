@@ -29,8 +29,10 @@ export interface CardProps {
   onDismiss?: () => void;
   className?: string;
   children?: ReactNode;
+  isActive?: boolean;
+  actionState?: "default" | "following" | "pending" | "connected";
+  viewType?: "companies" | "profiles";
 }
-
 const mediaSizeClasses: Record<CardMediaSize, string> = {
   sm: "h-16 w-16",
   md: "h-20 w-20",
@@ -50,9 +52,31 @@ export default function Card({
   onDismiss,
   className,
   children,
+  isActive = false,
+  actionState,
+  viewType = "companies",
 }: CardProps) {
   const mediaShape = media?.shape ?? "circle";
   const mediaSize = media?.size ?? "lg";
+
+  const getButtonText = () => {
+    if (!isActive) {
+      return actionLabel;
+    }
+    
+    if (viewType === "companies") {
+      return "Following";
+    }
+    
+    // For profiles
+    if (actionState === "connected") {
+      return "Connected";
+    } else if (actionState === "pending") {
+      return "Pending";
+    }
+    
+    return "Following";
+  };
 
   return (
     <article
@@ -152,12 +176,14 @@ export default function Card({
           onClick={onAction}
           className={cn(
             "mt-4 w-full rounded-xl px-3 py-2.5 text-[15px] font-semibold tracking-[0.01em] text-white transition",
-            actionTone === "dark"
+            isActive
+              ? "bg-gray-400 hover:bg-gray-500"
+              : actionTone === "dark"
               ? "bg-primary-hover hover:bg-primary"
               : "bg-primary hover:bg-primary-hover",
           )}
         >
-          {actionLabel}
+          {getButtonText()}
         </button>
       </div>
     </article>

@@ -8,7 +8,7 @@ function Companies() {
     return null;
   }
 
-  return <CommunitySectionList sections={data.sections} actionLabel="follow +" />;
+  return <CommunitySectionList sections={data.sections} actionLabel="follow +" viewType="companies" />;
 }
 
 export default Companies;

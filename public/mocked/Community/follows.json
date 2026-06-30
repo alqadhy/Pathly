@@ -1,0 +1,24 @@
+{
+  "followedCompanies": [
+    {
+      "id": "oracle",
+      "name": "Oracle",
+      "role": "Cloud applications",
+      "subtitle": "Focused on graduate hiring",
+      "mutualConnections": "5 alumni already work here",
+      "avatarUrl": "https://ui-avatars.com/api/?name=Oracle&background=5b21b6&color=fff&bold=true"
+    }
+  ],
+  "connectedProfiles": [
+    {
+      "id": "omar-sameh-3",
+      "name": "Omar Sameh",
+      "role": "Data studio \"Looker\"",
+      "subtitle": "Google sheet | Using data pipelines",
+      "mutualConnections": "Osama and 10 other mutual connections",
+      "avatarUrl": "https://i.pravatar.cc/160?img=12",
+      "isConnected": true
+    }
+  ],
+  "lastUpdated": "2024-01-01T00:00:00.000Z"
+}
