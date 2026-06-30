@@ -11,9 +11,10 @@ import Loader from "../components/layout/Loader";
 
 // Pages
 const Home = lazy(() => import("../pages/Home"));
-const Login = lazy(() => import("../pages/auth/Login"));
+const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
 const Dashboard = lazy(() => import("../pages/student/Dashboard"));
 const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
+const SignUp = lazy(() => import("../components/custom/auth/SignUp"));
 
 const router = createBrowserRouter([
   // Landing Page
@@ -51,20 +52,29 @@ const router = createBrowserRouter([
   },
 
   // Auth Routes
-  {
-    element: <AuthLayout />,
+{
+  path: "/auth",
+  element: <AuthLayout />,
+  children: [
+    {
+      index: true,
+      element: (
+        <Suspense fallback={<Loader />}>
+          <AuthFlow />
+        </Suspense>
+      ),
+    },
+        {
+      path: "/auth/sign-up",
+      element: (
+        <Suspense fallback={<Loader />}>
+          <SignUp />
+        </Suspense>
+      ),
+    },
+  ],
+},
 
-    children: [
-      {
-        path: "/auth/login",
-        element: (
-          <Suspense fallback={<Loader />}>
-            <Login />
-          </Suspense>
-        ),
-      },
-    ],
-  },
 ]);
 
 export default router;

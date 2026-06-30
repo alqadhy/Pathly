@@ -69,7 +69,7 @@ export default function Header() {
 
         <div className="flex items-center gap-3">
           <Button
-            onClick={() => navigate("/auth/login")}
+            onClick={() => navigate("/auth")}
             className="cursor-pointer hidden sm:inline-flex rounded-full font-semibold px-6 text-white h-10"
             style={{
               backgroundColor: "var(--primary)",
@@ -106,7 +106,7 @@ export default function Header() {
             <Button
               onClick={() => {
                 setMenuOpen(false);
-                navigate("/auth/login");
+                navigate("/auth");
               }}
               className="w-full rounded-full font-semibold text-white bg-primary hover:bg-primary-hover h-12"
             >

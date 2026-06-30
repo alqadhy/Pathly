@@ -1,0 +1,36 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "fullName": "Mai Mohamed",
+      "email": "mai@gmail.com",
+      "password": "Mai12345",
+      "countryCode": "+20",
+      "phone": "1000000000"
+    },
+    {
+      "fullName": "Mai Mohamed",
+      "email": "mai.mo.alii3@gmail.com",
+      "password": "123456789_Mai",
+      "countryCode": "+20",
+      "phone": "01143607452",
+      "id": 2
+    },
+    {
+      "fullName": "Mai Mohamed",
+      "email": "mai.mo.ali@gmail.com",
+      "password": "1425451_Mai",
+      "countryCode": "+20",
+      "phone": "1143607452",
+      "id": 3
+    },
+    {
+      "fullName": "Mai Mohamed",
+      "email": "mai.m.alii3@gmail.com",
+      "password": "12_’123456_M",
+      "countryCode": "+20",
+      "phone": "1143607452",
+      "id": 4
+    }
+  ]
+}
