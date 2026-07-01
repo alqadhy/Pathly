@@ -1,4 +1,3 @@
-// src/types/profile.ts
 export interface PersonalInfo {
   username: string;
   email: string;
@@ -18,6 +17,8 @@ export interface Activity {
   timestamp: string;
   likes?: number;
   comments?: number;
+  image?: string;
+  profileImage?: string;
 }
 
 export interface Skill {
@@ -44,6 +45,7 @@ export interface Experience {
   endDate: string;
   location?: string;
   description: string[];
+  companyLogo?: string;
 }
 
 export interface Education {
@@ -54,6 +56,7 @@ export interface Education {
   startDate: string;
   endDate: string;
   gpa?: string;
+  institutionLogo?: string;
 }
 
 export interface Course {
@@ -62,6 +65,7 @@ export interface Course {
   provider: string;
   completionDate: string;
   skills: string[];
+  courseLogo?: string;  
 }
 
 export interface CV {

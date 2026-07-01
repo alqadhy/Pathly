@@ -9,5 +9,7 @@ export { default as CertificationsSection } from './CertificationsSection';
 export { default as ExperienceSection } from './ExperienceSection';
 export { default as EducationSection } from './EducationSection';
 export { default as CoursesSection } from './CoursesSection';
-export { default as EditModal } from './EditModal';
+export { default as EditModal } from './crud/EditModal';
+export { default as AddModal } from './crud/AddModal';
+export { default as DeleteConfirmationModal } from './crud/DeleteConfirmationModal';
 export { default as ProgressBar } from './ProgressBar';

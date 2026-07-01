@@ -1,27 +1,10 @@
 import { useEffect, useState, useCallback } from "react";
 
-export interface FollowedCompany {
-  id: string;
-  name: string;
-  followedAt: string;
-}
-
-export interface ConnectedProfile {
-  id: string;
-  name: string;
-  role: string;
-  subtitle: string;
-  mutualConnections: string;
-  avatarUrl: string;
-  isConnected: boolean;
-  connectedAt: string;
-}
-
-export interface FollowsData {
-  followedCompanies: FollowedCompany[];
-  connectedProfiles: ConnectedProfile[];
-  lastUpdated: string;
-}
+import {
+  loadCommunityFollows,
+  saveStoredCommunityFollows,
+  type FollowsData,
+} from "./crud/communityStorage";
 
 async function loadFollowsData(): Promise<FollowsData> {
   const response = await fetch("/mocked/Community/follows.json");
@@ -33,13 +16,6 @@ async function loadFollowsData(): Promise<FollowsData> {
   return response.json() as Promise<FollowsData>;
 }
 
-async function saveFollowsData(data: FollowsData): Promise<void> {
-  // In a real app, this would be an API call
-  // For now, we'll just log it and update localStorage
-  console.log("Saving follows data:", data);
-  localStorage.setItem("followsData", JSON.stringify(data));
-}
-
 export function useFollows() {
   const [followsData, setFollowsData] = useState<FollowsData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -47,8 +23,15 @@ export function useFollows() {
   useEffect(() => {
     const loadData = async () => {
       try {
+        const storedData = loadCommunityFollows(null);
+        if (storedData) {
+          setFollowsData(storedData);
+          return;
+        }
+
         const data = await loadFollowsData();
-        setFollowsData(data);
+        const normalizedData = loadCommunityFollows(data);
+        setFollowsData(normalizedData || data);
       } catch (error) {
         console.error("Error loading follows data:", error);
         // Initialize with empty data if fetch fails
@@ -57,7 +40,7 @@ export function useFollows() {
           connectedProfiles: [],
           lastUpdated: new Date().toISOString(),
         };
-        setFollowsData(emptyData);
+        setFollowsData(loadCommunityFollows(emptyData) || emptyData);
       } finally {
         setLoading(false);
       }
@@ -83,7 +66,7 @@ export function useFollows() {
     };
 
     setFollowsData(updatedData);
-    await saveFollowsData(updatedData);
+    saveStoredCommunityFollows(updatedData);
   }, [followsData]);
 
   const unfollowCompany = useCallback(async (companyId: string) => {
@@ -98,7 +81,7 @@ export function useFollows() {
     };
 
     setFollowsData(updatedData);
-    await saveFollowsData(updatedData);
+    saveStoredCommunityFollows(updatedData);
   }, [followsData]);
 
   const connectProfile = useCallback(async (profile: {
@@ -131,7 +114,7 @@ export function useFollows() {
     };
 
     setFollowsData(updatedData);
-    await saveFollowsData(updatedData);
+    saveStoredCommunityFollows(updatedData);
   }, [followsData]);
 
   const disconnectProfile = useCallback(async (profileId: string) => {
@@ -146,7 +129,7 @@ export function useFollows() {
     };
 
     setFollowsData(updatedData);
-    await saveFollowsData(updatedData);
+    saveStoredCommunityFollows(updatedData);
   }, [followsData]);
 
   const isFollowingCompany = useCallback(

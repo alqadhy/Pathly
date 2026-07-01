@@ -40,7 +40,9 @@ function DashboardHeader() {
         <IconButton title="Messages">
           <MessagesSquare />
         </IconButton>
-        <UserAvatar />
+        <Link to={APP_ROUTES.student.profile}>
+          <UserAvatar />
+        </Link>
       </div>
     </header>
   );

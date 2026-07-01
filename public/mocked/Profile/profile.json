@@ -7,28 +7,25 @@
   "industry": "Design & Technology",
   "about": "Senior Product Designer passionate about creating intuitive, user-centered digital experiences that drive business impact. I specialize in turning complex problems into simple, scalable solutions through research, strategy, and thoughtful design. With a collaborative mindset, I work closely with cross-functional teams to deliver products that are both functional and visually engaging.",
   "coverImage": {
-    "url": "/images/profile-cover.jpg",
+    "url": "../../../src/assets/imgs/Exper1.png",
     "alt": "Profile cover image"
   },
   "avatarImage": {
-    "url": "/images/avatar.jpg",
+    "url": "../../../src/assets/imgs/Exper1.png",
     "alt": "Ahmed Hossam avatar"
   },
   "personalInfo": {
     "username": "ahmedhossam",
     "email": "ahmedhossam4@gmail.com",
     "phone": "+201012345678",
-    "location": "Cairo, Egypt",
-    "currentPosition": "Senior Product Designer",
-    "industry": "Design & Technology",
     "links": [
+      {
+        "platform": "Portfolio",
+        "url": "portfolio.com"
+      },
       {
         "platform": "Behance",
         "url": "behance.net/ahmedhossam12"
-      },
-      {
-        "platform": "LinkedIn",
-        "url": "linkedin.com/in/ahmedhossam"
       }
     ]
   },
@@ -38,14 +35,36 @@
       "content": "A beautiful interface can attract users. A great user experience makes them stay. UI is how it looks. UX is how it works. You need both.",
       "timestamp": "2026-06-30T08:00:00Z",
       "likes": 42,
-      "comments": 15
+      "comments": 15,
+      "image": "../../../src/assets/imgs/Exper1.png",
+      "profileImage": "../../../src/assets/imgs/Exper2.png"
     },
     {
       "id": "act-002",
       "content": "Every screen has a purpose. Product design is about creating a user experience that solves real problems, and brings business. #ProductDesign #UXDesign",
       "timestamp": "2026-06-26T14:30:00Z",
       "likes": 28,
-      "comments": 8
+      "comments": 8,
+       "image": "../../../src/assets/imgs/Exper1.png",
+      "profileImage": ".../../../src/assets/imgs/Exper2.png"
+    },
+    {
+      "id": "act-003",
+      "content": "Every screen has a purpose. Product design is about creating a user experience that solves real problems, and brings business. #ProductDesign #UXDesign",
+      "timestamp": "2026-06-26T14:30:00Z",
+      "likes": 28,
+      "comments": 8,
+       "image": "../../../src/assets/imgs/Exper1.png",
+      "profileImage": ".../../../src/assets/imgs/Exper2.png"
+    },
+    {
+      "id": "act-004",
+      "content": "Every screen has a purpose. Product design is about creating a user experience that solves real problems, and brings business. #ProductDesign #UXDesign",
+      "timestamp": "2026-06-26T14:30:00Z",
+      "likes": 28,
+      "comments": 8,
+       "image": "../../../src/assets/imgs/Exper1.png",
+      "profileImage": ".../../../src/assets/imgs/Exper1.png"
     }
   ],
   "skills": [
@@ -79,6 +98,7 @@
       "employmentType": "Full-time",
       "startDate": "2022-01-01",
       "endDate": "2025-07-01",
+      "companyLogo": "../../../src/assets/imgs/Exper1.png",
       "description": [
         "Led the redesign of the core enterprise dashboard, resulting in a 40% increase in user efficiency.",
         "Established the company's first comprehensive design system, syncing Figma components with React libraries."
@@ -91,6 +111,7 @@
       "employmentType": "Full-time",
       "startDate": "2019-02-01",
       "endDate": "2021-09-01",
+      "companyLogo": "../../../src/assets/imgs/Exper2.png",
       "description": [
         "Collaborated with cross-functional teams to launch the 'EasyPay' mobile feature, acquiring 1M+ active users within the first quarter.",
         "Conducted 50+ user research sessions to map financial customer journeys."
@@ -104,7 +125,8 @@
       "degree": "Bachelor",
       "fieldOfStudy": "Computer and Information Sciences",
       "startDate": "2015-09-01",
-      "endDate": "2018-06-01"
+      "endDate": "2018-06-01",
+      "institutionLogo": "../../../src/assets/imgs/Edu.jpg"
     }
   ],
   "courses": [
@@ -113,6 +135,7 @@
       "name": "Advanced Product Design: Design Systems & Scalable UX",
       "provider": "Interaction Design Foundation (IxDF)",
       "completionDate": "2024-02-01",
+      "courseLogo": "../../../src/assets/imgs/Course.png",
       "skills": [
         "Design Systems",
         "Component Libraries",

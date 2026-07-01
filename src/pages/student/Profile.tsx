@@ -1,6 +1,10 @@
-// src/pages/student/Profile.tsx
 import React, { useState, useEffect } from "react";
 import type { Profile as ProfileType } from "../../types/profile";
+import {
+  loadProfile,
+  saveStoredProfile,
+  normalizeProfile,
+} from "../../components/custom/Profile/crud/profileStorage";
 import {
   ProfileHeader,
   AboutSection,
@@ -13,6 +17,8 @@ import {
   EducationSection,
   CoursesSection,
   EditModal,
+  AddModal,
+  DeleteConfirmationModal,
   ProgressBar,
 } from "../../components/custom/Profile";
 
@@ -21,62 +27,43 @@ const Profile: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [editingSection, setEditingSection] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<any>(null);
+  const [addingSection, setAddingSection] = useState<string | null>(null);
+  const [deleteModal, setDeleteModal] = useState<{
+    isOpen: boolean;
+    section: string;
+    item: any;
+  }>({ isOpen: false, section: "", item: null });
 
   useEffect(() => {
     fetchProfile();
   }, []);
 
+  useEffect(() => {
+    if (profile) {
+      saveStoredProfile(profile);
+    }
+  }, [profile]);
+
   const fetchProfile = async () => {
     try {
+      const storedProfile = loadProfile(null);
+      if (storedProfile) {
+        setProfile(storedProfile);
+        return;
+      }
+
       const response = await fetch("/mocked/Profile/profile.json");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      setProfile(data);
+      setProfile(loadProfile(data));
     } catch (error) {
       console.error("Error fetching profile:", error);
-      setProfile(getFallbackProfile());
+      // setProfile(getFallbackProfile());
     } finally {
       setLoading(false);
     }
-  };
-
-  const getFallbackProfile = (): ProfileType => {
-    return {
-      id: "student-001",
-      name: "Ahmed Hossam",
-      title: "Senior Product Designer",
-      followers: 349,
-      location: "Cairo, Egypt",
-      industry: "Design & Technology",
-      about:
-        "Senior Product Designer passionate about creating intuitive, user-centered digital experiences that drive business impact.",
-      coverImage: {
-        url: "/images/profile-cover.jpg",
-        alt: "Profile cover image"
-      },
-      avatarImage: {
-        url: "/images/avatar.jpg",
-        alt: "Ahmed Hossam avatar"
-      },
-      personalInfo: {
-        username: "ahmedhossam",
-        email: "ahmedhossam4@gmail.com",
-        phone: "+201012345678",
-        location: "Cairo, Egypt",
-        currentPosition: "Senior Product Designer",
-        industry: "Design & Technology",
-        links: [{ platform: "Behance", url: "behance.net/ahmedhossam12" }],
-      },
-      activities: [],
-      skills: [],
-      certifications: [],
-      experience: [],
-      education: [],
-      courses: [],
-      cv: null,
-    };
   };
 
   // Calculate profile completion dynamically
@@ -91,7 +78,8 @@ const Profile: React.FC = () => {
     // Skills
     if (profile.skills && profile.skills.length > 0) completed++;
     // Certifications
-    if (profile.certifications && profile.certifications.length > 0) completed++;
+    if (profile.certifications && profile.certifications.length > 0)
+      completed++;
     // Experience
     if (profile.experience && profile.experience.length > 0) completed++;
     // Education
@@ -111,10 +99,14 @@ const Profile: React.FC = () => {
     setSelectedItem(item || null);
   };
 
+  const handleAdd = (section: string) => {
+    setAddingSection(section);
+  };
+
   const handleSave = (section: string, data: any) => {
     setProfile((prev) => {
       if (!prev) return prev;
-      const updated = { ...prev };
+      const updated = normalizeProfile({ ...prev });
       switch (section) {
         case "about":
           updated.about = data;
@@ -123,34 +115,119 @@ const Profile: React.FC = () => {
           updated.personalInfo = data;
           break;
         case "skills":
-          updated.skills = data;
+          const skillNames = (
+            Array.isArray(data)
+              ? data
+              : Array.isArray(data?.skills)
+                ? data.skills
+                : []
+          )
+            .map((skill: any) =>
+              typeof skill === "string" ? skill : skill?.name,
+            )
+            .filter(Boolean)
+            .map((skill: string) => skill.trim());
+
+          if (addingSection === "skills") {
+            const existingNames = updated.skills.map((skill) => skill.name);
+            const mergedNames = [...existingNames, ...skillNames].filter(
+              (skill, index, allSkills) =>
+                skill &&
+                allSkills.findIndex(
+                  (item) => item.toLowerCase() === skill.toLowerCase(),
+                ) === index,
+            );
+
+            updated.skills = mergedNames.map((skillName: string) => ({
+              id: `skill-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+              name: skillName,
+            }));
+          } else {
+            updated.skills = skillNames.map((skillName: string) => ({
+              id: `skill-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+              name: skillName,
+            }));
+          }
           break;
-        case "experience":
+        case "experience": {
+          const current = updated.experience;
+
           if (selectedItem) {
-            const index = updated.experience.findIndex(
+            const index = current.findIndex((e) => e.id === selectedItem.id);
+            if (index !== -1) {
+              current[index] = data;
+            }
+            updated.experience = current;
+          } else {
+            updated.experience = [
+              ...current,
+              { ...data, id: data.id || `experience-${Date.now()}` },
+            ];
+          }
+          break;
+        }
+        case "certifications":
+          if (selectedItem) {
+            const index = updated.certifications.findIndex(
+              (c) => c.id === selectedItem.id,
+            );
+            if (index !== -1) {
+              updated.certifications[index] = data;
+            }
+          } else {
+            updated.certifications = [
+              ...updated.certifications,
+              { ...data, id: data.id || `certification-${Date.now()}` },
+            ];
+          }
+          break;
+        case "education":
+          if (selectedItem) {
+            const index = updated.education.findIndex(
               (e) => e.id === selectedItem.id,
             );
             if (index !== -1) {
-              updated.experience[index] = data;
+              updated.education[index] = data;
             }
           } else {
-            updated.experience = [...updated.experience, data];
+            updated.education = [
+              ...(updated.education || []),
+              { ...data, id: data.id || `education-${Date.now()}` },
+            ];
           }
           break;
-        case "certifications":
-          updated.certifications = data;
-          break;
-        case "education":
-          updated.education = data;
-          break;
         case "courses":
-          updated.courses = data;
+          if (selectedItem) {
+            const index = updated.courses.findIndex(
+              (c) => c.id === selectedItem.id,
+            );
+            if (index !== -1) {
+              updated.courses[index] = data;
+            }
+          } else {
+            updated.courses = [
+              ...(updated.courses || []),
+              { ...data, id: data.id || `course-${Date.now()}` },
+            ];
+          }
           break;
         case "cv":
           updated.cv = data;
           break;
         case "activities":
-          updated.activities = data;
+          if (selectedItem) {
+            const index = updated.activities.findIndex(
+              (a) => a.id === selectedItem.id,
+            );
+            if (index !== -1) {
+              updated.activities[index] = data;
+            }
+          } else {
+            updated.activities = [
+              ...updated.activities,
+              { ...data, id: data.id || `activity-${Date.now()}` },
+            ];
+          }
           break;
         default:
           break;
@@ -164,6 +241,80 @@ const Profile: React.FC = () => {
   const handleCloseModal = () => {
     setEditingSection(null);
     setSelectedItem(null);
+  };
+
+  const handleAvatarChange = (imageUrl: string) => {
+    setProfile((prev) => {
+      if (!prev) return prev;
+      return {
+        ...prev,
+        avatarImage: {
+          url: imageUrl,
+          alt: prev.name || "Profile picture",
+        },
+      };
+    });
+  };
+
+  const handleCoverChange = (imageUrl: string) => {
+    setProfile((prev) => {
+      if (!prev) return prev;
+      return {
+        ...prev,
+        coverImage: {
+          url: imageUrl,
+          alt: prev.name || "Cover image",
+        },
+      };
+    });
+  };
+
+  const handleDeleteClick = (section: string, item: any) => {
+    setDeleteModal({ isOpen: true, section, item });
+  };
+
+  const handleDeleteConfirm = () => {
+    setProfile((prev) => {
+      if (!prev) return prev;
+      const updated = { ...prev };
+
+      switch (deleteModal.section) {
+        case "experience":
+          updated.experience = (updated.experience || []).filter(
+            (e) => e.id !== deleteModal.item.id,
+          );
+          break;
+        case "education":
+          updated.education = (updated.education || []).filter(
+            (e) => e.id !== deleteModal.item.id,
+          );
+          break;
+        case "certifications":
+          updated.certifications = (updated.certifications || []).filter(
+            (c) => c.id !== deleteModal.item.id,
+          );
+          break;
+        case "courses":
+          updated.courses = (updated.courses || []).filter(
+            (c) => c.id !== deleteModal.item.id,
+          );
+          break;
+        case "activities":
+          updated.activities = (updated.activities || []).filter(
+            (a) => a.id !== deleteModal.item.id,
+          );
+          break;
+        case "cv":
+          updated.cv = null;
+          break;
+        default:
+          break;
+      }
+
+      return updated;
+    });
+
+    setDeleteModal({ isOpen: false, section: "", item: null });
   };
 
   if (loading) {
@@ -192,13 +343,19 @@ const Profile: React.FC = () => {
     <div className="max-w-6xl mx-auto px-4 py-6 bg-[#f8f9fc]">
       {/* Profile Header - Full Width */}
       <div className="mb-4">
-        <ProfileHeader profile={profile} />
+        <ProfileHeader
+          profile={profile}
+          onAvatarChange={handleAvatarChange}
+          onCoverChange={handleCoverChange}
+        />
       </div>
 
       {/* Progress Bar - Full Width */}
-      <div className="mb-4">
-        <ProgressBar completion={completionPercentage} />
-      </div>
+      {completionPercentage < 100 && (
+        <div className="mb-4">
+          <ProgressBar completion={completionPercentage} />
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Left Column - 2/3 width (Main Content) */}
@@ -209,23 +366,30 @@ const Profile: React.FC = () => {
           />
           <ActivitiesSection
             activities={profile.activities}
-            onEdit={() => handleEdit("activities")}
-          />
-          <CertificationsSection
-            certifications={profile.certifications}
-            onEdit={() => handleEdit("certifications")}
+            onEdit={(activity) => handleEdit("activities", activity)}
+            onDelete={(activity) => handleDeleteClick("activities", activity)}
+            onAdd={() => handleAdd("activities")}
+            profileName={profile.name}
+            profileTitle={profile.title}
+            profileImage={profile.avatarImage?.url}
           />
           <ExperienceSection
             experience={profile.experience}
-            onEdit={() => handleEdit("experience")}
+            onEdit={(exp) => handleEdit("experience", exp)}
+            onDelete={(exp) => handleDeleteClick("experience", exp)}
+            onAdd={() => handleAdd("experience")}
           />
           <EducationSection
             education={profile.education}
-            onEdit={() => handleEdit("education")}
+            onEdit={(edu) => handleEdit("education", edu)}
+            onDelete={(edu) => handleDeleteClick("education", edu)}
+            onAdd={() => handleAdd("education")}
           />
           <CoursesSection
             courses={profile.courses}
-            onEdit={() => handleEdit("courses")}
+            onEdit={(course) => handleEdit("courses", course)}
+            onDelete={(course) => handleDeleteClick("courses", course)}
+            onAdd={() => handleAdd("courses")}
           />
         </div>
 
@@ -238,8 +402,19 @@ const Profile: React.FC = () => {
           <SkillsSection
             skills={profile.skills}
             onEdit={() => handleEdit("skills")}
+            onAdd={() => handleAdd("skills")}
           />
-          <CVSection cv={profile.cv} onEdit={() => handleEdit("cv")} />
+          <CertificationsSection
+            certifications={profile.certifications}
+            onEdit={(cert) => handleEdit("certifications", cert)}
+            onAdd={() => handleAdd("certifications")}
+            onDelete={(cert) => handleDeleteClick("certifications", cert)}
+          />
+          <CVSection
+            cv={profile.cv}
+            onAdd={() => handleAdd("cv")}
+            onDelete={() => handleDeleteClick("cv", profile.cv)}
+          />
         </div>
       </div>
 
@@ -254,6 +429,37 @@ const Profile: React.FC = () => {
           profile={profile}
         />
       )}
+
+      {/* Add Modal */}
+      {addingSection && (
+        <AddModal
+          isOpen={!!addingSection}
+          onClose={() => setAddingSection(null)}
+          section={addingSection}
+          onSave={(data) => handleSave(addingSection, data)}
+          profile={profile}
+          existingSkills={
+            addingSection === "skills" ? profile.skills : undefined
+          }
+        />
+      )}
+
+      {/* Delete Confirmation Modal */}
+      <DeleteConfirmationModal
+        isOpen={deleteModal.isOpen}
+        onClose={() =>
+          setDeleteModal({ isOpen: false, section: "", item: null })
+        }
+        onConfirm={handleDeleteConfirm}
+        title={`Delete ${deleteModal.section}`}
+        message={`Are you sure you want to delete this ${deleteModal.section}?`}
+        itemName={
+          deleteModal.item?.fileName ||
+          deleteModal.item?.title ||
+          deleteModal.item?.name ||
+          ""
+        }
+      />
     </div>
   );
 };

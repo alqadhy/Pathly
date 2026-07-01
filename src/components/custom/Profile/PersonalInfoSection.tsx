@@ -12,48 +12,52 @@ const PersonalInfoSection: React.FC<PersonalInfoSectionProps> = ({
   personalInfo,
   onEdit,
 }) => {
+  const hasAnyInfo = personalInfo.email || personalInfo.phone || personalInfo.location || 
+                     personalInfo.currentPosition || personalInfo.industry || personalInfo.links.length > 0;
+
   const infoItems = [
-    { icon: Mail, label: 'Email', value: personalInfo.email },
-    { icon: Phone, label: 'Phone', value: personalInfo.phone },
-    { icon: MapPin, label: 'Location', value: personalInfo.location },
-    { icon: Briefcase, label: 'Position', value: personalInfo.currentPosition },
-    { icon: Globe, label: 'Industry', value: personalInfo.industry },
+    { icon: Mail, value: personalInfo.email },
+    { icon: Phone, value: personalInfo.phone },
+    { icon: MapPin, value: personalInfo.location },
+    { icon: Briefcase, value: personalInfo.currentPosition },
+    { icon: Globe, value: personalInfo.industry },
   ];
 
   return (
-    <ProfileSection title="Personal Info" onEdit={onEdit}>
-      <div className="space-y-3">
-        {infoItems.map((item, index) => (
-          <div key={index} className="flex items-start space-x-3">
-            <item.icon className="w-4 h-4 text-muted-foreground mt-0.5" />
-            <div>
-              <p className="text-body-sm text-muted-foreground">{item.label}</p>
-              <p className="text-body-md text-foreground">{item.value}</p>
-            </div>
-          </div>
-        ))}
-        {personalInfo.links.length > 0 && (
-          <div className="flex items-start space-x-3">
-            <Link2 className="w-4 h-4 text-muted-foreground mt-0.5" />
-            <div>
-              <p className="text-body-sm text-muted-foreground">Links</p>
-              <div className="space-y-1">
-                {personalInfo.links.map((link, index) => (
+    <ProfileSection title="Personal info" onEdit={onEdit}>
+      {hasAnyInfo ? (
+        <div className="space-y-4">
+          {infoItems.map((item, index) => (
+            item.value && (
+              <div key={index} className="flex items-center space-x-3">
+                <item.icon className="w-5 h-5 text-muted-foreground" />
+                <span className="text-body-md text-primary">{item.value}</span>
+              </div>
+            )
+          ))}
+          {personalInfo.links.length > 0 && (
+            <div className="space-y-2">
+              {personalInfo.links.map((link, index) => (
+                <div key={index} className="flex items-center space-x-3">
+                  <Link2 className="w-5 h-5 text-muted-foreground" />
                   <a
-                    key={index}
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-primary hover:text-primary-hover underline text-body-sm block transition-colors duration-200"
+                    className="text-primary hover:text-primary-hover text-body-md transition-colors duration-200"
                   >
-                    {link.platform}: {link.url}
+                    {link.platform === 'Portfolio' ? link.platform : link.url}
                   </a>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      ) : (
+        <p className="text-body-md text-gray-400 leading-relaxed italic">
+          Add your contact information and professional details to help others connect with you.
+        </p>
+      )}
     </ProfileSection>
   );
 };

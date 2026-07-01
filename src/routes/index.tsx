@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
 // Layouts
@@ -19,8 +19,7 @@ const Dashboard = lazy(() => import("../pages/student/Dashboard"));
 const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
 const Community = lazy(() => import("../pages/student/Community"));
 const Profile = lazy(() => import("../pages/student/Profile"));
-// const Profiles = lazy(() => import("../components/custom/Community/Profiles"));
-// const Companies = lazy(() => import("../components/custom/Community/Companies"));
+
 
 const router = createBrowserRouter([
   // Landing Page
@@ -35,6 +34,7 @@ const router = createBrowserRouter([
 
   // Student Dashboard Routes
   {
+    path: APP_ROUTES.student.base,
     element: <DashboardLayout />,
 
     children: [
@@ -80,7 +80,7 @@ const router = createBrowserRouter([
 
     children: [
       {
-        path: "/auth/login",
+        path: APP_ROUTES.auth.login,
         element: (
           <Suspense fallback={<Loader />}>
             <Login />
