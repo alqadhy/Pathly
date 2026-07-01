@@ -8,7 +8,7 @@ import {
   Features,
   MainSection,
   Header
-} from "@/components/home";
+} from "@/components/custom/home";
 
 function Home() {
   return <div>

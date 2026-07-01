@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Sarah Jenkins",
+    "role": "Senior PM @ Meta",
+    "bio": "10 years building products users love at scale.",
+    "tags": ["Product Strategy", "Roadmapping"],
+    "initials": "SJ"
+  },
+  {
+    "id": 2,
+    "name": "Marcus Thorne",
+    "role": "Lead Data Scientist @ Goldman Sachs",
+    "bio": "Turning financial data into insights that move markets.",
+    "tags": ["Python", "ML Models"],
+    "initials": "MT"
+  },
+  {
+    "id": 3,
+    "name": "Elena Rodriguez",
+    "role": "Creative Director @ Ogilvy",
+    "bio": "Brand storytelling that makes companies unforgettable.",
+    "tags": ["Brand Identity", "UX"],
+    "initials": "ER"
+  }
+]
