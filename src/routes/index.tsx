@@ -5,20 +5,22 @@ import { lazy, Suspense } from "react";
 import AuthLayout from "../layout/AuthLayout";
 import DashboardLayout from "../layout/DashboardLayout";
 
-// Page Loader
+// Loaders
+import PageLoader from "../components/layout/PageLoader";
 import Loader from "../components/layout/Loader";
 
 // Pages
 const Home = lazy(() => import("../pages/Home"));
 const Login = lazy(() => import("../pages/auth/Login"));
 const Dashboard = lazy(() => import("../pages/student/Dashboard"));
+const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
 
 const router = createBrowserRouter([
   // Landing Page
   {
     path: "/",
     element: (
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<PageLoader />}>
         <Home />
       </Suspense>
     ),
@@ -34,6 +36,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <Dashboard />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/student/analytics",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Analytics />
           </Suspense>
         ),
       },
