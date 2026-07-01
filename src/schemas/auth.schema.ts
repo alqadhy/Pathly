@@ -126,3 +126,13 @@ export const resetPasswordSchema =
         ],
       }
     );
+
+/* ---------------- Role ---------------- */
+
+export const roleSchema = z.object({
+  role: z.enum([
+    "employee",
+    "instructor",
+    "company",
+  ]),
+});

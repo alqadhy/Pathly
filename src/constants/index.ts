@@ -6,7 +6,7 @@ export const APP_ROUTES = {
 
   // Auth Rotues
   auth: {
-    login: "/auth/login",
+    login: "/auth",
     signup: "/auth/signup",
   },
 

@@ -1,5 +1,11 @@
-import { createBrowserRouter } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import {
+  createBrowserRouter,
+} from "react-router-dom";
+
+import {
+  lazy,
+  Suspense,
+} from "react";
 
 // Layouts
 import AuthLayout from "../layout/AuthLayout";
@@ -10,71 +16,126 @@ import PageLoader from "../components/layout/PageLoader";
 import Loader from "../components/layout/Loader";
 
 // Pages
-const Home = lazy(() => import("../pages/Home"));
-const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
-const Dashboard = lazy(() => import("../pages/student/Dashboard"));
-const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
-const SignUp = lazy(() => import("../components/custom/auth/SignUp"));
+const Home = lazy(
+  () => import("../pages/Home")
+);
 
-const router = createBrowserRouter([
-  // Landing Page
-  {
-    path: "/",
-    element: (
-      <Suspense fallback={<PageLoader />}>
-        <Home />
-      </Suspense>
-    ),
-  },
+const AuthFlow = lazy(
+  () =>
+    import(
+      "../pages/Auth/AuthFlow"
+    )
+);
 
-  // Student Dashboard Routes
-  {
-    element: <DashboardLayout />,
+const Dashboard = lazy(
+  () =>
+    import(
+      "../pages/student/Dashboard"
+    )
+);
 
-    children: [
-      {
-        path: "/student/dashboard",
-        element: (
-          <Suspense fallback={<Loader />}>
-            <Dashboard />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/student/analytics",
-        element: (
-          <Suspense fallback={<Loader />}>
-            <Analytics />
-          </Suspense>
-        ),
-      },
-    ],
-  },
+const Analytics = lazy(
+  () =>
+    import(
+      "../pages/student/AnalyticsDashboard"
+    )
+);
 
-  // Auth Routes
-{
-  path: "/auth",
-  element: <AuthLayout />,
-  children: [
+const router =
+  createBrowserRouter([
+    // HOME
     {
-      index: true,
-      element: (
-        <Suspense fallback={<Loader />}>
-          <AuthFlow />
-        </Suspense>
-      ),
-    },
-        {
-      path: "/auth/sign-up",
-      element: (
-        <Suspense fallback={<Loader />}>
-          <SignUp />
-        </Suspense>
-      ),
-    },
-  ],
-},
+      path: "/",
 
-]);
+      element: (
+        <Suspense
+          fallback={
+            <PageLoader />
+          }
+        >
+          <Home />
+        </Suspense>
+      ),
+    },
+
+    // DASHBOARD
+    {
+      element:
+        <DashboardLayout />,
+
+      children: [
+        {
+          path:
+            "/student/dashboard",
+
+          element: (
+            <Suspense
+              fallback={
+                <Loader />
+              }
+            >
+              <Dashboard />
+            </Suspense>
+          ),
+        },
+
+        {
+          path:
+            "/student/analytics",
+
+          element: (
+            <Suspense
+              fallback={
+                <Loader />
+              }
+            >
+              <Analytics />
+            </Suspense>
+          ),
+        },
+      ],
+    },
+
+    // AUTH
+    {
+      path: "/auth",
+
+      element: <AuthLayout />,
+
+      children: [
+        {
+          index: true,
+
+          element: (
+            <Suspense
+              fallback={
+                <PageLoader />
+              }
+            >
+              <AuthFlow
+                initialStep="login"
+              />
+            </Suspense>
+          ),
+        },
+
+        {
+          path: "sign-up",
+
+          element: (
+            <Suspense
+              fallback={
+                <PageLoader />
+              }
+            >
+              <AuthFlow
+                initialStep="signup"
+              />
+            </Suspense>
+          ),
+        },
+      ],
+    },
+  ]);
 
 export default router;

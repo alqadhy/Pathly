@@ -1,24 +1,17 @@
-export interface LoginFormData {
+export type AuthStep =
+  | "login"
+  | "signup"
+  | "forgot"
+  | "verify"
+  | "reset"
+  | "role";
+
+export interface User {
+  id: number;
+  fullName: string;
   email: string;
   password: string;
-}
-
-export interface SignUpFormData {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
-
-export interface ForgotPasswordFormData {
-  email: string;
-}
-
-export interface ResetPasswordFormData {
-  password: string;
-  confirmPassword: string;
-}
-
-export interface VerifyCodeFormData {
-  otp: string[];
+  countryCode: string;
+  phone: string;
+  role: string;
 }

@@ -1,5 +1,7 @@
-import { axiosInstance }
-from "../lib/axios";
+import {
+  getLocalUsers,
+  saveLocalUsers,
+} from "./storage.service";
 
 interface SignUpData {
   fullName: string;
@@ -7,6 +9,7 @@ interface SignUpData {
   password: string;
   countryCode: string;
   phone: string;
+  role: string;
 }
 
 /* ---------------- Login ---------------- */
@@ -17,25 +20,29 @@ export const loginUser =
     password: string
   ) => {
 
-    const response =
-      await axiosInstance.get(
-        `/users?email=${email}&password=${password}`
-      );
+    const users =
+      getLocalUsers();
 
-    return response.data;
+    return users.filter(
+      (user: any) =>
+        user.email === email &&
+        user.password ===
+          password
+    );
   };
-  /* ---------------- get user by Email ---------------- */
 
+/* ---------------- Get User By Email ---------------- */
 
-  export const getUserByEmail =
+export const getUserByEmail =
   async (email: string) => {
 
-    const response =
-      await axiosInstance.get(
-        `/users?email=${email}`
-      );
+    const users =
+      getLocalUsers();
 
-    return response.data;
+    return users.filter(
+      (user: any) =>
+        user.email === email
+    );
   };
 
 /* ---------------- Check Email ---------------- */
@@ -43,24 +50,33 @@ export const loginUser =
 export const checkEmailExists =
   async (email: string) => {
 
-    const response =
-      await axiosInstance.get(
-        `/users?email=${email}`
-      );
+    const users =
+      getLocalUsers();
 
-    return response.data;
+    return users.filter(
+      (user: any) =>
+        user.email === email
+    );
   };
 
 /* ---------------- Sign Up ---------------- */
 
 export const signUpUser =
-  async (data: SignUpData) => {
+  async (
+    data: SignUpData
+  ) => {
 
-    const response =
-      await axiosInstance.post(
-        "/users",
-        data
-      );
+    const users =
+      getLocalUsers();
 
-    return response.data;
+    const newUser = {
+      id: Date.now(),
+      ...data,
+    };
+
+    users.push(newUser);
+
+    saveLocalUsers(users);
+
+    return newUser;
   };

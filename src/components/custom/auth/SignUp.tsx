@@ -1,98 +1,165 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { signUpSchema }
-from "../../../schemas/auth.schema";
+
+import {
+  useNavigate,
+} from "react-router-dom";
+
+import {
+  signUpSchema,
+} from "../../../schemas/auth.schema";
+
 import {
   checkEmailExists,
-  signUpUser,
 } from "../../../Services/auth.service";
-import {
-  Eye,
-  EyeOff,
-  Apple,
-} from "lucide-react";
 
-import { FcGoogle } from "react-icons/fc";
+import type {
+  AuthStep,
+} from "../../../types/auth.types";
 
-const SignUp = () => {
-    const [fullName, setFullName] =
-  useState("");
+import AuthButton from "./AuthButton";
+import AuthInput from "./AuthInput";
+import AuthError from "./AuthError";
+import Divider from "./Divider";
+import SocialAuth from "./SocialAuth";
 
-const [email, setEmail] =
-  useState("");
-
-const [password, setPassword] =
-  useState("");
-
-const [
-  confirmPassword,
-  setConfirmPassword,
-] = useState("");
-
-const [countryCode, setCountryCode] =
-  useState("+20");
-
-const [phone, setPhone] =
-  useState("");
-
-const [errors, setErrors] =
-  useState<any>({});
-
-  const navigate = useNavigate();
-
-  const [showPassword, setShowPassword] =
-    useState(false);
-
-  const [showConfirmPassword, setShowConfirmPassword] =
-    useState(false);
-
-const handleSignUp = async () => {
-
-  const formData = {
-    fullName,
-    email,
-    password,
-    confirmPassword,
-    countryCode,
-    phone,
-  };
-
-  const result =
-    signUpSchema.safeParse(
-      formData
-    );
-
-  /*  Validation Failed */
-  if (!result.success) {
-
-    setErrors(
-      result.error.flatten()
-        .fieldErrors
-    );
-
-    return;
-  }
-
-  /*  Validation Success */
-
-  setErrors({});
-
-  /* ---------------- Check Existing Email ---------------- */ 
-  const existingUser = await checkEmailExists( email ); 
-
-  if ( existingUser.length > 0 ) { 
-    setErrors({ email: [ "You already have an account on this email", ], 
-    }); 
-    return; 
-    }
-
-/* ---------------- Create Account ---------------- */ 
-
-    await signUpUser({ fullName, email, password, countryCode, phone, }); 
-    console.log( "Account Created" );
-    navigate("/auth");
-
+type Props = {
+  setStep: React.Dispatch<
+    React.SetStateAction<AuthStep>
+  >;
 };
+
+type SignUpErrors = {
+  fullName?: string[];
+  email?: string[];
+  password?: string[];
+  confirmPassword?: string[];
+  phone?: string[];
+  general?: string[];
+};
+
+const SignUp = ({
+  setStep,
+}: Props) => {
+
+  const navigate =
+    useNavigate();
+
+  const [
+    fullName,
+    setFullName,
+  ] = useState("");
+
+  const [email, setEmail] =
+    useState("");
+
+  const [
+    password,
+    setPassword,
+  ] = useState("");
+
+  const [
+    confirmPassword,
+    setConfirmPassword,
+  ] = useState("");
+
+  const [
+    countryCode,
+    setCountryCode,
+  ] = useState("+20");
+
+  const [phone, setPhone] =
+    useState("");
+
+  const [errors, setErrors] =
+    useState<SignUpErrors>(
+      {}
+    );
+
+  const [loading, setLoading] =
+    useState(false);
+
+  const handleSignUp =
+    async () => {
+
+      const formData = {
+        fullName,
+        email,
+        password,
+        confirmPassword,
+        countryCode,
+        phone,
+      };
+
+      const result =
+        signUpSchema.safeParse(
+          formData
+        );
+
+      if (!result.success) {
+
+        setErrors(
+          result.error.flatten()
+            .fieldErrors as SignUpErrors
+        );
+
+        return;
+      }
+
+      setErrors({});
+
+      try {
+
+        setLoading(true);
+
+        const existingUser =
+          await checkEmailExists(
+            email
+          );
+
+        if (
+          existingUser.length > 0
+        ) {
+
+          setErrors({
+            email: [
+              "You already have an account with this email",
+            ],
+          });
+
+          return;
+        }
+
+        const pendingUser = {
+          fullName,
+          email,
+          password,
+          countryCode,
+          phone,
+        };
+
+        sessionStorage.setItem(
+          "pendingUser",
+          JSON.stringify(
+            pendingUser
+          )
+        );
+
+        setStep("role");
+
+      } catch {
+
+        setErrors({
+          general: [
+            "Something went wrong",
+          ],
+        });
+
+      } finally {
+
+        setLoading(false);
+      }
+    };
+
   return (
     <div
       className="
@@ -101,307 +168,137 @@ const handleSignUp = async () => {
         flex-col
         items-center
         justify-center
-        gap-lg
-        py-sm
+        gap-xl
         px-lg
+        py-sm
         md:flex-row
       "
     >
-      {/* Left Side */}
+
+      {/* LEFT */}
       <div
         className="
           w-full
           lg:w-1/2
           lg:max-w-[45%]
-          lg:text-left
         "
       >
-        <div className="space-y-sm">
+
+        <div className="space-y-md">
 
           <p
             className="
-              text-[34px]
+              text-h2
               font-bold
               leading-none
               tracking-[-2px]
               text-light
-              sm:text-[48px]
-              lg:text-[58px]
+
+              sm:text-display
             "
           >
-            Create Your Account
+            Create Your
+            <br />
+            Account
           </p>
 
           <p
             className="
-              mx-auto
               max-w-[500px]
               text-body-lg
               leading-relaxed
               text-light-active
-              lg:mx-0
             "
           >
-            Welcome aboard! Let’s grow your skills and connect you to the right opportunities
+            Welcome aboard!
+            Let’s grow your
+            skills and connect
+            you to the right
+            opportunities
           </p>
 
         </div>
       </div>
 
-      {/* Form */}
+      {/* FORM */}
       <div
         className="
           w-full
-          rounded-md
+          rounded-xl
           bg-card
-          py-md
-          px-lg
+          p-lg
           shadow-card
+          sm:p-md
           lg:w-[45%]
         "
       >
-        <div className="space-y-sm">
 
-          {/* Full Name */}
-          <div className="space-y-sm">
+        <div className="space-y-md">
 
-            <label
-              className="
-                text-body-sm
-                font-semibold
-                text-text-primary
-              "
-            >
-              Full Name
-            </label>
-
-            <input
+          <AuthInput
+            label="Full Name"
             type="text"
-            placeholder="Mai Mohamed"
             value={fullName}
-            onChange={(e) =>
-                setFullName(e.target.value)
+            placeholder="Mai Mohamed"
+            error={
+              errors.fullName?.[0]
             }
-            className="
-                h-[40px]
-                w-full
-                rounded-xl
-                border
-                border-border
-                bg-background
-                px-lg
-                text-body-sm
-                text-text-primary
-                outline-none
-                transition-all
-                placeholder:text-normal
-                focus:border-primary
-            "
-            />
-            {errors.fullName && (
-            <p className="text-red-500 text-sm">
-                {errors.fullName[0]}
-            </p>
-            )}
+            onChange={(e) =>
+              setFullName(
+                e.target.value
+              )
+            }
+          />
 
-          </div>
+          <AuthInput
+            label="Email"
+            type="email"
+            value={email}
+            placeholder="mai@gmail.com"
+            error={
+              errors.email?.[0]
+            }
+            onChange={(e) =>
+              setEmail(
+                e.target.value
+              )
+            }
+          />
 
-          {/* Email */}
-          <div className="space-y-sm">
+          <AuthInput
+            label="Password"
+            type="password"
+            value={password}
+            placeholder="********"
+            error={
+              errors.password?.[0]
+            }
+            onChange={(e) =>
+              setPassword(
+                e.target.value
+              )
+            }
+          />
 
-            <label
-              className="
-                text-body-sm
-                font-semibold
-                text-text-primary
-              "
-            >
-              Email
-            </label>
+          <AuthInput
+            label="Confirm Password"
+            type="password"
+            value={
+              confirmPassword
+            }
+            placeholder="********"
+            error={
+              errors
+                .confirmPassword?.[0]
+            }
+            onChange={(e) =>
+              setConfirmPassword(
+                e.target.value
+              )
+            }
+          />
 
-            <input
-              type="email"
-              placeholder="mai@gmail.com"
-              className="
-                h-[64px]
-                w-full
-                rounded-xl
-                border
-                border-border
-                bg-background
-                px-lg
-                text-body-sm
-                text-text-primary
-                outline-none
-                transition-all
-                placeholder:text-normal
-                focus:border-primary
-              "
-                value={email}
-                onChange={(e) =>
-                    setEmail(e.target.value)
-                }
-
-            />
-            {errors.email && (
-            <p className="text-red-500 text-sm">
-                {errors.email[0]}
-            </p>
-            )}
-
-          </div>
-
-          {/* Password */}
-          <div className="space-y-sm">
-
-            <label
-              className="
-                text-body-sm
-                font-semibold
-                text-text-primary
-              "
-            >
-              Password
-            </label>
-
-            <div className="relative">
-
-              <input
-                type={
-                  showPassword
-                    ? "text"
-                    : "password"
-                }
-                placeholder="**************"
-                className="
-                  h-[64px]
-                  w-full
-                  rounded-xl
-                  border
-                  border-border
-                  bg-background
-                  px-lg
-                  pr-4xl
-                  text-body-sm
-                  text-text-primary
-                  outline-none
-                  transition-all
-                  placeholder:text-normal
-                  focus:border-primary
-                "
-                value={password}
-                onChange={(e) =>
-                    setPassword(e.target.value)
-                }
-              />
-              {errors.password && (
-                <p className="text-red-500 text-sm">
-                    {errors.password[0]}
-                </p>
-                )}
-
-              <button
-                type="button"
-                onClick={() =>
-                  setShowPassword(
-                    !showPassword
-                  )
-                }
-                className="
-                  absolute
-                  right-lg
-                  top-1/2
-                  -translate-y-1/2
-                  text-normal
-                "
-              >
-                {showPassword ? (
-                  <EyeOff size={20} />
-                ) : (
-                  <Eye size={20} />
-                )}
-              </button>
-
-            </div>
-
-          </div>
-
-          {/* Confirm Password */}
-          <div className="space-y-sm">
-
-            <label
-              className="
-                text-body-sm
-                font-semibold
-                text-text-primary
-              "
-            >
-              Confirm Password
-            </label>
-
-            <div className="relative">
-
-              <input
-                type={
-                  showConfirmPassword
-                    ? "text"
-                    : "password"
-                }
-                placeholder="**************"
-                className="
-                  h-[64px]
-                  w-full
-                  rounded-xl
-                  border
-                  border-border
-                  bg-background
-                  px-lg
-                  pr-4xl
-                  text-body-sm
-                  text-text-primary
-                  outline-none
-                  transition-all
-                  placeholder:text-normal
-                  focus:border-primary
-                "
-                value={confirmPassword}
-                onChange={(e) =>
-                    setConfirmPassword(e.target.value)
-                }
-              />
-              {errors.confirmPassword  && (
-                <p className="text-red-500 text-sm">
-                    {errors.confirmPassword [0]}
-                </p>
-                )}
-
-              <button
-                type="button"
-                onClick={() =>
-                  setShowConfirmPassword(
-                    !showConfirmPassword
-                  )
-                }
-                className="
-                  absolute
-                  right-lg
-                  top-1/2
-                  -translate-y-1/2
-                  text-normal
-                "
-              >
-                {showConfirmPassword ? (
-                  <EyeOff size={20} />
-                ) : (
-                  <Eye size={20} />
-                )}
-              </button>
-
-            </div>
-
-          </div>
-
-          {/* Phone */}
+          {/* PHONE */}
           <div className="space-y-sm">
 
             <label
@@ -416,153 +313,88 @@ const handleSignUp = async () => {
 
             <div className="flex gap-sm">
 
-            <input
+              <input
                 type="text"
-                value={countryCode}
+                value={
+                  countryCode
+                }
                 onChange={(e) =>
-                setCountryCode(
+                  setCountryCode(
                     e.target.value
-                )
+                  )
                 }
                 className="
-                h-[64px]
-                w-[90px]
-                rounded-xl
-                border
-                border-border
-                bg-background
-                px-md
-                text-body-sm
-                text-text-primary
-                outline-none
-                focus:border-primary
+                  h-[64px]
+                  w-[90px]
+                  rounded-xl
+                  border
+                  border-border
+                  bg-background
+                  px-md
+                  text-body-sm
+                  text-text-primary
+                  outline-none
+                  transition-all
+                  focus:border-primary
                 "
-            />
+              />
 
-            <input
+              <input
                 type="tel"
                 placeholder="1000000000"
                 value={phone}
                 onChange={(e) =>
-                setPhone(
+                  setPhone(
                     e.target.value
-                )
+                  )
                 }
                 className="
-                h-[64px]
-                flex-1
-                rounded-xl
-                border
-                border-border
-                bg-background
-                px-lg
-                text-body-sm
-                text-text-primary
-                outline-none
-                focus:border-primary
-                "
-            />
-
-            </div>
-            {errors.phone && (
-            <p className="text-red-500 text-sm">
-                {errors.phone[0]}
-            </p>
-            )}
-
-          </div>
-
-          {/* Create Account */}
-          <button
-           onClick={handleSignUp}
-            className="
-              h-[64px]
-              w-full
-              rounded-xl
-              bg-primary
-              text-body-md
-              font-semibold
-              text-light
-              transition-all
-              hover:bg-primary-hover
-            "
-          >
-            Create Account
-          </button>
-
-          {/* Divider */}
-          <div
-            className="
-              flex
-              items-center
-              gap-lg
-            "
-          >
-            <div className="h-px flex-1 bg-border" />
-
-            <span
-              className="
-                text-body-sm
-                text-normal
-              "
-            >
-              OR
-            </span>
-
-            <div className="h-px flex-1 bg-border" />
-          </div>
-
-          {/* Social */}
-          <div
-            className="
-              flex
-              items-center
-              justify-center
-              gap-lg
-            "
-          >
-            {/* Google */}
-            <button
-              className="
-                flex
-                h-[60px]
-                w-[60px]
-                items-center
-                justify-center
-                rounded-xl
-                bg-background
-                transition-all
-                hover:scale-105
-              "
-            >
-              <FcGoogle size={28} />
-            </button>
-
-            {/* Apple */}
-            <button
-              className="
-                flex
-                h-[60px]
-                w-[60px]
-                items-center
-                justify-center
-                rounded-xl
-                bg-background
-                transition-all
-                hover:scale-105
-              "
-            >
-              <Apple
-                size={28}
-                className="
+                  h-[64px]
+                  flex-1
+                  rounded-xl
+                  border
+                  border-border
+                  bg-background
+                  px-lg
+                  text-body-sm
                   text-text-primary
+                  outline-none
+                  transition-all
+                  focus:border-primary
                 "
               />
-            </button>
+
+            </div>
+
+            <AuthError
+              message={
+                errors.phone?.[0]
+              }
+            />
 
           </div>
 
-          {/* Login */}
+          <AuthError
+            message={
+              errors.general?.[0]
+            }
+          />
+
+          <AuthButton
+            onClick={
+              handleSignUp
+            }
+            disabled={loading}
+          >
+            {loading
+              ? "Creating..."
+              : "Create Account"}
+          </AuthButton>
+
+          <Divider />
+
+          <SocialAuth />
+
           <p
             className="
               text-center
@@ -570,7 +402,8 @@ const handleSignUp = async () => {
               text-normal
             "
           >
-            Already have an account?{" "}
+            Already have an
+            account?{" "}
 
             <button
               onClick={() =>
@@ -579,6 +412,8 @@ const handleSignUp = async () => {
               className="
                 font-semibold
                 text-primary
+                transition-all
+                hover:text-primary-hover
               "
             >
               Login
