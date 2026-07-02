@@ -1,12 +1,12 @@
 import type { Job } from "../types/jobs.types";
 
-import abbLogo      from "@/assets/imgs/companies/abb.png";
-import sonyLogo     from "@/assets/imgs/companies/sony.png";
-import lgLogo       from "@/assets/imgs/companies/lg.png";
+import abbLogo from "@/assets/imgs/companies/abb.png";
+import sonyLogo from "@/assets/imgs/companies/sony.png";
+import lgLogo from "@/assets/imgs/companies/lg.png";
 import phillipsLogo from "@/assets/imgs/companies/phillips.png";
-import hpLogo       from "@/assets/imgs/companies/hp.png";
-import samsungLogo  from "@/assets/imgs/companies/samsung.png";
-import nokiaLogo    from "@/assets/imgs/companies/nokia.png";
+import hpLogo from "@/assets/imgs/companies/hp.png";
+import samsungLogo from "@/assets/imgs/companies/samsung.png";
+import nokiaLogo from "@/assets/imgs/companies/nokia.png";
 
 const companyLogos = {
   abb: abbLogo,

@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-import JobListCard from "@/components/custom/jobs-internships/JobListCard";
+import JobListCard from "../../components/custom/jobs-internships/Joblistcard";
+import { APP_ROUTES } from "../../constants";
+import type { Internship } from "../../types/jobs.types";
+import type { Job } from "../../types/jobs.types";
 import { matchingJobs, recommendedJobs } from "@/data/jobs.data";
 import { internships } from "@/data/internships.data";
-import { APP_ROUTES } from "@/constants";
-import type { Internship } from "@/types/jobs.types";
-import type { Job } from "../../types/jobs.types";
 
 export default function JobsInternshipsDashboard() {
   const [matching, setMatching] = useState(matchingJobs);

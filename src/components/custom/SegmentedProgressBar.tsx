@@ -1,6 +1,6 @@
 import React from "react";
 // types
-import type { SegmentedProgressBarProps } from "../../types/analytics";
+import type { SegmentedProgressBarProps } from "../../types/analytics.types";
 
 const SegmentedProgressBar: React.FC<SegmentedProgressBarProps> = ({
   title,

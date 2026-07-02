@@ -18,11 +18,15 @@ const JobsInternshipsDashboard = lazy(
   () => import("../pages/student/Jobs-Internships"),
 );
 const JobDetails = lazy(() => import("../pages/student/JobDetails"));
+const SavedItems = lazy(() => import("../pages/student/SavedItems"));
+
+// Constants
+import { APP_ROUTES } from "../constants";
 
 const router = createBrowserRouter([
   // Landing Page
   {
-    path: "/",
+    path: APP_ROUTES.home,
     element: (
       <Suspense fallback={<PageLoader />}>
         <Home />
@@ -36,7 +40,7 @@ const router = createBrowserRouter([
 
     children: [
       {
-        path: "/student/dashboard",
+        path: APP_ROUTES.student.dashboard,
         element: (
           <Suspense fallback={<Loader />}>
             <Dashboard />
@@ -44,7 +48,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/student/jobs",
+        path: APP_ROUTES.student.jobs,
         element: (
           <Suspense fallback={<Loader />}>
             <JobsInternshipsDashboard />
@@ -52,7 +56,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/student/jobs/:id",
+        path: APP_ROUTES.student.jobDetails,
         element: (
           <Suspense fallback={<Loader />}>
             <JobDetails />
@@ -60,10 +64,18 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/student/analytics",
+        path: APP_ROUTES.student.analytics,
         element: (
           <Suspense fallback={<Loader />}>
             <Analytics />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.saved,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <SavedItems />
           </Suspense>
         ),
       },
@@ -76,7 +88,7 @@ const router = createBrowserRouter([
 
     children: [
       {
-        path: "/auth/login",
+        path: APP_ROUTES.auth.login,
         element: (
           <Suspense fallback={<Loader />}>
             <Login />

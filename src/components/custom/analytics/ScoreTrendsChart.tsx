@@ -79,7 +79,7 @@ const ScoreTrendsChart: React.FC = () => {
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        display: true, 
+        display: true,
       },
       tooltip: {
         backgroundColor: "#25282d",
@@ -136,8 +136,8 @@ const ScoreTrendsChart: React.FC = () => {
   ];
 
   return (
-    <div className="bg-card border border-border rounded-2xl p-6 shadow-sm w-full h-[600px] flex flex-col">
-      <div className="flex justify-between items-center mb-6">
+    <div className="bg-card border border-border pb-7 rounded-2xl p-6 shadow-sm w-full h-[600px] flex flex-col">
+      <div className="flex flex-wrap gap-3 justify-between items-center mb-6">
         <h3 className="text-h4 font-bold text-foreground">Score Trends</h3>
 
         {/* Custom Legend */}
