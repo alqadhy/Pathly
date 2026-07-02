@@ -1,17 +1,10 @@
-import {
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useRef, useState } from "react";
 
 import gsap from "gsap";
 
-import { initializeUsers }
-from "../../Services/initUsers";
+import { initializeUsers } from "../../Services/initUsers";
 
-import type {
-  AuthStep,
-} from "../../types/auth.types";
+import type { AuthStep } from "../../types/auth.types";
 
 import Login from "../../components/custom/auth/Login";
 import SignUp from "../../components/custom/auth/SignUp";
@@ -20,38 +13,25 @@ import VerifyCode from "../../components/custom/auth/VerifyCode";
 import ResetPassword from "../../components/custom/auth/ResetPassword";
 import ChooseRole from "../../components/custom/auth/ChooseRole";
 
-  type Props = {
-    initialStep: AuthStep;
-  };
+type Props = {
+  initialStep: AuthStep;
+};
 
-  const AuthFlow = ({
-    initialStep,
-  }: Props) => {
-
-  const [step, setStep] =
-    useState<AuthStep>(
-      initialStep
-    );
+const AuthFlow = ({ initialStep }: Props) => {
+  const [step, setStep] = useState<AuthStep>(initialStep);
 
   useEffect(() => {
-
     setStep(initialStep);
-
   }, [initialStep]);
 
-  const containerRef =
-    useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-
     initializeUsers();
-
   }, []);
 
   useEffect(() => {
-
-    if (!containerRef.current)
-      return;
+    if (!containerRef.current) return;
 
     gsap.fromTo(
       containerRef.current,
@@ -64,56 +44,29 @@ import ChooseRole from "../../components/custom/auth/ChooseRole";
         x: 0,
         duration: 0.6,
         ease: "power3.out",
-      }
+      },
     );
-
   }, [step]);
 
   const renderStep = () => {
-
     switch (step) {
-
       case "login":
-        return (
-          <Login
-            setStep={setStep}
-          />
-        );
+        return <Login setStep={setStep} />;
 
       case "signup":
-        return (
-          <SignUp
-            setStep={setStep}
-          />
-        );
+        return <SignUp setStep={setStep} />;
 
       case "forgot":
-        return (
-          <ForgotPassword
-            setStep={setStep}
-          />
-        );
+        return <ForgotPassword setStep={setStep} />;
 
       case "verify":
-        return (
-          <VerifyCode
-            setStep={setStep}
-          />
-        );
+        return <VerifyCode setStep={setStep} />;
 
       case "reset":
-        return (
-          <ResetPassword
-            setStep={setStep}
-          />
-        );
+        return <ResetPassword setStep={setStep} />;
 
       case "role":
-        return (
-          <ChooseRole
-            setStep={setStep}
-          />
-        );
+        return <ChooseRole setStep={setStep} />;
 
       default:
         return null;
@@ -121,10 +74,7 @@ import ChooseRole from "../../components/custom/auth/ChooseRole";
   };
 
   return (
-    <div
-      ref={containerRef}
-      className="w-full"
-    >
+    <div ref={containerRef} className="w-full">
       {renderStep()}
     </div>
   );

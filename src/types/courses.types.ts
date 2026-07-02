@@ -9,4 +9,5 @@ export interface Course {
   hasCertificate: boolean;
   price: number;
   image: string;
+  tag?: "Popular" | "New";
 }

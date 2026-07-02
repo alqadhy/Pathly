@@ -32,8 +32,8 @@ function AnalyticsDashboard() {
       <StatCards />
 
       {/* Weekly Activity & Application Pipeline - Row 2 */}
-      <div className="grid md:grid-cols-3 gap-6 mb-6">
-        <div className="md:col-span-2">
+      <div className="md:grid grid-cols-3 gap-6 mb-6">
+        <div className="md:col-span-2 mb-6 md:mb-0">
           <WeeklyActivityChart />
         </div>
         <div className="col-span-1">
@@ -42,8 +42,8 @@ function AnalyticsDashboard() {
       </div>
 
       {/* Profile Strength & Score Trends - Row 3 */}
-      <div className="grid md:grid-cols-2 gap-6 mb-6">
-        <div className="col-span-1">
+      <div className="md:grid grid-cols-2 gap-6 mb-6">
+        <div className="col-span-1 mb-6 md:mb-0">
           <ProfileStrength />
         </div>
         <div className="col-span-1">
@@ -52,8 +52,8 @@ function AnalyticsDashboard() {
       </div>
 
       {/* Skills Gap Analysis & Roadmap - Row 4 */}
-      <div className="grid md:grid-cols-2 gap-6">
-        <div className="col-span-1 h-full">
+      <div className="md:grid md:grid-cols-2 gap-6">
+        <div className="col-span-1 h-full mb-6 md:mb-0">
           <SkillsGapAnalysis />
         </div>
 

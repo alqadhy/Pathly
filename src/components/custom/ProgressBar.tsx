@@ -1,6 +1,6 @@
 import React from "react";
 // Types
-import type { ProgressBarProps } from "../../types/analytics";
+import type { ProgressBarProps } from "../../types/analytics.types";
 
 const ProgressBar: React.FC<
   ProgressBarProps & { labelRightClass?: string }

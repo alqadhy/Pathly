@@ -1,11 +1,5 @@
-import {
-  createBrowserRouter,
-} from "react-router-dom";
-
-import {
-  lazy,
-  Suspense,
-} from "react";
+import { createBrowserRouter } from "react-router-dom";
+import { lazy, Suspense } from "react";
 
 // Layouts
 import AuthLayout from "../layout/AuthLayout";
@@ -16,126 +10,86 @@ import PageLoader from "../components/layout/PageLoader";
 import Loader from "../components/layout/Loader";
 
 // Pages
-const Home = lazy(
-  () => import("../pages/Home")
-);
+const Home = lazy(() => import("../pages/Home"));
+const Dashboard = lazy(() => import("../pages/student/Dashboard"));
+const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
+const SavedItems = lazy(() => import("../pages/student/SavedItems"));
+const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
 
-const AuthFlow = lazy(
-  () =>
-    import(
-      "../pages/Auth/AuthFlow"
-    )
-);
+// Constants
+import { APP_ROUTES } from "../constants";
 
-const Dashboard = lazy(
-  () =>
-    import(
-      "../pages/student/Dashboard"
-    )
-);
+const router = createBrowserRouter([
+  // Landing Page
+  {
+    path: APP_ROUTES.home,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <Home />
+      </Suspense>
+    ),
+  },
 
-const Analytics = lazy(
-  () =>
-    import(
-      "../pages/student/AnalyticsDashboard"
-    )
-);
+  // Student Dashboard Routes
+  {
+    element: <DashboardLayout />,
 
-const router =
-  createBrowserRouter([
-    // HOME
-    {
-      path: "/",
+    children: [
+      {
+        path: APP_ROUTES.student.dashboard,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Dashboard />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.analytics,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Analytics />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.saved,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <SavedItems />
+          </Suspense>
+        ),
+      },
+    ],
+  },
 
-      element: (
-        <Suspense
-          fallback={
-            <PageLoader />
-          }
-        >
-          <Home />
-        </Suspense>
-      ),
-    },
+  // Auth Routes
+  {
+    // path: APP_ROUTES.auth.path,
 
-    // DASHBOARD
-    {
-      element:
-        <DashboardLayout />,
+    element: <AuthLayout />,
 
-      children: [
-        {
-          path:
-            "/student/dashboard",
+    children: [
+      {
+        // index: true,
+        path: APP_ROUTES.auth.login,
 
-          element: (
-            <Suspense
-              fallback={
-                <Loader />
-              }
-            >
-              <Dashboard />
-            </Suspense>
-          ),
-        },
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <AuthFlow initialStep="login" />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.auth.signup,
 
-        {
-          path:
-            "/student/analytics",
-
-          element: (
-            <Suspense
-              fallback={
-                <Loader />
-              }
-            >
-              <Analytics />
-            </Suspense>
-          ),
-        },
-      ],
-    },
-
-    // AUTH
-    {
-      path: "/auth",
-
-      element: <AuthLayout />,
-
-      children: [
-        {
-          index: true,
-
-          element: (
-            <Suspense
-              fallback={
-                <PageLoader />
-              }
-            >
-              <AuthFlow
-                initialStep="login"
-              />
-            </Suspense>
-          ),
-        },
-
-        {
-          path: "sign-up",
-
-          element: (
-            <Suspense
-              fallback={
-                <PageLoader />
-              }
-            >
-              <AuthFlow
-                initialStep="signup"
-              />
-            </Suspense>
-          ),
-        },
-      ],
-    },
-  ]);
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <AuthFlow initialStep="signup" />
+          </Suspense>
+        ),
+      },
+    ],
+  },
+]);
 
 export default router;
