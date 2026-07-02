@@ -16,6 +16,7 @@ import {
   WandSparkles,
 } from "lucide-react";
 
+
 function Sidebar() {
   return (
     <aside className="w-(--sidebar-width) px-6 py-25 border-r border-input hidden lg:block">
