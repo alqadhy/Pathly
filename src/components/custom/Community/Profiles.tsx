@@ -8,7 +8,13 @@ function Profiles() {
     return null;
   }
 
-  return <CommunitySectionList sections={data.sections} actionLabel="connect +" viewType="profiles" />;
+  return (
+    <CommunitySectionList
+      sections={data.sections}
+      actionLabel="connect +"
+      viewType="profiles"
+    />
+  );
 }
 
 export default Profiles;
