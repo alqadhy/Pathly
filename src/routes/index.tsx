@@ -64,13 +64,10 @@ const router = createBrowserRouter([
 
   // Auth Routes
   {
-    // path: APP_ROUTES.auth.path,
-
     element: <AuthLayout />,
 
     children: [
       {
-        // index: true,
         path: APP_ROUTES.auth.login,
 
         element: (
