@@ -14,11 +14,15 @@ const Home = lazy(() => import("../pages/Home"));
 const Login = lazy(() => import("../pages/auth/Login"));
 const Dashboard = lazy(() => import("../pages/student/Dashboard"));
 const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
+const SavedItems = lazy(() => import("../pages/student/SavedItems"));
+
+// Constants
+import { APP_ROUTES } from "../constants";
 
 const router = createBrowserRouter([
   // Landing Page
   {
-    path: "/",
+    path: APP_ROUTES.home,
     element: (
       <Suspense fallback={<PageLoader />}>
         <Home />
@@ -32,7 +36,7 @@ const router = createBrowserRouter([
 
     children: [
       {
-        path: "/student/dashboard",
+        path: APP_ROUTES.student.dashboard,
         element: (
           <Suspense fallback={<Loader />}>
             <Dashboard />
@@ -40,10 +44,18 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/student/analytics",
+        path: APP_ROUTES.student.analytics,
         element: (
           <Suspense fallback={<Loader />}>
             <Analytics />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.saved,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <SavedItems />
           </Suspense>
         ),
       },
@@ -56,7 +68,7 @@ const router = createBrowserRouter([
 
     children: [
       {
-        path: "/auth/login",
+        path: APP_ROUTES.auth.login,
         element: (
           <Suspense fallback={<Loader />}>
             <Login />
