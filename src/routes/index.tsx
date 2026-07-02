@@ -9,13 +9,14 @@ import DashboardLayout from "../layout/DashboardLayout";
 import PageLoader from "../components/layout/PageLoader";
 import Loader from "../components/layout/Loader";
 
-
 // Pages
 const Home = lazy(() => import("../pages/Home"));
 const Login = lazy(() => import("../pages/auth/Login"));
 const Dashboard = lazy(() => import("../pages/student/Dashboard"));
 const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
-const JobsInternshipsDashboard = lazy(() => import("../pages/student/Jobs-Internships"));
+const JobsInternshipsDashboard = lazy(
+  () => import("../pages/student/Jobs-Internships"),
+);
 const JobDetails = lazy(() => import("../pages/student/JobDetails"));
 
 const router = createBrowserRouter([
@@ -42,7 +43,7 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-       {
+      {
         path: "/student/jobs",
         element: (
           <Suspense fallback={<Loader />}>
@@ -50,7 +51,7 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-       {
+      {
         path: "/student/jobs/:id",
         element: (
           <Suspense fallback={<Loader />}>

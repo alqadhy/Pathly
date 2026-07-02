@@ -1,6 +1,19 @@
-import { useRef, useState, useCallback, useEffect, type ReactNode } from "react";
+import {
+  useRef,
+  useState,
+  useCallback,
+  useEffect,
+  type ReactNode,
+} from "react";
 import { Link } from "react-router-dom";
-import { ListFilter, Pencil, X, ChevronUp, ChevronDown, Users } from "lucide-react";
+import {
+  ListFilter,
+  Pencil,
+  X,
+  ChevronUp,
+  ChevronDown,
+  Users,
+} from "lucide-react";
 
 import type { Job } from "../../../types/jobs.types";
 
@@ -63,7 +76,8 @@ export default function JobListCard({
     }
 
     const heightPct = (clientHeight / scrollHeight) * 100;
-    const topPct = (scrollTop / (scrollHeight - clientHeight)) * (100 - heightPct);
+    const topPct =
+      (scrollTop / (scrollHeight - clientHeight)) * (100 - heightPct);
     setThumb({ height: heightPct, top: topPct });
   }, []);
 
@@ -79,7 +93,6 @@ export default function JobListCard({
 
   return (
     <section className="flex w-full flex-col rounded-2xl border border-border bg-card p-md shadow-sm sm:p-lg">
-      
       <EditJobPreferenceModal
         isOpen={isEditModalOpen}
         onClose={() => setIsEditModalOpen(false)}
@@ -99,9 +112,9 @@ export default function JobListCard({
           <HeaderIconButton label="Filter jobs" onClick={onFilterClick}>
             <ListFilter size={16} />
           </HeaderIconButton>
-          
-          <HeaderIconButton 
-            label="Edit preferences" 
+
+          <HeaderIconButton
+            label="Edit preferences"
             onClick={() => setIsEditModalOpen(true)}
           >
             <Pencil size={16} />
@@ -119,18 +132,22 @@ export default function JobListCard({
             <li
               key={job.id}
               className={`m-0 ${
-                index !== jobs.length - 1 ? "border-b border-border" : ""
+                index !== jobs.length - 1 && "border-b border-border"
               }`}
             >
               <Link
                 to={getJobHref(job)}
-                className="flex items-start gap-sm rounded-lg py-md transition-colors hover:bg-light-hover sm:gap-md"
+                className="flex mb-5 items-start gap-sm rounded-lg py-md transition-colors hover:bg-light-hover sm:gap-md"
               >
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-light sm:h-12 sm:w-12">
                   <img
                     src={job.companyLogo}
                     alt={job.company}
-                    style={{ objectFit: "contain", width: "100%", height: "100%" }}
+                    style={{
+                      objectFit: "contain",
+                      width: "100%",
+                      height: "100%",
+                    }}
                     className="p-1"
                   />
                 </div>
