@@ -1,0 +1,15 @@
+export { default as ProfileHeader } from './ProfileHeader';
+export { default as ProfileSection } from './ProfileSection';
+export { default as AboutSection } from './AboutSection';
+export { default as ActivitiesSection } from './ActivitiesSection';
+export { default as PersonalInfoSection } from './PersonalInfoSection';
+export { default as SkillsSection } from './SkillsSection';
+export { default as CVSection } from './CVSection';
+export { default as CertificationsSection } from './CertificationsSection';
+export { default as ExperienceSection } from './ExperienceSection';
+export { default as EducationSection } from './EducationSection';
+export { default as CoursesSection } from './CoursesSection';
+export { default as EditModal } from './crud/EditModal';
+export { default as AddModal } from './crud/AddModal';
+export { default as DeleteConfirmationModal } from './crud/DeleteConfirmationModal';
+export { default as ProgressBar } from './ProgressBar';

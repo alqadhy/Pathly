@@ -5,6 +5,9 @@ import { lazy, Suspense } from "react";
 import AuthLayout from "../layout/AuthLayout";
 import DashboardLayout from "../layout/DashboardLayout";
 
+// Constants
+import { APP_ROUTES } from "../constants";
+
 // Loaders
 import PageLoader from "../components/layout/PageLoader";
 import Loader from "../components/layout/Loader";
@@ -15,9 +18,8 @@ const Dashboard = lazy(() => import("../pages/student/Dashboard"));
 const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
 const SavedItems = lazy(() => import("../pages/student/SavedItems"));
 const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
-
-// Constants
-import { APP_ROUTES } from "../constants";
+const Community = lazy(() => import("../pages/student/Community"));
+const Profile = lazy(() => import("../pages/student/Profile"));
 
 const router = createBrowserRouter([
   // Landing Page
@@ -59,6 +61,22 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
+      {
+        path: APP_ROUTES.student.community,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Community />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.profile,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Profile />
+          </Suspense>
+        ),
+      },
     ],
   },
 
@@ -69,7 +87,6 @@ const router = createBrowserRouter([
     children: [
       {
         path: APP_ROUTES.auth.login,
-
         element: (
           <Suspense fallback={<PageLoader />}>
             <AuthFlow initialStep="login" />

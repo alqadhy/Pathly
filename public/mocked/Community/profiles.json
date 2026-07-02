@@ -1,0 +1,96 @@
+{
+  "sections": [
+    {
+      "id": "people-you-may-know",
+      "title": "People you may know from Cairo University",
+      "cards": [
+        {
+          "id": "omar-sameh-1",
+          "name": "Omar Sameh",
+          "role": "Data studio \"Looker\"",
+          "subtitle": "Google sheet | Using data pipelines",
+          "mutualConnections": "Osama and 10 other mutual connections",
+          "avatarUrl": "https://i.pravatar.cc/160?img=12"
+        },
+        {
+          "id": "omar-sameh-2",
+          "name": "Omar Sameh",
+          "role": "Data studio \"Looker\"",
+          "subtitle": "Google sheet | Using data pipelines",
+          "mutualConnections": "Osama and 10 other mutual connections",
+          "avatarUrl": "https://i.pravatar.cc/160?img=47"
+        },
+        {
+          "id": "nayera-khalid",
+          "name": "Nayera Khalid",
+          "role": "Data studio \"Looker\"",
+          "subtitle": "Google sheet | Using data pipelines",
+          "mutualConnections": "Osama and 10 other mutual connections",
+          "avatarUrl": "https://i.pravatar.cc/160?img=32"
+        },
+        {
+          "id": "laila-ashraf",
+          "name": "Laila Ashraf",
+          "role": "Data studio \"Looker\"",
+          "subtitle": "Google sheet | Using data pipelines",
+          "mutualConnections": "Osama and 10 other mutual connections",
+          "avatarUrl": "https://i.pravatar.cc/160?img=44"
+        },
+        {
+          "id": "kyrollos",
+          "name": "Kyrollos",
+          "role": "Data studio \"Looker\"",
+          "subtitle": "Google sheet | Using data pipelines",
+          "mutualConnections": "Osama and 10 other mutual connections",
+          "avatarUrl": "https://i.pravatar.cc/160?img=23"
+        }
+      ]
+    },
+    {
+      "id": "suggestions-for-you",
+      "title": "Suggestions for you",
+      "cards": [
+        {
+          "id": "omar-sameh-3",
+          "name": "Omar Sameh",
+          "role": "Data studio \"Looker\"",
+          "subtitle": "Google sheet | Using data pipelines",
+          "mutualConnections": "Osama and 10 other mutual connections",
+          "avatarUrl": "https://i.pravatar.cc/160?img=12"
+        },
+        {
+          "id": "omar-sameh-4",
+          "name": "Omar Sameh",
+          "role": "Data studio \"Looker\"",
+          "subtitle": "Google sheet | Using data pipelines",
+          "mutualConnections": "Osama and 10 other mutual connections",
+          "avatarUrl": "https://i.pravatar.cc/160?img=47"
+        },
+        {
+          "id": "nayera-khalid-2",
+          "name": "Nayera Khalid",
+          "role": "Data studio \"Looker\"",
+          "subtitle": "Google sheet | Using data pipelines",
+          "mutualConnections": "Osama and 10 other mutual connections",
+          "avatarUrl": "https://i.pravatar.cc/160?img=32"
+        },
+        {
+          "id": "laila-ashraf-2",
+          "name": "Laila Ashraf",
+          "role": "Data studio \"Looker\"",
+          "subtitle": "Google sheet | Using data pipelines",
+          "mutualConnections": "Osama and 10 other mutual connections",
+          "avatarUrl": "https://i.pravatar.cc/160?img=44"
+        },
+        {
+          "id": "kyrollos-2",
+          "name": "Kyrollos",
+          "role": "Data studio \"Looker\"",
+          "subtitle": "Google sheet | Using data pipelines",
+          "mutualConnections": "Osama and 10 other mutual connections",
+          "avatarUrl": "https://i.pravatar.cc/160?img=23"
+        }
+      ]
+    }
+  ]
+}
