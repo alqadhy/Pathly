@@ -1,43 +1,64 @@
 import { createBrowserRouter } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
-// Layouts
+/* Layouts */
 import AuthLayout from "../layout/AuthLayout";
 import DashboardLayout from "../layout/DashboardLayout";
 
-// Constants
+/* Constants */
 import { APP_ROUTES } from "../constants";
 
-// Loaders
-import PageLoader from "../components/layout/PageLoader";
+/* Loaders */
 import Loader from "../components/layout/Loader";
+import PageLoader from "../components/layout/PageLoader";
+
+/* Pages */
 import CareerChat from "../pages/student/CareerChat";
 import PublicProfile from "../pages/student/PublicProfile";
 
-// Pages
 const Home = lazy(() => import("../pages/Home"));
+
 const Dashboard = lazy(() => import("../pages/student/Dashboard"));
 const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
 const JobsInternshipsDashboard = lazy(
-  () => import("../pages/student/Jobs-Internships"),
+  () => import("../pages/student/Jobs-Internships")
 );
 const JobDetails = lazy(() => import("../pages/student/JobDetails"));
 const SavedItems = lazy(() => import("../pages/student/SavedItems"));
-const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
 const Community = lazy(() => import("../pages/student/Community"));
 const Profile = lazy(() => import("../pages/student/Profile"));
 const Messages = lazy(() => import("../pages/student/Messages"));
-const CVBuilderAI = lazy(() => import("../pages/student/cv/CVBuilderAI"));
-const CVBuilderManual = lazy(
-  () => import("../pages/student/cv/CVBuilderManual"),
+
+const Learning = lazy(
+  () => import("../pages/Lessons/Learning")
 );
+
+const LearningDetails = lazy(
+  () => import("../pages/Lessons/LearningDetails")
+);
+
+const CVDashboard = lazy(
+  () => import("../pages/student/cv/CVDashboard")
+);
+
 const TemplateSelection = lazy(
-  () => import("../pages/student/cv/TempleteSelection"),
+  () => import("../pages/student/cv/TempleteSelection")
 );
-const CVDashboard = lazy(() => import("../pages/student/cv/CVDashboard"));
+
+const CVBuilderManual = lazy(
+  () => import("../pages/student/cv/CVBuilderManual")
+);
+
+const CVBuilderAI = lazy(
+  () => import("../pages/student/cv/CVBuilderAI")
+);
+
+const AuthFlow = lazy(
+  () => import("../pages/Auth/AuthFlow")
+);
 
 const router = createBrowserRouter([
-  // Landing Page
+  /* HOME */
   {
     path: APP_ROUTES.home,
     element: (
@@ -47,40 +68,15 @@ const router = createBrowserRouter([
     ),
   },
 
-  // Student Dashboard Routes
+  /* DASHBOARD */
   {
     element: <DashboardLayout />,
-
     children: [
       {
         path: APP_ROUTES.student.dashboard,
         element: (
           <Suspense fallback={<Loader />}>
             <Dashboard />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.student.jobs,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <JobsInternshipsDashboard />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.student.analytics,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <Analytics />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.student.saved,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <SavedItems />
           </Suspense>
         ),
       },
@@ -101,6 +97,22 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: APP_ROUTES.student.analytics,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Analytics />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.saved,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <SavedItems />
+          </Suspense>
+        ),
+      },
+      {
         path: APP_ROUTES.student.community,
         element: (
           <Suspense fallback={<Loader />}>
@@ -113,6 +125,30 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <Profile />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.messages,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Messages />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.careerChat,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <CareerChat />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.publicProfile(":id"),
+        element: (
+          <Suspense fallback={<Loader />}>
+            <PublicProfile />
           </Suspense>
         ),
       },
@@ -148,10 +184,26 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
+      {
+        path: APP_ROUTES.student.mylearning,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Learning />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.Learning.continueCourse,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <LearningDetails />
+          </Suspense>
+        ),
+      },
     ],
   },
 
-  // Auth Routes
+  /* AUTH */
   {
     element: <AuthLayout />,
     children: [
@@ -167,31 +219,6 @@ const router = createBrowserRouter([
         path: APP_ROUTES.auth.signup,
         element: (
           <Suspense fallback={<PageLoader />}>
-            <AuthFlow initialStep="signup" />
-          </Suspense>
-        ),
-      },
-    ],
-  },
-
-  // Auth Routes
-  {
-    element: <AuthLayout />,
-
-    children: [
-      {
-        path: APP_ROUTES.auth.login,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <AuthFlow initialStep="login" />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.auth.signup,
-
-        element: (
-          <Suspense fallback={<Loader />}>
             <AuthFlow initialStep="signup" />
           </Suspense>
         ),

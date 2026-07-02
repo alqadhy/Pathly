@@ -5,7 +5,7 @@ import { resetPasswordSchema } from "../../../schemas/auth.schema";
 import {
   getLocalUsers,
   saveLocalUsers,
-} from "../../../Services/storage.service";
+} from "../../../utils/storage.service";
 
 import type { AuthStep } from "../../../types/auth.types";
 

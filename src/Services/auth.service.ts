@@ -1,7 +1,7 @@
 import {
   getLocalUsers,
   saveLocalUsers,
-} from "./storage.service";
+} from "../utils/storage.service";
 
 interface SignUpData {
   fullName: string;
