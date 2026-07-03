@@ -14,6 +14,7 @@ import { useSidebarStore } from "../../store/sidebar.store";
 // Logo
 import logo from "../../assets/imgs/logo.png";
 
+
 function Sidebar() {
   const route = useLocation().pathname;
   const { isOpen, close } = useSidebarStore();

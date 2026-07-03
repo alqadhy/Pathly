@@ -1,0 +1,174 @@
+{
+  "matchingJobs": [
+    {
+      "id": 1,
+      "title": "Senior Product Designer",
+      "company": "ABB",
+      "companyLogo": "../../../src/assets/imgs/companies/abb.png",
+      "location": "Cairo, Egypt",
+      "workType": "Hybrid",
+      "isViewed": true,
+      "postedAt": "1 week ago"
+    },
+    {
+      "id": 2,
+      "title": "Senior Product Designer",
+      "company": "Sony",
+      "companyLogo": "../../../src/assets/imgs/companies/sony.png",
+      "location": "Cairo, Egypt",
+      "workType": "Hybrid",
+      "isViewed": true,
+      "mutualConnectionsCount": 2,
+      "postedAt": "1 week ago"
+    },
+    {
+      "id": 3,
+      "title": "Senior Product Designer",
+      "company": "Sony",
+      "companyLogo": "../../../src/assets/imgs/companies/sony.png",
+      "location": "Cairo, Egypt",
+      "workType": "Hybrid",
+      "isViewed": true,
+      "mutualConnectionsCount": 2,
+      "postedAt": "1 week ago"
+    },
+    {
+      "id": 4,
+      "title": "Senior Product Designer",
+      "company": "LG",
+      "companyLogo": "../../../src/assets/imgs/companies/lg.png",
+      "location": "Cairo, Egypt",
+      "workType": "Hybrid",
+      "isViewed": false,
+      "postedAt": "1 week ago"
+    },
+    {
+      "id": 9,
+      "title": "UI/UX Designer",
+      "company": "ABB",
+      "companyLogo": "../../../src/assets/imgs/companies/abb.png",
+      "location": "Cairo, Egypt",
+      "workType": "Remote",
+      "isViewed": false,
+      "postedAt": "3 days ago"
+    },
+    {
+      "id": 10,
+      "title": "Product Design Lead",
+      "company": "Phillips",
+      "companyLogo": "../../../src/assets/imgs/companies/phillips.png",
+      "location": "Cairo, Egypt",
+      "workType": "Onsite",
+      "isViewed": true,
+      "mutualConnectionsCount": 1,
+      "postedAt": "4 days ago"
+    },
+    {
+      "id": 11,
+      "title": "Senior Product Designer",
+      "company": "Samsung",
+      "companyLogo": "../../../src/assets/imgs/companies/samsung.png",
+      "location": "Cairo, Egypt",
+      "workType": "Hybrid",
+      "isViewed": false,
+      "postedAt": "5 days ago"
+    },
+    {
+      "id": 12,
+      "title": "UX Researcher",
+      "company": "Nokia",
+      "companyLogo": "../../../src/assets/imgs/companies/nokia.png",
+      "location": "Cairo, Egypt",
+      "workType": "Remote",
+      "isViewed": true,
+      "mutualConnectionsCount": 3,
+      "postedAt": "6 days ago"
+    }
+  ],
+  "recommendedJobs": [
+    {
+      "id": 5,
+      "title": "Senior Product Designer",
+      "company": "Phillips",
+      "companyLogo": "../../../src/assets/imgs/companies/phillips.png",
+      "location": "Cairo, Egypt",
+      "workType": "Hybrid",
+      "isViewed": true,
+      "postedAt": "1 week ago"
+    },
+    {
+      "id": 6,
+      "title": "Senior Product Designer",
+      "company": "HP",
+      "companyLogo": "../../../src/assets/imgs/companies/hp.png",
+      "location": "Cairo, Egypt",
+      "workType": "Hybrid",
+      "isViewed": true,
+      "mutualConnectionsCount": 2,
+      "postedAt": "1 week ago"
+    },
+    {
+      "id": 7,
+      "title": "Senior Product Designer",
+      "company": "Samsung",
+      "companyLogo": "../../../src/assets/imgs/companies/samsung.png",
+      "location": "Cairo, Egypt",
+      "workType": "Hybrid",
+      "isViewed": false,
+      "postedAt": "1 week ago"
+    },
+    {
+      "id": 8,
+      "title": "Senior Product Designer",
+      "company": "Nokia",
+      "companyLogo": "../../../src/assets/imgs/companies/nokia.png",
+      "location": "Cairo, Egypt",
+      "workType": "Hybrid",
+      "isViewed": false,
+      "mutualConnectionsCount": 1,
+      "postedAt": "1 week ago"
+    },
+    {
+      "id": 13,
+      "title": "Product Designer",
+      "company": "HP",
+      "companyLogo": "../../../src/assets/imgs/companies/hp.png",
+      "location": "Cairo, Egypt",
+      "workType": "Onsite",
+      "isViewed": false,
+      "postedAt": "2 days ago"
+    },
+    {
+      "id": 14,
+      "title": "Junior Product Designer",
+      "company": "LG",
+      "companyLogo": "../../../src/assets/imgs/companies/lg.png",
+      "location": "Cairo, Egypt",
+      "workType": "Hybrid",
+      "isViewed": true,
+      "mutualConnectionsCount": 1,
+      "postedAt": "3 days ago"
+    },
+    {
+      "id": 15,
+      "title": "Design Systems Specialist",
+      "company": "Sony",
+      "companyLogo": "../../../src/assets/imgs/companies/sony.png",
+      "location": "Cairo, Egypt",
+      "workType": "Remote",
+      "isViewed": false,
+      "postedAt": "5 days ago"
+    },
+    {
+      "id": 16,
+      "title": "Senior Product Designer",
+      "company": "ABB",
+      "companyLogo": "../../../src/assets/imgs/companies/abb.png",
+      "location": "Cairo, Egypt",
+      "workType": "Onsite",
+      "isViewed": true,
+      "mutualConnectionsCount": 4,
+      "postedAt": "1 week ago"
+    }
+  ]
+}

@@ -12,10 +12,13 @@ import { APP_ROUTES } from "../constants";
 import PageLoader from "../components/layout/PageLoader";
 import Loader from "../components/layout/Loader";
 
+
 // Pages
 const Home = lazy(() => import("../pages/Home"));
 const Dashboard = lazy(() => import("../pages/student/Dashboard"));
 const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
+const JobsInternshipsDashboard = lazy(() => import("../pages/student/Jobs-Internships"));
+const JobDetails = lazy(() => import("../pages/student/JobDetails"));
 const SavedItems = lazy(() => import("../pages/student/SavedItems"));
 const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
 const Community = lazy(() => import("../pages/student/Community"));
@@ -58,6 +61,22 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <SavedItems />
+          </Suspense>
+        ),
+      },
+       {
+        path: APP_ROUTES.student.jobs,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <JobsInternshipsDashboard />
+          </Suspense>
+        ),
+      },
+       {
+        path: APP_ROUTES.student.jobDetails(":id"),
+        element: (
+          <Suspense fallback={<Loader />}>
+            <JobDetails />
           </Suspense>
         ),
       },
