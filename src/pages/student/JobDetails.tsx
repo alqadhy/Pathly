@@ -1,14 +1,111 @@
 import { useParams } from "react-router-dom";
-import { Check, X as XIcon ,CircleCheck} from "lucide-react";
+import { Check, X as XIcon ,CircleCheck, Bookmark} from "lucide-react";
 import { useEffect, useState } from "react";
 
 import JobListCard from "@/components/custom/jobs-internships/JobListCard";
 import ApplyJobModal from "@/components/custom/jobs-internships/ApplyJobModal";
-import { jobDetails } from "@/data/jobDetails.data";
-import { matchingJobs } from "@/data/jobs.data";
 import { APP_ROUTES } from "@/constants";
-import type { Job } from "../../types/jobs.types";
-import saveIcon from "../../assets/imgs/save.png";
+import { useSavedItemsStore } from "@/store/saved-items.store";
+import type { Job, JobDetail } from "../../types/jobs.types";
+
+interface RoleContentEntry {
+  roleAboutTemplate: string;
+  strengths: string[];
+  gaps: string[];
+  responsibilities: string[];
+  benefits?: string[];
+}
+
+interface RoleContentMap {
+  senior: RoleContentEntry;
+  lead: RoleContentEntry;
+  junior: RoleContentEntry;
+  researcher: RoleContentEntry;
+  intern: RoleContentEntry;
+}
+
+interface JobContentJson {
+  companyProfiles: Record<string, { about: string; hiringContactName: string }>;
+  genericBenefits: string[];
+  roleContent: RoleContentMap;
+}
+
+function getRoleContent(roleContent: RoleContentMap, title: string) {
+  const t = title.toLowerCase();
+  if (t.includes("intern")) return { key: "intern" as const, ...roleContent.intern };
+  if (t.includes("lead")) return { key: "lead" as const, ...roleContent.lead };
+  if (t.includes("junior")) return { key: "junior" as const, ...roleContent.junior };
+  if (t.includes("researcher")) return { key: "researcher" as const, ...roleContent.researcher };
+  return { key: "senior" as const, ...roleContent.senior };
+}
+
+function getMatchPercentage(job: Job): number {
+  const base = 65 + (job.id * 7) % 30;
+  return Math.min(base, 96);
+}
+
+function buildTags(job: Job): string[] {
+  const isIntern = job.title.toLowerCase().includes("intern");
+  return [job.workType, isIntern ? "Internship" : "Full time", "Cairo"];
+}
+
+function buildJobDetail(
+  job: Job,
+  companyProfiles: Record<string, { about: string; hiringContactName: string }>,
+  genericBenefits: string[],
+  roleContent: RoleContentMap
+): JobDetail {
+  const profile = companyProfiles[job.company];
+  const role = getRoleContent(roleContent, job.title);
+  const roleAbout = role.roleAboutTemplate.replace("{title}", job.title);
+  const benefits = role.key === "intern" ? role.benefits! : genericBenefits;
+
+  return {
+    ...job,
+    tags: buildTags(job),
+    qualificationMatch: {
+      percentage: getMatchPercentage(job),
+      strengths: role.strengths,
+      gaps: role.gaps,
+    },
+    hiringContact: profile
+      ? {
+          name: profile.hiringContactName,
+          role: "Hiring Team",
+          avatar: "",
+        }
+      : undefined,
+    companyAbout: profile?.about ?? `${job.company} is a global company operating across multiple industries.`,
+    roleAbout,
+    responsibilities: role.responsibilities,
+    benefits,
+  };
+}
+
+async function loadJobDetails(): Promise<Record<number, JobDetail>> {
+  const [jobsRes, internshipsRes, jobContentRes] = await Promise.all([
+    fetch("/mocked/jobs/jobs.json"),
+    fetch("/mocked/jobs/internships.json"),
+    fetch("/mocked/jobs/jobDetails.json"),
+  ]);
+
+  const jobsData = await jobsRes.json();
+  const internshipsData = await internshipsRes.json();
+  const jobContent: JobContentJson = await jobContentRes.json();
+
+  const { companyProfiles, genericBenefits, roleContent } = jobContent;
+
+  const allBaseJobs: Job[] = [
+    ...jobsData.matchingJobs,
+    ...jobsData.recommendedJobs,
+    ...internshipsData,
+  ];
+
+  return allBaseJobs.reduce((acc, job) => {
+    acc[job.id] = buildJobDetail(job, companyProfiles, genericBenefits, roleContent);
+    return acc;
+  }, {} as Record<number, JobDetail>);
+}
 
 function Tag({ label }: { label: string }) {
   return (
@@ -22,15 +119,67 @@ function Tag({ label }: { label: string }) {
 
 export default function JobDetailsPage() {
   const { id } = useParams<{ id: string }>();
-  const job = id ? jobDetails[Number(id)] : undefined;
+  const [allJobDetails, setAllJobDetails] = useState<Record<number, JobDetail>>({});
   const [isApplyOpen, setIsApplyOpen] = useState(false);
-  const [recommendedJobs, setRecommendedJobs] = useState(matchingJobs);
-    useEffect(() => {
+  const [recommendedJobs, setRecommendedJobs] = useState<Job[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const { savedItems, saveItem, removeItem } = useSavedItemsStore();
+
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const [details, jobsRes] = await Promise.all([
+          loadJobDetails(),
+          fetch("/mocked/jobs/jobs.json").then((res) => res.json()),
+        ]);
+
+        setAllJobDetails(details);
+        setRecommendedJobs(jobsRes.matchingJobs);
+      } catch (error) {
+        console.error("Failed to load job details:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadData();
+  }, []);
+
+  const job = id ? allJobDetails[Number(id)] : undefined;
+
+  const isSaved = job ? savedItems.jobs.some((savedJob : { id: number }) => savedJob.id === job.id) : false;
+
+  const handleToggleSave = () => {
+    if (!job) return;
+
+    if (isSaved) {
+      removeItem("jobs", job.id);
+    } else {
+      saveItem("jobs", {
+        id: job.id,
+        companyPic: job.companyLogo,
+        jobTitle: job.title,
+        desc: `${job.location} · (${job.workType})`,
+      });
+    }
+  };
+
   const handleRemoveJob = (jobId: number) => {
-    setRecommendedJobs((prev: Job[] )=> prev.filter(job   => job.id !== jobId));
-  }; 
+    setRecommendedJobs((prev: Job[]) => prev.filter((job) => job.id !== jobId));
+  };
+
+  if (isLoading) {
+    return (
+      <div className="rounded-2xl border border-border bg-card p-lg text-center text-normal">
+        Loading...
+      </div>
+    );
+  }
+
   if (!job) {
     return (
       <div className="rounded-2xl border border-border bg-card p-lg text-center text-normal">
@@ -79,10 +228,15 @@ export default function JobDetailsPage() {
               </button>
               <button
                 type="button"
-                aria-label="Message"
+                aria-label={isSaved ? "Unsave job" : "Save job"}
+                onClick={handleToggleSave}
                 className="flex items-center    w-14 h-14  justify-center rounded-lg bg-primary-light text-black transition-colors hover:bg-primary-light-hover"
               >
-               <img src={saveIcon} alt="Save"  />
+               <Bookmark
+                 size={22}
+                 className={isSaved ? "text-warning" : "text-primary"}
+                 fill={isSaved ? "var(--warning)" : "none"}
+               />
               </button>
             </div>
           </div>

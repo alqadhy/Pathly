@@ -1,20 +1,47 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import JobListCard from "@/components/custom/jobs-internships/JobListCard";
-import { matchingJobs, recommendedJobs } from "@/data/jobs.data";
-import { internships } from "@/data/internships.data";
 import { APP_ROUTES } from "@/constants";
 import type { Internship } from "@/types/jobs.types";
 import type { Job } from "../../types/jobs.types";
 
 export default function JobsInternshipsDashboard() {
-  const [matching, setMatching] = useState(matchingJobs);
-  const [recommended, setRecommended] = useState(recommendedJobs);
-  const [internshipList, setInternshipList] = useState(internships);
+  const [matching, setMatching] = useState<Job[]>([]);
+  const [recommended, setRecommended] = useState<Job[]>([]);
+  const [internshipList, setInternshipList] = useState<Internship[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const [jobsRes, internshipsRes] = await Promise.all([
+          fetch("/mocked/jobs/jobs.json"),
+          fetch("/mocked/jobs/internships.json"),
+        ]);
+
+        const jobsData = await jobsRes.json();
+        const internshipsData = await internshipsRes.json();
+
+        setMatching(jobsData.matchingJobs);
+        setRecommended(jobsData.recommendedJobs);
+        setInternshipList(internshipsData);
+      } catch (error) {
+        console.error("Failed to load jobs/internships data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadData();
+  }, []);
+
+  if (isLoading) {
+    return <div className="flex flex-col gap-lg">Loading...</div>;
+  }
 
   return (
     <div className="flex flex-col gap-lg">
-    
+
 <JobListCard
   title="Job that match your Preferences"
   subtitle="UI/UX Designer, on site or hybrid or remote in Cairo"

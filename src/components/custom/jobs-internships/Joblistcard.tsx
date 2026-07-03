@@ -78,14 +78,14 @@ export default function JobListCard({
   const showScrollControls = jobs.length > 4;
 
   return (
-    <section className="flex w-full flex-col rounded-2xl border border-border bg-card p-md shadow-sm sm:p-lg">
+    <section className=" flex w-full flex-col rounded-2xl border border-border bg-card p-md shadow-sm sm:p-lg">
       
       <EditJobPreferenceModal
         isOpen={isEditModalOpen}
         onClose={() => setIsEditModalOpen(false)}
       />
 
-      <header className="mb-sm flex items-start justify-between gap-md sm:mb-md">
+      <header className=" mb-sm flex items-start justify-between gap-md sm:mb-md">
         <div>
           <h2 className="m-0 text-h6 font-bold leading-tight text-text-primary sm:text-h5">
             {title}
@@ -95,7 +95,7 @@ export default function JobListCard({
           </p>
         </div>
 
-        <div className="flex shrink-0 items-center gap-sm">
+        <div className=" flex shrink-0 items-center gap-sm">
           <HeaderIconButton label="Filter jobs" onClick={onFilterClick}>
             <ListFilter size={16} />
           </HeaderIconButton>
@@ -109,11 +109,11 @@ export default function JobListCard({
         </div>
       </header>
 
-      <div className="relative flex gap-sm">
+      <div className=" relative flex gap-sm">
         <ul
           ref={listRef}
           onScroll={updateThumb}
-          className="m-0 max-h-[420px] flex-1 list-none overflow-y-auto p-0 pr-sm [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className=" m-0 max-h-[420px] flex-1 list-none overflow-y-auto p-0 pr-sm [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {jobs.map((job, index) => (
             <li
@@ -122,10 +122,10 @@ export default function JobListCard({
                 index !== jobs.length - 1 ? "border-b border-border" : ""
               }`}
             >
-              <Link
-                to={getJobHref(job)}
-                className="flex items-start gap-sm rounded-lg py-md transition-colors hover:bg-light-hover sm:gap-md"
-              >
+             <Link
+  to={getJobHref(job)}
+  className="group relative flex items-start gap-sm rounded-lg px-md py-md transition-all duration-200 hover:scale-[0.98] hover:bg-light-hover sm:gap-md"
+>
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-light sm:h-12 sm:w-12">
                   <img
                     src={job.companyLogo}
@@ -135,7 +135,7 @@ export default function JobListCard({
                   />
                 </div>
 
-                <div className="min-w-0 flex-1">
+                <div className=" min-w-0 flex-1">
                   <h3 className="m-0 line-clamp-2 text-body-sm font-bold leading-snug text-text-primary sm:text-body-md">
                     {job.title}
                   </h3>
@@ -160,7 +160,7 @@ export default function JobListCard({
                   </div>
                 </div>
 
-                <div className="flex shrink-0 flex-col items-end gap-sm">
+                <div className="flex shrink-0 flex-col items-end gap-sm ">
                   <button
                     type="button"
                     onClick={(e) => {
@@ -169,7 +169,7 @@ export default function JobListCard({
                       onRemoveJob?.(job.id);
                     }}
                     aria-label={`Remove ${job.title} at ${job.company}`}
-                    className="flex h-6 w-6 items-center justify-center rounded-full border border-border text-normal transition-colors hover:border-dark hover:text-dark"
+                    className="flex h-6 w-6 items-center justify-center rounded-full border border-border text-normal transition-colors hover:border-dark hover:text-dark "
                   >
                     <X size={12} />
                   </button>

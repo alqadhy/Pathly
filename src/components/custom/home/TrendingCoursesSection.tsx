@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { User, Star, Clock, GraduationCap, ArrowRight } from "lucide-react";
-import { courses } from "@/data/courses.data";
+import { useEffect, useState } from "react";
 import type { Course } from "@/types/courses.types";
 
 function StarRating({ rating }: { rating: number }) {
@@ -25,6 +25,13 @@ function StarRating({ rating }: { rating: number }) {
 }
 
 export default function TrendingCoursesSection() {
+  const [courses, setCourses] = useState<Course[]>([]);
+
+  useEffect(() => {
+    fetch("/mocked/courses/courses.json")
+      .then((res) => res.json())
+      .then((data) => setCourses(data));
+  }, []);
   return (
     <section className="w-full py-16 px-4 bg-background">
       <div className="max-w-7xl mx-auto">
