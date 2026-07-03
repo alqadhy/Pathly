@@ -1,0 +1,50 @@
+{
+  "sections": [
+    {
+      "id": "recommended-companies",
+      "title": "Suggestions for you",
+      "cards": [
+        {
+          "id": "oracle",
+          "name": "Oracle",
+          "role": "Cloud applications",
+          "subtitle": "Focused on graduate hiring",
+          "mutualConnections": "5 alumni already work here",
+          "avatarUrl": "https://ui-avatars.com/api/?name=Oracle&background=5b21b6&color=fff&bold=true"
+        },
+        {
+          "id": "capgemini",
+          "name": "Capgemini",
+          "role": "Digital consulting",
+          "subtitle": "Fast-growing entry roles",
+          "mutualConnections": "4 alumni already work here",
+          "avatarUrl": "https://ui-avatars.com/api/?name=Capgemini&background=4f46e5&color=fff&bold=true"
+        },
+        {
+          "id": "accenture",
+          "name": "Accenture",
+          "role": "Technology services",
+          "subtitle": "Graduate programs available",
+          "mutualConnections": "11 alumni already work here",
+          "avatarUrl": "https://ui-avatars.com/api/?name=Accenture&background=0f766e&color=fff&bold=true"
+        },
+        {
+          "id": "ibm",
+          "name": "IBM",
+          "role": "AI and engineering",
+          "subtitle": "Internships and graduate jobs",
+          "mutualConnections": "7 alumni already work here",
+          "avatarUrl": "https://ui-avatars.com/api/?name=IBM&background=0ea5e9&color=fff&bold=true"
+        },
+        {
+          "id": "unilever",
+          "name": "Unilever",
+          "role": "Product and business",
+          "subtitle": "Early career opportunities",
+          "mutualConnections": "3 alumni already work here",
+          "avatarUrl": "https://ui-avatars.com/api/?name=Unilever&background=ea580c&color=fff&bold=true"
+        }
+      ]
+    }
+  ]
+}

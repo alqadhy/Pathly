@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "fullName": "Mai Mohamed",
+    "email": "mai@gmail.com",
+    "password": "Mai12345",
+    "countryCode": "+20",
+    "phone": "1000000000",
+    "role": "employee"
+  },
+  {
+    "id": 2,
+    "fullName": "Mai Mohamed",
+    "email": "mai.mo.alii3@gmail.com",
+    "password": "123456789_Mai",
+    "countryCode": "+20",
+    "phone": "01143607452",
+    "role": "employee"
+  },
+  {
+    "id": 3,
+    "fullName": "Mai Mohamed",
+    "email": "mai.mo.ali@gmail.com",
+    "password": "1425451_Mai",
+    "countryCode": "+20",
+    "phone": "1143607452",
+    "role": "employee"
+  },
+  {
+    "id": 4,
+    "fullName": "Mai Mohamed",
+    "email": "mai.m.alii3@gmail.com",
+    "password": "12_123456_M",
+    "countryCode": "+20",
+    "phone": "1143607452",
+    "role": "employee"
+  },
+  {
+    "id": 5,
+    "fullName": "Mariem Mohamed",
+    "email": "mariem@gmail.com",
+    "password": "12_123456M",
+    "countryCode": "+20",
+    "phone": "1143607452",
+    "role": "employee"
+  },
+  {
+    "id": 6,
+    "fullName": "Menna Allah Yasser",
+    "email": "mennayasser@gmail.com",
+    "password": "12123456_M",
+    "countryCode": "+20",
+    "phone": "1143607452",
+    "role": "employee"
+  }
+]

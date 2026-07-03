@@ -50,7 +50,7 @@ const AIInsights: React.FC = () => {
   return (
     <div className="w-full mt-8">
       {/* Header */}
-      <div className="flex items-center gap-3 mb-6">
+      <div className="flex flex-wrap items-center gap-3 mb-6">
         <Sparkles className="w-5 h-5 text-primary" />
         <h2 className="text-h3 font-bold text-foreground">
           AI-Generated Insights

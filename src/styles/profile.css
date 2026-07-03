@@ -1,0 +1,28 @@
+/* src/styles/profile.css */
+@import "./animations.css";
+@import "./fonts.css";
+@import "./globals.css";
+@import "./tailwind.css";
+
+/* Profile Container */
+.profile-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-lg);
+}
+
+/* Profile Section Animations */
+.profile-section {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

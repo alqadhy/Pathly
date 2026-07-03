@@ -134,12 +134,12 @@ const WeeklyActivityChart: React.FC = () => {
   ];
 
   return (
-    <div className="bg-card border border-border rounded-2xl p-6 shadow-sm w-full h-[500px] flex flex-col ">
-      <div className="flex justify-between items-center mb-6">
+    <div className="bg-card border border-border pb-7 rounded-2xl p-6 shadow-sm w-full h-[500px] flex flex-col ">
+      <div className="flex flex-wrap gap-6 justify-between items-center mb-6">
         <h3 className="text-h4 font-bold text-foreground">Weekly Activity</h3>
 
         {/* Render Custom Interactive Legend */}
-        <div className="flex items-center gap-4 text-normal">
+        <div className="flex items-center flex-wrap gap-4 text-normal">
           {customLegendItems.map((item) => (
             <div
               key={item.index}

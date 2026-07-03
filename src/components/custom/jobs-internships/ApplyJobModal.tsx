@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/dialog';
 import { X, Upload } from 'lucide-react';
 
-import studentProfile from '@mocked/profile/profile.json';
+import studentProfile from '@mocked/Profile/profile.json';
 
 const JOB_PREFERENCES = {
   locations: 'Cairo, Cairo, Egypt',

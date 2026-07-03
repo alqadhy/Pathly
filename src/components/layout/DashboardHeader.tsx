@@ -5,20 +5,52 @@ import Searchbar from "../custom/Searchbar";
 import UserAvatar from "../custom/UserAvatar";
 
 // Icons
-import { Bell, Menu, MessagesSquare, Search } from "lucide-react";
+import { Bell, Menu, MessagesSquare, Search, X } from "lucide-react";
 
 // Constants
 import { APP_ROUTES, SLOGAN } from "../../constants";
+
+// Hooks
+import { useState, useEffect } from "react";
+
+// State Management
+import { useSidebarStore } from "../../store/sidebar.store";
 
 // Logo
 import logo from "../../assets/imgs/logo.png";
 
 function DashboardHeader() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { isOpen, open, close } = useSidebarStore();
+
+  function toggleSidebar() {
+    if (isOpen) close();
+    else open();
+  }
+
+  useEffect(() => {
+    function handleScroll() {
+      setIsScrolled(window.scrollY > 10);
+    }
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <header className="bg-card h-(--header-height) px-4 flex justify-between md:px-8">
+    <header
+      className={`${isScrolled ? "bg-transparent backdrop-blur-md shadow-sm" : "bg-card"} h-(--header-height) px-4 flex justify-between sticky top-0 z-(--z-sticky) md:px-8`}
+    >
       <div className="flex items-center gap-4 lg:gap-5">
-        <IconButton title="Toggle sidebar" className="lg:hidden">
-          <Menu />
+        <IconButton
+          title="Toggle sidebar"
+          className="lg:hidden"
+          onClickFn={toggleSidebar}
+        >
+          {isOpen ? <X /> : <Menu />}
         </IconButton>
         <Link
           to={APP_ROUTES.student.dashboard}
@@ -40,7 +72,9 @@ function DashboardHeader() {
         <IconButton title="Messages">
           <MessagesSquare />
         </IconButton>
-        <UserAvatar />
+        <Link to={APP_ROUTES.student.profile}>
+          <UserAvatar />
+        </Link>
       </div>
     </header>
   );

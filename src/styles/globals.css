@@ -2,6 +2,7 @@
   /* ===========================
     COLORS
   =========================== */
+  
 
   /* Natural Colors */
   --light: #f0f1f2;
@@ -119,7 +120,7 @@
   --popover: #ffffff;
   --popover-foreground: var(--darker);
 
-  --muted: var(--light);
+  --muted: #d0d5dd;
   --muted-foreground: var(--normal);
 
   --accent: var(--primary-light);
