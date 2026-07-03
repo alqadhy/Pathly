@@ -88,7 +88,7 @@ const router = createBrowserRouter([
       {
         path: APP_ROUTES.auth.login,
         element: (
-          <Suspense fallback={<PageLoader />}>
+          <Suspense fallback={<Loader />}>
             <AuthFlow initialStep="login" />
           </Suspense>
         ),
@@ -97,7 +97,7 @@ const router = createBrowserRouter([
         path: APP_ROUTES.auth.signup,
 
         element: (
-          <Suspense fallback={<PageLoader />}>
+          <Suspense fallback={<Loader />}>
             <AuthFlow initialStep="signup" />
           </Suspense>
         ),
