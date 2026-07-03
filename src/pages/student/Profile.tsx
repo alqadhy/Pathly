@@ -4,6 +4,7 @@ import {
   loadProfile,
   saveStoredProfile,
   normalizeProfile,
+  getCurrentUser,
 } from "../../components/custom/Profile/crud/profileStorage";
 import {
   ProfileHeader,
@@ -46,21 +47,61 @@ const Profile: React.FC = () => {
 
   const fetchProfile = async () => {
     try {
+      // FIRST: Check for stored profile in localStorage to preserve CRUD changes
       const storedProfile = loadProfile(null);
       if (storedProfile) {
+        console.log("Loading stored profile from localStorage");
         setProfile(storedProfile);
         return;
       }
 
-      const response = await fetch("/mocked/Profile/profile.json");
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      // SECOND: If no stored profile, check for currentUser and create profile from it
+      const currentUser = getCurrentUser();
+      console.log("Current user from localStorage:", currentUser);
+      
+      if (currentUser) {
+        console.log("Creating new profile from currentUser");
+        // Create a profile from the user data
+        const userProfile: ProfileType = {
+          id: `user-${currentUser.id}`,
+          name: currentUser.fullName,
+          title: "",
+          followers: 0,
+          location: "",
+          industry: "",
+          about: "",
+          personalInfo: {
+            username: currentUser.email.split("@")[0],
+            email: currentUser.email,
+            phone: currentUser.phone,
+            location: "",
+            currentPosition: "",
+            industry: "",
+            links: [],
+          },
+          activities: [],
+          skills: [],
+          certifications: [],
+          experience: [],
+          education: [],
+          courses: [],
+          cv: null,
+          coverImage: { url: "", alt: "" },
+          avatarImage: { url: "", alt: currentUser.fullName },
+        };
+
+        const normalizedProfile = normalizeProfile(userProfile);
+        saveStoredProfile(normalizedProfile);
+        setProfile(normalizedProfile);
+        return;
       }
-      const data = await response.json();
-      setProfile(loadProfile(data));
+
+      // No profile found - user needs to log in
+      console.log("No profile found - user not logged in");
+      setProfile(null);
     } catch (error) {
       console.error("Error fetching profile:", error);
-      // setProfile(getFallbackProfile());
+      setProfile(null);
     } finally {
       setLoading(false);
     }
