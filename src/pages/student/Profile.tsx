@@ -340,7 +340,7 @@ const Profile: React.FC = () => {
   const completionPercentage = calculateCompletion(profile);
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-6 bg-[#f8f9fc]">
+    <div className="max-w-6xl mx-auto px-4 max-sm:px-0 py-6 bg-[#f8f9fc]">
       {/* Profile Header - Full Width */}
       <div className="mb-4">
         <ProfileHeader

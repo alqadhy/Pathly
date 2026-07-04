@@ -72,7 +72,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ profile, onAvatarChange, 
   };
 
   return (
-    <div >
+    <div className="w-full">
       {/* Cover Image */}
       <div className="relative h-40 bg-[#1e3a8a] rounded-t-lg rounded-b-lg overflow-hidden">
         {/* Geometric purple patterns */}
@@ -109,11 +109,11 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ profile, onAvatarChange, 
       </div>
 
       {/* Profile Info */}
-      <div className="px-6 pb-6">
-        <div className="flex items-start ">
+      <div className="px-4 sm:px-6 pb-6">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center">
           {/* Avatar */}
           <div className="relative -mt-12">
-            <div className="w-34 h-34 rounded-full border-4 border-white bg-linear-to-br from-[#553be6] to-[#402cad] flex items-center justify-center text-white text-3xl font-bold overflow-hidden shrink-0">
+            <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-34 md:h-34 rounded-full border-4 border-white bg-linear-to-br from-[#553be6] to-[#402cad] flex items-center justify-center text-white text-2xl sm:text-3xl font-bold overflow-hidden shrink-0">
               {avatarSrc && !avatarBroken ? (
                 <img
                   src={avatarSrc}
@@ -142,18 +142,18 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ profile, onAvatarChange, 
             />
           </div>
 
-          <div className="ml-4 flex-1 pt-8">
-            <div className="flex items-start justify-between">
-              <div className="flex-1">
-                <h1 className="text-2xl font-bold text-[#111827]">{profile.name || 'Your Name'}</h1>
+          <div className="ml-0 sm:ml-4 flex-1 pt-4 sm:pt-8 w-full">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0">
+              <div className="flex-1 w-full">
+                <h1 className="text-xl sm:text-2xl font-bold text-[#111827]">{profile.name || 'Your Name'}</h1>
                 <p className="text-sm text-gray-600 mt-0.5">{profile.title || 'Your Title'}</p>
-                <div className="flex items-center mt-2 text-sm text-[#553be6]">
+                <div className="flex flex-wrap items-center mt-2 text-sm text-[#553be6]">
                   <Users className="w-4 h-4 mr-1.5" />
                   <span className="font-medium">{profile.followers || 0} followers</span>
                 </div>
-                <div className="flex items-center mt-3 space-x-4">
+                <div className="flex flex-wrap items-center mt-3 space-x-0 sm:space-x-4 space-y-2 sm:space-y-0">
                   {profile.location && (
-                    <div className="flex items-center text-sm text-gray-600">
+                    <div className="flex items-center text-sm text-gray-600 mr-4 sm:mr-0">
                       <MapPin className="w-4 h-4 mr-1.5" />
                       <span>{profile.location}</span>
                     </div>
@@ -166,12 +166,12 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ profile, onAvatarChange, 
                   )}
                 </div>
               </div>
-              <div className="flex items-center space-x-2 pt-1">
-                <button className="px-4 py-2 text-sm font-medium text-white bg-[#553be6] rounded-sm hover:bg-[#4d35cf] transition-colors duration-200 flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2 pt-1 w-full sm:w-auto">
+                <button className="flex-1 sm:flex-none px-4 py-2 text-sm font-medium text-white bg-[#553be6] rounded-sm hover:bg-[#4d35cf] transition-colors duration-200 flex items-center justify-center gap-2">
                   <Share2 className="w-4 h-4" />
                   Share Profile
                 </button>
-                <button className="px-4 py-2 text-sm font-medium text-[#553be6] border-2 border-[#553be6] rounded-sm hover:bg-purple-50 transition-colors duration-200 flex items-center gap-2">
+                <button className="flex-1 sm:flex-none px-4 py-2 text-sm font-medium text-[#553be6] border-2 border-[#553be6] rounded-sm hover:bg-purple-50 transition-colors duration-200 flex items-center justify-center gap-2">
                   <Eye className="w-4 h-4" />
                   Public preview
                 </button>

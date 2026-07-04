@@ -11,6 +11,8 @@ import { APP_ROUTES } from "../constants";
 // Loaders
 import PageLoader from "../components/layout/PageLoader";
 import Loader from "../components/layout/Loader";
+import CareerChat from "../pages/student/CareerChat";
+import Global from "../pages/student/message";
 
 // Pages
 const Home = lazy(() => import("../pages/Home"));
@@ -67,6 +69,22 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <Profile />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.aiAssistant,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <CareerChat />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.messages,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Global />
           </Suspense>
         ),
       },

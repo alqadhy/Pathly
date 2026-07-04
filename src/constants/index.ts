@@ -21,6 +21,7 @@ export const APP_ROUTES = {
     saved: "/student/saved",
     learning: "/student/learning",
     community:"/student/community",
+    messages: "/student/messages",
     profile: "/student/profile",
     settings: "/student/settings",
   },
