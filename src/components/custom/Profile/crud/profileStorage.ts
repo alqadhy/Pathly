@@ -272,6 +272,40 @@ export const clearStoredProfile = (): void => {
   window.localStorage.removeItem(PROFILE_STORAGE_KEY);
 };
 
+export const getCurrentUser = (): { id: number; fullName: string; email: string; phone: string ; role: string } | null => {
+  if (!hasLocalStorage()) return null;
+
+  try {
+    const currentUserJson = window.localStorage.getItem("currentUser");
+    if (!currentUserJson) return null;
+
+    const currentUser = JSON.parse(currentUserJson);
+    
+    // Return only the fields we need
+    return {
+      id: currentUser.id,
+      fullName: currentUser.fullName,
+      email: currentUser.email,
+      phone: currentUser.phone,
+      role: currentUser.role // Include role if needed
+    };
+  } catch {
+    return null;
+  }
+};
+
+export const clearCurrentUser = (): void => {
+  if (!hasLocalStorage()) return;
+
+  try {
+    window.localStorage.removeItem("currentUser");
+    window.localStorage.removeItem("pathly.community.follows");
+    window.localStorage.removeItem("pathly.profile");
+  } catch {
+    // Silently fail
+  }
+};
+
 export const loadProfile = (fallbackProfile: Profile | null): Profile | null => {
   const storedProfile = getStoredProfile();
   if (storedProfile) return storedProfile;

@@ -6,16 +6,6 @@ import {
   type FollowsData,
 } from "./crud/communityStorage";
 
-async function loadFollowsData(): Promise<FollowsData> {
-  const response = await fetch("/mocked/Community/follows.json");
-  
-  if (!response.ok) {
-    throw new Error("Failed to load follows data");
-  }
-  
-  return response.json() as Promise<FollowsData>;
-}
-
 export function useFollows() {
   const [followsData, setFollowsData] = useState<FollowsData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -23,18 +13,24 @@ export function useFollows() {
   useEffect(() => {
     const loadData = async () => {
       try {
+        // Check for stored follows data in localStorage
         const storedData = loadCommunityFollows(null);
         if (storedData) {
           setFollowsData(storedData);
           return;
         }
 
-        const data = await loadFollowsData();
-        const normalizedData = loadCommunityFollows(data);
-        setFollowsData(normalizedData || data);
+        // No stored data - initialize with empty data
+        const emptyData: FollowsData = {
+          followedCompanies: [],
+          connectedProfiles: [],
+          lastUpdated: new Date().toISOString(),
+        };
+        const normalizedData = loadCommunityFollows(emptyData);
+        setFollowsData(normalizedData || emptyData);
       } catch (error) {
         console.error("Error loading follows data:", error);
-        // Initialize with empty data if fetch fails
+        // Initialize with empty data if error occurs
         const emptyData: FollowsData = {
           followedCompanies: [],
           connectedProfiles: [],

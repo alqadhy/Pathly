@@ -5,6 +5,7 @@ import { Button } from "../../ui/button";
 import { useNavigate, useLocation } from "react-router-dom";
 import logo from "@/assets/imgs/logo.png";
 import { APP_ROUTES } from "../../../constants";
+import { getCurrentUser, clearCurrentUser } from "../../../components/custom/Profile/crud/profileStorage";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -18,6 +19,13 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const currentUser = getCurrentUser();
+
+  const handleLogout = () => {
+    clearCurrentUser();
+    navigate("/");
+    setMenuOpen(false);
+  };
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -68,16 +76,28 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Button
-            onClick={() => navigate("/auth/login")}
-            className="cursor-pointer hidden sm:inline-flex rounded-full font-semibold px-6 text-white h-10"
-            style={{
-              backgroundColor: "var(--primary)",
-              fontSize: "var(--body-sm)",
-            }}
-          >
-            Get Started
-          </Button>
+              <Button
+                onClick={() => navigate(currentUser ? "/student/profile" : "/auth")}
+                className="cursor-pointer hidden sm:inline-flex rounded-full font-semibold px-6 text-white h-10"
+                style={{
+                  backgroundColor: "var(--primary)",
+                  fontSize: "var(--body-sm)",
+                }}
+              >
+                {currentUser ? "My Account" : "Get Started"}
+              </Button>
+          {currentUser && (
+            <Button
+              onClick={handleLogout}
+              className="cursor-pointer hidden sm:inline-flex rounded-full font-semibold px-6 text-white h-10"
+              style={{
+                backgroundColor: "#ef4444",
+                fontSize: "var(--body-sm)",
+              }}
+            >
+              Logout
+            </Button>
+          )}
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
@@ -102,15 +122,23 @@ export default function Header() {
             </Link>
           ))}
 
-          <div className="pt-4 pb-1">
+          <div className="pt-4 pb-1 space-y-2">
+            {currentUser && (
+              <Button
+                onClick={handleLogout}
+                className="w-full rounded-full font-semibold text-white bg-red-500 hover:bg-red-600 h-12"
+              >
+                Logout
+              </Button>
+            )}
             <Button
               onClick={() => {
                 setMenuOpen(false);
-                navigate("/auth/login");
+                navigate(currentUser ? "/student/profile" : "/auth");
               }}
               className="w-full rounded-full font-semibold text-white bg-primary hover:bg-primary-hover h-12"
             >
-              Get Started
+              {currentUser ? "My Account" : "Get Started"}
             </Button>
           </div>
         </div>

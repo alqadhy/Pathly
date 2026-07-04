@@ -119,7 +119,7 @@
   --popover: #ffffff;
   --popover-foreground: var(--darker);
 
-  --muted: var(--light);
+  --muted: #d0d5dd;
   --muted-foreground: var(--normal);
 
   --accent: var(--primary-light);
@@ -227,7 +227,7 @@ body {
 
 :where(h1, h2, h3, h4, h5, h6) {
   color: var(--text-secondary);
-  font-weight: bold;
+  font-weight: 600;
 }
 
 h1 {

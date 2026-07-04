@@ -10,7 +10,7 @@ function Community() {
 
   return (
     <main className="min-h-screen bg-[radial-gradient(circle_at_top,rgba(85,59,230,0.08),transparent_34%),linear-gradient(180deg,#f8f9fc_0%,#f4f6fb_100%)] px-4 py-6 sm:px-6 lg:px-8">
-      <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 sm:gap-5">
+      <div className="flex w-full flex-col gap-4 sm:gap-5">
         <CommunityTabs activeTab={activeTab} onTabChange={setActiveTab} />
         {activeTab === "profiles" ? <Profiles /> : <Companies />}
       </div>
@@ -19,4 +19,3 @@ function Community() {
 }
 
 export default Community;
-

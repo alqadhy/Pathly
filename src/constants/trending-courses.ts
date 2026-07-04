@@ -1,14 +1,16 @@
+// Types
 import type { Course } from "../types/courses.types";
 
-import webDevImg     from "@/assets/imgs/coursesSection1.png";
-import pythonImg     from "@/assets/imgs/CoursesSection2.png";
-import reactImg      from "@/assets/imgs/CoursesSection3.png";
+// Images
+import webDevImg from "@/assets/imgs/coursesSection1.png";
+import pythonImg from "@/assets/imgs/CoursesSection2.png";
+import reactImg from "@/assets/imgs/CoursesSection3.png";
 import javascriptImg from "@/assets/imgs/CoursesSection4.png";
 
 const courseImages = {
-  webDev:     webDevImg,
-  python:     pythonImg,
-  react:      reactImg,
+  webDev: webDevImg,
+  python: pythonImg,
+  react: reactImg,
   javascript: javascriptImg,
 };
 

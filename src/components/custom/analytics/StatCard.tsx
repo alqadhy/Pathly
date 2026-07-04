@@ -3,7 +3,7 @@ import React from "react";
 // Icons
 import { User, ChartNoAxesColumn, Briefcase, Target } from "lucide-react";
 // Types
-import type { StatItem } from "../../../types/analytics";
+import type { StatItem } from "../../../types/analytics.types";
 
 const StatCards: React.FC = () => {
   // Stats
