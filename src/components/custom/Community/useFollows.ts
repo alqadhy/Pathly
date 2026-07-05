@@ -45,7 +45,7 @@ export function useFollows() {
     loadData();
   }, []);
 
-  const followCompany = useCallback(async (companyId: string, companyName: string) => {
+  const followCompany = useCallback(async (companyId: number, companyName: string) => {
     if (!followsData) return;
 
     const updatedData: FollowsData = {
@@ -65,7 +65,7 @@ export function useFollows() {
     saveStoredCommunityFollows(updatedData);
   }, [followsData]);
 
-  const unfollowCompany = useCallback(async (companyId: string) => {
+  const unfollowCompany = useCallback(async (companyId: number) => {
     if (!followsData) return;
 
     const updatedData: FollowsData = {
@@ -81,7 +81,7 @@ export function useFollows() {
   }, [followsData]);
 
   const connectProfile = useCallback(async (profile: {
-    id: string;
+    id: number;
     name: string;
     role: string;
     subtitle: string;
@@ -113,7 +113,7 @@ export function useFollows() {
     saveStoredCommunityFollows(updatedData);
   }, [followsData]);
 
-  const disconnectProfile = useCallback(async (profileId: string) => {
+  const disconnectProfile = useCallback(async (profileId: number) => {
     if (!followsData) return;
 
     const updatedData: FollowsData = {
@@ -129,14 +129,14 @@ export function useFollows() {
   }, [followsData]);
 
   const isFollowingCompany = useCallback(
-    (companyId: string) => {
+    (companyId: number) => {
       return followsData?.followedCompanies.some((c) => c.id === companyId) ?? false;
     },
     [followsData]
   );
 
   const isConnectedToProfile = useCallback(
-    (profileId: string) => {
+    (profileId: number) => {
       return followsData?.connectedProfiles.some((p) => p.id === profileId) ?? false;
     },
     [followsData]

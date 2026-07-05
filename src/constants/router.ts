@@ -9,7 +9,7 @@ export const APP_ROUTES = {
   },
 
   // Student Routes
-  student: {
+    student: {
     dashboard: "/student/dashboard",
     aiAssistant: "/student/ai-assistant",
     analytics: "/student/analytics",
@@ -20,6 +20,7 @@ export const APP_ROUTES = {
     learning: "/student/learning",
     community: "/student/community",
     profile: "/student/profile",
+    publicProfile: (id: string) => `/student/profile/${id}`,
     settings: "/student/settings",
     messages: "/student/messages",
   },

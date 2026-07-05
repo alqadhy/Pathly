@@ -5,9 +5,10 @@ import { formatCalendarDate } from './dateUtils';
 
 interface EducationSectionProps {
   education: Education[];
-  onEdit: (education: Education) => void;
+  onEdit?: (education: Education) => void;
   onDelete?: (education: Education) => void;
   onAdd?: () => void;
+  isPublicView?: boolean;
 }
 
 const EducationSection: React.FC<EducationSectionProps> = ({
@@ -15,18 +16,21 @@ const EducationSection: React.FC<EducationSectionProps> = ({
   onEdit,
   onDelete,
   onAdd,
+  isPublicView = false,
 }) => {
   return (
     <div className="w-full">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-2 sm:gap-0">
         <h3 className="text-h3 font-semibold text-foreground">Education</h3>
-        <button
-          onClick={onAdd}
-          className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors duration-200 w-full sm:w-auto flex items-center justify-center gap-2"
-        >
-          <Plus className="w-5 h-5 text-gray-600" />
-          <span className="sm:hidden text-sm text-gray-600">Add Education</span>
-        </button>
+        {!isPublicView && onAdd && (
+          <button
+            onClick={onAdd}
+            className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors duration-200 w-full sm:w-auto flex items-center justify-center gap-2"
+          >
+            <Plus className="w-5 h-5 text-gray-600" />
+            <span className="sm:hidden text-sm text-gray-600">Add Education</span>
+          </button>
+        )}
       </div>
       <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-5">
         {education && education.length > 0 ? (
@@ -58,24 +62,28 @@ const EducationSection: React.FC<EducationSectionProps> = ({
                         {formatCalendarDate(edu.startDate)} - {formatCalendarDate(edu.endDate)}
                       </p>
                     </div>
-                    <div className="flex items-center space-x-2 w-full sm:w-auto justify-end sm:justify-start">
-                      <button
-                        onClick={() => onEdit(edu)}
-                        className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors duration-200 flex-1 sm:flex-none flex items-center justify-center"
-                      >
-                        <Edit2 className="w-4 h-4 text-gray-600" />
-                        <span className="sm:hidden ml-2 text-sm text-gray-600">Edit</span>
-                      </button>
-                      {onDelete && (
-                        <button
-                          onClick={() => onDelete(edu)}
-                          className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors duration-200 flex-1 sm:flex-none flex items-center justify-center"
-                        >
-                          <Trash2 className="w-4 h-4 text-gray-600" />
-                          <span className="sm:hidden ml-2 text-sm text-gray-600">Delete</span>
-                        </button>
-                      )}
-                    </div>
+                    {!isPublicView && (
+                      <div className="flex items-center space-x-2 w-full sm:w-auto justify-end sm:justify-start">
+                        {onEdit && (
+                          <button
+                            onClick={() => onEdit(edu)}
+                            className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors duration-200 flex-1 sm:flex-none flex items-center justify-center"
+                          >
+                            <Edit2 className="w-4 h-4 text-gray-600" />
+                            <span className="sm:hidden ml-2 text-sm text-gray-600">Edit</span>
+                          </button>
+                        )}
+                        {onDelete && (
+                          <button
+                            onClick={() => onDelete(edu)}
+                            className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors duration-200 flex-1 sm:flex-none flex items-center justify-center"
+                          >
+                            <Trash2 className="w-4 h-4 text-gray-600" />
+                            <span className="sm:hidden ml-2 text-sm text-gray-600">Delete</span>
+                          </button>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

@@ -6,15 +6,16 @@ import { formatCalendarDateTime } from './dateUtils';
 
 interface CVSectionProps {
   cv: CV | null;
-  onAdd: () => void;
-  onDelete: () => void;
+  onAdd?: () => void;
+  onDelete?: () => void;
+  isPublicView?: boolean;
 }
 
-const CVSection: React.FC<CVSectionProps> = ({ cv, onAdd, onDelete }) => {
+const CVSection: React.FC<CVSectionProps> = ({ cv, onAdd, onDelete, isPublicView = false }) => {
   const isImage = cv?.fileUrl?.match(/\.(jpg|jpeg|png|gif|webp)$/i);
   
   return (
-    <ProfileSection title="CV" onAdd={onAdd} showAdd={true} showEdit={false}>
+    <ProfileSection title="CV" onAdd={onAdd} showAdd={true} showEdit={false} isPublicView={isPublicView}>
       {cv ? (
         <div className="border border-border rounded-lg overflow-hidden bg-background">
           <div className="relative">
@@ -32,12 +33,14 @@ const CVSection: React.FC<CVSectionProps> = ({ cv, onAdd, onDelete }) => {
                       {cv.fileSize} • Uploaded {formatCalendarDateTime(cv.uploadDate)}
                     </p>
                   </div>
-                  <button
-                    onClick={onDelete}
-                    className="w-full sm:w-auto px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200 text-body-sm font-medium text-center"
-                  >
-                    Delete
-                  </button>
+                  {!isPublicView && (
+                    <button
+                      onClick={onDelete}
+                      className="w-full sm:w-auto px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200 text-body-sm font-medium text-center"
+                    >
+                      Delete
+                    </button>
+                  )}
                 </div>
               </div>
             ) : (
@@ -56,12 +59,14 @@ const CVSection: React.FC<CVSectionProps> = ({ cv, onAdd, onDelete }) => {
                     >
                       Download CV
                     </a>
-                    <button
-                      onClick={onDelete}
-                      className="w-full sm:w-auto px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200 text-body-sm font-medium"
-                    >
-                      Delete
-                    </button>
+                    {!isPublicView && (
+                      <button
+                        onClick={onDelete}
+                        className="w-full sm:w-auto px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200 text-body-sm font-medium"
+                      >
+                        Delete
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>

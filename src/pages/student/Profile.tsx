@@ -63,7 +63,7 @@ const Profile: React.FC = () => {
         console.log("Creating new profile from currentUser");
         // Create a profile from the user data
         const userProfile: ProfileType = {
-          id: `user-${currentUser.id}`,
+          id: currentUser.id,
           name: currentUser.fullName,
           title: "",
           followers: 0,

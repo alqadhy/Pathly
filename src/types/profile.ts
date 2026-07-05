@@ -81,7 +81,7 @@ export interface ProfileImage {
 }
 
 export interface Profile {
-  id: string;
+  id: number;
   name: string;
   title: string;
   followers: number;

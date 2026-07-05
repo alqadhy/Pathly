@@ -1,4 +1,5 @@
 import type { CommunitySection } from "../../../types/Community";
+import { useNavigate } from "react-router-dom";
 import Card from "../Card";
 import { useFollows } from "./useFollows";
 
@@ -15,6 +16,7 @@ export default function CommunitySectionList({
   actionTone?: "primary" | "dark";
   viewType?: "companies" | "profiles";
 }) {
+  const navigate = useNavigate();
   const { followCompany, unfollowCompany, connectProfile, disconnectProfile, isFollowingCompany, isConnectedToProfile, followsData } = useFollows();
   return (
     <div className="space-y-5 sm:space-y-6">
@@ -84,29 +86,39 @@ export default function CommunitySectionList({
                   return "pending";
                 };
 
+                const handleMediaClick = () => {
+                  if (viewType === "profiles") {
+                    navigate(`/student/profile/${card.id}`);
+                  }
+                };
+
                 return (
-                  <Card
-                    key={card.id}
-                    title={card.name}
-                    subtitle={card.role}
-                    body={card.subtitle}
-                    media={{
-                      src: card.avatarUrl,
-                      alt: card.name,
-                      size: cardMediaSize,
-                    }}
-                    meta={{
-                      avatarSrc: card.avatarUrl,
-                      avatarAlt: `${card.name} connection`,
-                      text: card.mutualConnections,
-                    }}
-                    actionLabel={actionLabel}
-                    actionTone={actionTone}
-                    onAction={handleAction}
-                    isActive={isActive}
-                    actionState={getActionState()}
-                    viewType={viewType}
-                  />
+                  <div key={card.id}>
+                    <Card
+                      title={card.name}
+                      subtitle={card.role}
+                      body={card.subtitle}
+                      media={{
+                        src: card.avatarUrl,
+                        alt: card.name,
+                        size: cardMediaSize,
+                      }}
+                      meta={{
+                        avatarSrc: card.avatarUrl,
+                        avatarAlt: `${card.name} connection`,
+                        text: card.mutualConnections,
+                      }}
+                      actionLabel={actionLabel}
+                      actionTone={actionTone}
+                      onAction={() => {
+                        handleAction();
+                      }}
+                      onMediaClick={viewType === "profiles" ? handleMediaClick : undefined}
+                      isActive={isActive}
+                      actionState={getActionState()}
+                      viewType={viewType}
+                    />
+                  </div>
                 );
               })}
             </div>

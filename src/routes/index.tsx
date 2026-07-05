@@ -12,6 +12,7 @@ import { APP_ROUTES } from "../constants";
 import PageLoader from "../components/layout/PageLoader";
 import Loader from "../components/layout/Loader";
 import CareerChat from "../pages/student/CareerChat";
+import PublicProfile from "../pages/student/PublicProfile";
 
 // Pages
 const Home = lazy(() => import("../pages/Home"));
@@ -96,6 +97,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <Profile />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.publicProfile(":id"),
+        element: (
+          <Suspense fallback={<Loader />}>
+            <PublicProfile />
           </Suspense>
         ),
       },

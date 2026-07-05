@@ -301,6 +301,7 @@ export const clearCurrentUser = (): void => {
     window.localStorage.removeItem("currentUser");
     window.localStorage.removeItem("pathly.community.follows");
     window.localStorage.removeItem("pathly.profile");
+    window.localStorage.removeItem("saved-items");
   } catch {
     // Silently fail
   }

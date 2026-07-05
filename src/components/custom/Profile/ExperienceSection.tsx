@@ -5,9 +5,10 @@ import { formatCalendarDate } from './dateUtils';
 
 interface ExperienceSectionProps {
   experience: Experience[];
-  onEdit: (experience: Experience) => void;
+  onEdit?: (experience: Experience) => void;
   onDelete?: (experience: Experience) => void;
   onAdd?: () => void;
+  isPublicView?: boolean;
 }
 
 const ExperienceSection: React.FC<ExperienceSectionProps> = ({
@@ -15,18 +16,21 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
   onEdit,
   onDelete,
   onAdd,
+  isPublicView = false,
 }) => {
   return (
     <div className="w-full">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-2 sm:gap-0">
         <h3 className="text-h3 font-semibold text-foreground">Experience</h3>
-        <button
-          onClick={onAdd}
-          className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors duration-200 w-full sm:w-auto flex items-center justify-center gap-2"
-        >
-          <Plus className="w-5 h-5 text-gray-600" />
-          <span className="sm:hidden text-sm text-gray-600">Add Experience</span>
-        </button>
+        {!isPublicView && onAdd && (
+          <button
+            onClick={onAdd}
+            className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors duration-200 w-full sm:w-auto flex items-center justify-center gap-2"
+          >
+            <Plus className="w-5 h-5 text-gray-600" />
+            <span className="sm:hidden text-sm text-gray-600">Add Experience</span>
+          </button>
+        )}
       </div>
       <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-5">
         {experience && experience.length > 0 ? (
@@ -55,24 +59,28 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({
                         {formatCalendarDate(exp.startDate)} - {formatCalendarDate(exp.endDate)}
                       </p>
                     </div>
-                    <div className="flex items-center space-x-2 w-full sm:w-auto justify-end sm:justify-start">
-                      <button
-                        onClick={() => onEdit(exp)}
-                        className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors duration-200 flex-1 sm:flex-none flex items-center justify-center"
-                      >
-                        <Edit2 className="w-4 h-4 text-gray-600" />
-                        <span className="sm:hidden ml-2 text-sm text-gray-600">Edit</span>
-                      </button>
-                      {onDelete && (
-                        <button
-                          onClick={() => onDelete(exp)}
-                          className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors duration-200 flex-1 sm:flex-none flex items-center justify-center"
-                        >
-                          <Trash2 className="w-4 h-4 text-gray-600" />
-                          <span className="sm:hidden ml-2 text-sm text-gray-600">Delete</span>
-                        </button>
-                      )}
-                    </div>
+                    {!isPublicView && (
+                      <div className="flex items-center space-x-2 w-full sm:w-auto justify-end sm:justify-start">
+                        {onEdit && (
+                          <button
+                            onClick={() => onEdit(exp)}
+                            className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors duration-200 flex-1 sm:flex-none flex items-center justify-center"
+                          >
+                            <Edit2 className="w-4 h-4 text-gray-600" />
+                            <span className="sm:hidden ml-2 text-sm text-gray-600">Edit</span>
+                          </button>
+                        )}
+                        {onDelete && (
+                          <button
+                            onClick={() => onDelete(exp)}
+                            className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors duration-200 flex-1 sm:flex-none flex items-center justify-center"
+                          >
+                            <Trash2 className="w-4 h-4 text-gray-600" />
+                            <span className="sm:hidden ml-2 text-sm text-gray-600">Delete</span>
+                          </button>
+                        )}
+                      </div>
+                    )}
                   </div>
                   <ul className="mt-3 space-y-2">
                     {exp.description.map((item, index) => (

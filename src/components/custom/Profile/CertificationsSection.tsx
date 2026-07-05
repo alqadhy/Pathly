@@ -6,9 +6,10 @@ import { formatCalendarDate } from "./dateUtils";
 
 interface CertificationsSectionProps {
   certifications: Certification[];
-  onEdit: (cert?: Certification) => void;
+  onEdit?: (cert?: Certification) => void;
   onAdd?: () => void;
   onDelete?: (cert: Certification) => void;
+  isPublicView?: boolean;
 }
 
 const CertificationsSection: React.FC<CertificationsSectionProps> = ({
@@ -16,6 +17,7 @@ const CertificationsSection: React.FC<CertificationsSectionProps> = ({
   onEdit,
   onAdd,
   onDelete,
+  isPublicView = false,
 }) => {
   return (
     <ProfileSection
@@ -23,6 +25,7 @@ const CertificationsSection: React.FC<CertificationsSectionProps> = ({
       onEdit={onEdit}
       onAdd={onAdd}
       showAdd={true}
+      isPublicView={isPublicView}
     >
       {certifications && certifications.length > 0 ? (
         <div className="space-y-4">
@@ -42,26 +45,30 @@ const CertificationsSection: React.FC<CertificationsSectionProps> = ({
                   </div>
                 </div>
               </div>
-              <div className="flex items-center gap-1 w-full sm:w-auto justify-end sm:justify-start">
-                <button
-                  onClick={() => onEdit && onEdit(cert)}
-                  className="p-1.5 text-gray-400 hover:text-gray-600 transition-colors duration-200 flex-1 sm:flex-none flex items-center justify-center"
-                  title="Edit certification"
-                >
-                  <Edit2 className="w-4 h-4" />
-                  <span className="sm:hidden ml-2 text-sm">Edit</span>
-                </button>
-                {onDelete && (
-                  <button
-                    onClick={() => onDelete(cert)}
-                    className="p-1.5 text-gray-400 hover:text-red-600 transition-colors duration-200 flex-1 sm:flex-none flex items-center justify-center"
-                    title="Delete certification"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                    <span className="sm:hidden ml-2 text-sm">Delete</span>
-                  </button>
-                )}
-              </div>
+              {!isPublicView && (
+                <div className="flex items-center gap-1 w-full sm:w-auto justify-end sm:justify-start">
+                  {onEdit && (
+                    <button
+                      onClick={() => onEdit(cert)}
+                      className="p-1.5 text-gray-400 hover:text-gray-600 transition-colors duration-200 flex-1 sm:flex-none flex items-center justify-center"
+                      title="Edit certification"
+                    >
+                      <Edit2 className="w-4 h-4" />
+                      <span className="sm:hidden ml-2 text-sm">Edit</span>
+                    </button>
+                  )}
+                  {onDelete && (
+                    <button
+                      onClick={() => onDelete(cert)}
+                      className="p-1.5 text-gray-400 hover:text-red-600 transition-colors duration-200 flex-1 sm:flex-none flex items-center justify-center"
+                      title="Delete certification"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                      <span className="sm:hidden ml-2 text-sm">Delete</span>
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
           ))}
         </div>
