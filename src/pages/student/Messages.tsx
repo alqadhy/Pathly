@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ChatSidebar } from "../../components/custom/message/ChatSidebar";
 import { ChatArea } from "../../components/custom/message/ChatArea";
 
-export default function message() {
+export default function Messages() {
   const [selectedChat, setSelectedChat] = useState<string | null>(null);
 
   return (

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { MessageBubble } from "../career-chat/Chat/MessageBubble";
 import { MessageInput } from "../career-chat/Chat/MessageInput";
+import { getCurrentUser, getStoredProfile } from "../Profile/crud/profileStorage";
+import type { Profile } from "../../../types/profile";
 
 interface Message {
   id: string;
@@ -21,8 +23,9 @@ export function ChatArea({ chatId }: ChatAreaProps) {
   const [chatRole, setChatRole] = useState("");
   const [chatAvatar, setChatAvatar] = useState<string | undefined>(undefined);
   const [userAvatar, setUserAvatar] = useState<string | undefined>(
-    "https://i.pravatar.cc/150?u=student",
+  undefined,
   );
+  const [userInitial, setUserInitial] = useState<string | undefined>(undefined);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [isRecording, setIsRecording] = useState(false);
   const [recordedAudioUrl, setRecordedAudioUrl] = useState<string | null>(null);
@@ -57,15 +60,16 @@ export function ChatArea({ chatId }: ChatAreaProps) {
 
   // Load current user profile
   useEffect(() => {
-    // Fetch user profile from JSON
-    fetch("/mocked/Profile/profile.json")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.avatarImage?.url) {
-          setUserAvatar(data.avatarImage.url);
-        }
-      })
-      .catch((err) => console.error("Error loading user profile:", err));
+    const profile = getStoredProfile() as Profile | null;
+    if (profile?.avatarImage?.url) {
+      setUserAvatar(profile.avatarImage.url);
+    } else {
+      // Get first letter from currentUser if no profile image
+      const currentUser = getCurrentUser();
+      if (currentUser?.fullName) {
+        setUserInitial(currentUser.fullName.charAt(0).toUpperCase());
+      }
+    }
   }, []);
 
   const handleSendMessage = () => {
@@ -223,10 +227,11 @@ export function ChatArea({ chatId }: ChatAreaProps) {
           <MessageBubble
             key={message.id}
             message={message}
-            userAvatarUrl={message.role === "user" ? userAvatar : chatAvatar}
+            userAvatarUrl={message.role === "user" ? userAvatar : undefined}
             assistantAvatarUrl={
               message.role === "assistant" ? chatAvatar : undefined
             }
+            userInitial={userInitial}
           />
         ))}
         {isTyping && (

@@ -3,7 +3,10 @@ import { useChat } from "../../../../hooks/useChat";
 import { MessageBubble } from "./MessageBubble";
 import { MessageInput } from "./MessageInput";
 import { RoadmapPanel } from "../Roadmap/RoadmapPanel";
-import { getStoredProfile } from "../../Profile/crud/profileStorage";
+import {
+  getCurrentUser,
+  getStoredProfile,
+} from "../../Profile/crud/profileStorage";
 import type { Profile } from "../../../../types/profile";
 import { NotetakerPanel } from "../Notetaker/NotetakerPanel";
 
@@ -52,6 +55,8 @@ export function ChatPanel() {
   const [userAvatarUrl, setUserAvatarUrl] = useState<string | undefined>(
     undefined,
   );
+  const [userInitial, setUserInitial] = useState<string>("U");
+
   const fileInputRef = useRef<HTMLInputElement>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -59,6 +64,12 @@ export function ChatPanel() {
     const profile = getStoredProfile() as Profile | null;
     if (profile?.avatarImage?.url) {
       setUserAvatarUrl(profile.avatarImage.url);
+    } else {
+      // Get first letter from currentUser if no profile image
+      const currentUser = getCurrentUser();
+      if (currentUser?.fullName) {
+        setUserInitial(currentUser.fullName.charAt(0).toUpperCase());
+      }
     }
   }, []);
 
@@ -293,6 +304,7 @@ export function ChatPanel() {
                   key={m.id}
                   message={m}
                   userAvatarUrl={userAvatarUrl}
+                  userInitial={userInitial}
                 />
               ))}
               {isLoading && (
@@ -328,32 +340,36 @@ export function ChatPanel() {
             isPlaying={isPlaying}
             fileInputRef={fileInputRef}
           />
-          
         )}
-         <p className="text-[10px] sm:text-xs text-gray-400 text-center mt-2 px-1">
-        AI has full access to your profile, CV, goals, and application history
-      </p>
+        <p className="text-[10px] sm:text-xs text-gray-400 text-center mt-2 px-1">
+          AI has full access to your profile, CV, goals, and application history
+        </p>
       </div>
 
       {/* Right Sidebar - Hidden on mobile, shown on desktop */}
       <div className="hidden lg:block w-64 xl:w-80 p-4 xl:p-6 overflow-y-auto ">
         {/* New Chat Button */}
-        <button className="w-full flex items-center justify-center gap-2 py-2 px-4 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors mb-6">
-          <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+        {activeTab === "chat" && (
+          <button
+            onClick={() => window.location.reload()}
+            className="w-full flex items-center justify-center gap-2 py-2 px-4 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors mb-6"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 4v16m8-8H4"
-            />
-          </svg>
-          New chat
-        </button>
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 4v16m8-8H4"
+              />
+            </svg>
+            New chat
+          </button>
+        )}
 
         {/* Data Loaded Section */}
         <div className="mb-8">
@@ -435,4 +451,3 @@ export function ChatPanel() {
     </div>
   );
 }
-

@@ -27,15 +27,15 @@ function UserAvatar() {
   }, []);
 
   return (
-    <Button size="icon" className="bg-input w-12 h-12 rounded-full relative">
+    <Button size="icon" className="bg-input w-12 h-12 rounded-full relative ">
       {profileImageUrl ? (
         <img 
           src={profileImageUrl} 
           alt="Avatar" 
-          className="rounded-full"
+          className="  w-full h-full rounded-full"
         />
       ) : (
-        <span className="flex items-center justify-center w-full h-full text-lg font-semibold text-primary">
+        <span className="flex items-center justify-center w-full h-full text-lg font-semibold text-primary ">
           {userInitial}
         </span>
       )}

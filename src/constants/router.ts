@@ -21,5 +21,6 @@ export const APP_ROUTES = {
     community: "/student/community",
     profile: "/student/profile",
     settings: "/student/settings",
+    messages: "/student/messages",
   },
 };
