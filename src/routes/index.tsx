@@ -24,14 +24,23 @@ const SavedItems = lazy(() => import("../pages/student/SavedItems"));
 const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
 const Community = lazy(() => import("../pages/student/Community"));
 const Profile = lazy(() => import("../pages/student/Profile"));
+const OnBoarding = lazy(() => import("../pages/OnBoarding.tsx"));
 
 const router = createBrowserRouter([
-  // Landing Page
+  // Global Pages
   {
     path: APP_ROUTES.home,
     element: (
       <Suspense fallback={<PageLoader />}>
         <Home />
+      </Suspense>
+    ),
+  },
+  {
+    path: APP_ROUTES.onBoarding,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <OnBoarding />
       </Suspense>
     ),
   },

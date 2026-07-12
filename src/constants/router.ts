@@ -7,6 +7,7 @@ export const APP_ROUTES = {
     login: "/auth/",
     signup: "/auth/sign-up",
   },
+  onBoarding: "/on-boarding",
 
   // Student Routes
   student: {
