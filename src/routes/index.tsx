@@ -50,6 +50,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: APP_ROUTES.student.jobs,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <JobsInternshipsDashboard />
+          </Suspense>
+        ),
+      },
+      {
         path: APP_ROUTES.student.analytics,
         element: (
           <Suspense fallback={<Loader />}>
