@@ -97,6 +97,11 @@ const AddModal: React.FC<AddModalProps> = ({
             image: "",
           });
           break;
+        case "tracks":
+          setFormData({
+            name: "",
+          });
+          break;
         default:
           setFormData({});
       }
@@ -149,6 +154,11 @@ const AddModal: React.FC<AddModalProps> = ({
         }
         if (!formData.provider?.trim()) {
           newErrors.provider = "Provider is required";
+        }
+        break;
+      case "tracks":
+        if (!formData.name?.trim()) {
+          newErrors.name = "Track name is required";
         }
         break;
       default:
@@ -764,6 +774,77 @@ const AddModal: React.FC<AddModalProps> = ({
                 placeholder="https://example.com/image.jpg"
               />
             </div>
+          </div>
+        );
+
+      case "tracks":
+        const recommendedTracks = [
+          "All",
+          "Programming",
+          "Full Stack",
+          "Frontend",
+          "Backend",
+          "Data Analysis",
+          "Artificial Intelligence",
+          "UI/UX Design",
+          "Mobile Development",
+          "Cyber Security",
+          "Cloud Computing",
+          "DevOps",
+          "Data Science",
+          "Business",
+          "Tools",
+        ];
+
+        const filteredTrackRecommendations = recommendedTracks.filter(
+          (track) => track.toLowerCase() !== (formData.name || "").toLowerCase(),
+        );
+
+        const handleAddTrack = (track: string) => {
+          setFormData({ ...formData, name: track });
+        };
+
+        return (
+          <div className="space-y-4">
+            <div>
+              <label className="block text-body-sm font-medium text-foreground mb-1">
+                Track Name *
+              </label>
+              <input
+                type="text"
+                value={formData.name || ""}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
+                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background text-foreground transition-all duration-200 ${
+                  errors.name ? "border-red-500" : "border-border"
+                }`}
+                placeholder="e.g., Data Analytics Fundamentals"
+              />
+              {errors.name && (
+                <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+              )}
+            </div>
+
+            {filteredTrackRecommendations.length > 0 && (
+              <div className="border border-border rounded-lg p-4">
+                <p className="text-body-sm font-medium text-foreground mb-3">
+                  Recommended tracks
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {filteredTrackRecommendations.map((track) => (
+                    <button
+                      key={track}
+                      type="button"
+                      onClick={() => handleAddTrack(track)}
+                      className="px-3 py-1.5 bg-purple-50 text-purple-700 rounded-full text-body-sm font-medium hover:bg-purple-100 transition-colors duration-200"
+                    >
+                      {track}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         );
 

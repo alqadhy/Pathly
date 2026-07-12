@@ -200,6 +200,27 @@ const normalizeCourses = (value: unknown): Profile["courses"] => {
     .filter(isNonNull);
 };
 
+const normalizeTracks = (value: unknown): Profile["tracks"] => {
+  return asArray(value)
+    .map((item, index) => {
+      const track = asRecord<{ 
+        id?: unknown; 
+        name?: unknown 
+      }>(item);
+      
+      if (!track) return null;
+      
+      const name = asText(track?.name).trim();
+      if (!name) return null;
+
+      return {
+        id: asText(track?.id) || `track-${index}-${name}`,
+        name,
+      };
+    })
+    .filter(isNonNull);
+};
+
 export const normalizeProfile = (profile: Profile): Profile => {
   const personalInfo = asRecord<Profile["personalInfo"]>(profile.personalInfo);
 
@@ -225,6 +246,7 @@ export const normalizeProfile = (profile: Profile): Profile => {
     },
     activities: asArray(profile.activities).filter((v): v is Profile["activities"][number] => v != null),
     skills: normalizeSkills(profile.skills),
+    tracks: normalizeTracks(profile.tracks),
     certifications: normalizeCertifications(profile.certifications),
     experience: normalizeExperience(profile.experience),
     education: normalizeEducation(profile.education),

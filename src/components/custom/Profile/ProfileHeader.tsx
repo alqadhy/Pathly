@@ -141,8 +141,9 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
       <div className="px-6 pb-6">
         <div className="flex items-start flex-wrap">
           {/* Avatar */}
-          <div className="relative -mt-12">
-            <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-34 md:h-34 rounded-full border-4 border-white bg-linear-to-br from-[#553be6] to-[#402cad] flex items-center justify-center text-white text-2xl sm:text-3xl font-bold overflow-hidden shrink-0">
+          <div className="relative -mt-16">
+            <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-34 md:h-34 rounded-full border-4 border-white bg-linear-to-br from-[#553be6] to-[#402cad]
+             flex items-center justify-center text-white text-2xl sm:text-3xl font-bold overflow-hidden shrink-0">
               {avatarSrc && !avatarBroken ? (
                 <img
                   src={avatarSrc}
@@ -173,7 +174,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
             />
           </div>
 
-          <div className="ml-4 flex-1 pt-8">
+          <div className="ml-4 flex-1 pt-4">
             <div className="flex items-start flex-wrap gap-3 justify-between">
               <div className="flex-1">
                 <h1 className="text-2xl font-bold text-[#111827]">
@@ -262,5 +263,4 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
     </div>
   );
 };
-
 export default ProfileHeader;

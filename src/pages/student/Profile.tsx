@@ -12,6 +12,7 @@ import {
   ActivitiesSection,
   PersonalInfoSection,
   SkillsSection,
+  TracksSection,
   CVSection,
   CertificationsSection,
   ExperienceSection,
@@ -81,6 +82,7 @@ const Profile: React.FC = () => {
           },
           activities: [],
           skills: [],
+          tracks: [],
           certifications: [],
           experience: [],
           education: [],
@@ -110,7 +112,7 @@ const Profile: React.FC = () => {
   // Calculate profile completion dynamically
   const calculateCompletion = (profile: ProfileType): number => {
     let completed = 0;
-    const total = 9;
+    const total = 10;
 
     // About section
     if (profile.about && profile.about.trim() !== "") completed++;
@@ -118,6 +120,8 @@ const Profile: React.FC = () => {
     if (profile.personalInfo) completed++;
     // Skills
     if (profile.skills && profile.skills.length > 0) completed++;
+    // Tracks
+    if (profile.tracks && profile.tracks.length > 0) completed++;
     // Certifications
     if (profile.certifications && profile.certifications.length > 0)
       completed++;
@@ -252,6 +256,21 @@ const Profile: React.FC = () => {
             ];
           }
           break;
+        case "tracks":
+          if (selectedItem) {
+            const index = updated.tracks.findIndex(
+              (t) => t.id === selectedItem.id,
+            );
+            if (index !== -1) {
+              updated.tracks[index] = data;
+            }
+          } else {
+            updated.tracks = [
+              ...updated.tracks,
+              { ...data, id: data.id || `track-${Date.now()}` },
+            ];
+          }
+          break;
         case "cv":
           updated.cv = data;
           break;
@@ -338,6 +357,11 @@ const Profile: React.FC = () => {
         case "courses":
           updated.courses = (updated.courses || []).filter(
             (c) => c.id !== deleteModal.item.id,
+          );
+          break;
+        case "tracks":
+          updated.tracks = (updated.tracks || []).filter(
+            (t) => t.id !== deleteModal.item.id,
           );
           break;
         case "activities":
@@ -444,6 +468,12 @@ const Profile: React.FC = () => {
             skills={profile.skills}
             onEdit={() => handleEdit("skills")}
             onAdd={() => handleAdd("skills")}
+          />
+          <TracksSection
+            tracks={profile.tracks}
+            onEdit={(track) => handleEdit("tracks", track)}
+            onAdd={() => handleAdd("tracks")}
+            onDelete={(track) => handleDeleteClick("tracks", track)}
           />
           <CertificationsSection
             certifications={profile.certifications}

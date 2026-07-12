@@ -61,6 +61,16 @@
         { "id": "skill-omar-005", "name": "SQL", "category": "Technical" },
         { "id": "skill-omar-006", "name": "Business Intelligence", "category": "Skills" }
       ],
+      "tracks": [
+        {
+          "id": "track-omar-001",
+          "name": "Data Analytics Fundamentals"
+        },
+        {
+          "id": "track-omar-002",
+          "name": "Advanced Business Intelligence"
+        }
+      ],
       "certifications": [
         {
           "id": "cert-omar-001",

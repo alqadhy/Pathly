@@ -68,6 +68,11 @@ export interface Course {
   courseLogo?: string;  
 }
 
+export interface Track {
+  id: string;
+  name: string;
+}
+
 export interface CV {
   fileName: string;
   fileSize: string;
@@ -95,6 +100,7 @@ export interface Profile {
   experience: Experience[];
   education: Education[];
   courses: Course[];
+  tracks: Track[];
   cv: CV | null;
   coverImage: ProfileImage;
   avatarImage: ProfileImage;

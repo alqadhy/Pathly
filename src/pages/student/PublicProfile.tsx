@@ -7,6 +7,7 @@ import {
   ActivitiesSection,
   PersonalInfoSection,
   SkillsSection,
+  TracksSection,
   CertificationsSection,
   ExperienceSection,
   EducationSection,
@@ -106,6 +107,7 @@ const PublicProfile: React.FC = () => {
             isPublicView={true}
           />
           <SkillsSection skills={profile.skills} isPublicView={true} />
+          <TracksSection tracks={profile.tracks} isPublicView={true} />
           <CertificationsSection
             certifications={profile.certifications}
             isPublicView={true}
