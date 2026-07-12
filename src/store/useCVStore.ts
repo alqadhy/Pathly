@@ -40,34 +40,27 @@ function createEmptyCV(): CVDraft {
 interface CVStoreState {
   draft: CVDraft;
 
-  // setup
   startNewDraft: (mode: 'ai' | 'manual', templateId: string) => void;
-  loadDraft: (draft: CVDraft) => void; // used when editing an existing saved resume
+  loadDraft: (draft: CVDraft) => void;
   resetDraft: () => void;
 
-  // personal info
   setPersonalInfo: (data: Partial<PersonalInfo>) => void;
 
-  // contact info
   setContactInfo: (data: Partial<Pick<CVDraft['contactInfo'], 'email' | 'phoneNumber'>>) => void;
   addContactLink: (link: Omit<ContactLink, 'id'>) => void;
   removeContactLink: (id: string) => void;
 
-  // education
   addEducation: (entry?: Partial<EducationEntry>) => void;
   updateEducation: (id: string, data: Partial<EducationEntry>) => void;
   removeEducation: (id: string) => void;
 
-  // experience
   addExperience: (entry?: Partial<ExperienceEntry>) => void;
   updateExperience: (id: string, data: Partial<ExperienceEntry>) => void;
   removeExperience: (id: string) => void;
 
-  // skills
   addSkill: (name: string) => void;
   removeSkill: (id: string) => void;
 
-  // summary
   setSummary: (summary: string) => void;
 }
 

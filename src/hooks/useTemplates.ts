@@ -5,6 +5,6 @@ export function useTemplates() {
   return useQuery({
     queryKey: ['templates'],
     queryFn: fetchTemplates,
-    staleTime: Infinity, // static mock data, no need to refetch/invalidate
+    staleTime: Infinity, 
   });
 }

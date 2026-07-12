@@ -2,22 +2,21 @@ import { create } from 'zustand';
 import { BUILDER_STEPS_ORDER, type BuilderStep } from '@/types/cv.types';
 
 interface BuilderUIState {
-  // which entry point the user picked on the Dashboard, carried through
-  // the Template Selection screen to know where to route next
+
   selectedMode: 'ai' | 'manual' | null;
   setSelectedMode: (mode: 'ai' | 'manual' | null) => void;
 
-  // selected template id, set on the "Choose a Template" screen
+ 
   selectedTemplateId: string | null;
   setSelectedTemplateId: (id: string | null) => void;
 
-  // current step in the manual multi-step form
+
   currentStep: BuilderStep;
   goToStep: (step: BuilderStep) => void;
   goToNextStep: () => void;
   goToPrevStep: () => void;
 
-  // preview modal
+ 
   isPreviewOpen: boolean;
   openPreview: () => void;
   closePreview: () => void;

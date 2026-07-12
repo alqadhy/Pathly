@@ -1,19 +1,15 @@
-// ==========================================
-// Personal & Contact Info
-// ==========================================
-
 export interface PersonalInfo {
   firstName: string;
   lastName: string;
   industry: string;
   currentPosition: string;
   location: string;
-  avatarUrl?: string; // uploaded by user, stored as base64 or blob URL (no backend)
+  avatarUrl?: string; 
 }
 
 export interface ContactLink {
   id: string;
-  label: string; // e.g. "Behance", "LinkedIn", "Portfolio"
+  label: string; 
   url: string;
 }
 
@@ -23,9 +19,6 @@ export interface ContactInfo {
   links: ContactLink[];
 }
 
-// ==========================================
-// Education
-// ==========================================
 
 export interface EducationEntry {
   id: string;
@@ -35,9 +28,6 @@ export interface EducationEntry {
   fieldOfStudy?: string;
 }
 
-// ==========================================
-// Experience
-// ==========================================
 
 export interface ExperienceEntry {
   id: string;
@@ -45,23 +35,17 @@ export interface ExperienceEntry {
   jobTitle: string;
   yearsOfExperience: string;
   startDate?: string;
-  endDate?: string; // undefined/"Present" if current job
+  endDate?: string; 
   description?: string;
-  bullets?: string[]; // achievements/responsibilities, used in Preview
+  bullets?: string[];
 }
 
-// ==========================================
-// Skills
-// ==========================================
 
 export interface SkillEntry {
   id: string;
   name: string;
 }
 
-// ==========================================
-// Full CV Draft (what the builder form manages)
-// ==========================================
 
 export interface CVDraft {
   id: string;
@@ -72,14 +56,11 @@ export interface CVDraft {
   education: EducationEntry[];
   experience: ExperienceEntry[];
   skills: SkillEntry[];
-  summary?: string; // AI generated or manually written
+  summary?: string; 
   createdAt: string;
   updatedAt: string;
 }
 
-// ==========================================
-// Builder Steps (for the manual multi-step form)
-// ==========================================
 
 export type BuilderStep =
   | 'personalInfo'

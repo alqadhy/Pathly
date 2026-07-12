@@ -6,14 +6,12 @@ import type { ResumeRecord } from '@/types/resume.types';
 
 interface ResumeStoreState {
   resumes: ResumeRecord[];
-  hasHydratedSeed: boolean; // guards against overwriting user edits with mock seed on every load
+  hasHydratedSeed: boolean; 
 
-  // Called once on app start (see useSeedResumes hook) with data fetched
-  // from /public/mock/resumes.json. Only applies if the store is still
-  // empty, so it never clobbers real localStorage-persisted edits.
+
   hydrateSeed: (seed: ResumeRecord[]) => void;
 
-  // Save a draft as a new resume record (or update if it already exists)
+
   saveResume: (draft: CVDraft, title?: string) => ResumeRecord;
   deleteResume: (id: string) => void;
   getResumeById: (id: string) => ResumeRecord | undefined;
@@ -27,8 +25,8 @@ export const useResumeStore = create<ResumeStoreState>()(
       hasHydratedSeed: false,
 
       hydrateSeed: (seed) => {
-        // never overwrite once real data exists (either from a previous
-        // seed or from the user actually saving something)
+        
+     
         if (get().hasHydratedSeed || get().resumes.length > 0) return;
         set({ resumes: seed, hasHydratedSeed: true });
       },
@@ -78,7 +76,7 @@ export const useResumeStore = create<ResumeStoreState>()(
       },
     }),
     {
-      name: 'pathly-resumes', // localStorage key
+      name: 'pathly-resumes', 
     },
   ),
 );
