@@ -20,6 +20,13 @@ export const APP_ROUTES = {
     learning: "/student/learning",
     community: "/student/community",
     profile: "/student/profile",
-    settings: "/student/settings",
+    settings: "/student/settings",  
+    cvBuilder: {
+      dashboard: "/student/cv",  
+      templateSelection: (mode: 'ai' | 'manual') => `/student/cv/templates/${mode}`,
+      manualBuilder: (templateId: string) => `/student/cv/builder/manual/${templateId}`,
+      aiBuilder: (templateId: string) => `/student/cv/builder/ai/${templateId}`,
+    }
+
   },
 };

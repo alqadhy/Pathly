@@ -23,7 +23,10 @@ const SavedItems = lazy(() => import("../pages/student/SavedItems"));
 const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
 const Community = lazy(() => import("../pages/student/Community"));
 const Profile = lazy(() => import("../pages/student/Profile"));
-
+const CVBuilderAI = lazy(() => import("../pages/student/cv/CVBuilderAI"));
+const CVBuilderManual = lazy(() => import("../pages/student/cv/CVBuilderManual"));
+const TemplateSelection = lazy(() => import("../pages/student/cv/TempleteSelection"));
+const CVDashboard = lazy(() => import("../pages/student/cv/CVDashboard"));
 const router = createBrowserRouter([
   // Landing Page
   {
@@ -93,6 +96,61 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <Profile />
+          </Suspense>
+        ),
+      },
+     {
+        path: APP_ROUTES.student.cvBuilder.dashboard,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <CVDashboard />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.cvBuilder.templateSelection(":mode"),
+        element: (
+          <Suspense fallback={<Loader />}>
+            <TemplateSelection />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.cvBuilder.manualBuilder(":templateId"),
+        element: (
+          <Suspense fallback={<Loader />}>
+            <CVBuilderManual />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.cvBuilder.aiBuilder(":templateId"),
+        element: (
+          <Suspense fallback={<Loader />}>
+            <CVBuilderAI />
+          </Suspense>
+        ),
+      },
+    ],
+  },
+
+  // Auth Routes
+  {
+    element: <AuthLayout />,
+    children: [
+      {
+        path: APP_ROUTES.auth.login,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <AuthFlow initialStep="login" />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.auth.signup,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <AuthFlow initialStep="signup" />
           </Suspense>
         ),
       },

@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, ScrollRestoration  } from "react-router-dom";
 
 // Layout Components
 import DashboardHeader from "../components/layout/DashboardHeader";
@@ -8,6 +8,7 @@ import Footer from "../components/layout/Footer";
 function DashboardLayout() {
   return (
     <>
+     <ScrollRestoration />
       <DashboardHeader />
       <div className="flex">
         <Sidebar />
