@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import authBg from "../assets/imgs/auth_bg.png";
@@ -8,6 +8,7 @@ import PageLoader from "../components/layout/PageLoader";
 function AuthLayout() {
   const [loading, setLoading] =
     useState(true);
+  const location = useLocation();
 
   useEffect(() => {
     const timer =
@@ -18,6 +19,10 @@ function AuthLayout() {
     return () =>
       clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <>

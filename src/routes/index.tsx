@@ -11,6 +11,8 @@ import { APP_ROUTES } from "../constants";
 // Loaders
 import PageLoader from "../components/layout/PageLoader";
 import Loader from "../components/layout/Loader";
+import CareerChat from "../pages/student/CareerChat";
+import PublicProfile from "../pages/student/PublicProfile";
 
 // Pages
 const Home = lazy(() => import("../pages/Home"));
@@ -24,6 +26,7 @@ const SavedItems = lazy(() => import("../pages/student/SavedItems"));
 const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
 const Community = lazy(() => import("../pages/student/Community"));
 const Profile = lazy(() => import("../pages/student/Profile"));
+const Messages = lazy(() => import("../pages/student/Messages"));
 
 const router = createBrowserRouter([
   // Landing Page
@@ -102,6 +105,30 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <Profile />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.publicProfile(":id"),
+        element: (
+          <Suspense fallback={<Loader />}>
+            <PublicProfile />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.aiAssistant,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <CareerChat />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.messages,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Messages  />
           </Suspense>
         ),
       },

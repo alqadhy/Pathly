@@ -1,0 +1,1061 @@
+{
+  "profiles": {
+    "1": {
+      "id": 1,
+      "name": "Omar Sameh",
+      "title": "Data Analytics Specialist",
+      "followers": 892,
+      "location": "Cairo, Egypt",
+      "industry": "Data & Analytics",
+      "about": "Passionate data professional specializing in business intelligence and data visualization. Expert in transforming complex datasets into actionable insights using Looker and modern data pipelines. Committed to helping organizations make data-driven decisions.",
+      "coverImage": {
+        "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=400&fit=crop",
+        "alt": "Profile cover image"
+      },
+      "avatarImage": {
+        "url": "https://i.pravatar.cc/160?img=12",
+        "alt": "Omar Sameh avatar"
+      },
+      "personalInfo": {
+        "username": "omarsameh",
+        "email": "omar.sameh@example.com",
+        "phone": "+201234567890",
+        "location": "Cairo, Egypt",
+        "currentPosition": "Data Analytics Specialist",
+        "industry": "Data & Analytics",
+        "links": [
+          {
+            "platform": "LinkedIn",
+            "url": "linkedin.com/in/omarsameh"
+          },
+          {
+            "platform": "Portfolio",
+            "url": "omarsameh.com"
+          }
+        ]
+      },
+      "activities": [
+        {
+          "id": "act-omar-001",
+          "content": "Just completed a comprehensive data visualization project using Looker and Google Sheets. The power of data pipelines never ceases to amaze me! 📊 #DataAnalytics #Looker",
+          "timestamp": "2026-06-28T10:30:00Z",
+          "likes": 45,
+          "comments": 12,
+          "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+          "profileImage": "https://i.pravatar.cc/160?img=12"
+        },
+        {
+          "id": "act-omar-002",
+          "content": "Excited to share that I'll be speaking at the Cairo Data Science meetup next month! Looking forward to discussing best practices in data pipeline architecture. #DataScience #CairoTech",
+          "timestamp": "2026-06-25T14:20:00Z",
+          "likes": 67,
+          "comments": 23,
+          "profileImage": "https://i.pravatar.cc/160?img=12"
+        }
+      ],
+      "skills": [
+        { "id": "skill-omar-001", "name": "Looker", "category": "Tools" },
+        { "id": "skill-omar-002", "name": "Google Sheets", "category": "Tools" },
+        { "id": "skill-omar-003", "name": "Data Pipelines", "category": "Technical" },
+        { "id": "skill-omar-004", "name": "Data Visualization", "category": "Skills" },
+        { "id": "skill-omar-005", "name": "SQL", "category": "Technical" },
+        { "id": "skill-omar-006", "name": "Business Intelligence", "category": "Skills" }
+      ],
+      "tracks": [
+        {
+          "id": "track-omar-001",
+          "name": "Data Analytics Fundamentals"
+        },
+        {
+          "id": "track-omar-002",
+          "name": "Advanced Business Intelligence"
+        }
+      ],
+      "certifications": [
+        {
+          "id": "cert-omar-001",
+          "name": "Google Data Analytics Professional Certificate",
+          "issuer": "Google",
+          "issuedDate": "2025-08-15"
+        },
+        {
+          "id": "cert-omar-002",
+          "name": "Looker Developer Certification",
+          "issuer": "Google Cloud",
+          "issuedDate": "2025-10-20"
+        }
+      ],
+      "experience": [
+        {
+          "id": "exp-omar-001",
+          "title": "Senior Data Analyst",
+          "company": "TechCorp Egypt",
+          "employmentType": "Full-time",
+          "startDate": "2023-01-01",
+          "endDate": "present",
+          "companyLogo": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+          "description": [
+            "Lead data analytics projects using Looker and Google Sheets",
+            "Built automated data pipelines reducing manual work by 60%",
+            "Mentored junior analysts on best practices in data visualization"
+          ]
+        },
+        {
+          "id": "exp-omar-002",
+          "title": "Data Analyst",
+          "company": "DataDriven Solutions",
+          "employmentType": "Full-time",
+          "startDate": "2021-06-01",
+          "endDate": "2022-12-31",
+          "companyLogo": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+          "description": [
+            "Developed dashboards and reports for C-level stakeholders",
+            "Implemented data quality frameworks improving accuracy by 40%"
+          ]
+        }
+      ],
+      "education": [
+        {
+          "id": "edu-omar-001",
+          "institution": "Cairo University",
+          "degree": "Bachelor",
+          "fieldOfStudy": "Computer Science",
+          "startDate": "2017-09-01",
+          "endDate": "2021-06-01",
+          "institutionLogo": "https://images.unsplash.com/photo-1562774053-701939374585?w=200&h=200&fit=crop"
+        }
+      ],
+      "courses": [
+        {
+          "id": "course-omar-001",
+          "name": "Advanced Data Analytics with Looker",
+          "provider": "Coursera",
+          "completionDate": "2025-09-01",
+          "courseLogo": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+          "skills": [
+            "Looker",
+            "Data Modeling",
+            "Dashboard Design",
+            "Data Exploration"
+          ]
+        }
+      ],
+      "cv": {
+        "fileName": "Omar_Sameh_CV.pdf",
+        "fileSize": "2.1 MB",
+        "uploadDate": "2026-06-20T10:00:00Z",
+        "fileUrl": "/cv/omar_sameh_cv.pdf"
+      }
+    },
+    "2": {
+      "id": 2,
+      "name": "Nayera Khalid",
+      "title": "Business Intelligence Analyst",
+      "followers": 654,
+      "location": "Cairo, Egypt",
+      "industry": "Data & Analytics",
+      "about": "Results-driven Business Intelligence Analyst with expertise in data modeling, ETL processes, and dashboard development. Skilled in leveraging Looker and Google Sheets to deliver actionable business insights. Passionate about optimizing data workflows and enabling data-informed decision making.",
+      "coverImage": {
+        "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=400&fit=crop",
+        "alt": "Profile cover image"
+      },
+      "avatarImage": {
+        "url": "https://i.pravatar.cc/160?img=32",
+        "alt": "Nayera Khalid avatar"
+      },
+      "personalInfo": {
+        "username": "nayerakhalid",
+        "email": "nayera.khalid@example.com",
+        "phone": "+201987654321",
+        "location": "Cairo, Egypt",
+        "currentPosition": "Business Intelligence Analyst",
+        "industry": "Data & Analytics",
+        "links": [
+          {
+            "platform": "LinkedIn",
+            "url": "linkedin.com/in/nayerakhalid"
+          }
+        ]
+      },
+      "activities": [
+        {
+          "id": "act-nayera-001",
+          "content": "Thrilled to have completed my Looker certification! Ready to build more impactful dashboards and data solutions. 🎉 #Looker #BusinessIntelligence #DataAnalytics",
+          "timestamp": "2026-06-27T09:15:00Z",
+          "likes": 38,
+          "comments": 8,
+          "profileImage": "https://i.pravatar.cc/160?img=32"
+        }
+      ],
+      "skills": [
+        { "id": "skill-nayera-001", "name": "Looker", "category": "Tools" },
+        { "id": "skill-nayera-002", "name": "Google Sheets", "category": "Tools" },
+        { "id": "skill-nayera-003", "name": "Data Modeling", "category": "Technical" },
+        { "id": "skill-nayera-004", "name": "ETL Processes", "category": "Technical" },
+        { "id": "skill-nayera-005", "name": "Dashboard Development", "category": "Skills" }
+      ],
+      "certifications": [
+        {
+          "id": "cert-nayera-001",
+          "name": "Google Data Analytics Certificate",
+          "issuer": "Google",
+          "issuedDate": "2025-07-10"
+        }
+      ],
+      "experience": [
+        {
+          "id": "exp-nayera-001",
+          "title": "BI Analyst",
+          "company": "Analytics Pro",
+          "employmentType": "Full-time",
+          "startDate": "2022-03-01",
+          "endDate": "present",
+          "companyLogo": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+          "description": [
+            "Design and maintain Looker dashboards for executive reporting",
+            "Optimize data pipelines improving data freshness by 50%"
+          ]
+        }
+      ],
+      "education": [
+        {
+          "id": "edu-nayera-001",
+          "institution": "Cairo University",
+          "degree": "Bachelor",
+          "fieldOfStudy": "Information Systems",
+          "startDate": "2018-09-01",
+          "endDate": "2022-06-01",
+          "institutionLogo": "https://images.unsplash.com/photo-1562774053-701939374585?w=200&h=200&fit=crop"
+        }
+      ],
+      "courses": [
+        {
+          "id": "course-nayera-001",
+          "name": "Business Intelligence Fundamentals",
+          "provider": "Udemy",
+          "completionDate": "2025-05-15",
+          "courseLogo": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+          "skills": [
+            "BI Concepts",
+            "Data Warehousing",
+            "Reporting"
+          ]
+        }
+      ],
+      "cv": {
+        "fileName": "Nayera_Khalid_CV.pdf",
+        "fileSize": "1.8 MB",
+        "uploadDate": "2026-06-15T10:00:00Z",
+        "fileUrl": "/cv/nayera_khalid_cv.pdf"
+      }
+    },
+    "3": {
+      "id": 3,
+      "name": "Laila Ashraf",
+      "title": "Data Visualization Specialist",
+      "followers": 1023,
+      "location": "Cairo, Egypt",
+      "industry": "Data & Analytics",
+      "about": "Creative Data Visualization Specialist with a strong background in transforming complex data into compelling visual stories. Expert in Looker, Google Sheets, and data pipeline optimization. Passionate about making data accessible and actionable for everyone.",
+      "coverImage": {
+        "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=400&fit=crop",
+        "alt": "Profile cover image"
+      },
+      "avatarImage": {
+        "url": "https://i.pravatar.cc/160?img=44",
+        "alt": "Laila Ashraf avatar"
+      },
+      "personalInfo": {
+        "username": "lailaashraf",
+        "email": "laila.ashraf@example.com",
+        "phone": "+201112223334",
+        "location": "Cairo, Egypt",
+        "currentPosition": "Data Visualization Specialist",
+        "industry": "Data & Analytics",
+        "links": [
+          {
+            "platform": "LinkedIn",
+            "url": "linkedin.com/in/lailaashraf"
+          },
+          {
+            "platform": "Portfolio",
+            "url": "lailaashraf.com"
+          }
+        ]
+      },
+      "activities": [
+        {
+          "id": "act-laila-001",
+          "content": "Data visualization is not just about making things pretty - it's about telling stories that drive action. Just published a new article on best practices for Looker dashboards! 📈 #DataViz #Looker",
+          "timestamp": "2026-06-29T11:45:00Z",
+          "likes": 89,
+          "comments": 31,
+          "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+          "profileImage": "https://i.pravatar.cc/160?img=44"
+        }
+      ],
+      "skills": [
+        { "id": "skill-laila-001", "name": "Looker", "category": "Tools" },
+        { "id": "skill-laila-002", "name": "Google Sheets", "category": "Tools" },
+        { "id": "skill-laila-003", "name": "Data Visualization", "category": "Skills" },
+        { "id": "skill-laila-004", "name": "Data Storytelling", "category": "Skills" },
+        { "id": "skill-laila-005", "name": "Data Pipelines", "category": "Technical" },
+        { "id": "skill-laila-006", "name": "Tableau", "category": "Tools" }
+      ],
+      "certifications": [
+        {
+          "id": "cert-laila-001",
+          "name": "Google Data Analytics Professional Certificate",
+          "issuer": "Google",
+          "issuedDate": "2025-06-20"
+        },
+        {
+          "id": "cert-laila-002",
+          "name": "Tableau Desktop Specialist",
+          "issuer": "Tableau",
+          "issuedDate": "2025-09-05"
+        }
+      ],
+      "experience": [
+        {
+          "id": "exp-laila-001",
+          "title": "Senior Data Visualization Specialist",
+          "company": "DataViz Solutions",
+          "employmentType": "Full-time",
+          "startDate": "2022-05-01",
+          "endDate": "present",
+          "companyLogo": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+          "description": [
+            "Lead visualization projects for Fortune 500 clients",
+            "Developed interactive dashboards using Looker and Tableau",
+            "Trained 50+ team members on data visualization best practices"
+          ]
+        },
+        {
+          "id": "exp-laila-002",
+          "title": "Data Analyst",
+          "company": "StartupXYZ",
+          "employmentType": "Full-time",
+          "startDate": "2020-01-01",
+          "endDate": "2022-04-30",
+          "companyLogo": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+          "description": [
+            "Built automated reporting systems using Google Sheets and Apps Script",
+            "Created data pipelines that reduced reporting time by 70%"
+          ]
+        }
+      ],
+      "education": [
+        {
+          "id": "edu-laila-001",
+          "institution": "Cairo University",
+          "degree": "Bachelor",
+          "fieldOfStudy": "Statistics",
+          "startDate": "2016-09-01",
+          "endDate": "2020-06-01",
+          "institutionLogo": "https://images.unsplash.com/photo-1562774053-701939374585?w=200&h=200&fit=crop"
+        }
+      ],
+      "courses": [
+        {
+          "id": "course-laila-001",
+          "name": "Data Visualization and Communication with Tableau",
+          "provider": "Coursera",
+          "completionDate": "2025-04-10",
+          "courseLogo": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+          "skills": [
+            "Tableau",
+            "Data Storytelling",
+            "Dashboard Design"
+          ]
+        }
+      ],
+      "cv": {
+        "fileName": "Laila_Ashraf_CV.pdf",
+        "fileSize": "2.3 MB",
+        "uploadDate": "2026-06-25T10:00:00Z",
+        "fileUrl": "/cv/laila_ashraf_cv.pdf"
+      }
+    },
+    "4": {
+      "id": 4,
+      "name": "Kyrollos",
+      "title": "Data Engineer",
+      "followers": 445,
+      "location": "Cairo, Egypt",
+      "industry": "Data & Analytics",
+      "about": "Skilled Data Engineer specializing in building robust data pipelines and infrastructure. Proficient in Looker for data visualization and Google Sheets for rapid analysis. Dedicated to creating scalable data solutions that empower teams to make informed decisions.",
+      "coverImage": {
+        "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=400&fit=crop",
+        "alt": "Profile cover image"
+      },
+      "avatarImage": {
+        "url": "https://i.pravatar.cc/160?img=23",
+        "alt": "Kyrollos avatar"
+      },
+      "personalInfo": {
+        "username": "kyrollos",
+        "email": "kyrollos@example.com",
+        "phone": "+201555666777",
+        "location": "Cairo, Egypt",
+        "currentPosition": "Data Engineer",
+        "industry": "Data & Analytics",
+        "links": [
+          {
+            "platform": "LinkedIn",
+            "url": "linkedin.com/in/kyrollos"
+          },
+          {
+            "platform": "GitHub",
+            "url": "github.com/kyrollos"
+          }
+        ]
+      },
+      "activities": [
+        {
+          "id": "act-kyr-001",
+          "content": "Just finished optimizing our data pipeline architecture - reduced processing time by 65%! The combination of Looker for visualization and efficient ETL processes is a game changer. 🚀 #DataEngineering #ETL",
+          "timestamp": "2026-06-26T16:00:00Z",
+          "likes": 52,
+          "comments": 14,
+          "profileImage": "https://i.pravatar.cc/160?img=23"
+        }
+      ],
+      "skills": [
+        { "id": "skill-kyr-001", "name": "Looker", "category": "Tools" },
+        { "id": "skill-kyr-002", "name": "Google Sheets", "category": "Tools" },
+        { "id": "skill-kyr-003", "name": "Data Pipelines", "category": "Technical" },
+        { "id": "skill-kyr-004", "name": "ETL", "category": "Technical" },
+        { "id": "skill-kyr-005", "name": "Python", "category": "Programming" },
+        { "id": "skill-kyr-006", "name": "SQL", "category": "Technical" }
+      ],
+      "certifications": [
+        {
+          "id": "cert-kyr-001",
+          "name": "Google Cloud Professional Data Engineer",
+          "issuer": "Google Cloud",
+          "issuedDate": "2025-11-15"
+        }
+      ],
+      "experience": [
+        {
+          "id": "exp-kyr-001",
+          "title": "Data Engineer",
+          "company": "CloudTech Solutions",
+          "employmentType": "Full-time",
+          "startDate": "2022-08-01",
+          "endDate": "present",
+          "companyLogo": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+          "description": [
+            "Design and maintain scalable data pipelines",
+            "Implement Looker dashboards for real-time analytics",
+            "Optimize data workflows reducing costs by 40%"
+          ]
+        }
+      ],
+      "education": [
+        {
+          "id": "edu-kyr-001",
+          "institution": "Cairo University",
+          "degree": "Bachelor",
+          "fieldOfStudy": "Computer Engineering",
+          "startDate": "2018-09-01",
+          "endDate": "2022-06-01",
+          "institutionLogo": "https://images.unsplash.com/photo-1562774053-701939374585?w=200&h=200&fit=crop"
+        }
+      ],
+      "courses": [
+        {
+          "id": "course-kyr-001",
+          "name": "Data Engineering on Google Cloud",
+          "provider": "Coursera",
+          "completionDate": "2025-08-20",
+          "courseLogo": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+          "skills": [
+            "Google Cloud",
+            "Dataflow",
+            "BigQuery",
+            "Data Pipelines"
+          ]
+        }
+      ],
+      "cv": {
+        "fileName": "Kyrollos_CV.pdf",
+        "fileSize": "1.9 MB",
+        "uploadDate": "2026-06-18T10:00:00Z",
+        "fileUrl": "/cv/kyrollos_cv.pdf"
+      }
+    },
+    "5": {
+      "id": 5,
+      "name": "Ahmed Hassan",
+      "title": "Software Engineer",
+      "followers": 1245,
+      "location": "Cairo, Egypt",
+      "industry": "Technology",
+      "about": "Passionate Software Engineer with 5+ years of experience in full-stack development. Currently working at Google, specializing in React, Node.js, and cloud technologies. Committed to writing clean, scalable code and mentoring junior developers.",
+      "coverImage": {
+        "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=400&fit=crop",
+        "alt": "Profile cover image"
+      },
+      "avatarImage": {
+        "url": "https://i.pravatar.cc/160?img=11",
+        "alt": "Ahmed Hassan avatar"
+      },
+      "personalInfo": {
+        "username": "ahmedhassan",
+        "email": "ahmed.hassan@example.com",
+        "phone": "+201111222333",
+        "location": "Cairo, Egypt",
+        "currentPosition": "Software Engineer at Google",
+        "industry": "Technology",
+        "links": [
+          {
+            "platform": "LinkedIn",
+            "url": "linkedin.com/in/ahmedhassan"
+          },
+          {
+            "platform": "GitHub",
+            "url": "github.com/ahmedhassan"
+          }
+        ]
+      },
+      "activities": [
+        {
+          "id": "act-ahmed-001",
+          "content": "Excited to share that I've been promoted to Senior Software Engineer at Google! 🎉 Grateful for the amazing team and opportunities to work on cutting-edge technology. #SoftwareEngineering #Google #CareerGrowth",
+          "timestamp": "2026-06-29T08:30:00Z",
+          "likes": 156,
+          "comments": 45,
+          "profileImage": "https://i.pravatar.cc/160?img=11"
+        },
+        {
+          "id": "act-ahmed-002",
+          "content": "Just published a comprehensive guide on React performance optimization techniques. Check it out on my GitHub! 🚀 #React #JavaScript #WebDevelopment",
+          "timestamp": "2026-06-25T14:20:00Z",
+          "likes": 89,
+          "comments": 23,
+          "profileImage": "https://i.pravatar.cc/160?img=11"
+        }
+      ],
+      "skills": [
+        { "id": "skill-ahmed-001", "name": "React", "category": "Frontend" },
+        { "id": "skill-ahmed-002", "name": "Node.js", "category": "Backend" },
+        { "id": "skill-ahmed-003", "name": "TypeScript", "category": "Programming" },
+        { "id": "skill-ahmed-004", "name": "Python", "category": "Programming" },
+        { "id": "skill-ahmed-005", "name": "AWS", "category": "Cloud" },
+        { "id": "skill-ahmed-006", "name": "Docker", "category": "DevOps" }
+      ],
+      "certifications": [
+        {
+          "id": "cert-ahmed-001",
+          "name": "Google Cloud Professional Developer",
+          "issuer": "Google Cloud",
+          "issuedDate": "2025-10-15"
+        },
+        {
+          "id": "cert-ahmed-002",
+          "name": "AWS Solutions Architect",
+          "issuer": "Amazon Web Services",
+          "issuedDate": "2025-08-20"
+        }
+      ],
+      "experience": [
+        {
+          "id": "exp-ahmed-001",
+          "title": "Senior Software Engineer",
+          "company": "Google",
+          "employmentType": "Full-time",
+          "startDate": "2024-06-01",
+          "endDate": "present",
+          "companyLogo": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+          "description": [
+            "Lead development of core features for Google Cloud Platform",
+            "Mentor team of 5 junior engineers",
+            "Improved system performance by 40%"
+          ]
+        },
+        {
+          "id": "exp-ahmed-002",
+          "title": "Software Engineer",
+          "company": "Microsoft",
+          "employmentType": "Full-time",
+          "startDate": "2021-03-01",
+          "endDate": "2024-05-31",
+          "companyLogo": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+          "description": [
+            "Developed features for Azure DevOps",
+            "Collaborated with cross-functional teams"
+          ]
+        }
+      ],
+      "education": [
+        {
+          "id": "edu-ahmed-001",
+          "institution": "Cairo University",
+          "degree": "Bachelor",
+          "fieldOfStudy": "Computer Science",
+          "startDate": "2016-09-01",
+          "endDate": "2020-06-01",
+          "institutionLogo": "https://images.unsplash.com/photo-1562774053-701939374585?w=200&h=200&fit=crop"
+        }
+      ],
+      "courses": [
+        {
+          "id": "course-ahmed-001",
+          "name": "Advanced React Patterns",
+          "provider": "Udemy",
+          "completionDate": "2025-05-10",
+          "courseLogo": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+          "skills": [
+            "React",
+            "Performance Optimization",
+            "State Management"
+          ]
+        }
+      ],
+      "cv": {
+        "fileName": "Ahmed_Hassan_CV.pdf",
+        "fileSize": "2.2 MB",
+        "uploadDate": "2026-06-22T10:00:00Z",
+        "fileUrl": "/cv/ahmed_hassan_cv.pdf"
+      }
+    },
+    "6": {
+      "id": 6,
+      "name": "Sarah Mohamed",
+      "title": "Product Manager",
+      "followers": 987,
+      "location": "Cairo, Egypt",
+      "industry": "Technology",
+      "about": "Strategic Product Manager with experience at Microsoft driving product vision and execution. Expert in agile methodologies, user-centered design, and data-driven decision making. Passionate about building products that make a difference.",
+      "coverImage": {
+        "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=400&fit=crop",
+        "alt": "Profile cover image"
+      },
+      "avatarImage": {
+        "url": "https://i.pravatar.cc/160?img=5",
+        "alt": "Sarah Mohamed avatar"
+      },
+      "personalInfo": {
+        "username": "sarahmohamed",
+        "email": "sarah.mohamed@example.com",
+        "phone": "+201222333444",
+        "location": "Cairo, Egypt",
+        "currentPosition": "Product Manager at Microsoft",
+        "industry": "Technology",
+        "links": [
+          {
+            "platform": "LinkedIn",
+            "url": "linkedin.com/in/sarahmohamed"
+          },
+          {
+            "platform": "Medium",
+            "url": "medium.com/@sarahmohamed"
+          }
+        ]
+      },
+      "activities": [
+        {
+          "id": "act-sarah-001",
+          "content": "Just led the successful launch of our new product feature! 🚀 Proud of the team's hard work and dedication. Remember: great products are built by great teams. #ProductManagement #Microsoft #Launch",
+          "timestamp": "2026-06-28T10:15:00Z",
+          "likes": 234,
+          "comments": 67,
+          "profileImage": "https://i.pravatar.cc/160?img=5"
+        }
+      ],
+      "skills": [
+        { "id": "skill-sarah-001", "name": "Product Strategy", "category": "Strategy" },
+        { "id": "skill-sarah-002", "name": "Agile Methodologies", "category": "Methodology" },
+        { "id": "skill-sarah-003", "name": "User Research", "category": "Research" },
+        { "id": "skill-sarah-004", "name": "Data Analysis", "category": "Analytics" },
+        { "id": "skill-sarah-005", "name": "Roadmap Planning", "category": "Strategy" }
+      ],
+      "certifications": [
+        {
+          "id": "cert-sarah-001",
+          "name": "Certified Product Manager",
+          "issuer": "Product School",
+          "issuedDate": "2025-07-20"
+        }
+      ],
+      "experience": [
+        {
+          "id": "exp-sarah-001",
+          "title": "Product Manager",
+          "company": "Microsoft",
+          "employmentType": "Full-time",
+          "startDate": "2022-05-01",
+          "endDate": "present",
+          "companyLogo": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+          "description": [
+            "Lead product strategy for Azure services",
+            "Manage cross-functional teams of 15+ members",
+            "Increased user engagement by 35%"
+          ]
+        }
+      ],
+      "education": [
+        {
+          "id": "edu-sarah-001",
+          "institution": "Cairo University",
+          "degree": "Bachelor",
+          "fieldOfStudy": "Business Administration",
+          "startDate": "2015-09-01",
+          "endDate": "2019-06-01",
+          "institutionLogo": "https://images.unsplash.com/photo-1562774053-701939374585?w=200&h=200&fit=crop"
+        }
+      ],
+      "courses": [
+        {
+          "id": "course-sarah-001",
+          "name": "Product Management Essentials",
+          "provider": "Coursera",
+          "completionDate": "2025-04-15",
+          "courseLogo": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+          "skills": [
+            "Product Strategy",
+            "Market Research",
+            "User Stories"
+          ]
+        }
+      ],
+      "cv": {
+        "fileName": "Sarah_Mohamed_CV.pdf",
+        "fileSize": "1.9 MB",
+        "uploadDate": "2026-06-20T10:00:00Z",
+        "fileUrl": "/cv/sarah_mohamed_cv.pdf"
+      }
+    },
+    "7": {
+      "id": 7,
+      "name": "Mohammed Ali",
+      "title": "UX Designer",
+      "followers": 756,
+      "location": "Cairo, Egypt",
+      "industry": "Design & Technology",
+      "about": "Creative UX Designer at Apple with a passion for creating intuitive and beautiful user experiences. Skilled in user research, wireframing, prototyping, and design systems. Believes in designing with empathy and purpose.",
+      "coverImage": {
+        "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=400&fit=crop",
+        "alt": "Profile cover image"
+      },
+      "avatarImage": {
+        "url": "https://i.pravatar.cc/160?img=13",
+        "alt": "Mohammed Ali avatar"
+      },
+      "personalInfo": {
+        "username": "mohammedali",
+        "email": "mohammed.ali@example.com",
+        "phone": "+201333444555",
+        "location": "Cairo, Egypt",
+        "currentPosition": "UX Designer at Apple",
+        "industry": "Design & Technology",
+        "links": [
+          {
+            "platform": "LinkedIn",
+            "url": "linkedin.com/in/mohammedali"
+          },
+          {
+            "platform": "Dribbble",
+            "url": "dribbble.com/mohammedali"
+          }
+        ]
+      },
+      "activities": [
+        {
+          "id": "act-mohammed-001",
+          "content": "Thrilled to have contributed to the new iOS design update! 🎨 Design is not just what it looks like, it's how it works. Proud to be part of the Apple design team. #UXDesign #Apple #DesignThinking",
+          "timestamp": "2026-06-27T09:45:00Z",
+          "likes": 312,
+          "comments": 89,
+          "profileImage": "https://i.pravatar.cc/160?img=13"
+        }
+      ],
+      "skills": [
+        { "id": "skill-mohammed-001", "name": "Figma", "category": "Tools" },
+        { "id": "skill-mohammed-002", "name": "User Research", "category": "Research" },
+        { "id": "skill-mohammed-003", "name": "Wireframing", "category": "Design" },
+        { "id": "skill-mohammed-004", "name": "Prototyping", "category": "Design" },
+        { "id": "skill-mohammed-005", "name": "Design Systems", "category": "Design" }
+      ],
+      "certifications": [
+        {
+          "id": "cert-mohammed-001",
+          "name": "Google UX Design Certificate",
+          "issuer": "Google",
+          "issuedDate": "2025-09-10"
+        }
+      ],
+      "experience": [
+        {
+          "id": "exp-mohammed-001",
+          "title": "UX Designer",
+          "company": "Apple",
+          "employmentType": "Full-time",
+          "startDate": "2023-01-01",
+          "endDate": "present",
+          "companyLogo": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+          "description": [
+            "Design intuitive user experiences for iOS and macOS applications",
+            "Conduct user research and usability testing",
+            "Collaborate with engineering teams to implement designs"
+          ]
+        }
+      ],
+      "education": [
+        {
+          "id": "edu-mohammed-001",
+          "institution": "Cairo University",
+          "degree": "Bachelor",
+          "fieldOfStudy": "Graphic Design",
+          "startDate": "2017-09-01",
+          "endDate": "2021-06-01",
+          "institutionLogo": "https://images.unsplash.com/photo-1562774053-701939374585?w=200&h=200&fit=crop"
+        }
+      ],
+      "courses": [
+        {
+          "id": "course-mohammed-001",
+          "name": "Advanced UX Design",
+          "provider": "Interaction Design Foundation",
+          "completionDate": "2025-06-20",
+          "courseLogo": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+          "skills": [
+            "UX Strategy",
+            "Interaction Design",
+            "Usability Testing"
+          ]
+        }
+      ],
+      "cv": {
+        "fileName": "Mohammed_Ali_CV.pdf",
+        "fileSize": "2.0 MB",
+        "uploadDate": "2026-06-25T10:00:00Z",
+        "fileUrl": "/cv/mohammed_ali_cv.pdf"
+      }
+    },
+    "8": {
+      "id": 8,
+      "name": "Nour Ahmed",
+      "title": "Data Scientist",
+      "followers": 1123,
+      "location": "Cairo, Egypt",
+      "industry": "Data & Analytics",
+      "about": "Innovative Data Scientist at Amazon with expertise in machine learning, statistical analysis, and big data technologies. Passionate about extracting insights from complex datasets and building predictive models that drive business value.",
+      "coverImage": {
+        "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=400&fit=crop",
+        "alt": "Profile cover image"
+      },
+      "avatarImage": {
+        "url": "https://i.pravatar.cc/160?img=9",
+        "alt": "Nour Ahmed avatar"
+      },
+      "personalInfo": {
+        "username": "nourahmed",
+        "email": "nour.ahmed@example.com",
+        "phone": "+201444555666",
+        "location": "Cairo, Egypt",
+        "currentPosition": "Data Scientist at Amazon",
+        "industry": "Data & Analytics",
+        "links": [
+          {
+            "platform": "LinkedIn",
+            "url": "linkedin.com/in/nourahmed"
+          },
+          {
+            "platform": "Kaggle",
+            "url": "kaggle.com/nourahmed"
+          }
+        ]
+      },
+      "activities": [
+        {
+          "id": "act-nour-001",
+          "content": "Just published my research paper on machine learning applications in e-commerce! 📊 Excited to share insights on how ML can transform customer experience. #DataScience #MachineLearning #Amazon",
+          "timestamp": "2026-06-30T11:00:00Z",
+          "likes": 178,
+          "comments": 52,
+          "profileImage": "https://i.pravatar.cc/160?img=9"
+        }
+      ],
+      "skills": [
+        { "id": "skill-nour-001", "name": "Python", "category": "Programming" },
+        { "id": "skill-nour-002", "name": "R", "category": "Programming" },
+        { "id": "skill-nour-003", "name": "Machine Learning", "category": "AI/ML" },
+        { "id": "skill-nour-004", "name": "TensorFlow", "category": "AI/ML" },
+        { "id": "skill-nour-005", "name": "SQL", "category": "Database" },
+        { "id": "skill-nour-006", "name": "Data Visualization", "category": "Analytics" }
+      ],
+      "certifications": [
+        {
+          "id": "cert-nour-001",
+          "name": "AWS Machine Learning Specialty",
+          "issuer": "Amazon Web Services",
+          "issuedDate": "2025-11-05"
+        },
+        {
+          "id": "cert-nour-002",
+          "name": "TensorFlow Developer Certificate",
+          "issuer": "Google",
+          "issuedDate": "2025-09-25"
+        }
+      ],
+      "experience": [
+        {
+          "id": "exp-nour-001",
+          "title": "Data Scientist",
+          "company": "Amazon",
+          "employmentType": "Full-time",
+          "startDate": "2023-02-01",
+          "endDate": "present",
+          "companyLogo": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+          "description": [
+            "Build ML models for recommendation systems",
+            "Analyze large-scale datasets to identify trends",
+            "Collaborate with product teams to implement data-driven solutions"
+          ]
+        }
+      ],
+      "education": [
+        {
+          "id": "edu-nour-001",
+          "institution": "Cairo University",
+          "degree": "Master",
+          "fieldOfStudy": "Data Science",
+          "startDate": "2019-09-01",
+          "endDate": "2021-06-01",
+          "institutionLogo": "https://images.unsplash.com/photo-1562774053-701939374585?w=200&h=200&fit=crop"
+        }
+      ],
+      "courses": [
+        {
+          "id": "course-nour-001",
+          "name": "Machine Learning A-Z",
+          "provider": "Udemy",
+          "completionDate": "2025-07-10",
+          "courseLogo": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+          "skills": [
+            "Machine Learning",
+            "Deep Learning",
+            "Model Deployment"
+          ]
+        }
+      ],
+      "cv": {
+        "fileName": "Nour_Ahmed_CV.pdf",
+        "fileSize": "2.1 MB",
+        "uploadDate": "2026-06-28T10:00:00Z",
+        "fileUrl": "/cv/nour_ahmed_cv.pdf"
+      }
+    },
+    "9": {
+      "id": 9,
+      "name": "Youssef Khalil",
+      "title": "DevOps Engineer",
+      "followers": 634,
+      "location": "Cairo, Egypt",
+      "industry": "Technology",
+      "about": "Skilled DevOps Engineer at IBM specializing in cloud infrastructure, CI/CD pipelines, and automation. Experienced in Kubernetes, Docker, and various cloud platforms. Dedicated to improving deployment processes and system reliability.",
+      "coverImage": {
+        "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=400&fit=crop",
+        "alt": "Profile cover image"
+      },
+      "avatarImage": {
+        "url": "https://i.pravatar.cc/160?img=15",
+        "alt": "Youssef Khalil avatar"
+      },
+      "personalInfo": {
+        "username": "youssefkhalil",
+        "email": "youssef.khalil@example.com",
+        "phone": "+201555666777",
+        "location": "Cairo, Egypt",
+        "currentPosition": "DevOps Engineer at IBM",
+        "industry": "Technology",
+        "links": [
+          {
+            "platform": "LinkedIn",
+            "url": "linkedin.com/in/youssefkhalil"
+          },
+          {
+            "platform": "GitHub",
+            "url": "github.com/youssefkhalil"
+          }
+        ]
+      },
+      "activities": [
+        {
+          "id": "act-youssef-001",
+          "content": "Successfully migrated our entire infrastructure to Kubernetes! 🚀 Reduced deployment time by 70% and improved system uptime to 99.99%. The power of automation! #DevOps #Kubernetes #Cloud",
+          "timestamp": "2026-06-26T16:30:00Z",
+          "likes": 145,
+          "comments": 38,
+          "profileImage": "https://i.pravatar.cc/160?img=15"
+        }
+      ],
+      "skills": [
+        { "id": "skill-youssef-001", "name": "Kubernetes", "category": "DevOps" },
+        { "id": "skill-youssef-002", "name": "Docker", "category": "DevOps" },
+        { "id": "skill-youssef-003", "name": "AWS", "category": "Cloud" },
+        { "id": "skill-youssef-004", "name": "CI/CD", "category": "DevOps" },
+        { "id": "skill-youssef-005", "name": "Terraform", "category": "Infrastructure" },
+        { "id": "skill-youssef-006", "name": "Python", "category": "Programming" }
+      ],
+      "certifications": [
+        {
+          "id": "cert-youssef-001",
+          "name": "Certified Kubernetes Administrator",
+          "issuer": "CNCF",
+          "issuedDate": "2025-10-30"
+        }
+      ],
+      "experience": [
+        {
+          "id": "exp-youssef-001",
+          "title": "DevOps Engineer",
+          "company": "IBM",
+          "employmentType": "Full-time",
+          "startDate": "2022-09-01",
+          "endDate": "present",
+          "companyLogo": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+          "description": [
+            "Design and maintain CI/CD pipelines for multiple products",
+            "Manage Kubernetes clusters serving 1M+ users",
+            "Automate infrastructure provisioning reducing manual work by 80%"
+          ]
+        }
+      ],
+      "education": [
+        {
+          "id": "edu-youssef-001",
+          "institution": "Cairo University",
+          "degree": "Bachelor",
+          "fieldOfStudy": "Computer Engineering",
+          "startDate": "2018-09-01",
+          "endDate": "2022-06-01",
+          "institutionLogo": "https://images.unsplash.com/photo-1562774053-701939374585?w=200&h=200&fit=crop"
+        }
+      ],
+      "courses": [
+        {
+          "id": "course-youssef-001",
+          "name": "DevOps Fundamentals",
+          "provider": "Coursera",
+          "completionDate": "2025-08-15",
+          "courseLogo": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop",
+          "skills": [
+            "CI/CD",
+            "Infrastructure as Code",
+            "Monitoring"
+          ]
+        }
+      ],
+      "cv": {
+        "fileName": "Youssef_Khalil_CV.pdf",
+        "fileSize": "1.8 MB",
+        "uploadDate": "2026-06-24T10:00:00Z",
+        "fileUrl": "/cv/youssef_khalil_cv.pdf"
+      }
+    }
+  }
+}

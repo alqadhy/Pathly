@@ -1,0 +1,102 @@
+{
+  "chats": [
+    {
+      "id": "1",
+      "name": "Sarah",
+      "role": "Mentor",
+      "lastMessage": "Great progress on your portfolio!",
+      "timestamp": 1709452800000,
+      "unreadCount": 3,
+      "avatarUrl": "https://i.pravatar.cc/150?u=sarah",
+      "isOnline": true
+    },
+    {
+      "id": "2",
+      "name": "Ibrahim",
+      "role": "Career Advisor",
+      "lastMessage": "Don't forget to submit your assignment",
+      "timestamp": 1709438400000,
+      "unreadCount": 0,
+      "avatarUrl": "https://i.pravatar.cc/150?u=ibrahim",
+      "isOnline": false
+    },
+    {
+      "id": "3",
+      "name": "Mohmed",
+      "role": "HR Manager",
+      "lastMessage": "Your application is under review",
+      "timestamp": 1709352000000,
+      "unreadCount": 1,
+      "avatarUrl": "https://i.pravatar.cc/150?u=mohmed",
+      "isOnline": true
+    }
+  ],
+  "messages": {
+    "1": [
+      {
+        "id": "m1",
+        "role": "assistant",
+        "content": "Hi Sarah! I wanted to check in on your UX design portfolio. How's it coming along?",
+        "createdAt": 1709452800000
+      },
+      {
+        "id": "m2",
+        "role": "user",
+        "content": "Hi! It's going well. I've completed 3 case studies so far.",
+        "createdAt": 1709452860000
+      },
+      {
+        "id": "m3",
+        "role": "assistant",
+        "content": "That's fantastic progress! Would you like me to review any of them?",
+        "createdAt": 1709452920000
+      },
+      {
+        "id": "m4",
+        "role": "user",
+        "content": "Yes, I'd love your feedback on my latest mobile app case study.",
+        "createdAt": 1709452980000
+      },
+      {
+        "id": "m5",
+        "role": "assistant",
+        "content": "Great progress on your portfolio! I've left detailed comments on your case study. The user research section is particularly strong.",
+        "createdAt": 1709453040000
+      }
+    ],
+    "2": [
+      {
+        "id": "m6",
+        "role": "assistant",
+        "content": "Reminder: Your assignment on user research methodologies is due this Friday.",
+        "createdAt": 1709438400000
+      },
+      {
+        "id": "m7",
+        "role": "user",
+        "content": "Thanks for the reminder! I'll submit it by Thursday.",
+        "createdAt": 1709438460000
+      },
+      {
+        "id": "m8",
+        "role": "assistant",
+        "content": "Don't forget to submit your assignment",
+        "createdAt": 1709438520000
+      }
+    ],
+    "3": [
+      {
+        "id": "m9",
+        "role": "user",
+        "content": "Hi Mohmed, I wanted to follow up on my application for the UX Designer position.",
+        "createdAt": 1709352000000
+      },
+      {
+        "id": "m10",
+        "role": "assistant",
+        "content": "Your application is under review",
+        "createdAt": 1709352060000
+      }
+    ]
+  }
+}

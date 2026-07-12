@@ -14,12 +14,13 @@ import { formatCalendarDateTime } from "./dateUtils";
 
 interface ActivitiesSectionProps {
   activities: Activity[];
-  onEdit: (activity?: Activity) => void;
+  onEdit?: (activity?: Activity) => void;
   onDelete?: (activity: Activity) => void;
   onAdd?: () => void;
   profileName?: string;
   profileTitle?: string;
   profileImage?: string;
+  isPublicView?: boolean;
 }
 
 const ActivitiesSection: React.FC<ActivitiesSectionProps> = ({
@@ -30,6 +31,7 @@ const ActivitiesSection: React.FC<ActivitiesSectionProps> = ({
   profileName = "Ahmed Hossam",
   profileTitle = "Senior Product Designer",
   profileImage,
+  isPublicView = false,
 }) => {
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
 
@@ -38,7 +40,9 @@ const ActivitiesSection: React.FC<ActivitiesSectionProps> = ({
   };
 
   const handleEditClick = (activity: Activity) => {
-    onEdit(activity);
+    if (onEdit) {
+      onEdit(activity);
+    }
     setOpenMenuId(null);
   };
 
@@ -53,16 +57,16 @@ const ActivitiesSection: React.FC<ActivitiesSectionProps> = ({
     <div>
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-h3 font-semibold text-foreground">Activities</h3>
-        <div className="flex items-center gap-2">
-          {onAdd && (
+        {!isPublicView && onAdd && (
+          <div className="flex items-center gap-2">
             <button
               onClick={onAdd}
               className="text-body-sm text-foreground hover:text-foreground/80 font-medium flex items-center gap-1 transition-colors duration-200"
             >
               <Plus className="w-5 h-5" />
             </button>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       {activities && activities.length > 0 ? (
@@ -98,43 +102,49 @@ const ActivitiesSection: React.FC<ActivitiesSectionProps> = ({
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 text-base">
-                        {profileName}{" "}
-                        <span className="text-gray-500 font-normal">(You)</span>
+                        {profileName}
+                        {!isPublicView && (
+                          <span className="text-gray-500 font-normal"> (You)</span>
+                        )}
                       </h4>
                       <p className="text-sm text-gray-500">
                         {profileTitle} • {formatCalendarDateTime(activity.timestamp)}
                       </p>
                     </div>
                   </div>
-                  <div className="relative">
-                    <button
-                      onClick={() => handleMenuToggle(activity.id)}
-                      className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
-                    >
-                      <MoreVertical className="w-5 h-5" />
-                    </button>
+                  {!isPublicView && (
+                    <div className="relative">
+                      <button
+                        onClick={() => handleMenuToggle(activity.id)}
+                        className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
+                      >
+                        <MoreVertical className="w-5 h-5" />
+                      </button>
 
-                    {openMenuId === activity.id && (
-                      <div className="absolute right-0 mt-1 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-10">
-                        <button
-                          onClick={() => handleEditClick(activity)}
-                          className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
-                        >
-                          <Edit2 className="w-4 h-4" />
-                          <span>Edit</span>
-                        </button>
-                        {onDelete && (
-                          <button
-                            onClick={() => handleDeleteClick(activity)}
-                            className="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-gray-50 transition-colors"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                            <span>Delete</span>
-                          </button>
-                        )}
-                      </div>
-                    )}
-                  </div>
+                      {openMenuId === activity.id && (
+                        <div className="absolute right-0 mt-1 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-10">
+                          {onEdit && (
+                            <button
+                              onClick={() => handleEditClick(activity)}
+                              className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                            >
+                              <Edit2 className="w-4 h-4" />
+                              <span>Edit</span>
+                            </button>
+                          )}
+                          {onDelete && (
+                            <button
+                              onClick={() => handleDeleteClick(activity)}
+                              className="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-gray-50 transition-colors"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                              <span>Delete</span>
+                            </button>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
 
                 {/* Activity content */}

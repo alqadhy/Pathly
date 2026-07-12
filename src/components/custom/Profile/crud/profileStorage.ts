@@ -200,6 +200,27 @@ const normalizeCourses = (value: unknown): Profile["courses"] => {
     .filter(isNonNull);
 };
 
+const normalizeTracks = (value: unknown): Profile["tracks"] => {
+  return asArray(value)
+    .map((item, index) => {
+      const track = asRecord<{ 
+        id?: unknown; 
+        name?: unknown 
+      }>(item);
+      
+      if (!track) return null;
+      
+      const name = asText(track?.name).trim();
+      if (!name) return null;
+
+      return {
+        id: asText(track?.id) || `track-${index}-${name}`,
+        name,
+      };
+    })
+    .filter(isNonNull);
+};
+
 export const normalizeProfile = (profile: Profile): Profile => {
   const personalInfo = asRecord<Profile["personalInfo"]>(profile.personalInfo);
 
@@ -225,6 +246,7 @@ export const normalizeProfile = (profile: Profile): Profile => {
     },
     activities: asArray(profile.activities).filter((v): v is Profile["activities"][number] => v != null),
     skills: normalizeSkills(profile.skills),
+    tracks: normalizeTracks(profile.tracks),
     certifications: normalizeCertifications(profile.certifications),
     experience: normalizeExperience(profile.experience),
     education: normalizeEducation(profile.education),
@@ -270,6 +292,41 @@ export const clearStoredProfile = (): void => {
   if (!hasLocalStorage()) return;
 
   window.localStorage.removeItem(PROFILE_STORAGE_KEY);
+};
+
+export const getCurrentUser = (): { id: number; fullName: string; email: string; phone: string ; role: string } | null => {
+  if (!hasLocalStorage()) return null;
+
+  try {
+    const currentUserJson = window.localStorage.getItem("currentUser");
+    if (!currentUserJson) return null;
+
+    const currentUser = JSON.parse(currentUserJson);
+    
+    // Return only the fields we need
+    return {
+      id: currentUser.id,
+      fullName: currentUser.fullName,
+      email: currentUser.email,
+      phone: currentUser.phone,
+      role: currentUser.role // Include role if needed
+    };
+  } catch {
+    return null;
+  }
+};
+
+export const clearCurrentUser = (): void => {
+  if (!hasLocalStorage()) return;
+
+  try {
+    window.localStorage.removeItem("currentUser");
+    window.localStorage.removeItem("pathly.community.follows");
+    window.localStorage.removeItem("pathly.profile");
+    window.localStorage.removeItem("saved-items");
+  } catch {
+    // Silently fail
+  }
 };
 
 export const loadProfile = (fallbackProfile: Profile | null): Profile | null => {

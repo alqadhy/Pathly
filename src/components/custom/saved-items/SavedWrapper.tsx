@@ -8,9 +8,10 @@ function SavedWrapper({
   category,
   itemId,
   children,
+  
 }: {
   category: string;
-  itemId: number;
+  itemId: string;
   children: React.ReactElement;
 }) {
   const { removeItem } = useSavedItemsStore();

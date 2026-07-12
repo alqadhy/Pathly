@@ -4,13 +4,14 @@ import type { Skill } from '../../../types/profile';
 
 interface SkillsSectionProps {
   skills: Skill[];
-  onEdit: () => void;
+  onEdit?: () => void;
   onAdd?: () => void;
+  isPublicView?: boolean;
 }
 
-const SkillsSection: React.FC<SkillsSectionProps> = ({ skills, onEdit, onAdd }) => {
+const SkillsSection: React.FC<SkillsSectionProps> = ({ skills, onEdit, onAdd, isPublicView = false }) => {
   return (
-    <ProfileSection title="skills" onEdit={onEdit} onAdd={onAdd} showAdd={true}>
+    <ProfileSection title="skills" onEdit={onEdit} onAdd={onAdd} showAdd={true} isPublicView={isPublicView}>
       {skills && skills.length > 0 ? (
         <div className="flex flex-wrap gap-2">
           {skills.map((skill) => (

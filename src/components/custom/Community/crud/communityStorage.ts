@@ -1,11 +1,11 @@
 export interface FollowedCompany {
-  id: string;
+  id: number;
   name: string;
   followedAt: string;
 }
 
 export interface ConnectedProfile {
-  id: string;
+  id: number;
   name: string;
   role: string;
   subtitle: string;
@@ -40,7 +40,7 @@ export const normalizeFollowsData = (data: FollowsData): FollowsData => {
     followedCompanies: asArray(data.followedCompanies)
       .map((company, index) => {
         const item = company as Partial<FollowedCompany> | null;
-        const id = asText(item?.id).trim();
+        const id = item?.id || item?.name || `company-${index}`;
         const name = asText(item?.name).trim();
 
         if (!id && !name) return null;
@@ -55,7 +55,7 @@ export const normalizeFollowsData = (data: FollowsData): FollowsData => {
     connectedProfiles: asArray(data.connectedProfiles)
       .map((profile, index) => {
         const item = profile as Partial<ConnectedProfile> | null;
-        const id = asText(item?.id).trim();
+        const id = item?.id || item?.name || `profile-${index}`;
         const name = asText(item?.name).trim();
 
         if (!id && !name) return null;

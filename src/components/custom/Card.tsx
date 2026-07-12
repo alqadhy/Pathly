@@ -27,6 +27,7 @@ export interface CardProps {
   actionTone?: CardActionTone;
   onAction?: () => void;
   onDismiss?: () => void;
+  onMediaClick?: () => void;
   className?: string;
   children?: ReactNode;
   isActive?: boolean;
@@ -50,6 +51,7 @@ export default function Card({
   actionTone = "primary",
   onAction,
   onDismiss,
+  onMediaClick,
   className,
   children,
   isActive = false,
@@ -105,7 +107,9 @@ export default function Card({
                 mediaShape === "circle"
                   ? `${mediaSizeClasses[mediaSize]} rounded-full ring-4 ring-primary/10`
                   : `${mediaSizeClasses[mediaSize]} rounded-[18px] ring-4 ring-primary/10`,
+                onMediaClick && "cursor-pointer",
               )}
+              onClick={onMediaClick}
             >
               <img
                 src={media.src}

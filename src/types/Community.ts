@@ -4,7 +4,7 @@ export interface CommunityTab {
 }
 
 export interface CommunityProfileCard {
-  id: string;
+  id: number;
   name: string;
   role: string;
   subtitle: string;
@@ -13,7 +13,7 @@ export interface CommunityProfileCard {
 }
 
 export interface CommunitySection {
-  id: string;
+  id: number;
   title: string;
   cards: CommunityProfileCard[];
 }

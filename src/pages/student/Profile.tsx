@@ -4,6 +4,7 @@ import {
   loadProfile,
   saveStoredProfile,
   normalizeProfile,
+  getCurrentUser,
 } from "../../components/custom/Profile/crud/profileStorage";
 import {
   ProfileHeader,
@@ -11,6 +12,7 @@ import {
   ActivitiesSection,
   PersonalInfoSection,
   SkillsSection,
+  TracksSection,
   CVSection,
   CertificationsSection,
   ExperienceSection,
@@ -46,21 +48,62 @@ const Profile: React.FC = () => {
 
   const fetchProfile = async () => {
     try {
+      // FIRST: Check for stored profile in localStorage to preserve CRUD changes
       const storedProfile = loadProfile(null);
       if (storedProfile) {
+        console.log("Loading stored profile from localStorage");
         setProfile(storedProfile);
         return;
       }
 
-      const response = await fetch("/mocked/Profile/profile.json");
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      // SECOND: If no stored profile, check for currentUser and create profile from it
+      const currentUser = getCurrentUser();
+      console.log("Current user from localStorage:", currentUser);
+      
+      if (currentUser) {
+        console.log("Creating new profile from currentUser");
+        // Create a profile from the user data
+        const userProfile: ProfileType = {
+          id: currentUser.id,
+          name: currentUser.fullName,
+          title: "",
+          followers: 0,
+          location: "",
+          industry: "",
+          about: "",
+          personalInfo: {
+            username: currentUser.email.split("@")[0],
+            email: currentUser.email,
+            phone: currentUser.phone,
+            location: "",
+            currentPosition: "",
+            industry: "",
+            links: [],
+          },
+          activities: [],
+          skills: [],
+          tracks: [],
+          certifications: [],
+          experience: [],
+          education: [],
+          courses: [],
+          cv: null,
+          coverImage: { url: "", alt: "" },
+          avatarImage: { url: "", alt: currentUser.fullName },
+        };
+
+        const normalizedProfile = normalizeProfile(userProfile);
+        saveStoredProfile(normalizedProfile);
+        setProfile(normalizedProfile);
+        return;
       }
-      const data = await response.json();
-      setProfile(loadProfile(data));
+
+      // No profile found - user needs to log in
+      console.log("No profile found - user not logged in");
+      setProfile(null);
     } catch (error) {
       console.error("Error fetching profile:", error);
-      // setProfile(getFallbackProfile());
+      setProfile(null);
     } finally {
       setLoading(false);
     }
@@ -69,7 +112,7 @@ const Profile: React.FC = () => {
   // Calculate profile completion dynamically
   const calculateCompletion = (profile: ProfileType): number => {
     let completed = 0;
-    const total = 9;
+    const total = 10;
 
     // About section
     if (profile.about && profile.about.trim() !== "") completed++;
@@ -77,6 +120,8 @@ const Profile: React.FC = () => {
     if (profile.personalInfo) completed++;
     // Skills
     if (profile.skills && profile.skills.length > 0) completed++;
+    // Tracks
+    if (profile.tracks && profile.tracks.length > 0) completed++;
     // Certifications
     if (profile.certifications && profile.certifications.length > 0)
       completed++;
@@ -211,6 +256,21 @@ const Profile: React.FC = () => {
             ];
           }
           break;
+        case "tracks":
+          if (selectedItem) {
+            const index = updated.tracks.findIndex(
+              (t) => t.id === selectedItem.id,
+            );
+            if (index !== -1) {
+              updated.tracks[index] = data;
+            }
+          } else {
+            updated.tracks = [
+              ...updated.tracks,
+              { ...data, id: data.id || `track-${Date.now()}` },
+            ];
+          }
+          break;
         case "cv":
           updated.cv = data;
           break;
@@ -299,6 +359,11 @@ const Profile: React.FC = () => {
             (c) => c.id !== deleteModal.item.id,
           );
           break;
+        case "tracks":
+          updated.tracks = (updated.tracks || []).filter(
+            (t) => t.id !== deleteModal.item.id,
+          );
+          break;
         case "activities":
           updated.activities = (updated.activities || []).filter(
             (a) => a.id !== deleteModal.item.id,
@@ -340,7 +405,7 @@ const Profile: React.FC = () => {
   const completionPercentage = calculateCompletion(profile);
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-6 bg-[#f8f9fc]">
+    <div className="max-w-6xl mx-auto px-4 max-sm:px-0 py-6 bg-[#f8f9fc]">
       {/* Profile Header - Full Width */}
       <div className="mb-4">
         <ProfileHeader
@@ -403,6 +468,12 @@ const Profile: React.FC = () => {
             skills={profile.skills}
             onEdit={() => handleEdit("skills")}
             onAdd={() => handleAdd("skills")}
+          />
+          <TracksSection
+            tracks={profile.tracks}
+            onEdit={(track) => handleEdit("tracks", track)}
+            onAdd={() => handleAdd("tracks")}
+            onDelete={(track) => handleDeleteClick("tracks", track)}
           />
           <CertificationsSection
             certifications={profile.certifications}
