@@ -9,7 +9,7 @@ export const APP_ROUTES = {
   },
 
   // Student Routes
-    student: {
+  student: {
     dashboard: "/student/dashboard",
     aiAssistant: "/student/ai-assistant",
     analytics: "/student/analytics",
@@ -23,5 +23,13 @@ export const APP_ROUTES = {
     publicProfile: (id: string) => `/student/profile/${id}`,
     settings: "/student/settings",
     messages: "/student/messages",
+    cvBuilder: {
+      dashboard: "/student/cv",
+      templateSelection: (mode: "ai" | "manual" | ":mode") =>
+        `/student/cv/templates/${mode}`,
+      manualBuilder: (templateId: string) =>
+        `/student/cv/builder/manual/${templateId}`,
+      aiBuilder: (templateId: string) => `/student/cv/builder/ai/${templateId}`,
+    },
   },
 };
