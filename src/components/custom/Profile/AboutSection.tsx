@@ -5,13 +5,14 @@ interface AboutSectionProps {
   about: string;
   onEdit?: () => void;
   isPublicView?: boolean;
+  title?: string;
 }
 
-const AboutSection: React.FC<AboutSectionProps> = ({ about, onEdit, isPublicView = false }) => {
+const AboutSection: React.FC<AboutSectionProps> = ({ about, onEdit, isPublicView = false, title = "About" }) => {
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-h3 font-semibold text-foreground">About</h3>
+        <h3 className="text-h3 font-semibold text-foreground">{title}</h3>
         {!isPublicView && onEdit && (
           <button
             onClick={onEdit}

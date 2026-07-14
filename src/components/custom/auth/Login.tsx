@@ -10,6 +10,7 @@ import Divider from "./Divider";
 import SocialAuth from "./SocialAuth";
 
 import { loginUser } from "../../../Services/auth.service";
+import { APP_ROUTES } from "../../../constants";
 
 type Props = {
   setStep: React.Dispatch<
@@ -53,16 +54,20 @@ const Login = ({
         if (
           users.length > 0
         ) {
+          const currentUser = users[0];
           localStorage.setItem(
             "currentUser",
             JSON.stringify(
-              users[0]
+              currentUser
             )
           );
 
-          navigate(
-            "/student/dashboard"
-          );
+          // Redirect based on user role
+          if (currentUser.role === 'company') {
+            navigate(APP_ROUTES.company.profile);
+          } else {
+            navigate(APP_ROUTES.student.dashboard);
+          }
         } else {
           setError(
             "Incorrect email or password"

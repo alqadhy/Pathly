@@ -89,6 +89,8 @@ export default function CommunitySectionList({
                 const handleMediaClick = () => {
                   if (viewType === "profiles") {
                     navigate(`/student/profile/${card.id}`);
+                  } else {
+                    navigate(`/company/profile/${card.id}`);
                   }
                 };
 
@@ -113,7 +115,7 @@ export default function CommunitySectionList({
                       onAction={() => {
                         handleAction();
                       }}
-                      onMediaClick={viewType === "profiles" ? handleMediaClick : undefined}
+                       onMediaClick={handleMediaClick}
                       isActive={isActive}
                       actionState={getActionState()}
                       viewType={viewType}
