@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, ScrollRestoration } from "react-router-dom";
 
 // Layout Components
 import DashboardHeader from "../components/layout/DashboardHeader";
@@ -15,6 +15,7 @@ function DashboardLayout() {
 
   return (
     <>
+      <ScrollRestoration />
       <DashboardHeader />
       <div className="flex">
         <Sidebar />

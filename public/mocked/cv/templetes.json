@@ -1,0 +1,30 @@
+[
+  {
+    "id": "templete1",
+    "name": "Simple",
+    "tags": ["Simple", "ATS Friendly", "Popular"],
+    "layoutType": "simple",
+    "hasPhoto": false
+  },
+  {
+    "id": "templete2",
+    "name": "Professional",
+    "tags": ["Simple", "ATS Friendly", "Popular"],
+    "layoutType": "professional",
+    "hasPhoto": true
+  },
+  {
+    "id": "templete3",
+    "name": "Modern",
+    "tags": ["Simple", "ATS Friendly", "Popular"],
+    "layoutType": "modern",
+    "hasPhoto": true
+  },
+  {
+    "id": "templete4",
+    "name": "Simple Classic",
+    "tags": ["Simple", "ATS Friendly", "Popular"],
+    "layoutType": "simpleclassic",
+    "hasPhoto": true
+  }
+]
