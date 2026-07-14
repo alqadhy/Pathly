@@ -11,6 +11,7 @@ import SocialAuth from "./SocialAuth";
 
 import { loginUser } from "../../../Services/auth.service";
 import { APP_ROUTES } from "../../../constants";
+import { ROLES } from "../../../roles";
 
 type Props = {
   setStep: React.Dispatch<
@@ -55,6 +56,7 @@ const Login = ({
           users.length > 0
         ) {
           const currentUser = users[0];
+
           localStorage.setItem(
             "currentUser",
             JSON.stringify(
@@ -63,7 +65,7 @@ const Login = ({
           );
 
           // Redirect based on user role
-          if (currentUser.role === 'company') {
+          if (currentUser.role ===  ROLES.COMPANY) {
             navigate(APP_ROUTES.company.profile);
           } else {
             navigate(APP_ROUTES.student.dashboard);
@@ -212,7 +214,7 @@ const Login = ({
           <button
             onClick={() =>
               navigate(
-                "/auth/sign-up"
+               APP_ROUTES.auth.signup
               )
             }
             className="

@@ -20,6 +20,7 @@ import {
 } from '../../components/custom/CompanyProfile/crud/companyProfileStorage';
 import { getCurrentUser } from '../../components/custom/Profile/crud/profileStorage';
 import type { CompanyProfile, Job, TeamMember } from '../../components/custom/CompanyProfile/types';
+import { APP_ROUTES } from '../../constants';
 
 const CompanyProfile: React.FC = () => {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ const CompanyProfile: React.FC = () => {
     const currentUser = getCurrentUser();
     if (!currentUser || currentUser.role !== 'company') {
       // Redirect to login if not a company
-      navigate('/auth/');
+      navigate(APP_ROUTES.auth.login);
       return;
     }
     

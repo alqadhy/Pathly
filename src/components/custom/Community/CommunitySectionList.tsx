@@ -2,6 +2,7 @@ import type { CommunitySection } from "../../../types/Community";
 import { useNavigate } from "react-router-dom";
 import Card from "../Card";
 import { useFollows } from "./useFollows";
+import { ROLES } from "../../../roles";
 
 export default function CommunitySectionList({
   sections,
@@ -88,9 +89,9 @@ export default function CommunitySectionList({
 
                 const handleMediaClick = () => {
                   if (viewType === "profiles") {
-                    navigate(`/student/profile/${card.id}`);
+                    navigate(`/${ROLES.USER}/profile/${card.id}`);
                   } else {
-                    navigate(`/company/profile/${card.id}`);
+                    navigate(`/${ROLES.COMPANY}/profile/${card.id}`);
                   }
                 };
 

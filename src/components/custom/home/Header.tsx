@@ -9,6 +9,7 @@ import {
   getCurrentUser,
   clearCurrentUser,
 } from "../../../components/custom/Profile/crud/profileStorage";
+import { ROLES } from "../../../roles";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -26,9 +27,9 @@ export default function Header() {
 
   const handleuserProfileClick = () => {
     if (currentUser) {
-      if (currentUser.role === "employee") {
+      if (currentUser.role === ROLES.USER) {
         navigate(APP_ROUTES.student.profile);
-      } else if (currentUser.role === "company") {
+      } else if (currentUser.role === ROLES.COMPANY) {
         navigate(APP_ROUTES.company.profile);
       }
     } else {

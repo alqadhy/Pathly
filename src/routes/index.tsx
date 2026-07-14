@@ -119,6 +119,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: APP_ROUTES.student.publicProfile(":id"),
+        element: (
+          <Suspense fallback={<Loader />}>
+            <PublicProfile />
+          </Suspense>
+        ),
+      },
+      {
         path: APP_ROUTES.student.cvBuilder.dashboard,
         element: (
           <Suspense fallback={<Loader />}>
@@ -148,6 +156,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <CVBuilderAI />
+          </Suspense>
+        ),
+      },
+       {
+        path: APP_ROUTES.student.messages,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Messages />
           </Suspense>
         ),
       },
@@ -213,15 +229,15 @@ const router = createBrowserRouter([
             <CompanyProfile />
           </Suspense>
         ),
-      },
-      {
-        path: APP_ROUTES.company.publicProfile(":id"),
-        element: (
-          <Suspense fallback={<Loader />}>
-            <PublicCompanyProfile />
-          </Suspense>
-        ),
-      },
+        },
+        {
+          path: APP_ROUTES.company.publicProfile(":id"),
+          element: (
+            <Suspense fallback={<Loader />}>
+              <PublicCompanyProfile />
+            </Suspense>
+          ),
+        },
       {
         path: APP_ROUTES.public.community,
         element: (

@@ -1,115 +1,75 @@
 import { useState } from "react";
 
-import {
-  useNavigate,
-} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-import {
-  roleSchema,
-} from "../../../schemas/auth.schema";
+// import { roleSchema } from "../../../schemas/auth.schema";
 
-import {
-  signUpUser,
-} from "../../../Services/auth.service";
+import { signUpUser } from "../../../Services/auth.service";
 
-import type {
-  AuthStep,
-} from "../../../types/auth.types";
+import type { AuthStep } from "../../../types/auth.types";
+import { APP_ROUTES } from "../../../constants";
+import { ROLES } from "../../../roles";
 
 type Props = {
-  setStep: React.Dispatch<
-    React.SetStateAction<AuthStep>
-  >;
+  setStep: React.Dispatch<React.SetStateAction<AuthStep>>;
 };
 
 const roles = [
   {
-    id: "employee",
+    id: ROLES.USER,
     title: "Employee",
   },
   {
-    id: "instructor",
+    id: ROLES.INSTRUCTOR,
     title: "Instructor",
   },
   {
-    id: "company",
+    id: ROLES.COMPANY,
     title: "Company",
   },
 ];
 
-const ChooseRole = ({
-  setStep,
-}: Props) => {
+const ChooseRole = ({ setStep }: Props) => {
+  const navigate = useNavigate();
 
-  const navigate =
-    useNavigate();
+  const [selectedRole, setSelectedRole] = useState("");
 
-  const [
-    selectedRole,
-    setSelectedRole,
-  ] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const [
-    loading,
-    setLoading,
-  ] = useState(false);
+  const handleContinue = async () => {
+    if (!selectedRole) return;
 
-  const handleContinue =
-    async () => {
+    try {
+      setLoading(true);
 
-      if (!selectedRole)
-        return;
+      const pendingUser = sessionStorage.getItem("pendingUser");
 
-      try {
+      if (!pendingUser) return;
 
-        setLoading(true);
+      const parsedUser = JSON.parse(pendingUser);
 
-        const pendingUser =
-          sessionStorage.getItem(
-            "pendingUser"
-          );
+      // const result = roleSchema.safeParse({
+      //   role: selectedRole,
+      // });
 
-        if (!pendingUser)
-          return;
+      // if (!result.success) return;
 
-        const parsedUser =
-          JSON.parse(
-            pendingUser
-          );
+      const finalUser = {
+        ...parsedUser,
+        role: selectedRole,
+      };
 
-        const result =
-          roleSchema.safeParse({
-            role:
-              selectedRole,
-          });
+      await signUpUser(finalUser);
 
-        if (!result.success)
-          return;
+      sessionStorage.removeItem("pendingUser");
 
-        const finalUser = {
-          ...parsedUser,
-          role: selectedRole,
-        };
-
-        await signUpUser(
-          finalUser
-        );
-
-        sessionStorage.removeItem(
-          "pendingUser"
-        );
-
-        navigate("/auth");
-
-      } catch (err) {
-
-        console.log(err);
-
-      } finally {
-
-        setLoading(false);
-      }
-    };
+      navigate(APP_ROUTES.auth.login);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div
@@ -127,7 +87,6 @@ const ChooseRole = ({
         md:flex-row
       "
     >
-
       {/* LEFT */}
       <div
         className="
@@ -137,9 +96,7 @@ const ChooseRole = ({
           lg:max-w-[45%]
         "
       >
-
         <div className="space-y-md">
-
           <p
             className="
               text-h2
@@ -164,12 +121,9 @@ const ChooseRole = ({
               text-light-active
             "
           >
-            Choose the role
-            that best describes
-            you to personalize
-            your experience.
+            Choose the role that best describes you to personalize your
+            experience.
           </p>
-
         </div>
       </div>
 
@@ -189,11 +143,8 @@ const ChooseRole = ({
           lg:w-[45%]
         "
       >
-
         <div className="space-y-xl">
-
           <div className="space-y-sm">
-
             <h2
               className="
                 text-h4
@@ -210,10 +161,8 @@ const ChooseRole = ({
                 text-normal
               "
             >
-              Choose one option
-              to continue
+              Choose one option to continue
             </p>
-
           </div>
 
           <div
@@ -223,16 +172,10 @@ const ChooseRole = ({
               gap-md
             "
           >
-
             {roles.map((role) => (
-
               <button
                 key={role.id}
-                onClick={() =>
-                  setSelectedRole(
-                    role.id
-                  )
-                }
+                onClick={() => setSelectedRole(role.id)}
                 className={`
                   flex
                   h-[72px]
@@ -249,8 +192,7 @@ const ChooseRole = ({
                   transition-all
 
                   ${
-                    selectedRole ===
-                    role.id
+                    selectedRole === role.id
                       ? `
                         border-primary
                         bg-primary-light
@@ -269,17 +211,11 @@ const ChooseRole = ({
                 {role.title}
               </button>
             ))}
-
           </div>
 
           <button
-            onClick={
-              handleContinue
-            }
-            disabled={
-              !selectedRole ||
-              loading
-            }
+            onClick={handleContinue}
+            disabled={!selectedRole || loading}
             className="
               h-[60px]
               w-full
@@ -300,11 +236,8 @@ const ChooseRole = ({
               disabled:opacity-50
             "
           >
-            {loading
-              ? "Saving..."
-              : "Continue"}
+            {loading ? "Saving..." : "Continue"}
           </button>
-
         </div>
       </div>
     </div>

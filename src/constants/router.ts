@@ -1,3 +1,5 @@
+import { ROLES } from "../roles";
+
 export const APP_ROUTES = {
   // Landing Page
   home: "/",
@@ -10,26 +12,26 @@ export const APP_ROUTES = {
 
   // Student Routes
   student: {
-    dashboard: "/student/dashboard",
+    dashboard: `/${ROLES.USER}/dashboard`,
     // aiAssistant: "/student/ai-assistant",
-    analytics: "/student/analytics",
-    cv: "/student/cv",
-    jobs: "/student/jobs",
-    jobDetails: (id: number | string) => `/student/jobs/${id}`,
+    analytics: `/${ROLES.USER}/analytics`,
+    cv: `/${ROLES.USER}/cv`,
+    jobs: `/${ROLES.USER}/jobs`,
+    jobDetails: (id: number | string) => `/${ROLES.USER}/jobs/${id}`,
     // saved: "/student/saved",
-    learning: "/student/learning",
+    learning: `/${ROLES.USER}/learning`,
     // community: "/student/community",
-    profile: "/student/profile",
-    publicProfile: (id: string) => `/student/profile/${id}`,
-    settings: "/student/settings",
-    messages: "/student/messages",
+    profile: `/${ROLES.USER}/profile`,
+    publicProfile: (id: string) => `/${ROLES.USER}/profile/${id}`,
+    settings: `/${ROLES.USER}/settings`,
+    messages: `/${ROLES.USER}/messages`,
     cvBuilder: {
-      dashboard: "/student/cv",
+      dashboard: `/${ROLES.USER}/cv`,
       templateSelection: (mode: "ai" | "manual" | ":mode") =>
-        `/student/cv/templates/${mode}`,
+        `/${ROLES.USER}/cv/templates/${mode}`,
       manualBuilder: (templateId: string) =>
-        `/student/cv/builder/manual/${templateId}`,
-      aiBuilder: (templateId: string) => `/student/cv/builder/ai/${templateId}`,
+        `/${ROLES.USER}/cv/builder/manual/${templateId}`,
+      aiBuilder: (templateId: string) => `/${ROLES.USER}/cv/builder/ai/${templateId}`,
     },
   },
 
@@ -41,8 +43,8 @@ export const APP_ROUTES = {
   },
   // Company Routes
   company: {
-    dashboard: "/company/dashboard",
-    profile: "/company/profile",
-    publicProfile: (id: string) => `/company/profile/${id}`,
+    dashboard: `/${ROLES.COMPANY}/dashboard`,
+    profile: `/${ROLES.COMPANY}/profile`,
+    publicProfile: (id: string) => `/${ROLES.COMPANY}/profile/${id}`,
   },
 };

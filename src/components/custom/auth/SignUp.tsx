@@ -21,6 +21,7 @@ import AuthInput from "./AuthInput";
 import AuthError from "./AuthError";
 import Divider from "./Divider";
 import SocialAuth from "./SocialAuth";
+import { APP_ROUTES } from "../../../constants";
 
 type Props = {
   setStep: React.Dispatch<
@@ -407,7 +408,7 @@ const SignUp = ({
 
             <button
               onClick={() =>
-                navigate("/auth")
+                navigate(APP_ROUTES.auth.login)
               }
               className="
                 font-semibold
