@@ -12,10 +12,11 @@ import { APP_ROUTES } from "../constants";
 import Loader from "../components/layout/Loader";
 import PageLoader from "../components/layout/PageLoader";
 
-/* Pages */
+/* Direct Pages */
 import CareerChat from "../pages/student/CareerChat";
 import PublicProfile from "../pages/student/PublicProfile";
 
+/* Lazy Pages */
 const Home = lazy(() => import("../pages/Home"));
 
 const Dashboard = lazy(() => import("../pages/student/Dashboard"));
@@ -33,8 +34,16 @@ const Learning = lazy(
   () => import("../pages/Lessons/Learning")
 );
 
+const MyLearning = lazy(
+  () => import("../pages/Lessons/MyLearning")
+);
+
 const LearningDetails = lazy(
   () => import("../pages/Lessons/LearningDetails")
+);
+
+const LearningLesson = lazy(
+  () => import("../pages/Lessons/LearningLesson")
 );
 
 const CVDashboard = lazy(
@@ -184,8 +193,10 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
+
+      /* Learning */
       {
-        path: APP_ROUTES.student.mylearning,
+        path: APP_ROUTES.student.learning,
         element: (
           <Suspense fallback={<Loader />}>
             <Learning />
@@ -193,10 +204,26 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: APP_ROUTES.Learning.continueCourse,
+        path: APP_ROUTES.student.mylearning,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <MyLearning />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.Learning.courseDetails,
         element: (
           <Suspense fallback={<Loader />}>
             <LearningDetails />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.Learning.continueCourse,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <LearningLesson />
           </Suspense>
         ),
       },

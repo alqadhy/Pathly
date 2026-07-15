@@ -15,8 +15,8 @@ const EmptyLearningState = () => {
       <div
         className="
           absolute
-          right-[-40px]
-          top-[-40px]
+          -right-xl
+          -top-xl
           h-[180px]
           w-[180px]
           rounded-full
@@ -49,8 +49,8 @@ const EmptyLearningState = () => {
             "
           >
             <Rocket
-              className="text-primary"
               size={30}
+              className="text-primary"
             />
           </div>
 
@@ -88,9 +88,11 @@ const EmptyLearningState = () => {
             font-semibold
             text-primary-foreground
             transition-all
+            duration-300
             hover:bg-primary-hover
             hover:scale-[1.02]
             active:bg-primary-active
+            active:scale-[0.98]
           "
         >
           Explore Courses

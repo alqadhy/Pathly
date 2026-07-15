@@ -61,6 +61,11 @@ export const SIDEBAR_LINKS = {
           to: APP_ROUTES.student.learning,
         },
         {
+          icon: <BookOpen />,
+          text: "My Learning",
+          to: APP_ROUTES.student.mylearning,
+        },
+        {
           icon: <UsersRound />,
           text: "Community",
           to: APP_ROUTES.student.community,

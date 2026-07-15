@@ -7,6 +7,11 @@ export const APP_ROUTES = {
     login: "/auth/",
     signup: "/auth/sign-up",
   },
+  // Auth Rotues
+  Learning: {
+    courseDetails:"/student/learning/:id",
+    continueCourse:"/student/learning/:id/player"
+  },
 
   // Student Routes
   student: {
@@ -21,8 +26,7 @@ export const APP_ROUTES = {
     saved: "/student/saved",
 
     learning: "/student/learning",
-    mylearning: "/student/learning",
-
+    mylearning: "/student/learning/MyLearning",
     community: "/student/community",
 
     profile: "/student/profile",
@@ -45,10 +49,4 @@ export const APP_ROUTES = {
     },
   },
 
-  // Learning Routes
-  Learning: {
-    list: "/student/learning",
-    details: "/student/learning/:id",
-    continueCourse: "/student/learning/:id",
-  },
 };
