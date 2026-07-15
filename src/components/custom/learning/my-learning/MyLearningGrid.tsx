@@ -30,11 +30,7 @@ const MyLearningGrid = ({
 
   return (
     <div
-      className="
-        grid
-        gap-xl
-        sm:grid-cols-2
-        xl:grid-cols-3
+      className=" grid gap-xl sm:grid-cols-2 xl:grid-cols-3
       "
     >
       {courses.map((course) => {

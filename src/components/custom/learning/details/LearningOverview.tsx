@@ -1,8 +1,4 @@
-import {
-  BadgeCheck,
-  CircleCheck,
-  Clock3,
-} from "lucide-react";
+import { CircleCheck } from "lucide-react";
 
 import type { Course } from "../../../../types/courses.types";
 
@@ -12,7 +8,7 @@ type Props = {
 
 const LearningOverview = ({ course }: Props) => {
   return (
-    <div className=" bg-white p-md">
+    <div className="bg-card p-md">
       {/* ABOUT */}
       <div>
         <h3 className="mb-lg text-[32px] font-bold text-text-primary">

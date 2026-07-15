@@ -51,7 +51,7 @@ const PaymentActions = ({
     <Button
       onClick={handlePayment}
       disabled={!canPay}
-      className="h-[64px] w-full rounded-2xl bg-primary text-[20px] font-bold text-primary-foreground transition-all duration-300 hover:bg-primary-hover active:bg-primary-active active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+      className="h-[64px] w-full rounded-2xl bg-primary text-h4 font-bold text-primary-foreground transition-all duration-300 hover:bg-primary-hover active:bg-primary-active active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
     >
       Pay {coursePrice} EGP
     </Button>

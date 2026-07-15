@@ -20,7 +20,6 @@ const CourseCurriculum = ({
   return (
     <aside className="w-full rounded-2xl border border-border bg-card shadow-card lg:w-[380px]">
       {/* Header */}
-
       <div className="border-b border-border p-lg">
         <h2 className="mb-md text-[28px] font-bold text-text-primary">
           Course Content
@@ -33,7 +32,6 @@ const CourseCurriculum = ({
       </div>
 
       {/* Modules */}
-
       <div className="max-h-[700px] overflow-y-auto">
         {modules.map((module) => (
           <CourseModule

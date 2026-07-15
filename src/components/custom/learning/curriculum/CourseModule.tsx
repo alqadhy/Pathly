@@ -37,50 +37,22 @@ const CourseModule = ({
     ).length;
 
   return (
-    <div
-      className="
-        border-b
-        border-border
-      "
-    >
+    <div className="border-b border-border">
       {/* Header */}
 
       <button
         onClick={() =>
           setOpen(!open)
         }
-        className="
-          flex
-          w-full
-          items-center
-          justify-between
-          px-lg
-          py-md
-          transition-colors
-          hover:bg-muted
-        "
+        className="flex w-full items-center justify-between px-lg py-md transition-colors hover:bg-muted"
       >
         <div>
-          <h3
-            className="
-              text-left
-              text-[20px]
-              font-semibold
-              text-text-primary
-            "
-          >
+          <h3 className="text-left text-h4 font-semibold text-text-primary">
             {module.title}
           </h3>
 
-          <p
-            className="
-              mt-xs
-              text-[15px]
-              text-text-secondary
-            "
-          >
-            {completedCount} /{" "}
-            {module.lessons.length} Lessons
+          <p className="mt-xs text-[15px] text-text-secondary">
+            {completedCount} / {module.lessons.length} Lessons
           </p>
         </div>
 

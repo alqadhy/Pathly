@@ -48,12 +48,12 @@ const PaymentMethods = ({
               <RadioGroupItem
                 value="card"
                 id="card"
-                className="h-5 w-5 border-2 border-primary data-[state=checked]:border-primary data-[state=checked]:bg-primary text-primary-foreground"
+                className="h-5 w-5 border-2 border-primary text-primary-foreground data-[state=checked]:border-primary data-[state=checked]:bg-primary"
               />
 
               <Label
                 htmlFor="card"
-                className="cursor-pointer text-[18px] font-medium text-text-primary"
+                className="cursor-pointer text-body-lg font-medium text-text-primary"
               >
                 Credit / Debit Card
               </Label>
@@ -70,7 +70,7 @@ const PaymentMethods = ({
                     value={cardNumber}
                     onChange={(e) => setCardNumber(e.target.value)}
                     placeholder="•••• •••• •••• ••••"
-                    className="h-[56px] rounded-xl border-border bg-card px-md text-[16px] shadow-none focus-visible:ring-2 focus-visible:ring-primary"
+                    className="h-[56px] rounded-xl border-border bg-card px-md text-body-md shadow-none focus-visible:ring-2 focus-visible:ring-primary"
                   />
                 </div>
 
@@ -84,7 +84,7 @@ const PaymentMethods = ({
                       value={expiry}
                       onChange={(e) => setExpiry(e.target.value)}
                       placeholder="MM/YY"
-                      className="h-[56px] rounded-xl border-border bg-card px-md text-[16px] shadow-none focus-visible:ring-2 focus-visible:ring-primary"
+                      className="h-[56px] rounded-xl border-border bg-card px-md text-body-md shadow-none focus-visible:ring-2 focus-visible:ring-primary"
                     />
                   </div>
 
@@ -97,7 +97,7 @@ const PaymentMethods = ({
                       value={cvc}
                       onChange={(e) => setCvc(e.target.value)}
                       placeholder="000"
-                      className="h-[56px] rounded-xl border-border bg-card px-md text-[16px] shadow-none focus-visible:ring-2 focus-visible:ring-primary"
+                      className="h-[56px] rounded-xl border-border bg-card px-md text-body-md shadow-none focus-visible:ring-2 focus-visible:ring-primary"
                     />
                   </div>
                 </div>
@@ -111,12 +111,12 @@ const PaymentMethods = ({
             <RadioGroupItem
               value="paypal"
               id="paypal"
-              className="h-5 w-5 border-2 border-primary data-[state=checked]:border-primary data-[state=checked]:bg-primary text-primary-foreground"
+              className="h-5 w-5 border-2 border-primary text-primary-foreground data-[state=checked]:border-primary data-[state=checked]:bg-primary"
             />
 
             <Label
               htmlFor="paypal"
-              className="cursor-pointer text-[18px] font-medium text-text-primary"
+              className="cursor-pointer text-body-lg font-medium text-text-primary"
             >
               Paypal
             </Label>

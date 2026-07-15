@@ -16,8 +16,8 @@ const AddComment = () => {
   };
 
   return (
-    <div className="mt-lg rounded-2xl bg-card p-xl ">
-      <h3 className="mb-lg text-[24px] font-semibold text-text-primary">
+    <div className="mt-lg rounded-2xl bg-card p-xl">
+      <h3 className="mb-lg text-h3 font-semibold text-text-primary">
         Leave a Comment
       </h3>
 
@@ -31,7 +31,7 @@ const AddComment = () => {
       <div className="mt-lg flex justify-end">
         <Button
           onClick={handleSubmit}
-          className="flex items-center gap-sm text-xl p-md"
+          className="flex items-center gap-sm p-md text-body-lg"
         >
           <SendHorizontal size={18} />
           Post Comment

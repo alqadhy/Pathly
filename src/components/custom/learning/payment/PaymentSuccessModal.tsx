@@ -27,12 +27,8 @@ const PaymentSuccessModal = ({
     <div className="space-y-2xl p-lg">
       {/* SUCCESS ICON */}
       <div className="mb-md flex flex-col items-center">
-        <div className="flex h-[110px] w-[110px] items-center justify-center rounded-full bg-[#14834D]">
-          <Check
-            size={80}
-            strokeWidth={4}
-            className="text-white"
-          />
+        <div className="flex h-[110px] w-[110px] items-center justify-center rounded-full bg-success-dark">
+          <Check size={80} strokeWidth={4} className="text-white" />
         </div>
 
         <h2 className="mt-md text-center text-[52px] font-bold text-text-primary">
@@ -50,11 +46,11 @@ const PaymentSuccessModal = ({
       </div>
 
       {/* COURSE CARD */}
-      <div className="flex flex-col gap-lg rounded-2xl border border-border bg-card p-lg lg:flex-row lg:items-center">
+      <div className="flex flex-col gap-lg rounded-2xl border border-border bg-card p-lg shadow-card lg:flex-row lg:items-center">
         <img
           src={course.image}
           alt={course.title}
-          className="h-[170px] basis-1/3 rounded-xl object-cover shrink-0"
+          className="h-[170px] shrink-0 basis-1/3 rounded-xl object-cover"
         />
 
         <div className="flex-1">
@@ -67,11 +63,8 @@ const PaymentSuccessModal = ({
               By Dr. {course.instructor}
             </span>
 
-            <span className="flex items-center gap-1">
-              <Star
-                size={18}
-                className="fill-yellow-400 text-yellow-400"
-              />
+            <span className="flex items-center gap-xs">
+              <Star size={18} className="fill-yellow-400 text-yellow-400" />
 
               {course.rating}
 
@@ -82,17 +75,17 @@ const PaymentSuccessModal = ({
           </div>
 
           <div className="mt-lg flex flex-wrap gap-sm">
-            <div className="flex items-center gap-2 rounded-lg bg-muted px-md py-sm">
+            <div className="flex items-center gap-xs rounded-lg bg-muted px-md py-sm text-body-md text-foreground">
               <Clock3 size={18} />
               {course.duration}
             </div>
 
-            <div className="rounded-lg bg-muted px-md py-sm">
+            <div className="rounded-lg bg-muted px-md py-sm text-body-md text-foreground">
               {course.level}
             </div>
 
             {course.hasCertificate && (
-              <div className="flex items-center gap-2 rounded-lg bg-muted px-md py-sm">
+              <div className="flex items-center gap-xs rounded-lg bg-muted px-md py-sm text-body-md text-foreground">
                 <Award size={18} />
                 Certificate
               </div>

@@ -12,86 +12,29 @@ const CourseMentor = ({
   course,
 }: Props) => {
   return (
-    <section
-      className="
-        mt-xl
-        flex
-        flex-col
-        gap-lg
-        rounded-2xl
-        border
-        border-border
-        bg-card
-        p-xl
-        shadow-card
-        lg:flex-row
-        lg:items-center
-        lg:justify-between
-      "
-    >
-      <div
-        className="
-          flex
-          items-center
-          gap-lg
-        "
-      >
+    <section className="mt-xl flex flex-col gap-lg rounded-2xl border border-border bg-card p-xl shadow-card lg:flex-row lg:items-center lg:justify-between">
+      <div className="flex items-center gap-lg">
         {/* Image */}
         <img
           src={course.instructorImage}
           alt={course.instructor}
-          className="
-            h-[80px]
-            w-[80px]
-            rounded-full
-            object-cover
-          "
+          className="h-[80px] w-[80px] rounded-full object-cover"
         />
 
         {/* Info */}
         <div>
-          <h2
-            className="
-              text-[28px]
-              font-bold
-              text-text-primary
-            "
-          >
+          <h2 className="text-[28px] font-bold text-text-primary">
             {course.instructor}
           </h2>
 
-          <div
-            className="
-              mt-sm
-              flex
-              items-center
-              gap-sm
-            "
-          >
-            <Star
-              size={18}
-              className="
-                fill-yellow-400
-                text-yellow-400
-              "
-            />
+          <div className="mt-sm flex items-center gap-sm">
+            <Star size={18} className="fill-yellow-400 text-yellow-400" />
 
-            <span
-              className="
-                text-[18px]
-                font-medium
-                text-text-secondary
-              "
-            >
+            <span className="text-body-lg font-medium text-text-secondary">
               {course.rating}
             </span>
 
-            <span
-              className="
-                text-[18px]
-                text-text-secondary
-              "
-            >
+            <span className="text-body-lg text-text-secondary">
               ({course.reviews})
             </span>
           </div>
@@ -100,13 +43,7 @@ const CourseMentor = ({
 
       <Button
         variant="outline"
-        className="
-          h-[56px]
-          rounded-xl
-          px-xl
-          text-[18px]
-          font-semibold
-        "
+        className="h-[56px] rounded-xl px-xl text-body-lg font-semibold"
       >
         View Profile
       </Button>

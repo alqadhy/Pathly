@@ -29,7 +29,7 @@ export interface Course {
   students?: string;
   about?: string;
   learn: string[];
-  track?: string;
+  track: string;
   instructorImage?: string;
   category?: string;
 showProgress?: boolean;

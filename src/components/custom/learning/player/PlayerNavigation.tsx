@@ -18,7 +18,7 @@ const PlayerNavigation = () => {
       <button
         onClick={goToPreviousLesson}
         disabled={!hasPreviousLesson}
-        className="flex items-center gap-2 rounded-xl border border-border px-5 py-3 text-sm font-medium transition bg-amber-50 hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50"
+        className="flex items-center gap-xs rounded-xl border border-border bg-warning-light px-lg py-md text-body-sm font-medium transition hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50"
       >
         <ChevronLeft size={18} />
         Previous
@@ -27,7 +27,7 @@ const PlayerNavigation = () => {
       <button
         onClick={goToNextLesson}
         disabled={!hasNextLesson}
-        className="flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-medium text-white transition hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-50"
+        className="flex items-center gap-xs rounded-xl bg-primary px-lg py-md text-body-sm font-medium text-white transition hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-50"
       >
         Next
         <ChevronRight size={18} />

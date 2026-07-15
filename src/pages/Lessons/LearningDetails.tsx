@@ -46,79 +46,43 @@ const LearningDetails = () => {
 
   if (!course) {
     return (
-      <div
-        className="
-          flex
-          min-h-screen
-          items-center
-          justify-center
-          text-h3
-          font-bold
-          text-text-primary
-        "
-      >
+      <div className="flex min-h-screen items-center justify-center text-h3 font-bold text-text-primary ">
         Course Not Found
       </div>
     );
   }
 
-  return (
-    <section
-      className="
-        min-h-screen
-        bg-background
-      "
-    >
-      <div
-        className="
-          mx-auto
-          max-w-[1180px]
-          p-lg
-          lg:p-2xl
-        "
-      >
-        <LearningHero
-          image={course.image}
-          title={course.title}
-        />
+return (
+  <section className="min-h-screen bg-background">
+    <div className="mx-auto max-w-[1180px] p-lg lg:p-2xl">
+      <LearningHero
+        image={course.image}
+        title={course.title}
+      />
 
-        <div
-          className="
-            mt-2xl
-            flex
-            flex-col
-            gap-2xl
-            lg:flex-row
-            lg:justify-between
-          "
-        >
-          <div className="flex-1">
-            <LearningInstructor
-              course={course}
-            />
+      <div className="mt-2xl flex flex-col gap-2xl lg:flex-row lg:justify-between">
+        <div className="flex-1">
+          <LearningInstructor course={course} />
 
-            <LearningOverviewBadges
-              course={course}
-            />
-            <LearningOverview
-              course={course}
-            />
-          </div>
+          <LearningOverviewBadges course={course} />
+
+          <LearningOverview course={course} />
         </div>
-
-        <LearningActions
-          courseId={course.id}
-          price={course.price}
-          isEnrolled={isEnrolled}
-          setIsEnrolled={setIsEnrolled}
-          dialogOpen={dialogOpen}
-          setDialogOpen={setDialogOpen}
-          paymentSuccess={paymentSuccess}
-          setPaymentSuccess={setPaymentSuccess}
-        />
       </div>
-    </section>
-  );
+
+      <LearningActions
+        courseId={course.id}
+        price={course.price}
+        isEnrolled={isEnrolled}
+        setIsEnrolled={setIsEnrolled}
+        dialogOpen={dialogOpen}
+        setDialogOpen={setDialogOpen}
+        paymentSuccess={paymentSuccess}
+        setPaymentSuccess={setPaymentSuccess}
+      />
+    </div>
+  </section>
+);
 };
 
 export default LearningDetails;

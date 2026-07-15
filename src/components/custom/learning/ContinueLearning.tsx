@@ -22,10 +22,10 @@ const ContinueLearning = ({
   const navigate = useNavigate();
 
   return (
-    <section className="overflow-hidden rounded-3xl bg-white shadow-sm">
+    <section className="overflow-hidden rounded-2xl bg-card shadow-sm">
       <div className="flex flex-col xl:flex-row">
-                {/* Image */}
-        <div className="order-1 h-[220px] w-full sm:h-[300px]  xl:h-auto  xl:w-[40%]">
+        {/* Image */}
+        <div className="order-1 h-[220px] w-full sm:h-[300px] xl:h-auto xl:w-[40%]">
           <img
             src={course.image}
             alt={course.title}
@@ -35,16 +35,15 @@ const ContinueLearning = ({
 
         {/* Content */}
         <div className="order-2 flex flex-1 flex-col justify-center p-lg sm:p-xl xl:p-2xl">
-
-          <p className="mb-xs text-sm font-semibold uppercase tracking-wider text-primary sm:text-base">
+          <p className="mb-xs text-body-sm font-semibold uppercase tracking-wider text-primary md:text-body-md">
             Continue Learning
           </p>
 
-          <h2 className="mb-sm text-2xl font-bold leading-tight text-text-primary sm:text-3xl lg:text-[42px]">
+          <h2 className="mb-sm text-h3 font-bold leading-tight text-text-primary sm:text-h2 lg:text-[42px]">
             {course.title}
           </h2>
 
-          <p className="mb-xl text-base text-text-secondary sm:text-lg lg:text-xl">
+          <p className="mb-xl text-body-md text-text-secondary sm:text-body-lg lg:text-[20px]">
             By Dr. {course.instructor}
           </p>
 
@@ -56,7 +55,7 @@ const ContinueLearning = ({
           <LearningOverviewBadges course={course} />
 
           <Button
-            className="mt-2xl h-[56px] w-full rounded-xl text-lg font-bold sm:w-fit sm:min-w-[240px] lg:h-[64px] lg:text-[20px]"
+            className="mt-2xl h-[56px] w-full rounded-xl text-body-lg font-bold sm:w-fit sm:min-w-[240px] lg:h-[64px] lg:text-[20px]"
             onClick={() =>
               navigate(
                 `${APP_ROUTES.Learning.continueCourse.replace(
@@ -69,7 +68,6 @@ const ContinueLearning = ({
             Continue Learning
           </Button>
         </div>
-
       </div>
     </section>
   );

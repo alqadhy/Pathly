@@ -16,24 +16,24 @@ const LearningReview = ({
   job,
 }: Props) => {
   return (
-    <section className=" rounded-2xl bg-white p-xl ">
+    <section className="rounded-2xl bg-card p-xl shadow-card">
       <h2 className="mb-xl text-[32px] font-bold text-text-primary">
         Student Review
       </h2>
 
       <div className="flex flex-col gap-lg lg:flex-row lg:items-start">
         <div className="h-[72px] w-[72px] shrink-0 overflow-hidden rounded-full">
-            <img
+          <img
             src={image}
             alt={name}
-            className="h-20 w-20 rounded-full object-cover"
-            />
+            className="h-full w-full rounded-full object-cover"
+          />
         </div>
 
         <div className="flex-1">
           <div className="flex flex-wrap items-center justify-between gap-md">
             <div>
-              <h3 className="text-[24px] font-semibold text-text-primary">
+              <h3 className="text-h3 font-semibold text-text-primary">
                 {name}
               </h3>
 
@@ -44,7 +44,7 @@ const LearningReview = ({
               )}
             </div>
 
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-xs">
               {Array.from({ length: 5 }).map((_, index) => (
                 <Star
                   key={index}

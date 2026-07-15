@@ -48,16 +48,7 @@ const LearningActions = ({
   const navigate = useNavigate();
 
   return (
-    <div
-      className="
-        mt-2xl
-        flex
-        flex-col-reverse
-        gap-md
-        md:flex-row
-        md:justify-end
-      "
-    >
+    <div className="mt-2xl flex flex-col-reverse gap-md md:flex-row md:justify-end">
       {!isEnrolled ? (
         <Dialog
           open={dialogOpen}
@@ -70,36 +61,12 @@ const LearningActions = ({
           }}
         >
           <DialogTrigger asChild>
-            <Button
-              className="
-                h-[68px]
-                w-full
-                rounded-xl
-                bg-primary
-                text-[28px]
-                font-bold
-                text-primary-foreground
-                transition-all
-                hover:bg-primary-hover
-                md:w-[250px]
-              "
-            >
+            <Button className="h-[68px] w-full rounded-xl bg-primary text-[28px] font-bold text-primary-foreground transition-all hover:bg-primary-hover md:w-[250px]">
               Take Course
             </Button>
           </DialogTrigger>
 
-          <DialogContent
-            className="
-              w-[95vw]
-              max-w-[820px]
-              rounded-2xl
-              border-0
-              bg-card
-              p-0
-              shadow-card
-              max-h-[90vh]
-            "
-          >
+          <DialogContent className="max-h-[90vh] w-[95vw] max-w-[820px] rounded-2xl border-0 bg-card p-0 shadow-card">
             {paymentSuccess ? (
               <PaymentSuccessModal
                 courseId={courseId}
@@ -113,13 +80,7 @@ const LearningActions = ({
                 }}
               />
             ) : (
-              <div
-                className="
-                  max-h-[90vh]
-                  overflow-y-auto
-                  p-xl
-                "
-              >
+              <div className="max-h-[90vh] overflow-y-auto p-xl">
                 <LearningPayment
                   courseId={courseId}
                   price={price}
@@ -141,39 +102,13 @@ const LearningActions = ({
               )
             )
           }
-          className="
-            h-[68px]
-            w-full
-            rounded-xl
-            bg-green-600
-            text-[23px]
-            font-bold
-            text-white
-            hover:bg-green-700
-            md:w-[250px]
-          "
+          className="h-[68px] w-full rounded-xl bg-success text-[23px] font-bold text-white hover:bg-success-hover md:w-[250px]"
         >
           Continue Learning
         </Button>
       )}
 
-      <div
-        className="
-          flex
-          h-[68px]
-          w-full
-          items-center
-          justify-center
-          rounded-xl
-          border-2
-          border-primary
-          bg-card
-          text-[30px]
-          font-bold
-          text-primary
-          md:w-[250px]
-        "
-      >
+      <div className="flex h-[68px] w-full items-center justify-center rounded-xl border-2 border-primary bg-card text-[30px] font-bold text-primary md:w-[250px]">
         {price} EGP
       </div>
     </div>

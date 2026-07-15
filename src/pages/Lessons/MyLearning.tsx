@@ -57,33 +57,17 @@ const MyLearning = () => {
   }, []);
 
   return (
-    <section
-      className="
-        min-h-screen
-        bg-background
-      "
-    >
-      <div
-        className="
-          mx-auto
-          max-w-[1280px]
-          p-lg
-          lg:p-2xl
-        "
-      >
-        <MyLearningHeader
-            totalCourses={courses.length}
-        />
+<section className="min-h-screen bg-background">
+  <div className="mx-auto max-w-[1280px] p-lg lg:p-2xl">
+    <MyLearningHeader totalCourses={courses.length} />
 
-        {courses.length === 0 ? (
-          <EmptyMyLearning />
-        ) : (
-          <MyLearningGrid
-            courses={courses}
-          />
-        )}
-      </div>
-    </section>
+    {courses.length === 0 ? (
+      <EmptyMyLearning />
+    ) : (
+      <MyLearningGrid courses={courses} />
+    )}
+  </div>
+</section>
   );
 };
 

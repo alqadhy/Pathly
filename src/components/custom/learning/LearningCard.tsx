@@ -24,8 +24,8 @@ const LearningCard = ({
       onClick={() =>
         navigate(
           APP_ROUTES.Learning.courseDetails.replace(
-          ":id",
-          String(course.id)
+            ":id",
+            String(course.id)
           )
         )
       }
