@@ -48,5 +48,4 @@ export const APP_ROUTES = {
         `/student/cv/builder/ai/${templateId}`,
     },
   },
-
 };
