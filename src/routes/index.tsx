@@ -21,7 +21,9 @@ const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
 const JobsInternshipsDashboard = lazy(
   () => import("../pages/student/Jobs-Internships"),
 );
+
 const JobDetails = lazy(() => import("../pages/student/JobDetails"));
+const ApplyJobPage = lazy(() => import("../pages/student/ApplyJobPage"));
 const SavedItems = lazy(() => import("../pages/student/SavedItems"));
 const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
 const Community = lazy(() => import("../pages/student/Community"));
@@ -101,6 +103,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: APP_ROUTES.student.applyJob(":id"),
+        element: (
+          <Suspense fallback={<Loader />}>
+            <ApplyJobPage />
+          </Suspense>
+        ),
+      },
+      {
         path: APP_ROUTES.student.community,
         element: (
           <Suspense fallback={<Loader />}>
@@ -113,6 +123,30 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <Profile />
+          </Suspense>
+        ),
+      },
+       {
+        path: APP_ROUTES.student.publicProfile(":id"),
+        element: (
+          <Suspense fallback={<Loader />}>
+            <PublicProfile />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.aiAssistant,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <CareerChat />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.messages,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Messages  />
           </Suspense>
         ),
       },

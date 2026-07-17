@@ -16,6 +16,7 @@ export const APP_ROUTES = {
     cv: "/student/cv",
     jobs: "/student/jobs",
     jobDetails: (id: number | string) => `/student/jobs/${id}`,
+    applyJob: (id: number | string) => `/student/apply/${id}`,
     saved: "/student/saved",
     learning: "/student/learning",
     community: "/student/community",
