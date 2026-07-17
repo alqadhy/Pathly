@@ -22,15 +22,16 @@ export function JobApplicationQuestion({
   index,
   form,
 }: JobApplicationQuestionProps) {
-  const { control, register, watch, setValue } = form;
+  const { control, register, watch, setValue, formState: { errors } } = form;
   
   const question = watch(`screeningQuestions.${index}`);
+  // ✅ Watch the type separately to trigger re-render
+  const questionType = watch(`screeningQuestions.${index}.type`);
   const [newOption, setNewOption] = useState("");
 
   if (!question) return null;
 
   const questionText = question.question;
-  const questionType = question.type;
   const questionOptions = question.options || [];
   const questionId = question.id;
   
@@ -38,7 +39,8 @@ export function JobApplicationQuestion({
   const isPredefinedQuestion = !!questionId;
   const isFirstQuestion = index === 0;
 
-  console.log(`Question ${index}:`, { questionText, questionType, questionOptions, questionId });
+  // ✅ Get errors for this question
+  const questionError = errors.screeningQuestions?.[index];
 
   const handleAddOption = () => {
     const trimmed = newOption.trim();
@@ -75,47 +77,75 @@ export function JobApplicationQuestion({
               {questionText}
             </h3>
           ) : (
-            <Input
-              value={questionText}
-              onChange={(e) => setValue(`screeningQuestions.${index}.question`, e.target.value)}
-              className="bg-input border-border font-medium"
-            />
+            <div>
+              <Input
+                value={questionText}
+                onChange={(e) => setValue(`screeningQuestions.${index}.question`, e.target.value)}
+                className={`bg-input border-border font-medium ${questionError?.question ? 'border-red-500 border-2' : ''}`}
+              />
+              {questionError?.question && (
+                <p className="text-red-500 text-sm mt-1" role="alert">
+                  {questionError.question.message}
+                </p>
+              )}
+            </div>
           )}
 
           {!hasType && (
-            <Input
-              placeholder="Answer"
-              disabled
-              className="bg-input border-border text-muted-foreground mt-2"
-            />
+            <div>
+              <Input
+                placeholder="Answer"
+                disabled
+                className="bg-input border-border text-muted-foreground mt-2"
+              />
+              {questionError?.type && (
+                <p className="text-red-500 text-sm mt-1" role="alert">
+                  Please select a question type
+                </p>
+              )}
+            </div>
           )}
 
           {hasType && questionType === "Short Answer" && (
-            <Input
-              placeholder="Enter your answer..."
-              {...register(`screeningQuestions.${index}.answer`)}
-              className="bg-input border-border mt-2"
-            />
+            <div>
+              <Input
+                placeholder="Enter your answer..."
+                {...register(`screeningQuestions.${index}.answer`)}
+                className={`bg-input border-border mt-2 ${questionError?.answer ? 'border-red-500 border-2' : ''}`}
+              />
+              {questionError?.answer && (
+                <p className="text-red-500 text-sm mt-1" role="alert">
+                  {questionError.answer.message}
+                </p>
+              )}
+            </div>
           )}
 
           {hasType && questionType === "Long Answer" && (
-            <div className="relative mt-2">
-              <Textarea
-                placeholder="describe..."
-                className="min-h-[100px] bg-input border-border pr-24"
-                {...register(`screeningQuestions.${index}.answer`)}
-              />
-              <Button
-                type="button"
-                className="absolute bottom-3 right-3 bg-primary-darker hover:bg-primary-dark-hover text-white text-xs rounded-full px-4 py-1 h-8 flex items-center gap-1"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="17 8 12 3 7 8" />
-                  <line x1="12" y1="3" x2="12" y2="15" />
-                </svg>
-                Rewrite AI
-              </Button>
+            <div>
+              <div className="relative mt-2">
+                <Textarea
+                  placeholder="describe..."
+                  className={`min-h-[100px] bg-input border-border pr-24 ${questionError?.answer ? 'border-red-500 border-2' : ''}`}
+                  {...register(`screeningQuestions.${index}.answer`)}
+                />
+                <Button
+                  type="button"
+                  className="absolute bottom-3 right-3 bg-primary-darker hover:bg-primary-dark-hover text-white text-xs rounded-full px-4 py-1 h-8 flex items-center gap-1"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="17 8 12 3 7 8" />
+                    <line x1="12" y1="3" x2="12" y2="15" />
+                  </svg>
+                  Rewrite AI
+                </Button>
+              </div>
+              {questionError?.answer && (
+                <p className="text-red-500 text-sm mt-1" role="alert">
+                  {questionError.answer.message}
+                </p>
+              )}
             </div>
           )}
 
@@ -158,10 +188,16 @@ export function JobApplicationQuestion({
                   <Plus className="w-4 h-4" /> Add
                 </Button>
               </div>
+              
+              {questionError?.answer && (
+                <p className="text-red-500 text-sm mt-1" role="alert">
+                  {questionError.answer.message}
+                </p>
+              )}
             </div>
           )}
 
-          {hasType && questionType === "Check Box" && (
+                    {hasType && questionType === "Check Box" && (
             <div className="space-y-3 pt-2">
               {isFirstQuestion ? (
                 <Controller
@@ -189,69 +225,68 @@ export function JobApplicationQuestion({
                   )}
                 />
               ) : (
-                <>
-                  <div className="space-y-2">
-                    {questionOptions.map((opt, optIdx) => (
-                      <div key={optIdx} className="flex items-center space-x-3">
-                    <Checkbox
-  id={`q${index}-chk${optIdx}`}
-  checked={currentAnswers.includes(opt)}
-  className="h-5 w-5 rounded border-2 border-primary data-[state=checked]:bg-primary data-[state=checked]:border-primary [&_svg]:h-3 [&_svg]:w-3 [&_svg]:stroke-[3] [&_svg]:stroke-white [&_svg]:fill-none"
-  onCheckedChange={(checked) => {
-    const newAnswers = checked
-      ? [...currentAnswers, opt]
-      : currentAnswers.filter((a) => a !== opt);
-    setValue(`screeningQuestions.${index}.answer`, newAnswers.join(","));
-  }}
-/>  
-                        <Label htmlFor={`q${index}-chk${optIdx}`} className="font-normal text-foreground">
-                          {opt}
-                        </Label>
+                // ✅ هذا هو الجزء المصحح
+                <Controller
+                  control={control}
+                  name={`screeningQuestions.${index}.answer`}
+                  render={({ field }) => (
+                    <>
+                      <div className="space-y-2">
+                        {questionOptions.map((opt, optIdx) => {
+                          // نقوم بتحويل القيمة المخزنة (نص مفصول بفواصل) إلى مصفوفة للتحقق
+                          const currentValues = field.value ? field.value.split(",").filter(Boolean) : [];
+                          
+                          return (
+                            <div key={optIdx} className="flex items-center space-x-3">
+                              <Checkbox
+                                id={`q${index}-chk${optIdx}`}
+                                // نتحقق هل القيمة موجودة في المصفوفة
+                                checked={currentValues.includes(opt)}
+                                className="h-5 w-5 rounded border-2 border-primary data-[state=checked]:bg-primary data-[state=checked]:border-primary [&_svg]:h-3 [&_svg]:w-3 [&_svg]:stroke-[3] [&_svg]:stroke-white [&_svg]:fill-none"
+                                onCheckedChange={(checked) => {
+                                  const newValues = checked
+                                    ? [...currentValues, opt]
+                                    : currentValues.filter((a) => a !== opt);
+                                  
+                                  // نعيد تحويل المصفوفة إلى نص مفصول بفواصل وتحديث الحقل رسمياً
+                                  field.onChange(newValues.join(","));
+                                }}
+                              />  
+                              <Label htmlFor={`q${index}-chk${optIdx}`} className="font-normal text-foreground">
+                                {opt}
+                              </Label>
+                            </div>
+                          );
+                        })}
                       </div>
-                    ))}
-                  </div>
 
-                  <div className="flex items-center gap-2">
-                    <Input
-                      placeholder="Add another answer"
-                      value={newOption}
-                      onChange={(e) => setNewOption(e.target.value)}
-                      onKeyDown={handleOptionKeyDown}
-                      className="bg-input border-border h-9"
-                    />
-                    <Button type="button" size="sm" variant="outline" onClick={handleAddOption} className="shrink-0 gap-1">
-                      <Plus className="w-4 h-4" /> Add
-                    </Button>
-                  </div>
-                </>
+                      <div className="flex items-center gap-2">
+                        <Input
+                          placeholder="Add another answer"
+                          value={newOption}
+                          onChange={(e) => setNewOption(e.target.value)}
+                          onKeyDown={handleOptionKeyDown}
+                          className="bg-input border-border h-9"
+                        />
+                        <Button type="button" size="sm" variant="outline" onClick={handleAddOption} className="shrink-0 gap-1">
+                          <Plus className="w-4 h-4" /> Add
+                        </Button>
+                      </div>
+                      
+                      {questionError?.answer && (
+                        <p className="text-red-500 text-sm mt-1" role="alert">
+                          {questionError.answer.message}
+                        </p>
+                      )}
+                    </>
+                  )}
+                />
               )}
             </div>
           )}
         </div>
 
-        <div className="w-48 shrink-0">
-          <Controller
-            control={control}
-            name={`screeningQuestions.${index}.type`}
-            render={({ field: typeField }) => (
-              <Select 
-                onValueChange={typeField.onChange} 
-                value={typeField.value}
-                disabled={isPredefinedQuestion}
-              >
-                <SelectTrigger className="bg-input w-full">
-                  <SelectValue placeholder="Select type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Multiple Choice">Multiple Choice</SelectItem>
-                  <SelectItem value="Check Box">Check Box</SelectItem>
-                  <SelectItem value="Long Answer">Long Answer</SelectItem>
-                  <SelectItem value="Short Answer">Short Answer</SelectItem>
-                </SelectContent>
-              </Select>
-            )}
-          />
-        </div>
+       
       </div>
     </div>
   );

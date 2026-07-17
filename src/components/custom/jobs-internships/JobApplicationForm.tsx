@@ -32,7 +32,8 @@ export default function JobApplicationForm() {
     },
   });
 
-  const { control, register, handleSubmit, setValue, watch } = form;
+  const { control, register, handleSubmit, setValue, watch, formState: { errors } } = form;
+  
   const { fields, append } = useFieldArray({
     control,
     name: "screeningQuestions",
@@ -47,20 +48,20 @@ export default function JobApplicationForm() {
     queryFn: getJobApplicationData,
   });
 
- useEffect(() => {
-  if (jobData) {
-    const formattedQuestions = jobData.screeningQuestions.map((q) => ({
-      id: q.id,
-      question: q.question,
-      type: q.type,  
-      options: q.options || [],
-      answer: "",
-    }));
-    
-    setValue("screeningQuestions", formattedQuestions);
-    setCurrentQuestionIndex(0);
-  }
-}, [jobData, setValue]);
+  useEffect(() => {
+    if (jobData) {
+      const formattedQuestions = jobData.screeningQuestions.map((q) => ({
+        id: q.id,
+        question: q.question,
+        type: q.type,  
+        options: q.options || [],
+        answer: "",
+      }));
+      
+      setValue("screeningQuestions", formattedQuestions);
+      setCurrentQuestionIndex(0);
+    }
+  }, [jobData, setValue]);
 
   useGSAP(() => {
     gsap.from(".form-section", {
@@ -108,10 +109,19 @@ export default function JobApplicationForm() {
     alert(response.message);
   };
 
+  const ErrorMessage = ({ error }: { error: any }) => {
+    if (!error) return null;
+    return (
+      <p className="text-red-500 text-sm mt-1" role="alert">
+        {error.message}
+      </p>
+    );
+  };
+
   if (isLoading) return <div className="p-10 text-center text-foreground">Loading Application Form...</div>;
 
   return (
-    <div className=" mx-auto p-6 md:p-10 bg-background font-sans text-foreground">
+    <div className="mx-auto p-6 md:p-10 bg-background font-sans text-foreground">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
 
         <section className="form-section space-y-6">
@@ -119,33 +129,59 @@ export default function JobApplicationForm() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <Label htmlFor="name" className="text-bold! text-body-md">Name</Label>
-              <Input id="name" placeholder="Enter your name" {...register("name")} className="bg-white!  h-12 " />
+              <Input 
+                id="name" 
+                placeholder="Enter your name" 
+                {...register("name")} 
+                className={`bg-white! h-12 ${errors.name ? 'border-red-500 border-2' : ''}`} 
+              />
+              <ErrorMessage error={errors.name} />
             </div>
             <div className="space-y-2">
               <Label htmlFor="email" className="text-bold! text-body-md">Email Address</Label>
-              <Input id="email" type="email" placeholder="you@example.com" {...register("email")} className="bg-white!  h-12" />
+              <Input 
+                id="email" 
+                type="email" 
+                placeholder="you@example.com" 
+                {...register("email")} 
+                className={`bg-white! h-12 ${errors.email ? 'border-red-500 border-2' : ''}`} 
+              />
+              <ErrorMessage error={errors.email} />
             </div>
             <div className="space-y-2">
               <Label htmlFor="phoneNumber" className='text-bold! text-body-md'>Phone Number</Label>
-              <Input id="phoneNumber" placeholder="+1 234 567 890" {...register("phoneNumber")} className="bg-white!  h-12" />
+              <Input 
+                id="phoneNumber" 
+                placeholder="+1 234 567 890" 
+                {...register("phoneNumber")} 
+                className={`bg-white! h-12 ${errors.phoneNumber ? 'border-red-500 border-2' : ''}`} 
+              />
+              <ErrorMessage error={errors.phoneNumber} />
             </div>
             <div className="space-y-2">
               <Label htmlFor="location" className="text-bold! text-body-md">Location</Label>
-              <Input id="location" placeholder="City, Country" {...register("location")} className="bg-white!  h-12" />
+              <Input 
+                id="location" 
+                placeholder="City, Country" 
+                {...register("location")} 
+                className={`bg-white! h-12 ${errors.location ? 'border-red-500 border-2' : ''}`} 
+              />
+              <ErrorMessage error={errors.location} />
             </div>
           </div>
         </section>
 
+        {/* Professional Information */}
         <section className="form-section space-y-6">
           <h2 className="text-2xl! font-semibold! text-foreground">Professional Information</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <Label htmlFor="currentJobTitle" className="text-bold! text-body-md">Current Job Title</Label>
-              <Input id="currentJobTitle" placeholder="e.g. Senior Designer" {...register("currentJobTitle")} className="bg-white!  h-12" />
+              <Input id="currentJobTitle" placeholder="e.g. Senior Designer" {...register("currentJobTitle")} className="bg-white! h-12" />
             </div>
             <div className="space-y-2">
               <Label htmlFor="currentCompany" className="text-bold! text-body-md">Current Company</Label>
-              <Input id="currentCompany" placeholder="e.g. Pathly" {...register("currentCompany")} className="bg-white!  h-12" />
+              <Input id="currentCompany" placeholder="e.g. Pathly" {...register("currentCompany")} className="bg-white! h-12" />
             </div>
             <div className="space-y-2">
               <Label className="text-bold! text-body-md">Employment Type</Label>
@@ -154,10 +190,10 @@ export default function JobApplicationForm() {
                 name="employmentType"
                 render={({ field }) => (
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <SelectTrigger className="bg-white!  py-6!   w-full">
+                    <SelectTrigger className="bg-white! py-6! w-full">
                       <SelectValue placeholder="Select type" />
                     </SelectTrigger>
-                    <SelectContent >
+                    <SelectContent>
                       {["Full Time", "Part Time", "Internship", "Contract", "Freelance"].map((type) => (
                         <SelectItem key={type} value={type}>{type}</SelectItem>
                       ))}
@@ -173,7 +209,7 @@ export default function JobApplicationForm() {
                 name="yearsOfExperience"
                 render={({ field }) => (
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <SelectTrigger className="bg-white!   py-6! w-full">
+                    <SelectTrigger className="bg-white! py-6! w-full">
                       <SelectValue placeholder="Select years" />
                     </SelectTrigger>
                     <SelectContent>
@@ -191,7 +227,7 @@ export default function JobApplicationForm() {
         <section className="form-section space-y-6">
           <h2 className="text-2xl! font-semibold! text-foreground">Resume & Portfolio</h2>
 
-          <div className="relative rounded-2xl py-10 flex flex-col items-center justify-center transition-all duration-200 h-[200px]">
+          <div className="relative rounded-2xl py-10 flex flex-col items-center justify-center transition-all duration-200 h-50">
             <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
               <rect
                 x="1" y="1"
@@ -204,7 +240,7 @@ export default function JobApplicationForm() {
               />
             </svg>
 
-            <div className={`absolute inset-0 rounded-2xl -z-10 ${uploadAreaHover ? "bg-primary" : "bg-primary"}`} />
+            <div className={`absolute inset-0 rounded-2xl -z-10 `} />
 
             {resumeFile ? (
               <div className="flex items-center gap-4 text-foreground">
@@ -216,7 +252,7 @@ export default function JobApplicationForm() {
               </div>
             ) : (
               <div className="flex flex-col items-center">
-                <div className="mb-2 flex items-center justify-center  text-primary">
+                <div className="mb-2 flex items-center justify-center text-primary">
                   <img src={download} alt="Upload" className="w-9 h-9" />
                 </div>
                 <p className="text-primary font-medium cursor-pointer">
@@ -226,15 +262,22 @@ export default function JobApplicationForm() {
               </div>
             )}
           </div>
-
+            <ErrorMessage error={errors.resumeFile} />
           <div className="space-y-4 mt-10">
             <Label className="text-2xl! font-semibold! text-foreground">Portfolio Links</Label>
             {portfolioFields.map((field, index) => (
-              <div key={field.id} className="flex gap-2 items-center">
-                <Input placeholder="https://behance.net/your-profile" {...register(`portfolioLinks.${index}.url`)} className="bg-white!  h-12 flex-1" />
-                <Button type="button" variant="ghost" size="icon" onClick={() => removePortfolio(index)} className="text-foreground hover:text-destructive">
-                  <Trash2 className="w-4 h-4" />
-                </Button>
+              <div key={field.id}>
+                <div className="flex gap-2 items-center">
+                  <Input 
+                    placeholder="https://behance.net/your-profile" 
+                    {...register(`portfolioLinks.${index}.url`)} 
+                    className={`bg-white! h-12 flex-1 ${errors.portfolioLinks?.[index]?.url ? 'border-red-500 border-2' : ''}`} 
+                  />
+                  <Button type="button" variant="ghost" size="icon" onClick={() => removePortfolio(index)} className="text-foreground hover:text-destructive">
+                    <Trash2 className="w-4 h-4" />
+                  </Button>
+                </div>
+                <ErrorMessage error={errors.portfolioLinks?.[index]?.url} />
               </div>
             ))}
             <Button type="button" onClick={() => appendPortfolio({ url: "" })} className="ml-auto flex items-center gap-2 bg-primary hover:bg-primary-hover text-white">
@@ -246,6 +289,20 @@ export default function JobApplicationForm() {
         <section className="form-section space-y-8">
           <h2 className="text-2xl! font-semibold! text-foreground">Screening Questions</h2>
 
+              {errors.screeningQuestions && (
+    <div className="bg-red-50 border border-red-200 rounded-lg p-4" role="alert">
+      <p className="text-red-600 font-medium">Please answer all screening questions:</p>
+      <ul className="list-disc list-inside mt-2 text-sm text-red-500">
+        {Array.isArray(errors.screeningQuestions) && errors.screeningQuestions.map((error: any, idx: number) => (
+          error && (error.question || error.answer) && (
+            <li key={idx}>
+              Question {idx + 1}: {error.question?.message || error.answer?.message}
+            </li>
+          )
+        ))}
+      </ul>
+    </div>
+  )}
           {fields.length > 0 && fields[currentQuestionIndex] && (
             <>
               <JobApplicationQuestion
