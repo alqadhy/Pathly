@@ -1,10 +1,9 @@
 import { ROLES } from "../roles";
-
 export const APP_ROUTES = {
   // Landing Page
   home: "/",
 
-  // Auth Routes
+  // Auth Rotues
   auth: {
     login: "/auth/",
     signup: "/auth/sign-up",
@@ -12,38 +11,31 @@ export const APP_ROUTES = {
 
   // Student Routes
   student: {
-    dashboard: `/${ROLES.USER}/dashboard`,
-    aiAssistant: `/${ROLES.USER}/ai-assistant`,
-    analytics: `/${ROLES.USER}/analytics`,
-    cv: `/${ROLES.USER}/cv`,
-    jobs: `/${ROLES.USER}/jobs`,
-    jobDetails: (id: number | string) => `/${ROLES.USER}/jobs/${id}`,
-    applyJob: (id: number | string) => `/${ROLES.USER}/apply/${id}`,
-    saved: `/${ROLES.USER}/saved`,
-    learning: `/${ROLES.USER}/learning`,
-    community: `/${ROLES.USER}/community`,
-    profile: `/${ROLES.USER}/profile`,
-    publicProfile: (id: string) => `/${ROLES.USER}/profile/${id}`,
-    settings: `/${ROLES.USER}/settings`,
-    messages: `/${ROLES.USER}/messages`,
+    dashboard: "/student/dashboard",
+    analytics: "/student/analytics",
+    cv: "/student/cv",
+    jobs: "/student/jobs",
+    jobDetails: (id: number | string) => `/student/jobs/${id}`,
+    applyJob: (id: number | string) => `/student/apply/${id}`,
+    learning: "/student/learning",
+    profile: "/student/profile",  
+    publicProfile: (id: string) => `/student/profile/${id}`,
+    settings: "/student/settings",
+    messages: "/student/messages",
     cvBuilder: {
-      dashboard: `/${ROLES.USER}/cv`,
+      dashboard: "/student/cv",
       templateSelection: (mode: "ai" | "manual" | ":mode") =>
-        `/${ROLES.USER}/cv/templates/${mode}`,
+        `/student/cv/templates/${mode}`,
       manualBuilder: (templateId: string) =>
-        `/${ROLES.USER}/cv/builder/manual/${templateId}`,
-      aiBuilder: (templateId: string) =>
-        `/${ROLES.USER}/cv/builder/ai/${templateId}`,
+        `/student/cv/builder/manual/${templateId}`,
+      aiBuilder: (templateId: string) => `/student/cv/builder/ai/${templateId}`,
     },
   },
-
-  // Public Routes
   public: {
     community: "/community",
     saved: "/saved",
     aiAssistant: "/ai-assistant",
   },
-
   // Company Routes
   company: {
     dashboard: `/${ROLES.COMPANY}/dashboard`,
