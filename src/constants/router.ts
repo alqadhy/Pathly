@@ -1,3 +1,5 @@
+import { ROLES } from "../roles";
+
 export const APP_ROUTES = {
   // Landing Page
   home: "/",
@@ -25,12 +27,25 @@ export const APP_ROUTES = {
     settings: "/student/settings",
     messages: "/student/messages",
     cvBuilder: {
-      dashboard: "/student/cv",
+      dashboard: `/${ROLES.USER}/cv`,
       templateSelection: (mode: "ai" | "manual" | ":mode") =>
-        `/student/cv/templates/${mode}`,
+        `/${ROLES.USER}/cv/templates/${mode}`,
       manualBuilder: (templateId: string) =>
-        `/student/cv/builder/manual/${templateId}`,
-      aiBuilder: (templateId: string) => `/student/cv/builder/ai/${templateId}`,
+        `/${ROLES.USER}/cv/builder/manual/${templateId}`,
+      aiBuilder: (templateId: string) => `/${ROLES.USER}/cv/builder/ai/${templateId}`,
     },
+  },
+
+  // Public Routes
+  public: {
+    community: "/community",
+    saved: "/saved",
+    aiAssistant: "/ai-assistant",
+  },
+  // Company Routes
+  company: {
+    dashboard: `/${ROLES.COMPANY}/dashboard`,
+    profile: `/${ROLES.COMPANY}/profile`,
+    publicProfile: (id: string) => `/${ROLES.COMPANY}/profile/${id}`,
   },
 };

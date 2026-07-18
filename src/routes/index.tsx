@@ -13,6 +13,7 @@ import PageLoader from "../components/layout/PageLoader";
 import Loader from "../components/layout/Loader";
 import CareerChat from "../pages/student/CareerChat";
 import PublicProfile from "../pages/student/PublicProfile";
+import PublicCompanyProfile from "../pages/company/PublicCompanyProfile";
 
 // Pages
 const Home = lazy(() => import("../pages/Home"));
@@ -28,6 +29,7 @@ const SavedItems = lazy(() => import("../pages/student/SavedItems"));
 const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
 const Community = lazy(() => import("../pages/student/Community"));
 const Profile = lazy(() => import("../pages/student/Profile"));
+const CompanyProfile = lazy(() => import("../pages/company/CompanyProfile"));
 const Messages = lazy(() => import("../pages/student/Messages"));
 const CVBuilderAI = lazy(() => import("../pages/student/cv/CVBuilderAI"));
 const CVBuilderManual = lazy(
@@ -79,7 +81,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: APP_ROUTES.student.saved,
+        path: APP_ROUTES.public.saved,
         element: (
           <Suspense fallback={<Loader />}>
             <SavedItems />
@@ -170,6 +172,7 @@ const router = createBrowserRouter([
         path: APP_ROUTES.student.cvBuilder.manualBuilder(":templateId"),
         element: (
           <Suspense fallback={<Loader />}>
+            <Messages />
             <CVBuilderManual />
           </Suspense>
         ),
@@ -182,6 +185,14 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
+       {
+        path: APP_ROUTES.student.messages,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Messages />
+          </Suspense>
+        ),
+      },
     ],
   },
 
@@ -227,6 +238,53 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <AuthFlow initialStep="signup" />
+          </Suspense>
+        ),
+      },
+    ],
+  },
+
+  // Company Routes
+  {
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: APP_ROUTES.company.profile,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <CompanyProfile />
+          </Suspense>
+        ),
+        },
+        {
+          path: APP_ROUTES.company.publicProfile(":id"),
+          element: (
+            <Suspense fallback={<Loader />}>
+              <PublicCompanyProfile />
+            </Suspense>
+          ),
+        },
+      {
+        path: APP_ROUTES.public.community,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Community />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.public.saved,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <SavedItems />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.public.aiAssistant,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <CareerChat />
           </Suspense>
         ),
       },

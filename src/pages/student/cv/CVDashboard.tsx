@@ -1,9 +1,9 @@
 import { useNavigate,useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { useBuilderUIStore } from "@/store/useBuilderUIStore";
-import { useSeedResumes } from "@/hooks/useSeedResumes";
-import { useResumes } from "@/hooks/useResumes";
-import ResumeCard from "@/components/custom/resume/ResumeCard";
+import { useBuilderUIStore } from "../../../store/useBuilderUIStore";
+import { useSeedResumes } from "../../../hooks/useSeedResumes";
+import { useResumes } from "../../../hooks/useResumes";
+import ResumeCard from "../../../components/custom/resume/ResumeCard";
 import { APP_ROUTES } from "../../../constants/router";  
 import main from "../../../assets/imgs/cv/main.png";
 import {

@@ -18,10 +18,27 @@ import { useSidebarStore } from "../../store/sidebar.store";
 
 // Logo
 import logo from "../../assets/imgs/logo.png";
+import { getCurrentUser } from "../custom/Profile/crud/profileStorage";
+import { ROLES } from "../../roles";
 
 function DashboardHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { isOpen, open, close } = useSidebarStore();
+  // const navigate = useNavigate();
+
+  const currentUser = getCurrentUser();
+
+  // const handleuserProfileClick = () => {
+  //   if (currentUser) {
+  //     if (currentUser.role === "student") {
+  //       navigate(APP_ROUTES.student.dashboard);
+  //     } else if (currentUser.role === "company") {
+  //       navigate(APP_ROUTES.company.dashboard);
+  //     }
+  //   } else {
+  //     navigate(APP_ROUTES.auth.login);
+  //   }
+  // };
 
   function toggleSidebar() {
     if (isOpen) close();
@@ -52,13 +69,25 @@ function DashboardHeader() {
         >
           {isOpen ? <X /> : <Menu />}
         </IconButton>
-        <Link
-          to={APP_ROUTES.student.dashboard}
-          title={SLOGAN}
-          className="hidden lg:block"
-        >
-          <img src={logo} alt={SLOGAN} className="h-10" />
-        </Link>
+        {currentUser?.role === ROLES.COMPANY && (
+          <Link
+            to={APP_ROUTES.company.dashboard}
+            title={SLOGAN}
+            className="hidden lg:block"
+          >
+            <img src={logo} alt={SLOGAN} className="h-10" />
+          </Link>
+        )}
+        {currentUser?.role === ROLES.USER && (
+          <Link
+            to={APP_ROUTES.student.dashboard}
+            title={SLOGAN}
+            className="hidden lg:block"
+          >
+            <img src={logo} alt={SLOGAN} className="h-10" />
+          </Link>
+        )}
+
         <Searchbar />
       </div>
 
@@ -74,9 +103,16 @@ function DashboardHeader() {
             <MessagesSquare />
           </IconButton>
         </Link>
-        <Link to={APP_ROUTES.student.profile}>
-          <UserAvatar />
-        </Link>
+        {currentUser?.role === ROLES.COMPANY && (
+          <Link to={APP_ROUTES.company.profile}>
+            <UserAvatar />
+          </Link>
+        )}
+        {currentUser?.role === ROLES.USER && (
+          <Link to={APP_ROUTES.student.profile}>
+            <UserAvatar />
+          </Link>
+        )}
       </div>
     </header>
   );

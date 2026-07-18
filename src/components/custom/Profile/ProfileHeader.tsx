@@ -1,5 +1,6 @@
 import React from "react";
 import type { Profile } from "../../../types/profile";
+import type { CompanyProfile } from "../CompanyProfile/types";
 import {
   MapPin,
   Briefcase,
@@ -10,15 +11,21 @@ import {
   Users,
   MessageSquare,
   Bookmark,
+  X,
+  Copy,
+  Mail,
+  MessageCircle,
 } from "lucide-react";
 import { useSavedItemsStore } from "../../../store/saved-items.store";
 
 interface ProfileHeaderProps {
-  profile: Profile;
+  profile: Profile | CompanyProfile;
   onAvatarChange?: (imageUrl: string) => void;
   onCoverChange?: (imageUrl: string) => void;
   isPublicView?: boolean;
   onMessageClick?: () => void;
+  subtitle?: string;
+  onShareClick?: () => void;
 }
 
 const ProfileHeader: React.FC<ProfileHeaderProps> = ({
@@ -27,6 +34,8 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
   onCoverChange,
   isPublicView = false,
   onMessageClick,
+  subtitle,
+  onShareClick,
 }) => {
   const { saveItem, removeItem, savedItems } = useSavedItemsStore();
   const isSaved = savedItems.profiles.some((p) => p.id === profile.id);
@@ -139,7 +148,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
 
       {/* Profile Info */}
       <div className="px-6 pb-6">
-        <div className="flex items-start flex-wrap">
+        <div className="flex items-start">
           {/* Avatar */}
           <div className="relative -mt-16">
             <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-34 md:h-34 rounded-full border-4 border-white bg-linear-to-br from-[#553be6] to-[#402cad]
@@ -175,43 +184,43 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
           </div>
 
           <div className="ml-4 flex-1 pt-4">
-            <div className="flex items-start flex-wrap gap-3 justify-between">
+            <div className="flex items-start justify-between">
               <div className="flex-1">
                 <h1 className="text-2xl font-bold text-[#111827]">
                   {profile.name || "Your Name"}
                 </h1>
-                <p className="text-sm text-gray-600 mt-0.5">
-                  {profile.title || "Your Title"}
-                </p>
-                <div className="flex items-center mt-2 text-sm text-[#553be6]">
-                  <Users className="w-4 h-4 mr-1.5" />
-                  <span className="font-medium">
-                    {profile.followers || 0} followers
-                  </span>
-                </div>
-                <div className="flex items-center flex-wrap gap-3 mt-3 space-x-4">
+                <div className="flex items-center gap-4 mt-2">
+                  {(profile as Profile).title && (
+                    <div className="flex items-center text-sm text-gray-600">
+                      <Briefcase className="w-4 h-4 mr-1.5" />
+                      <span>{(profile as Profile).title}</span>
+                    </div>
+                  )}
                   {profile.location && (
-                    <div className="flex items-center text-sm text-gray-600 mr-4 sm:mr-0">
+                    <div className="flex items-center text-sm text-gray-600">
                       <MapPin className="w-4 h-4 mr-1.5" />
                       <span>{profile.location}</span>
                     </div>
                   )}
-                  {profile.industry && (
-                    <div className="flex items-center text-sm text-gray-600">
-                      <Briefcase className="w-4 h-4 mr-1.5" />
-                      <span>{profile.industry}</span>
-                    </div>
-                  )}
+                </div>
+                <div className="flex items-center mt-2 text-sm text-[#553be6]">
+                  <Users className="w-4 h-4 mr-1.5" />
+                  <span className="font-medium">
+                    +{profile.followers || 0} followers
+                  </span>
                 </div>
               </div>
-              <div className="flex items-center flex-wrap gap-y-3 space-x-2 pt-1">
+              <div className="flex items-center gap-2 pt-1">
                 {!isPublicView ? (
                   <>
-                    <button className="px-4 py-2 text-sm font-medium text-white bg-[#553be6] rounded-sm hover:bg-[#4d35cf] transition-colors duration-200 flex items-center gap-2">
+                    <button 
+                      onClick={onShareClick}
+                      className="px-4 py-2 text-sm font-medium text-white bg-[#553be6] rounded-sm hover:bg-[#4d35cf] transition-colors duration-200 flex items-center gap-2"
+                    >
                       <Share2 className="w-4 h-4" />
                       Share Profile
                     </button>
-                    <button className="flex-1 sm:flex-none px-4 py-2 text-sm font-medium text-[#553be6] border-2 border-[#553be6] rounded-sm hover:bg-purple-50 transition-colors duration-200 flex items-center justify-center gap-2">
+                    <button className="px-4 py-2 text-sm font-medium text-[#553be6] border-2 border-[#553be6] rounded-sm hover:bg-purple-50 transition-colors duration-200 flex items-center gap-2">
                       <Eye className="w-4 h-4" />
                       Public preview
                     </button>
@@ -236,7 +245,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
                             id: profile.id,
                             picture: profile.avatarImage?.url || "",
                             name: profile.name,
-                            headline: profile.title || "",
+                            headline: (profile as Profile).title || "",
                             connections: {
                               profilePic: profile.avatarImage?.url || "",
                               text: profile.followers ? `${profile.followers} followers` : "",

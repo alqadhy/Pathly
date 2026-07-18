@@ -25,7 +25,7 @@ export const SIDEBAR_LINKS = {
         {
           icon: <WandSparkles />,
           text: "AI Assistant",
-          to: APP_ROUTES.student.aiAssistant,
+          to: APP_ROUTES.public.aiAssistant,
         },
         {
           icon: <ChartColumn />,
@@ -47,7 +47,7 @@ export const SIDEBAR_LINKS = {
         {
           icon: <Bookmark />,
           text: "Saved Items",
-          to: APP_ROUTES.student.saved,
+          to: APP_ROUTES.public.saved,
         },
       ],
     },
@@ -63,7 +63,7 @@ export const SIDEBAR_LINKS = {
         {
           icon: <UsersRound />,
           text: "Community",
-          to: APP_ROUTES.student.community,
+          to: APP_ROUTES.public.community,
         },
       ],
     },
