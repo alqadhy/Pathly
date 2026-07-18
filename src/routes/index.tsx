@@ -11,37 +11,42 @@ import { APP_ROUTES } from "../constants";
 // Loaders
 import PageLoader from "../components/layout/PageLoader";
 import Loader from "../components/layout/Loader";
-import CareerChat from "../pages/student/CareerChat";
-import PublicProfile from "../pages/student/PublicProfile";
-import PublicCompanyProfile from "../pages/company/PublicCompanyProfile";
 
-// Pages
+// Pages (Lazy Loaded)
 const Home = lazy(() => import("../pages/Home"));
 const Dashboard = lazy(() => import("../pages/student/Dashboard"));
 const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
 const JobsInternshipsDashboard = lazy(
   () => import("../pages/student/Jobs-Internships"),
 );
-
 const JobDetails = lazy(() => import("../pages/student/JobDetails"));
 const ApplyJobPage = lazy(() => import("../pages/student/ApplyJobPage"));
 const SavedItems = lazy(() => import("../pages/student/SavedItems"));
 const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
 const Community = lazy(() => import("../pages/student/Community"));
 const Profile = lazy(() => import("../pages/student/Profile"));
-const CompanyProfile = lazy(() => import("../pages/company/CompanyProfile"));
+const PublicProfile = lazy(() => import("../pages/student/PublicProfile"));
+const CareerChat = lazy(() => import("../pages/student/CareerChat"));
 const Messages = lazy(() => import("../pages/student/Messages"));
-const CVBuilderAI = lazy(() => import("../pages/student/cv/CVBuilderAI"));
-const CVBuilderManual = lazy(
-  () => import("../pages/student/cv/CVBuilderManual"),
-);
+
+// CV Builder Pages
+const CVDashboard = lazy(() => import("../pages/student/cv/CVDashboard"));
 const TemplateSelection = lazy(
   () => import("../pages/student/cv/TempleteSelection"),
 );
-const CVDashboard = lazy(() => import("../pages/student/cv/CVDashboard"));
+const CVBuilderManual = lazy(
+  () => import("../pages/student/cv/CVBuilderManual"),
+);
+const CVBuilderAI = lazy(() => import("../pages/student/cv/CVBuilderAI"));
+
+// Company Pages
+const CompanyProfile = lazy(() => import("../pages/company/CompanyProfile"));
+const PublicCompanyProfile = lazy(
+  () => import("../pages/company/PublicCompanyProfile"),
+);
 
 const router = createBrowserRouter([
-  // Landing Page
+  // ==================== Landing Page ====================
   {
     path: APP_ROUTES.home,
     element: (
@@ -51,40 +56,38 @@ const router = createBrowserRouter([
     ),
   },
 
-  // Student Dashboard Routes
+  // ==================== Auth Routes ====================
+  {
+    element: <AuthLayout />,
+    children: [
+      {
+        path: APP_ROUTES.auth.login,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <AuthFlow initialStep="login" />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.auth.signup,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <AuthFlow initialStep="signup" />
+          </Suspense>
+        ),
+      },
+    ],
+  },
+
+  // ==================== Student Routes ====================
   {
     element: <DashboardLayout />,
-
     children: [
       {
         path: APP_ROUTES.student.dashboard,
         element: (
           <Suspense fallback={<Loader />}>
             <Dashboard />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.student.jobs,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <JobsInternshipsDashboard />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.student.analytics,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <Analytics />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.public.saved,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <SavedItems />
           </Suspense>
         ),
       },
@@ -113,6 +116,22 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: APP_ROUTES.student.analytics,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Analytics />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.saved,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <SavedItems />
+          </Suspense>
+        ),
+      },
+      {
         path: APP_ROUTES.student.community,
         element: (
           <Suspense fallback={<Loader />}>
@@ -128,7 +147,7 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-       {
+      {
         path: APP_ROUTES.student.publicProfile(":id"),
         element: (
           <Suspense fallback={<Loader />}>
@@ -148,10 +167,12 @@ const router = createBrowserRouter([
         path: APP_ROUTES.student.messages,
         element: (
           <Suspense fallback={<Loader />}>
-            <Messages  />
+            <Messages />
           </Suspense>
         ),
       },
+
+      // CV Builder Sub-Routes
       {
         path: APP_ROUTES.student.cvBuilder.dashboard,
         element: (
@@ -172,7 +193,6 @@ const router = createBrowserRouter([
         path: APP_ROUTES.student.cvBuilder.manualBuilder(":templateId"),
         element: (
           <Suspense fallback={<Loader />}>
-            <Messages />
             <CVBuilderManual />
           </Suspense>
         ),
@@ -185,66 +205,10 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-       {
-        path: APP_ROUTES.student.messages,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <Messages />
-          </Suspense>
-        ),
-      },
     ],
   },
 
-  // Auth Routes
-  {
-    element: <AuthLayout />,
-    children: [
-      {
-        path: APP_ROUTES.auth.login,
-        element: (
-          <Suspense fallback={<PageLoader />}>
-            <AuthFlow initialStep="login" />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.auth.signup,
-        element: (
-          <Suspense fallback={<PageLoader />}>
-            <AuthFlow initialStep="signup" />
-          </Suspense>
-        ),
-      },
-    ],
-  },
-
-  // Auth Routes
-  {
-    element: <AuthLayout />,
-
-    children: [
-      {
-        path: APP_ROUTES.auth.login,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <AuthFlow initialStep="login" />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.auth.signup,
-
-        element: (
-          <Suspense fallback={<Loader />}>
-            <AuthFlow initialStep="signup" />
-          </Suspense>
-        ),
-      },
-    ],
-  },
-
-  // Company Routes
+  // ==================== Company Routes ====================
   {
     element: <DashboardLayout />,
     children: [
@@ -255,36 +219,12 @@ const router = createBrowserRouter([
             <CompanyProfile />
           </Suspense>
         ),
-        },
-        {
-          path: APP_ROUTES.company.publicProfile(":id"),
-          element: (
-            <Suspense fallback={<Loader />}>
-              <PublicCompanyProfile />
-            </Suspense>
-          ),
-        },
-      {
-        path: APP_ROUTES.public.community,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <Community />
-          </Suspense>
-        ),
       },
       {
-        path: APP_ROUTES.public.saved,
+        path: APP_ROUTES.company.publicProfile(":id"),
         element: (
           <Suspense fallback={<Loader />}>
-            <SavedItems />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.public.aiAssistant,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <CareerChat />
+            <PublicCompanyProfile />
           </Suspense>
         ),
       },
