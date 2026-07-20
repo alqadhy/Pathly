@@ -7,14 +7,14 @@ const OrderSummary = ({
 }: Props) => {
   return (
     <div className="space-y-xl">
-      <h3 className="text-[28px] font-bold text-text-primary">
+      <h3 className="text-[28px] font-bold text-text-primary mb-sm">
         Order Summary
       </h3>
 
-      <div className="space-y-lg">
+      <div className="space-y-md">
         {/* PRICE */}
         <div className="flex items-center justify-between">
-          <span className="text-body-lg text-text-secondary">
+          <span className="text-body-lg text-dark">
             Course Price:
           </span>
 
@@ -25,7 +25,7 @@ const OrderSummary = ({
 
         {/* DISCOUNT */}
         <div className="flex items-center justify-between">
-          <span className="text-body-lg text-text-secondary">
+          <span className="text-body-lg text-dark">
             Discount:
           </span>
 
@@ -38,11 +38,11 @@ const OrderSummary = ({
 
         {/* TOTAL */}
         <div className="flex items-center justify-between">
-          <span className="text-[24px] font-bold text-text-primary">
+          <span className="text-h6 font-bold text-text-primary">
             Total:
           </span>
 
-          <span className="text-[30px] font-bold text-primary">
+          <span className="text-h4 font-bold">
             {price} EGP
           </span>
         </div>

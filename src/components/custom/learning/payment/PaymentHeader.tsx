@@ -12,7 +12,7 @@ const PaymentHeader = ({
   title,
 }: Props) => {
   return (
-    <div className="mb-sm flex items-center justify-between">
+    <div className="mb-2xl flex items-center justify-between ">
       <h2 className="text-[32px] font-bold text-text-primary">
         {title}
       </h2>

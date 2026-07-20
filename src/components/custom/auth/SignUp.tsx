@@ -162,39 +162,20 @@ const SignUp = ({
 
   return (
     <div
-      className="
-        flex
-        w-full
-        flex-col
-        items-center
-        justify-center
-        gap-xl
-        px-lg
-        py-sm
-        md:flex-row
+      className=" flex w-full flex-col items-center justify-center gap-xl px-lg py-sm md:flex-row
       "
     >
 
       {/* LEFT */}
       <div
-        className="
-          w-full
-          lg:w-1/2
-          lg:max-w-[45%]
+        className=" w-full lg:w-1/2 lg:max-w-[45%]
         "
       >
 
         <div className="space-y-md">
 
           <p
-            className="
-              text-h2
-              font-bold
-              leading-none
-              tracking-[-2px]
-              text-light
-
-              sm:text-display
+            className="text-h2font-boldleading-nonetracking-[-2px]text-light sm:text-display
             "
           >
             Create Your
@@ -323,19 +304,7 @@ const SignUp = ({
                     e.target.value
                   )
                 }
-                className="
-                  h-[64px]
-                  w-[90px]
-                  rounded-xl
-                  border
-                  border-border
-                  bg-background
-                  px-md
-                  text-body-sm
-                  text-text-primary
-                  outline-none
-                  transition-all
-                  focus:border-primary
+                className=" h-[64px] w-[90px] rounded-xl border border-border bg-background px-md text-body-sm text-text-primary outline-none transition-all focus:border-primary
                 "
               />
 
@@ -348,19 +317,7 @@ const SignUp = ({
                     e.target.value
                   )
                 }
-                className="
-                  h-[64px]
-                  flex-1
-                  rounded-xl
-                  border
-                  border-border
-                  bg-background
-                  px-lg
-                  text-body-sm
-                  text-text-primary
-                  outline-none
-                  transition-all
-                  focus:border-primary
+                className=" h-[64px] flex-1 rounded-xl border border-border bg-background px-lg text-body-sm text-text-primary outline-none transition-all focus:border-primary
                 "
               />
 

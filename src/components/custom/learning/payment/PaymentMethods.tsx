@@ -35,20 +35,20 @@ const PaymentMethods = ({
         Payment Method
       </h3>
 
-      <div className="rounded-2xl border border-border bg-muted p-xl">
+      <div className="rounded-2xl border border-border bg-light p-md">
         <RadioGroup
           value={paymentMethod}
           onValueChange={(value) =>
             setPaymentMethod(value as "card" | "paypal" | "")
           }
-          className="space-y-xl"
+          className="space-y-xl gap-8"
         >
           <div>
-            <div className="flex items-center gap-sm">
+            <div className="flex items-center gap-md">
               <RadioGroupItem
                 value="card"
                 id="card"
-                className="h-5 w-5 border-2 border-primary text-primary-foreground data-[state=checked]:border-primary data-[state=checked]:bg-primary"
+                className="h-5 w-5 border-2 border-dark text-primary-foreground data-[state=checked]:border-primary data-[state=checked]:bg-primary"
               />
 
               <Label
@@ -105,13 +105,11 @@ const PaymentMethods = ({
             )}
           </div>
 
-          <div className="h-px bg-border" />
-
-          <div className="flex items-center gap-sm">
+          <div className="flex items-center gap-md">
             <RadioGroupItem
               value="paypal"
               id="paypal"
-              className="h-5 w-5 border-2 border-primary text-primary-foreground data-[state=checked]:border-primary data-[state=checked]:bg-primary"
+              className="h-5 w-5 border-2 border-dark text-primary-foreground data-[state=checked]:border-primary data-[state=checked]:bg-primary"
             />
 
             <Label

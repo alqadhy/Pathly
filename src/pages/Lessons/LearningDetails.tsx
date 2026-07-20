@@ -60,7 +60,7 @@ return (
         title={course.title}
       />
 
-      <div className="mt-2xl flex flex-col gap-2xl lg:flex-row lg:justify-between">
+      <div className="mt-md flex flex-col gap-2xl lg:flex-row lg:justify-between">
         <div className="flex-1">
           <LearningInstructor course={course} />
 

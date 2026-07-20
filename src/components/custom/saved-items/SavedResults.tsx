@@ -7,6 +7,9 @@ import type {
   SavedCourse,
 } from "../../../types/saved.types";
 
+import { useNavigate } from "react-router-dom";
+import { APP_ROUTES } from "../../../constants";
+
 // Components
 import SavedWrapper from "./SavedWrapper";
 import SavedFeedCard from "../SavedFeedCard";
@@ -14,14 +17,16 @@ import ProfileCard from "../ProfileCard";
 import CourseCard from "../CourseCard";
 
 function SavedResults({
+  
   savedItemsCategory,
   savedItems,
 }: {
   savedItemsCategory: string;
   savedItems: SavedItemsType;
 }) {
+  const navigate = useNavigate();
   return (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-5">
+    <div className="grid gap-lg sm:grid-cols-2 xl:grid-cols-3">
       {savedItemsCategory == "Feeds"
         ? savedItems.feeds.map((feed: SavedFeed) => (
             <SavedWrapper key={feed.id} category="feeds" itemId={feed.id}>
@@ -62,19 +67,28 @@ function SavedResults({
                   category="courses"
                   itemId={course.id}
                 >
-                  <CourseCard
-                    id={course.id}
-                    image={course.img}
-                    title={course.title}
-                    instructor={course.instructor}
-                    rating={course.rating}
-                    reviews={course.review}
-                    duration={course.duration}
-                    level={course.level}
-                    hasCertificate={course.hasCertificate}
-                    price={course.price}
-                    tag={course.tag}
-                  />
+<CourseCard
+  id={course.id}
+  image={course.img}
+  title={course.title}
+  instructor={course.instructor}
+  rating={course.rating}
+  reviews={course.review}
+  duration={course.duration}
+  level={course.level}
+  hasCertificate={course.hasCertificate}
+  price={course.price}
+  tag={course.tag}
+  buttonText="View Details"
+  onClickFn={() =>
+        navigate(
+          APP_ROUTES.Learning.courseDetails.replace(
+            ":id",
+            String(course.id)
+          )
+        )
+      }
+/>
                 </SavedWrapper>
               ))}
     </div>

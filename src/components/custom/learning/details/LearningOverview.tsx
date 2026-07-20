@@ -8,30 +8,30 @@ type Props = {
 
 const LearningOverview = ({ course }: Props) => {
   return (
-    <div className="bg-card p-md">
+    <div className="p-md">
       {/* ABOUT */}
       <div>
-        <h3 className="mb-lg text-[32px] font-bold text-text-primary">
+        <p className="mt-lg text-h4 font-bold text-text-primary">
           About This Course
-        </h3>
+        </p>
 
-        <p className="max-w-[980px] text-[22px] leading-[190%] text-text-secondary">
+        <p className="max-w-[980px] text-h4 leading-[190%] text-dark">
           {course.about}
         </p>
       </div>
 
       {/* LEARN */}
-      <div className="mt-2xl">
-        <h3 className="mb-lg text-[32px] font-bold text-text-primary">
+      <div className="mt-sm">
+        <p className="mb-sm text-h4 font-bold text-text-primary">
           You will learn
-        </h3>
+        </p>
 
-        <div className="space-y-md">
+        <div className="">
           {course.learn?.map((item) => (
             <div key={item} className="flex items-center gap-sm">
-              <CircleCheck size={22} className="fill-primary text-primary" />
+              <CircleCheck size={22} className="fill-primary text-text-light" />
 
-              <span className="text-[22px] text-text-secondary">
+              <span className="text-[22px] text-dark">
                 {item}
               </span>
             </div>

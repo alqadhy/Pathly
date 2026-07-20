@@ -8,7 +8,7 @@ type Props = {
 
 const LearningInstructor = ({ course }: Props) => {
   return (
-    <div className="bg-card p-md">
+    <div className="p-md">
       <div className="flex flex-col gap-lg lg:flex-row lg:items-center lg:justify-between">
         <div className="flex items-center gap-lg">
           <div className="h-[72px] w-[72px] shrink-0 overflow-hidden rounded-full">
@@ -20,25 +20,25 @@ const LearningInstructor = ({ course }: Props) => {
           </div>
 
           <div className="flex flex-col justify-center">
-            <h3 className="whitespace-nowrap text-[32px] font-semibold leading-none text-text-primary">
+            <p className="whitespace-nowrap text-h3 font-semibold leading-none text-dark">
               {course.instructor}
-            </h3>
+            </p>
 
             <div className="mt-sm flex items-center gap-xs">
               <Star size={18} className="fill-warning text-warning" />
 
-              <span className="text-body-lg font-medium text-text-secondary">
+              <span className="text-body-lg font-medium text-dark">
                 {course.rating}
               </span>
 
-              <span className="text-body-lg text-text-secondary">
+              <span className="text-body-lg text-dark">
                 ({course.reviews})
               </span>
             </div>
           </div>
         </div>
 
-        <button className="h-[72px] w-full rounded-xl border-2 border-primary bg-card px-xl text-[24px] font-semibold text-primary transition-all duration-normal hover:bg-primary-hover hover:text-primary-foreground active:scale-[0.98] active:bg-primary-active lg:w-[230px]">
+        <button className="h-[52px] rounded-sm border-2 border-primary bg-card px-xl text-h5 font-semibold text-primary transition-all duration-normal hover:bg-primary-hover hover:text-primary-foreground active:scale-[0.98] active:bg-primary-active ">
           View Profile
         </button>
       </div>

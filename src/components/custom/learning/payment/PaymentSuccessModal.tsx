@@ -5,6 +5,7 @@ import { Button } from "../../../ui/button";
 
 import { learningCourses } from "../../../../../public/mocked/learning/learning";
 import { APP_ROUTES } from "../../../../constants";
+import LearningOverviewBadges from "../details/LearningOverview-Badges";
 
 type Props = {
   courseId: number;
@@ -35,22 +36,22 @@ const PaymentSuccessModal = ({
           Payment Successful!
         </h2>
 
-        <p className="text-center text-[28px] font-semibold text-text-primary">
+        <p className="text-center mt-sm text-h4 font-bold text-text-primary">
           Welcome to the course
         </p>
 
-        <div className="mt-md text-center text-[22px] font-semibold text-text-secondary">
+        <div className="mt-md text-center text-h6 font-semibold text-dark">
           <p>Order ID: #{Date.now()}</p>
           <p>Amount Paid: {course.price} EGP</p>
         </div>
       </div>
 
       {/* COURSE CARD */}
-      <div className="flex flex-col gap-lg rounded-2xl border border-border bg-card p-lg shadow-card lg:flex-row lg:items-center">
+      <div className="flex flex-col gap-lg rounded-sm border border-border p-lg lg:flex-row lg:items-center">
         <img
           src={course.image}
           alt={course.title}
-          className="h-[170px] shrink-0 basis-1/3 rounded-xl object-cover"
+          className="h-[150px] shrink-0 basis-1/3 rounded-sm object-cover"
         />
 
         <div className="flex-1">
@@ -58,46 +59,30 @@ const PaymentSuccessModal = ({
             {course.title}
           </h3>
 
-          <div className="mt-sm flex flex-wrap items-center gap-md text-[20px]">
-            <span className="text-text-secondary">
+          <div className="mt-sm mb-md flex flex-wrap items-center gap-md text-h6">
+            <span className="text-dark">
               By Dr. {course.instructor}
             </span>
 
-            <span className="flex items-center gap-xs">
+            <span className="flex items-center gap-xs text-dark">
               <Star size={18} className="fill-yellow-400 text-yellow-400" />
 
               {course.rating}
 
-              <span className="text-text-secondary">
+              <span className="text-dark">
                 ({course.reviews})
               </span>
             </span>
           </div>
 
-          <div className="mt-lg flex flex-wrap gap-sm">
-            <div className="flex items-center gap-xs rounded-lg bg-muted px-md py-sm text-body-md text-foreground">
-              <Clock3 size={18} />
-              {course.duration}
-            </div>
-
-            <div className="rounded-lg bg-muted px-md py-sm text-body-md text-foreground">
-              {course.level}
-            </div>
-
-            {course.hasCertificate && (
-              <div className="flex items-center gap-xs rounded-lg bg-muted px-md py-sm text-body-md text-foreground">
-                <Award size={18} />
-                Certificate
-              </div>
-            )}
-          </div>
+          <LearningOverviewBadges course={course} />
         </div>
       </div>
 
       {/* BUTTONS */}
       <div className="grid gap-md md:grid-cols-2">
         <Button
-          className="h-[64px] rounded-xl text-[22px] font-bold"
+          className="h-[50px] rounded-sm text-h4  text-light"
           onClick={() =>
             navigate(
               APP_ROUTES.Learning.continueCourse.replace(
@@ -112,7 +97,7 @@ const PaymentSuccessModal = ({
 
         <Button
           variant="outline"
-          className="h-[64px] rounded-xl border-2 border-primary text-[22px] font-bold"
+          className="h-[50px] rounded-sm border-2 border-primary text-h4 text-primary"
           onClick={() => {
             onClose();
             navigate(APP_ROUTES.student.mylearning);
