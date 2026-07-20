@@ -41,5 +41,10 @@ export const APP_ROUTES = {
     dashboard: `/${ROLES.COMPANY}/dashboard`,
     profile: `/${ROLES.COMPANY}/profile`,
     publicProfile: (id: string) => `/${ROLES.COMPANY}/profile/${id}`,
+
+    jobs: `/${ROLES.COMPANY}/jobs`,
+    jobDetails: (id: number | string) => `/${ROLES.COMPANY}/jobs/${id}`,
+    postJob: `/${ROLES.COMPANY}/jobs/new`,
+    editJob: (id: number | string) => `/${ROLES.COMPANY}/jobs/${id}/edit`,
   },
 };

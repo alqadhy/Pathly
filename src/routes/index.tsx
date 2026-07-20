@@ -30,6 +30,7 @@ const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
 const Community = lazy(() => import("../pages/student/Community"));
 const Profile = lazy(() => import("../pages/student/Profile"));
 const CompanyProfile = lazy(() => import("../pages/company/CompanyProfile"));
+const PostJob = lazy(() => import("../pages/company/PostJob"));
 const Messages = lazy(() => import("../pages/student/Messages"));
 const CVBuilderAI = lazy(() => import("../pages/student/cv/CVBuilderAI"));
 const CVBuilderManual = lazy(
@@ -250,6 +251,14 @@ const router = createBrowserRouter([
           element: (
             <Suspense fallback={<Loader />}>
               <PublicCompanyProfile />
+            </Suspense>
+          ),
+        },
+         {
+          path: APP_ROUTES.company.postJob,
+          element: (
+            <Suspense fallback={<Loader />}>
+              <PostJob />
             </Suspense>
           ),
         },
