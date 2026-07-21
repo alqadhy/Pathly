@@ -14,6 +14,8 @@ import Loader from "../components/layout/Loader";
 import CareerChat from "../pages/student/CareerChat";
 import PublicProfile from "../pages/student/PublicProfile";
 import PublicCompanyProfile from "../pages/company/PublicCompanyProfile";
+import AdminCompanies from "../pages/admin/Companies";
+import AdminCompanyDetails from "../pages/admin/CompanyDetails";
 
 // Pages
 const Home = lazy(() => import("../pages/Home"));
@@ -87,14 +89,6 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: APP_ROUTES.student.jobs,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <JobsInternshipsDashboard />
-          </Suspense>
-        ),
-      },
-      {
         path: APP_ROUTES.student.jobDetails(":id"),
         element: (
           <Suspense fallback={<Loader />}>
@@ -146,7 +140,6 @@ const router = createBrowserRouter([
         path: APP_ROUTES.student.cvBuilder.manualBuilder(":templateId"),
         element: (
           <Suspense fallback={<Loader />}>
-            <Messages />
             <CVBuilderManual />
           </Suspense>
         ),
@@ -192,32 +185,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-
-  // Auth Routes
-  {
-    element: <AuthLayout />,
-
-    children: [
-      {
-        path: APP_ROUTES.auth.login,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <AuthFlow initialStep="login" />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.auth.signup,
-
-        element: (
-          <Suspense fallback={<Loader />}>
-            <AuthFlow initialStep="signup" />
-          </Suspense>
-        ),
-      },
-    ],
-  },
-
   // Company Routes
   {
     element: <DashboardLayout />,
@@ -259,6 +226,29 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <CareerChat />
+          </Suspense>
+        ),
+      },
+    ],
+  },
+
+  // Admin Routes
+  {
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: APP_ROUTES.admin.companies,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <AdminCompanies />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.admin.companyDetails(":id"),
+        element: (
+          <Suspense fallback={<Loader />}>
+            <AdminCompanyDetails />
           </Suspense>
         ),
       },

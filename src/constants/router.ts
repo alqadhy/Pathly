@@ -47,4 +47,11 @@ export const APP_ROUTES = {
     profile: `/${ROLES.COMPANY}/profile`,
     publicProfile: (id: string) => `/${ROLES.COMPANY}/profile/${id}`,
   },
+
+  // Admin Routes
+  admin: {
+    dashboard: `/${ROLES.ADMIN}/dashboard`,
+    companies: `/${ROLES.ADMIN}/companies`,
+    companyDetails: (id: number | string) => `/${ROLES.ADMIN}/companies/${id}`,
+  },
 };

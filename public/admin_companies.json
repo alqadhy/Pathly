@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "name": "Tech Corp Solutions",
+    "country": "United states",
+    "industry": "Technology",
+    "verification": "Verified",
+    "opportunities": 24,
+    "joined": "Jan 15, 2024",
+    "status": "Active",
+    "logo": "https://ui-avatars.com/api/?name=Tech+Corp&background=553be6&color=fff"
+  },
+  {
+    "id": 2,
+    "name": "HealthPlus Inc.",
+    "country": "Canada",
+    "industry": "Health care",
+    "verification": "Verified",
+    "opportunities": 15,
+    "joined": "Jan 15, 2024",
+    "status": "Active",
+    "logo": "https://ui-avatars.com/api/?name=Health+Plus&background=3b82f6&color=fff"
+  },
+  {
+    "id": 3,
+    "name": "Global Finance",
+    "country": "United kingdom",
+    "industry": "Finance",
+    "verification": "Pending",
+    "opportunities": 8,
+    "joined": "Jan 15, 2024",
+    "status": "Pending",
+    "logo": "https://ui-avatars.com/api/?name=Global+Finance&background=f59e0b&color=fff"
+  },
+  {
+    "id": 4,
+    "name": "Edulearn Academy",
+    "country": "United kingdom",
+    "industry": "Education",
+    "verification": "Rejected",
+    "opportunities": 0,
+    "joined": "Jan 15, 2024",
+    "status": "Rejected",
+    "logo": "https://ui-avatars.com/api/?name=Edulearn&background=ef4444&color=fff"
+  },
+  {
+    "id": 5,
+    "name": "GreenEnergy Co.",
+    "country": "Germany",
+    "industry": "Energy",
+    "verification": "Verified",
+    "opportunities": 11,
+    "joined": "Jan 15, 2024",
+    "status": "Suspended",
+    "logo": "https://ui-avatars.com/api/?name=Green+Energy&background=10b981&color=fff"
+  }
+]

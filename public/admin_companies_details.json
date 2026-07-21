@@ -1,0 +1,318 @@
+{
+  "1": {
+    "id": 1,
+    "name": "Tech Corp Solutions",
+    "country": "United states",
+    "industry": "Technology",
+    "verification": "Verified",
+    "opportunities": 24,
+    "joined": "Jan 15, 2024",
+    "status": "Active",
+    "logo": "https://ui-avatars.com/api/?name=Tech+Corp&background=553be6&color=fff",
+    "email": "techcorp@example.com",
+    "phone": "+1 (555) 123-4567",
+    "website": "https://techcorpsolutions.com",
+    "founded": "2015",
+    "employees": "500-1,200",
+    "about": "Tech Corp Solutions is a leading technology company specializing in innovative software solutions, cloud infrastructure, and digital transformation services. We help businesses leverage cutting-edge technology to drive growth and efficiency.",
+    "hrTeam": [
+      {
+        "name": "Sarah Johnson",
+        "position": "Chief Human Resources Officer",
+        "email": "sarah.johnson@techcorpsolutions.com"
+      },
+      {
+        "name": "Michael Chen",
+        "position": "Talent Acquisition Manager",
+        "email": "michael.chen@techcorpsolutions.com"
+      }
+    ],
+    "documents": [
+      {
+        "name": "Business Registration Certificate",
+        "type": "pdf"
+      },
+      {
+        "name": "Tax Identification Document",
+        "type": "pdf"
+      },
+      {
+        "name": "Company Profile & Credentials",
+        "type": "pdf"
+      },
+      {
+        "name": "ISO Certification",
+        "type": "pdf"
+      }
+    ],
+    "postedOpportunities": [
+      {
+        "title": "Senior Product Designer",
+        "type": "Full time",
+        "location": "United States",
+        "status": "Active"
+      },
+      {
+        "title": "Full-Stack Engineer",
+        "type": "Full time",
+        "location": "United States",
+        "status": "Active"
+      },
+      {
+        "title": "Data Science Lead",
+        "type": "Full time",
+        "location": "United States",
+        "status": "Active"
+      },
+      {
+        "title": "Marketing Manager",
+        "type": "Full time",
+        "location": "United States",
+        "status": "Active"
+      }
+    ],
+    "profileCompletion": 94,
+    "responseRate": 87
+  },
+  "2": {
+    "id": 2,
+    "name": "HealthPlus Inc.",
+    "country": "Canada",
+    "industry": "Health care",
+    "verification": "Verified",
+    "opportunities": 15,
+    "joined": "Jan 15, 2024",
+    "status": "Active",
+    "logo": "https://ui-avatars.com/api/?name=Health+Plus&background=3b82f6&color=fff",
+    "email": "hr@healthplus.ca",
+    "phone": "+1 (555) 987-6543",
+    "website": "https://healthplus.ca",
+    "founded": "2010",
+    "employees": "1,000-2,500",
+    "about": "HealthPlus Inc. is a premier healthcare organization dedicated to providing exceptional medical services and innovative healthcare solutions. We are committed to improving patient outcomes through technology and compassionate care.",
+    "hrTeam": [
+      {
+        "name": "Dr. Emily Watson",
+        "position": "Director of Human Resources",
+        "email": "emily.watson@healthplus.ca"
+      },
+      {
+        "name": "James Miller",
+        "position": "Recruitment Specialist",
+        "email": "james.miller@healthplus.ca"
+      }
+    ],
+    "documents": [
+      {
+        "name": "Business Registration Certificate",
+        "type": "pdf"
+      },
+      {
+        "name": "Tax Identification Document",
+        "type": "pdf"
+      },
+      {
+        "name": "Company Profile & Credentials",
+        "type": "pdf"
+      },
+      {
+        "name": "Healthcare Accreditation Certificate",
+        "type": "pdf"
+      }
+    ],
+    "postedOpportunities": [
+      {
+        "title": "Registered Nurse",
+        "type": "Full time",
+        "location": "Toronto, Canada",
+        "status": "Active"
+      },
+      {
+        "title": "Medical Laboratory Technician",
+        "type": "Full time",
+        "location": "Vancouver, Canada",
+        "status": "Active"
+      },
+      {
+        "title": "Healthcare Administrator",
+        "type": "Full time",
+        "location": "Montreal, Canada",
+        "status": "Active"
+      }
+    ],
+    "profileCompletion": 96,
+    "responseRate": 92
+  },
+  "3": {
+    "id": 3,
+    "name": "Global Finance",
+    "country": "United kingdom",
+    "industry": "Finance",
+    "verification": "Pending",
+    "opportunities": 8,
+    "joined": "Jan 15, 2024",
+    "status": "Pending",
+    "logo": "https://ui-avatars.com/api/?name=Global+Finance&background=f59e0b&color=fff",
+    "email": "globalfinancegroup@gmail.com",
+    "phone": "+44 20 7946 0958",
+    "website": "globalfinancegroup.co.uk",
+    "founded": "2005",
+    "employees": "500-1,200",
+    "about": "Global finance group provides investment banking, wealth management, and financial advisory services across 30+ countries.",
+    "hrTeam": [
+      {
+        "name": "Thomas Harrington",
+        "position": "Talent Director",
+        "email": "t.harrington@gmail.com"
+      }
+    ],
+    "documents": [
+      {
+        "name": "Business Registration Certificate",
+        "type": "pdf"
+      },
+      {
+        "name": "Tax Identification Document",
+        "type": "pdf"
+      },
+      {
+        "name": "Company Profile & Credentials",
+        "type": "pdf"
+      }
+    ],
+    "postedOpportunities": [
+      {
+        "title": "Senior Product Designer",
+        "type": "Full time",
+        "location": "United Kingdom",
+        "status": "Active"
+      },
+      {
+        "title": "Full-Stack Engineer",
+        "type": "Full time",
+        "location": "United Kingdom",
+        "status": "Active"
+      },
+      {
+        "title": "Data Science Lead",
+        "type": "Full time",
+        "location": "United Kingdom",
+        "status": "Active"
+      },
+      {
+        "title": "Marketing Manager",
+        "type": "Full time",
+        "location": "United Kingdom",
+        "status": "Active"
+      }
+    ],
+    "profileCompletion": 94,
+    "responseRate": 87
+  },
+  "4": {
+    "id": 4,
+    "name": "Edulearn Academy",
+    "country": "United kingdom",
+    "industry": "Education",
+    "verification": "Rejected",
+    "opportunities": 0,
+    "joined": "Jan 15, 2024",
+    "status": "Rejected",
+    "logo": "https://ui-avatars.com/api/?name=Edulearn&background=ef4444&color=fff",
+    "email": "info@edulearn.ac.uk",
+    "phone": "+44 20 1234 5678",
+    "website": "https://edulearn.ac.uk",
+    "founded": "2018",
+    "employees": "100-500",
+    "about": "Edulearn Academy is an innovative educational platform dedicated to providing high-quality online learning experiences. We offer a wide range of courses and professional development programs for students and professionals worldwide.",
+    "hrTeam": [
+      {
+        "name": "Amanda Foster",
+        "position": "Head of People Operations",
+        "email": "amanda.foster@edulearn.ac.uk"
+      }
+    ],
+    "documents": [
+      {
+        "name": "Business Registration Certificate",
+        "type": "pdf"
+      },
+      {
+        "name": "Tax Identification Document",
+        "type": "pdf"
+      }
+    ],
+    "postedOpportunities": [],
+    "profileCompletion": 78,
+    "responseRate": 65
+  },
+  "5": {
+    "id": 5,
+    "name": "GreenEnergy Co.",
+    "country": "Germany",
+    "industry": "Energy",
+    "verification": "Verified",
+    "opportunities": 11,
+    "joined": "Jan 15, 2024",
+    "status": "Suspended",
+    "logo": "https://ui-avatars.com/api/?name=Green+Energy&background=10b981&color=fff",
+    "email": "contact@greenenergy.de",
+    "phone": "+49 30 1234 5678",
+    "website": "https://greenenergy.de",
+    "founded": "2012",
+    "employees": "2,000-5,000",
+    "about": "GreenEnergy Co. is a leading renewable energy company focused on sustainable power solutions. We specialize in solar, wind, and hydroelectric energy projects, driving the transition to clean energy across Europe and beyond.",
+    "hrTeam": [
+      {
+        "name": "Klaus Schmidt",
+        "position": "HR Director",
+        "email": "klaus.schmidt@greenenergy.de"
+      },
+      {
+        "name": "Anna Weber",
+        "position": "Talent Acquisition Lead",
+        "email": "anna.weber@greenenergy.de"
+      }
+    ],
+    "documents": [
+      {
+        "name": "Business Registration Certificate",
+        "type": "pdf"
+      },
+      {
+        "name": "Tax Identification Document",
+        "type": "pdf"
+      },
+      {
+        "name": "Company Profile & Credentials",
+        "type": "pdf"
+      },
+      {
+        "name": "Environmental Compliance Certificate",
+        "type": "pdf"
+      }
+    ],
+    "postedOpportunities": [
+      {
+        "title": "Solar Energy Engineer",
+        "type": "Full time",
+        "location": "Berlin, Germany",
+        "status": "Active"
+      },
+      {
+        "title": "Project Manager - Renewable Energy",
+        "type": "Full time",
+        "location": "Munich, Germany",
+        "status": "Active"
+      },
+      {
+        "title": "Data Analyst - Energy Sector",
+        "type": "Full time",
+        "location": "Hamburg, Germany",
+        "status": "Active"
+      }
+    ],
+    "profileCompletion": 91,
+    "responseRate": 83
+  }
+}
