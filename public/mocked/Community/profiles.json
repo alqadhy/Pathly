@@ -5,7 +5,7 @@
       "title": "People you may know from Cairo University",
       "cards": [
         {
-          "id": "omar-sameh-1",
+          "id": 1,
           "name": "Omar Sameh",
           "role": "Data studio \"Looker\"",
           "subtitle": "Google sheet | Using data pipelines",
@@ -13,15 +13,7 @@
           "avatarUrl": "https://i.pravatar.cc/160?img=12"
         },
         {
-          "id": "omar-sameh-2",
-          "name": "Omar Sameh",
-          "role": "Data studio \"Looker\"",
-          "subtitle": "Google sheet | Using data pipelines",
-          "mutualConnections": "Osama and 10 other mutual connections",
-          "avatarUrl": "https://i.pravatar.cc/160?img=47"
-        },
-        {
-          "id": "nayera-khalid",
+          "id": 2,
           "name": "Nayera Khalid",
           "role": "Data studio \"Looker\"",
           "subtitle": "Google sheet | Using data pipelines",
@@ -29,7 +21,7 @@
           "avatarUrl": "https://i.pravatar.cc/160?img=32"
         },
         {
-          "id": "laila-ashraf",
+          "id": 3,
           "name": "Laila Ashraf",
           "role": "Data studio \"Looker\"",
           "subtitle": "Google sheet | Using data pipelines",
@@ -37,7 +29,7 @@
           "avatarUrl": "https://i.pravatar.cc/160?img=44"
         },
         {
-          "id": "kyrollos",
+          "id": 4,
           "name": "Kyrollos",
           "role": "Data studio \"Looker\"",
           "subtitle": "Google sheet | Using data pipelines",
@@ -51,44 +43,44 @@
       "title": "Suggestions for you",
       "cards": [
         {
-          "id": "omar-sameh-3",
-          "name": "Omar Sameh",
-          "role": "Data studio \"Looker\"",
-          "subtitle": "Google sheet | Using data pipelines",
-          "mutualConnections": "Osama and 10 other mutual connections",
-          "avatarUrl": "https://i.pravatar.cc/160?img=12"
+          "id": 5,
+          "name": "Ahmed Hassan",
+          "role": "Software Engineer at Google",
+          "subtitle": "Full-stack development | React & Node.js",
+          "mutualConnections": "Mohammed and 15 other mutual connections",
+          "avatarUrl": "https://i.pravatar.cc/160?img=11"
         },
         {
-          "id": "omar-sameh-4",
-          "name": "Omar Sameh",
-          "role": "Data studio \"Looker\"",
-          "subtitle": "Google sheet | Using data pipelines",
-          "mutualConnections": "Osama and 10 other mutual connections",
-          "avatarUrl": "https://i.pravatar.cc/160?img=47"
+          "id": 6,
+          "name": "Sarah Mohamed",
+          "role": "Product Manager at Microsoft",
+          "subtitle": "Agile methodologies | Product strategy",
+          "mutualConnections": "Fatima and 8 other mutual connections",
+          "avatarUrl": "https://i.pravatar.cc/160?img=5"
         },
         {
-          "id": "nayera-khalid-2",
-          "name": "Nayera Khalid",
-          "role": "Data studio \"Looker\"",
-          "subtitle": "Google sheet | Using data pipelines",
-          "mutualConnections": "Osama and 10 other mutual connections",
-          "avatarUrl": "https://i.pravatar.cc/160?img=32"
+          "id": 7,
+          "name": "Mohammed Ali",
+          "role": "UX Designer at Apple",
+          "subtitle": "User research | Interface design",
+          "mutualConnections": "Omar and 12 other mutual connections",
+          "avatarUrl": "https://i.pravatar.cc/160?img=13"
         },
         {
-          "id": "laila-ashraf-2",
-          "name": "Laila Ashraf",
-          "role": "Data studio \"Looker\"",
-          "subtitle": "Google sheet | Using data pipelines",
-          "mutualConnections": "Osama and 10 other mutual connections",
-          "avatarUrl": "https://i.pravatar.cc/160?img=44"
+          "id": 8,
+          "name": "Nour Ahmed",
+          "role": "Data Scientist at Amazon",
+          "subtitle": "Machine Learning | Python & R",
+          "mutualConnections": "Laila and 20 other mutual connections",
+          "avatarUrl": "https://i.pravatar.cc/160?img=9"
         },
         {
-          "id": "kyrollos-2",
-          "name": "Kyrollos",
-          "role": "Data studio \"Looker\"",
-          "subtitle": "Google sheet | Using data pipelines",
-          "mutualConnections": "Osama and 10 other mutual connections",
-          "avatarUrl": "https://i.pravatar.cc/160?img=23"
+          "id": 9,
+          "name": "Youssef Khalil",
+          "role": "DevOps Engineer at IBM",
+          "subtitle": "Cloud infrastructure | CI/CD pipelines",
+          "mutualConnections": "Kyrollos and 7 other mutual connections",
+          "avatarUrl": "https://i.pravatar.cc/160?img=15"
         }
       ]
     }

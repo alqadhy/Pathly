@@ -1,4 +1,5 @@
-import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { Outlet, useLocation, ScrollRestoration } from "react-router-dom";
 
 // Layout Components
 import DashboardHeader from "../components/layout/DashboardHeader";
@@ -6,8 +7,15 @@ import Sidebar from "../components/layout/Sidebar";
 import Footer from "../components/layout/Footer";
 
 function DashboardLayout() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <>
+      <ScrollRestoration />
       <DashboardHeader />
       <div className="flex">
         <Sidebar />

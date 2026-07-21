@@ -1,0 +1,133 @@
+[
+  {
+    "id": "resume-1",
+    "title": "Product Designer CV",
+    "creationMode": "AI",
+    "templateId": "simple-classic",
+    "atsScore": 60,
+    "thumbnail": "/assets/images/resumes/main3.png",
+    "lastEditedAt": "2026-07-07T10:00:00.000Z",
+    "data": {
+      "id": "resume-1",
+      "templateId": "simple-classic",
+      "creationMode": "AI",
+      "personalInfo": {
+        "firstName": "Jessica",
+        "lastName": "Anderson",
+        "industry": "Design & Technology",
+        "currentPosition": "Senior Graphic Designer",
+        "location": "San Francisco, USA",
+        "avatarUrl": ""
+      },
+      "contactInfo": {
+        "email": "jessica.anderson@email.com",
+        "phoneNumber": "+1 987 654 3210",
+        "links": []
+      },
+      "education": [
+        {
+          "id": "edu-1",
+          "university": "University of California, Berkeley, USA",
+          "yearsOfGraduation": "2017"
+        }
+      ],
+      "experience": [
+        {
+          "id": "exp-1",
+          "company": "Creative Edge Agency (San Francisco, USA)",
+          "jobTitle": "Senior Graphic Designer",
+          "yearsOfExperience": "4",
+          "startDate": "2020",
+          "endDate": "Present",
+          "bullets": [
+            "Led the design and development of branding materials, increasing brand visibility by 40%.",
+            "Designed UI/UX layouts for web and mobile applications, improving user engagement."
+          ]
+        },
+        {
+          "id": "exp-2",
+          "company": "PixelWorks Studio (Los Angeles, USA)",
+          "jobTitle": "Graphic Designer",
+          "yearsOfExperience": "3",
+          "startDate": "2017",
+          "endDate": "2020",
+          "bullets": [
+            "Developed logo designs and corporate branding for clients, enhancing brand recognition."
+          ]
+        }
+      ],
+      "skills": [
+        { "id": "skill-1", "name": "Adobe Creative Suite (Photoshop, Illustrator, InDesign, XD)" },
+        { "id": "skill-2", "name": "Typography & Layout Design" },
+        { "id": "skill-3", "name": "Web Design (HTML, CSS, WordPress)" },
+        { "id": "skill-4", "name": "UI/UX Design & Prototyping" },
+        { "id": "skill-5", "name": "Social Media Graphics & Marketing Materials" },
+        { "id": "skill-6", "name": "Creativity & Attention to Detail" },
+        { "id": "skill-7", "name": "Branding & Visual Identity" },
+        { "id": "skill-8", "name": "Print & Digital Media" },
+        { "id": "skill-9", "name": "Communication & Client Collaboration" }
+      ],
+      "summary": "Creative and detail-oriented Graphic Designer with 5 years of experience in developing engaging and innovative digital and print designs. Proficient in Adobe Creative Suite, UI/UX design, branding, and visual storytelling.",
+      "createdAt": "2026-07-05T09:00:00.000Z",
+      "updatedAt": "2026-07-07T10:00:00.000Z"
+    }
+  },
+  {
+    "id": "resume-2",
+    "title": "Product Designer CV",
+    "creationMode": "Manual",
+    "templateId": "simple-pink",
+    "atsScore": 60,
+    "thumbnail": "/assets/images/resumes/main2.jpg",
+    "lastEditedAt": "2026-07-07T08:00:00.000Z",
+    "data": {
+      "id": "resume-2",
+      "templateId": "simple-pink",
+      "creationMode": "Manual",
+      "personalInfo": {
+        "firstName": "Nina",
+        "lastName": "Patel",
+        "industry": "Design & Technology",
+        "currentPosition": "UX Designer",
+        "location": "",
+        "avatarUrl": ""
+      },
+      "contactInfo": { "email": "", "phoneNumber": "", "links": [] },
+      "education": [],
+      "experience": [],
+      "skills": [],
+      "summary": "",
+      "createdAt": "2026-07-06T09:00:00.000Z",
+      "updatedAt": "2026-07-07T08:00:00.000Z"
+    }
+  },
+  {
+    "id": "resume-3",
+    "title": "Product Designer CV",
+    "creationMode": "Manual",
+    "templateId": "professional-dark",
+    "atsScore": 60,
+    "thumbnail": "/assets/images/resumes/main4.png",
+    "lastEditedAt": "2026-07-07T06:00:00.000Z",
+    "data": {
+      "id": "resume-3",
+      "templateId": "professional-dark",
+      "creationMode": "Manual",
+      "personalInfo": {
+        "firstName": "Jack",
+        "lastName": "Kingsley",
+        "industry": "Design & Technology",
+        "currentPosition": "Lead Designer",
+        "location": "",
+        "avatarUrl": "/assets/images/avatars/jack.png"
+      },
+      "contactInfo": { "email": "", "phoneNumber": "", "links": [] },
+      "education": [],
+      "experience": [],
+      "skills": [],
+      "summary": "",
+      "createdAt": "2026-07-06T07:00:00.000Z",
+      "updatedAt": "2026-07-07T06:00:00.000Z"
+    }
+  }
+]

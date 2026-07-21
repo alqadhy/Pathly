@@ -4,6 +4,7 @@ export { default as AboutSection } from './AboutSection';
 export { default as ActivitiesSection } from './ActivitiesSection';
 export { default as PersonalInfoSection } from './PersonalInfoSection';
 export { default as SkillsSection } from './SkillsSection';
+export { default as TracksSection } from './TracksSection';
 export { default as CVSection } from './CVSection';
 export { default as CertificationsSection } from './CertificationsSection';
 export { default as ExperienceSection } from './ExperienceSection';

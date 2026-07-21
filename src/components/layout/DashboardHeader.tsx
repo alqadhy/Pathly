@@ -69,9 +69,11 @@ function DashboardHeader() {
         <IconButton title="Notifications">
           <Bell />
         </IconButton>
-        <IconButton title="Messages">
-          <MessagesSquare />
-        </IconButton>
+        <Link to={APP_ROUTES.student.messages}>
+          <IconButton title="Messages">
+            <MessagesSquare />
+          </IconButton>
+        </Link>
         <Link to={APP_ROUTES.student.profile}>
           <UserAvatar />
         </Link>

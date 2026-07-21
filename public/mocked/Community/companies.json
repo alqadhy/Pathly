@@ -5,7 +5,7 @@
       "title": "Suggestions for you",
       "cards": [
         {
-          "id": "oracle",
+          "id": 1,
           "name": "Oracle",
           "role": "Cloud applications",
           "subtitle": "Focused on graduate hiring",
@@ -13,7 +13,7 @@
           "avatarUrl": "https://ui-avatars.com/api/?name=Oracle&background=5b21b6&color=fff&bold=true"
         },
         {
-          "id": "capgemini",
+          "id": 2,
           "name": "Capgemini",
           "role": "Digital consulting",
           "subtitle": "Fast-growing entry roles",
@@ -21,7 +21,7 @@
           "avatarUrl": "https://ui-avatars.com/api/?name=Capgemini&background=4f46e5&color=fff&bold=true"
         },
         {
-          "id": "accenture",
+          "id": 3,
           "name": "Accenture",
           "role": "Technology services",
           "subtitle": "Graduate programs available",
@@ -29,7 +29,7 @@
           "avatarUrl": "https://ui-avatars.com/api/?name=Accenture&background=0f766e&color=fff&bold=true"
         },
         {
-          "id": "ibm",
+          "id": 4,
           "name": "IBM",
           "role": "AI and engineering",
           "subtitle": "Internships and graduate jobs",
@@ -37,7 +37,7 @@
           "avatarUrl": "https://ui-avatars.com/api/?name=IBM&background=0ea5e9&color=fff&bold=true"
         },
         {
-          "id": "unilever",
+          "id": 5,
           "name": "Unilever",
           "role": "Product and business",
           "subtitle": "Early career opportunities",

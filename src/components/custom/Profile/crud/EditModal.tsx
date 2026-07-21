@@ -79,6 +79,11 @@ const EditModal: React.FC<EditModalProps> = ({
           newErrors.provider = "Provider is required";
         }
         break;
+      case "tracks":
+        if (!formData.name?.trim()) {
+          newErrors.name = "Track name is required";
+        }
+        break;
       default:
         break;
     }
@@ -730,6 +735,29 @@ const EditModal: React.FC<EditModalProps> = ({
                 Choose File
               </button>
             </div>
+          </div>
+        );
+
+      case "tracks":
+        return (
+          <div>
+            <label className="block text-body-sm font-medium text-foreground mb-2">
+              Track Name
+            </label>
+            <input
+              type="text"
+              value={formData.name || ""}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
+              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background text-foreground transition-all duration-200 ${
+                errors.name ? "border-red-500" : "border-border"
+              }`}
+              placeholder="e.g., Data Analytics Fundamentals"
+            />
+            {errors.name && (
+              <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+            )}
           </div>
         );
 

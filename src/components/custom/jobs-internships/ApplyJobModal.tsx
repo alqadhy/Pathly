@@ -1,17 +1,17 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from "react";
 import {
   Dialog,
   DialogContent,
   DialogTitle,
   DialogDescription,
-} from '@/components/ui/dialog';
-import { X, Upload } from 'lucide-react';
+} from "../../ui/dialog.tsx";
+import { X, Upload } from "lucide-react";
 
-import studentProfile from '@mocked/Profile/profile.json';
+import studentProfile from "../../../../public/mocked/profile/profile_user.json";
 
 const JOB_PREFERENCES = {
-  locations: 'Cairo, Cairo, Egypt',
-  employmentTypes: 'Full time',
+  locations: "Cairo, Cairo, Egypt",
+  employmentTypes: "Full time",
 };
 
 const APPLICANT = {
@@ -52,12 +52,19 @@ function InfoRow({ label, value }: { label: string; value: string }) {
   );
 }
 
-export default function ApplyJobModal({ isOpen, onClose, job }: ApplyJobModalProps) {
-  const [resumeFile, setResumeFile] = useState<{ name: string; tag: string } | null>({
+export default function ApplyJobModal({
+  isOpen,
+  onClose,
+  job,
+}: ApplyJobModalProps) {
+  const [resumeFile, setResumeFile] = useState<{
+    name: string;
+    tag: string;
+  } | null>({
     name: studentProfile.cv.fileName,
     tag: studentProfile.title,
   });
-  const [salary, setSalary] = useState('');
+  const [salary, setSalary] = useState("");
   const [showDiscardConfirm, setShowDiscardConfirm] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -73,9 +80,9 @@ export default function ApplyJobModal({ isOpen, onClose, job }: ApplyJobModalPro
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setResumeFile({ name: file.name, tag: resumeFile?.tag ?? 'Resume' });
+      setResumeFile({ name: file.name, tag: resumeFile?.tag ?? "Resume" });
     }
-    e.target.value = '';
+    e.target.value = "";
   };
 
   const handleSubmitApply = () => {
@@ -84,7 +91,10 @@ export default function ApplyJobModal({ isOpen, onClose, job }: ApplyJobModalPro
 
   return (
     <>
-      <Dialog open={isOpen} onOpenChange={(open: boolean) => !open && requestClose()}>
+      <Dialog
+        open={isOpen}
+        onOpenChange={(open: boolean) => !open && requestClose()}
+      >
         <DialogContent
           className="w-[92vw]! max-w-[800px]! max-h-[90vh]! p-0! gap-0! overflow-hidden bg-background! border-none shadow-card rounded-2xl [&_button:has(.sr-only)]:hidden"
           hideCloseButton={true}
@@ -111,7 +121,10 @@ export default function ApplyJobModal({ isOpen, onClose, job }: ApplyJobModalPro
             <InfoRow label="Email" value={APPLICANT.email} />
             <InfoRow label="Phone Number" value={APPLICANT.phone} />
             <InfoRow label="Locations" value={APPLICANT.locations} />
-            <InfoRow label="Employment types" value={APPLICANT.employmentTypes} />
+            <InfoRow
+              label="Employment types"
+              value={APPLICANT.employmentTypes}
+            />
 
             <div className="space-y-sm">
               <h6 className="text-h6 font-bold text-text-primary">Resume</h6>
@@ -121,8 +134,12 @@ export default function ApplyJobModal({ isOpen, onClose, job }: ApplyJobModalPro
                   <div className="flex items-center gap-sm">
                     <PdfFileIcon />
                     <div>
-                      <p className="text-body-sm font-semibold text-text-primary">{resumeFile.name}</p>
-                      <p className="text-body-sm text-normal">{resumeFile.tag}</p>
+                      <p className="text-body-sm font-semibold text-text-primary">
+                        {resumeFile.name}
+                      </p>
+                      <p className="text-body-sm text-normal">
+                        {resumeFile.tag}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -146,9 +163,13 @@ export default function ApplyJobModal({ isOpen, onClose, job }: ApplyJobModalPro
             </div>
 
             <div className="space-y-sm">
-              <h6 className="text-h6 font-bold text-text-primary">Additional Questions</h6>
+              <h6 className="text-h6 font-bold text-text-primary">
+                Additional Questions
+              </h6>
               <div className="space-y-1">
-                <label className="text-body-sm text-normal text-bold!">Current Net Salary</label>
+                <label className="text-body-sm text-normal text-bold!">
+                  Current Net Salary
+                </label>
                 <input
                   type="text"
                   value={salary}

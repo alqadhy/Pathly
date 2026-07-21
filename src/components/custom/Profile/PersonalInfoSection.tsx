@@ -5,12 +5,14 @@ import { Mail, Phone, MapPin, Briefcase, Globe, Link2 } from "lucide-react";
 
 interface PersonalInfoSectionProps {
   personalInfo: PersonalInfo;
-  onEdit: () => void;
+  onEdit?: () => void;
+  isPublicView?: boolean;
 }
 
 const PersonalInfoSection: React.FC<PersonalInfoSectionProps> = ({
   personalInfo,
   onEdit,
+  isPublicView = false,
 }) => {
   const hasAnyInfo =
     personalInfo.email ||
@@ -29,7 +31,7 @@ const PersonalInfoSection: React.FC<PersonalInfoSectionProps> = ({
   ];
 
   return (
-    <ProfileSection title="Personal info" onEdit={onEdit}>
+    <ProfileSection title="Personal info" onEdit={onEdit} isPublicView={isPublicView}>
       {hasAnyInfo ? (
         <div className="space-y-4">
           {infoItems.map(

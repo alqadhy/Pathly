@@ -11,6 +11,8 @@ import { APP_ROUTES } from "../constants";
 // Loaders
 import PageLoader from "../components/layout/PageLoader";
 import Loader from "../components/layout/Loader";
+import CareerChat from "../pages/student/CareerChat";
+import PublicProfile from "../pages/student/PublicProfile";
 
 // Pages
 const Home = lazy(() => import("../pages/Home"));
@@ -24,7 +26,16 @@ const SavedItems = lazy(() => import("../pages/student/SavedItems"));
 const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
 const Community = lazy(() => import("../pages/student/Community"));
 const Profile = lazy(() => import("../pages/student/Profile"));
-const OnBoarding = lazy(() => import("../pages/OnBoarding.tsx"));
+const Messages = lazy(() => import("../pages/student/Messages"));
+const CVBuilderAI = lazy(() => import("../pages/student/cv/CVBuilderAI"));
+const CVBuilderManual = lazy(
+  () => import("../pages/student/cv/CVBuilderManual"),
+);
+const TemplateSelection = lazy(
+  () => import("../pages/student/cv/TempleteSelection"),
+);
+const CVDashboard = lazy(() => import("../pages/student/cv/CVDashboard"));
+const OnBoarding = lazy(() => import("../pages/OnBoarding"));
 
 const router = createBrowserRouter([
   // Global Pages
@@ -55,6 +66,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <Dashboard />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.jobs,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <JobsInternshipsDashboard />
           </Suspense>
         ),
       },
@@ -103,6 +122,61 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <Profile />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.cvBuilder.dashboard,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <CVDashboard />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.cvBuilder.templateSelection(":mode"),
+        element: (
+          <Suspense fallback={<Loader />}>
+            <TemplateSelection />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.cvBuilder.manualBuilder(":templateId"),
+        element: (
+          <Suspense fallback={<Loader />}>
+            <CVBuilderManual />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.cvBuilder.aiBuilder(":templateId"),
+        element: (
+          <Suspense fallback={<Loader />}>
+            <CVBuilderAI />
+          </Suspense>
+        ),
+      },
+    ],
+  },
+
+  // Auth Routes
+  {
+    element: <AuthLayout />,
+    children: [
+      {
+        path: APP_ROUTES.auth.login,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <AuthFlow initialStep="login" />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.auth.signup,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <AuthFlow initialStep="signup" />
           </Suspense>
         ),
       },

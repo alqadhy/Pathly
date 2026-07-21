@@ -3,20 +3,23 @@ import { Edit2 } from 'lucide-react';
 
 interface AboutSectionProps {
   about: string;
-  onEdit: () => void;
+  onEdit?: () => void;
+  isPublicView?: boolean;
 }
 
-const AboutSection: React.FC<AboutSectionProps> = ({ about, onEdit }) => {
+const AboutSection: React.FC<AboutSectionProps> = ({ about, onEdit, isPublicView = false }) => {
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-h3 font-semibold text-foreground">About</h3>
-        <button
-          onClick={onEdit}
-          className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors duration-200"
-        >
-          <Edit2 className="w-5 h-5 text-gray-600" />
-        </button>
+        {!isPublicView && onEdit && (
+          <button
+            onClick={onEdit}
+            className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+          >
+            <Edit2 className="w-5 h-5 text-gray-600" />
+          </button>
+        )}
       </div>
       <div className="bg-white rounded-xl border border-gray-200 p-5">
         {about && about.trim() !== "" ? (
