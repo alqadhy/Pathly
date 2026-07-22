@@ -38,10 +38,7 @@ const AuthInput = ({
 
       {label && (
         <label
-          className="
-            text-body-sm
-            font-semibold
-            text-text-primary
+          className=" text-body-sm font-semibold text-text-primary
           "
         >
           {label}
@@ -62,23 +59,7 @@ const AuthInput = ({
           placeholder={placeholder}
           disabled={disabled}
           onChange={onChange}
-          className={`
-            h-[64px]
-            md:h-[45px]
-            w-full
-            rounded-xl
-            border
-            bg-background
-            px-lg
-            text-body-md
-            text-text-primary
-            placeholder:text-normal
-            outline-none
-            transition-all
-            duration-300
-            focus:border-primary
-            focus:ring-2
-            focus:ring-primary-light
+          className={` h-[64px] md:h-[45px] w-full rounded-xl border bg-background px-lg text-body-md text-text-primary placeholder:text-normal outline-none transition-all duration-300 focus:border-primary focus:ring-2 focus:ring-primary-light
 
             ${
               isPassword
@@ -88,21 +69,14 @@ const AuthInput = ({
 
             ${
               error
-                ? `
-                  border-danger
-                  focus:border-danger
-                  focus:ring-danger-light
+                ? ` border-danger focus:border-danger focus:ring-danger-light
                 `
                 : "border-border"
             }
 
             ${
               disabled
-                ? `
-                  cursor-not-allowed
-                  bg-muted
-                  text-normal
-                  opacity-70
+                ? ` cursor-not-allowed bg-muted text-normal opacity-70
                 `
                 : ""
             }
@@ -116,16 +90,7 @@ const AuthInput = ({
               setShow(!show)
             }
             disabled={disabled}
-            className="
-              absolute
-              right-md
-              top-1/2
-              -translate-y-1/2
-              text-normal
-              transition-colors
-              hover:text-primary
-              disabled:cursor-not-allowed
-              disabled:opacity-50
+            className=" absolute right-md top-1/2 -translate-y-1/2 text-normal transition-colors hover:text-primary disabled:cursor-not-allowed disabled:opacity-50
             "
           >
             {show ? (
@@ -140,10 +105,7 @@ const AuthInput = ({
 
       {error && (
         <p
-          className="
-            text-body-sm
-            font-medium
-            text-danger
+          className=" text-body-sm font-medium text-danger
           "
         >
           {error}

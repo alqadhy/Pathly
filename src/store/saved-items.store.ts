@@ -4,6 +4,7 @@ import type {
   SavedItemsType,
   SavedJob,
   SavedProfile,
+  SavedCourse,
 } from "../types/saved.types";
 
 import { create } from "zustand";
@@ -13,7 +14,7 @@ interface SavedItemsStore {
   savedItems: SavedItemsType;
   saveItem: (
     category: string,
-    newItem: SavedFeed | SavedJob | SavedProfile | SavedProfile,
+    newItem: SavedFeed | SavedJob | SavedProfile | SavedCourse,
   ) => void;
   removeItem: (category: string, id: number) => void;
 }
