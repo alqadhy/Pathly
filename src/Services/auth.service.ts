@@ -14,69 +14,84 @@ interface SignUpData {
 
 /* ---------------- Login ---------------- */
 
-export const loginUser =
-  async (
-    email: string,
-    password: string
-  ) => {
+export const loginUser = async (
+  email: string,
+  password: string
+) => {
+  const localUsers = getLocalUsers();
 
-    const users =
-      getLocalUsers();
+  console.log("Local Users:", localUsers);
 
-    return users.filter(
-      (user: any) =>
-        user.email === email &&
-        user.password ===
-          password
-    );
-  };
+  const response = await fetch("/mocked/users.json");
+
+  console.log(response);
+
+  const adminUsers = await response.json();
+
+  console.log("Admin Users:", adminUsers);
+
+  const users = [...adminUsers, ...localUsers];
+
+  console.log(users);
+
+  return users.filter(
+    (user: any) =>
+      user.email === email &&
+      user.password === password
+  );
+};
 
 /* ---------------- Get User By Email ---------------- */
 
-export const getUserByEmail =
-  async (email: string) => {
+export const getUserByEmail = async (
+  email: string
+) => {
+  const localUsers = getLocalUsers();
 
-    const users =
-      getLocalUsers();
+  const response = await fetch("/users.json");
+  const adminUsers = await response.json();
 
-    return users.filter(
-      (user: any) =>
-        user.email === email
-    );
-  };
+  const users = [...adminUsers, ...localUsers];
+
+  return users.filter(
+    (user: any) =>
+      user.email === email
+  );
+};
 
 /* ---------------- Check Email ---------------- */
 
-export const checkEmailExists =
-  async (email: string) => {
+export const checkEmailExists = async (
+  email: string
+) => {
+  const localUsers = getLocalUsers();
 
-    const users =
-      getLocalUsers();
+  const response = await fetch("/users.json");
+  const adminUsers = await response.json();
 
-    return users.filter(
-      (user: any) =>
-        user.email === email
-    );
-  };
+  const users = [...adminUsers, ...localUsers];
+
+  return users.filter(
+    (user: any) =>
+      user.email === email
+  );
+};
 
 /* ---------------- Sign Up ---------------- */
 
-export const signUpUser =
-  async (
-    data: SignUpData
-  ) => {
+export const signUpUser = async (
+  data: SignUpData
+) => {
+  const users = getLocalUsers();
 
-    const users =
-      getLocalUsers();
-
-    const newUser = {
-      id: Date.now(),
-      ...data,
-    };
-
-    users.push(newUser);
-
-    saveLocalUsers(users);
-
-    return newUser;
+  const newUser = {
+    id: Date.now(),
+    ...data,
   };
+
+  users.push(newUser);
+
+  saveLocalUsers(users);
+
+  return newUser;
+};

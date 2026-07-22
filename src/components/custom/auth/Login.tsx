@@ -68,10 +68,10 @@ const Login = ({
             "Incorrect email or password"
           );
         }
-      } catch {
-        setError(
-          "Something went wrong"
-        );
+      } catch (err) {
+  console.error(err);
+  setError("Something went wrong");
+
       } finally {
         setLoading(false);
       }
