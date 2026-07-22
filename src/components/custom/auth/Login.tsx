@@ -51,12 +51,14 @@ const Login = ({ setStep }: Props) => {
         }
       } else {
         setError("Incorrect email or password");
+      }} catch (err) {
+  console.error(err);
+  setError("Something went wrong");
+
+      } finally {
+        setLoading(false);
       }
-    } catch {
-      setError("Something went wrong");
-    } finally {
-      setLoading(false);
-    }
+  
   };
 
   return (

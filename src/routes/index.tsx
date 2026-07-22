@@ -23,7 +23,7 @@ import AdminCompanyDetails from "../pages/admin/CompanyDetails";
 const Home = lazy(() => import("../pages/Home"));
 
 const Dashboard = lazy(() => import("../pages/student/Dashboard"));
-const AdminDashboard = lazy(() => import("../components/custom/admin/AdminDashboard"));
+const AdminDashboard = lazy(() => import("../layout/AdminDashboard"));
 const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
 const JobsInternshipsDashboard = lazy(
   () => import("../pages/student/Jobs-Internships")
@@ -98,7 +98,7 @@ const router = createBrowserRouter([
         path: APP_ROUTES.Admin.adminDashboard,
         element: (
           <Suspense fallback={<Loader />}>
-            <AdminDashboard />
+            <DashboardLayout />
           </Suspense>
         ),
       },
@@ -121,7 +121,7 @@ const router = createBrowserRouter([
     ],
   },
 
-  /* DASHBOARD */
+  /* User */
   {
     element: <DashboardLayout />,
     children: [
@@ -312,7 +312,8 @@ const router = createBrowserRouter([
       },
     ],
   },
-
+ 
+    // Company
 
   {
     element: <DashboardLayout />,

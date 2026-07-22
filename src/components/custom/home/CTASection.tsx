@@ -26,7 +26,7 @@ export default function CTASection() {
         <div className=" flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
           {currentUser ? (
             <Link
-              to ={currentUser.role === ROLES.USER ? APP_ROUTES.student.profile : APP_ROUTES.company.profile}
+              to ={currentUser.role === ROLES.USER ? APP_ROUTES.student.profile : currentUser.role === ROLES.ADMIN ? APP_ROUTES.admin.dashboard : APP_ROUTES.company.profile }
               className="h-14 w-65 cursor-pointer rounded-full bg-white font-bold text-primary hover:bg-gray-50 px-8 py-6 text-base shadow-md hover:shadow-lg transition-all inline-flex items-center justify-center"
             >
               Go to My Profile

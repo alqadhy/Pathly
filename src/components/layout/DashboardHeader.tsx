@@ -87,6 +87,15 @@ function DashboardHeader() {
             <img src={logo} alt={SLOGAN} className="h-10" />
           </Link>
         )}
+        {currentUser?.role === ROLES.ADMIN && (
+          <Link
+            to={APP_ROUTES.admin.dashboard}
+            title={SLOGAN}
+            className="hidden lg:block"
+          >
+            <img src={logo} alt={SLOGAN} className="h-10" />
+          </Link>
+        )}
 
         <Searchbar />
       </div>
@@ -110,6 +119,11 @@ function DashboardHeader() {
         )}
         {currentUser?.role === ROLES.USER && (
           <Link to={APP_ROUTES.student.profile}>
+            <UserAvatar />
+          </Link>
+        )}
+        {currentUser?.role === ROLES.ADMIN && (
+          <Link to={APP_ROUTES.admin.dashboard}>
             <UserAvatar />
           </Link>
         )}

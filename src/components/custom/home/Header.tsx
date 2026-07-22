@@ -31,6 +31,8 @@ export default function Header() {
         navigate(APP_ROUTES.student.profile);
       } else if (currentUser.role === ROLES.COMPANY) {
         navigate(APP_ROUTES.company.profile);
+      } else if (currentUser.role === ROLES.ADMIN) {
+        navigate(APP_ROUTES.admin.dashboard);
       }
     } else {
       navigate(APP_ROUTES.auth.login);
