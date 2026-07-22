@@ -10,6 +10,8 @@ import Divider from "./Divider";
 import SocialAuth from "./SocialAuth";
 
 import { loginUser } from "../../../Services/auth.service";
+import { notificationService } from "../../../Services/notification.service";
+import { getSettings } from "../../../Services/settings.service";
 
 type Props = {
   setStep: React.Dispatch<
@@ -57,6 +59,28 @@ const Login = ({
             "currentUser",
             JSON.stringify(currentUser)
           );
+          try {
+            
+          const settings = getSettings();
+            if (settings.notifications.push) {
+              const allowed =
+                await notificationService.requestPermission();
+
+              if (allowed) {
+                notificationService.show(
+                  "Welcome back!",
+                  {
+                    body: "You have successfully logged in.",
+                  }
+                );
+              }
+            }
+          } catch (error) {
+            console.error(
+              "Notification settings error:",
+              error
+            );
+          }
 
           if (currentUser.role === "admin") {
             navigate("/admin/dashboard");
@@ -69,8 +93,8 @@ const Login = ({
           );
         }
       } catch (err) {
-  console.error(err);
-  setError("Something went wrong");
+        console.error(err);
+        setError("Something went wrong");
 
       } finally {
         setLoading(false);

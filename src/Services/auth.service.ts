@@ -3,6 +3,8 @@ import {
   saveLocalUsers,
 } from "../utils/storage.service";
 
+import type { User } from "../types/auth.types";
+
 interface SignUpData {
   fullName: string;
   email: string;
@@ -10,6 +12,7 @@ interface SignUpData {
   countryCode: string;
   phone: string;
   role: string;
+  location: string;
 }
 
 /* ---------------- Login ---------------- */
@@ -66,7 +69,7 @@ export const checkEmailExists = async (
 ) => {
   const localUsers = getLocalUsers();
 
-  const response = await fetch("/users.json");
+  const response = await fetch("/mocked/users.json");
   const adminUsers = await response.json();
 
   const users = [...adminUsers, ...localUsers];
@@ -95,3 +98,24 @@ export const signUpUser = async (
 
   return newUser;
 };
+
+export const updateCurrentUser = (
+  updatedUser: any
+) => {
+  localStorage.setItem(
+    "currentUser",
+    JSON.stringify(updatedUser)
+  );
+
+  const users =
+    getLocalUsers();
+
+const updatedUsers = users.map((user: User) =>
+  user.id === updatedUser.id
+    ? updatedUser
+    : user
+);
+
+  saveLocalUsers(updatedUsers);
+};
+

@@ -146,14 +146,15 @@ const SignUp = ({
 
         setStep("role");
 
-      } catch {
+      }  catch (err) {
 
-        setErrors({
-          general: [
-            "Something went wrong",
-          ],
-        });
+  console.error("Signup Error:", err);
 
+  setErrors({
+    general: [
+      "Something went wrong",
+    ],
+  });
       } finally {
 
         setLoading(false);
