@@ -13,6 +13,9 @@ export const APP_ROUTES = {
     courseDetails:"/student/learning/:id",
     continueCourse:"/student/learning/:id/player"
   },
+  Admin: {
+    adminDashboard:"/admin/dashboard"
+  },
 
   // Student Routes
   student: {

@@ -23,6 +23,7 @@ import AdminCompanyDetails from "../pages/admin/CompanyDetails";
 const Home = lazy(() => import("../pages/Home"));
 
 const Dashboard = lazy(() => import("../pages/student/Dashboard"));
+const AdminDashboard = lazy(() => import("../components/custom/admin/AdminDashboard"));
 const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
 const JobsInternshipsDashboard = lazy(
   () => import("../pages/student/Jobs-Internships")
@@ -36,6 +37,7 @@ const Profile = lazy(() => import("../pages/student/Profile"));
 const CompanyProfile = lazy(() => import("../pages/company/CompanyProfile"));
 const PostJob = lazy(() => import("../pages/company/PostJob"));
 const Messages = lazy(() => import("../pages/student/Messages"));
+const AdminRoute = lazy(() => import("./AdminRoute"));
 
 const Learning = lazy(
   () => import("../pages/Lessons/Learning")
@@ -82,6 +84,41 @@ const router = createBrowserRouter([
         <Home />
       </Suspense>
     ),
+  },
+
+  /*admin */
+{
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <AdminRoute />
+      </Suspense>
+    ),
+    children: [
+      {
+        path: APP_ROUTES.Admin.adminDashboard,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <AdminDashboard />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.admin.companies,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <AdminCompanies />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.admin.companyDetails(":id"),
+        element: (
+          <Suspense fallback={<Loader />}>
+            <AdminCompanyDetails />
+          </Suspense>
+        ),
+      },
+    ],
   },
 
   /* DASHBOARD */
@@ -276,30 +313,7 @@ const router = createBrowserRouter([
     ],
   },
 
-  // Auth Routes
-  {
-    element: <AuthLayout />,
 
-    children: [
-      {
-        path: APP_ROUTES.auth.login,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <AuthFlow initialStep="login" />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.auth.signup,
-
-        element: (
-          <Suspense fallback={<Loader />}>
-            <AuthFlow initialStep="signup" />
-          </Suspense>
-        ),
-      },
-    ],
-  },
   {
     element: <DashboardLayout />,
     children: [
@@ -354,28 +368,7 @@ const router = createBrowserRouter([
     ],
   },
 
-  // Admin Routes
-  {
-    element: <DashboardLayout />,
-    children: [
-      {
-        path: APP_ROUTES.admin.companies,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <AdminCompanies />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.admin.companyDetails(":id"),
-        element: (
-          <Suspense fallback={<Loader />}>
-            <AdminCompanyDetails />
-          </Suspense>
-        ),
-      },
-    ],
-  },
+  
 ]);
 
 export default router;  

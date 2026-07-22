@@ -14,88 +14,54 @@ import { APP_ROUTES } from "../../../constants";
 import { ROLES } from "../../../roles";
 
 type Props = {
-  setStep: React.Dispatch<
-    React.SetStateAction<AuthStep>
-  >;
+  setStep: React.Dispatch<React.SetStateAction<AuthStep>>;
 };
 
-const Login = ({
-  setStep,
-}: Props) => {
-  const navigate =
-    useNavigate();
+const Login = ({ setStep }: Props) => {
+  const navigate = useNavigate();
 
-  const [email, setEmail] =
-    useState("");
+  const [email, setEmail] = useState("");
 
-  const [
-    password,
-    setPassword,
-  ] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [error, setError] =
-    useState("");
+  const [error, setError] = useState("");
 
-  const [loading, setLoading] =
-    useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin =
-    async () => {
-      setError("");
+  const handleLogin = async () => {
+    setError("");
 
-      try {
-        setLoading(true);
+    try {
+      setLoading(true);
 
-        const users =
-          await loginUser(
-            email,
-            password
-          );
+      const users = await loginUser(email, password);
 
-        if (
-          users.length > 0
-        ) {
-          const currentUser = users[0];
+      if (users.length > 0) {
+        const currentUser = users[0];
 
-          localStorage.setItem(
-            "currentUser",
-            JSON.stringify(
-              currentUser
-            )
-          );
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
 
-          // Redirect based on user role
-          if (currentUser.role ===  ROLES.COMPANY) {
-            navigate(APP_ROUTES.company.profile);
-          } else {
-            navigate(APP_ROUTES.student.dashboard);
-          }
-        } else {
-          setError(
-            "Incorrect email or password"
-          );
+        // Redirect based on user role
+        if (currentUser.role === ROLES.COMPANY) {
+          navigate(APP_ROUTES.company.profile);
+        } else if (currentUser.role === ROLES.USER) {
+          navigate(APP_ROUTES.student.dashboard);
+        }else if (currentUser.role === ROLES.ADMIN) {
+          navigate(APP_ROUTES.admin.dashboard);
         }
-      } catch {
-        setError(
-          "Something went wrong"
-        );
-      } finally {
-        setLoading(false);
+      } else {
+        setError("Incorrect email or password");
       }
-    };
+    } catch {
+      setError("Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div
-      className="
-        flex
-        w-full
-        flex-col
-        items-center
-        justify-center
-        gap-lg
-        px-lg
-        py-xl
-        md:flex-row
+      className=" flex w-full flex-col items-center justify-center gap-lg px-lg py-xl md:flex-row
       "
     >
       {/* LEFT */}
@@ -108,14 +74,7 @@ const Login = ({
       >
         <div className="space-y-lg">
           <p
-            className="
-              text-[34px]
-              font-bold
-              leading-none
-              tracking-[-2px]
-              text-light
-              sm:text-[48px]
-              lg:text-[58px]
+            className="text-[34px]  font-bold  leading-none  tracking-[-2px]  text-light  sm:text-[48px]  lg:text-[58px]
             "
           >
             Login
@@ -128,24 +87,14 @@ const Login = ({
               text-light-active
             "
           >
-            Welcome back,
-            Show your
-            opportunities
+            Welcome back,Show your opportunities
           </p>
         </div>
       </div>
 
       {/* RIGHT */}
       <div
-        className="
-          w-full
-          rounded-md
-          bg-card
-          p-lg
-          shadow-card
-          space-y-lg
-          sm:p-2xl
-          lg:w-[40%]
+        className=" w-full rounded-md bg-card p-lg shadow-card space-y-lg sm:p-2xl lg:w-[40%]
         "
       >
         <AuthInput
@@ -153,11 +102,7 @@ const Login = ({
           type="email"
           value={email}
           placeholder="handydonia@gmail.com"
-          onChange={(e) =>
-            setEmail(
-              e.target.value
-            )
-          }
+          onChange={(e) => setEmail(e.target.value)}
         />
 
         <AuthInput
@@ -166,32 +111,16 @@ const Login = ({
           value={password}
           placeholder="********"
           error={error}
-          onChange={(e) =>
-            setPassword(
-              e.target.value
-            )
-          }
+          onChange={(e) => setPassword(e.target.value)}
         />
 
-        <AuthButton
-          onClick={handleLogin}
-          disabled={loading}
-        >
-          {loading
-            ? "Loading..."
-            : "Login"}
+        <AuthButton onClick={handleLogin} disabled={loading}>
+          {loading ? "Loading..." : "Login"}
         </AuthButton>
 
         <button
-          onClick={() =>
-            setStep("forgot")
-          }
-          className="
-            w-full
-            text-center
-            text-body-sm
-            font-medium
-            text-primary
+          onClick={() => setStep("forgot")}
+          className=" w-full text-center text-body-sm font-medium text-primary
           "
         >
           Forgot Password?
@@ -208,15 +137,9 @@ const Login = ({
             text-normal
           "
         >
-          You don't have an
-          account?{" "}
-
+          You don't have an account?{" "}
           <button
-            onClick={() =>
-              navigate(
-               APP_ROUTES.auth.signup
-              )
-            }
+            onClick={() => navigate(APP_ROUTES.auth.signup)}
             className="
               font-semibold
               text-primary

@@ -52,5 +52,14 @@
     "countryCode": "+20",
     "phone": "1143607452",
     "role": "employee"
-  }
+  },
+  {
+  "id": 7,
+  "fullName": "Pathly Admin",
+  "email": "admin@pathly.com",
+  "password": "Admin123",
+  "countryCode": "+20",
+  "phone": "01000000000",
+  "role": "admin"
+}
 ]
