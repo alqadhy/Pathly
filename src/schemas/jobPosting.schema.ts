@@ -12,6 +12,7 @@ export const workplaceTypes = ["On-site", "Hybrid", "Remote"] as const;
 
 export const experienceLevels = [
   "Entry Level",
+  "Junior",
   "Mid Level",
   "Senior Level",
   "Lead",
@@ -30,10 +31,11 @@ export const experienceYears = [
 export const jobTitles = [
   "Design",
   "Engineering",
-  "Product",
   "Marketing",
+  "HR",
   "Sales",
-  "Operations",
+  "Product",
+  "Finance",  
 ] as const;
 
 export const jobPostingSchema = z

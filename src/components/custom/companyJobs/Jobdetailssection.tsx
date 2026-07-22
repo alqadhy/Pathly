@@ -29,14 +29,14 @@ export function JobDetailsSection({ control, errors }: JobDetailsSectionProps) {
         control={control}
         name="jobTitle"
         render={({ field }) => (
-          <FieldWrapper label="Job Title" error={errors.jobTitle?.message}>
+          <FieldWrapper label="Job Title" error={errors.jobTitle?.message} className="text-body-lg! text-bold!">
             <Select onValueChange={field.onChange} value={field.value}>
-              <SelectTrigger className="bg-[var(--input)] border-[var(--border)]">
+              <SelectTrigger className="bg-white! rounded-sm! w-full h-14!">
                 <SelectValue placeholder="Select job title" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent >
                 {jobTitles.map((title) => (
-                  <SelectItem key={title} value={title}>
+                  <SelectItem key={title} value={title} >
                     {title}
                   </SelectItem>
                 ))}
@@ -55,7 +55,7 @@ export function JobDetailsSection({ control, errors }: JobDetailsSectionProps) {
             error={errors.employmentType?.message}
           >
             <Select onValueChange={field.onChange} value={field.value}>
-              <SelectTrigger className="bg-[var(--input)] border-[var(--border)]">
+              <SelectTrigger className="bg-white! rounded-sm! w-full h-14!">
                 <SelectValue placeholder="Select employment type" />
               </SelectTrigger>
               <SelectContent>
@@ -79,7 +79,7 @@ export function JobDetailsSection({ control, errors }: JobDetailsSectionProps) {
             error={errors.workplaceType?.message}
           >
             <Select onValueChange={field.onChange} value={field.value}>
-              <SelectTrigger className="bg-[var(--input)] border-[var(--border)]">
+              <SelectTrigger className="bg-white! rounded-sm! w-full h-14!">
                 <SelectValue placeholder="Select workplace type" />
               </SelectTrigger>
               <SelectContent>
@@ -108,7 +108,7 @@ export function JobDetailsSection({ control, errors }: JobDetailsSectionProps) {
               type="number"
               min={1}
               {...field}
-              className="bg-[var(--input)] border-[var(--border)]"
+              className="bg-white! rounded-sm! w-full h-14!"
             />
           </FieldWrapper>
         )}
@@ -123,7 +123,7 @@ export function JobDetailsSection({ control, errors }: JobDetailsSectionProps) {
             error={errors.experienceLevel?.message}
           >
             <Select onValueChange={field.onChange} value={field.value}>
-              <SelectTrigger className="bg-[var(--input)] border-[var(--border)]">
+              <SelectTrigger className="bg-white! rounded-sm! w-full h-14!">
                 <SelectValue placeholder="Select experience level" />
               </SelectTrigger>
               <SelectContent>
@@ -144,7 +144,7 @@ export function JobDetailsSection({ control, errors }: JobDetailsSectionProps) {
         render={({ field }) => (
           <FieldWrapper label="Experience" error={errors.experience?.message}>
             <Select onValueChange={field.onChange} value={field.value}>
-              <SelectTrigger className="bg-[var(--input)] border-[var(--border)]">
+              <SelectTrigger className="bg-white! rounded-sm! w-full h-14!">
                 <SelectValue placeholder="Select years of experience" />
               </SelectTrigger>
               <SelectContent>

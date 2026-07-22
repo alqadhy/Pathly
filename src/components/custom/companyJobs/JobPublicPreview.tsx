@@ -1,11 +1,4 @@
-import { Bookmark, Briefcase, MapPin, MessageCircle, X } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Bookmark, Briefcase, MapPin, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useCompanyProfile } from "@/hooks/useCompanyProfile";
@@ -15,10 +8,9 @@ interface JobPublicPreviewProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   values: Partial<JobPostingFormValues>;
-  onContinue: () => void;
+  onCreate: () => void;
 }
 
-/** Splits a free-text block into non-empty bullet lines. */
 function toBulletLines(text?: string) {
   return (text ?? "")
     .split("\n")
@@ -30,20 +22,27 @@ export function JobPublicPreview({
   open,
   onOpenChange,
   values,
-  onContinue,
+  onCreate,
 }: JobPublicPreviewProps) {
   const { data: company, isLoading } = useCompanyProfile();
 
   const responsibilities = toBulletLines(values.responsibilities);
   const benefits = toBulletLines(values.benefits);
 
+  if (!open) return null;
+
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl p-0 gap-0 bg-[var(--background)] max-h-[90vh] overflow-hidden flex flex-col">
-        <DialogHeader className="flex flex-row items-center justify-between px-6 py-4 border-b border-[var(--border)] space-y-0">
-          <DialogTitle className="text-[var(--h5-size)]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
+      <div 
+        className="fixed inset-0 bg-black/50" 
+        onClick={() => onOpenChange(false)}
+      />
+      
+      <div className="relative z-50 w-full max-w-[60vw] max-h-[80vh] bg-[var(--background)] rounded-lg shadow-lg overflow-hidden flex flex-col">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)]">
+          <h2 className="text-[var(--h5-size)] font-semibold">
             Public Preview
-          </DialogTitle>
+          </h2>
           <button
             type="button"
             onClick={() => onOpenChange(false)}
@@ -52,23 +51,31 @@ export function JobPublicPreview({
           >
             <X className="size-4" />
           </button>
-        </DialogHeader>
+        </div>
 
-        <div className="overflow-y-auto px-6 py-5 space-y-5">
+        <div className="overflow-y-auto px-6 py-5 space-y-5 flex-1">
           <section className="rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--card)] p-5 shadow-[var(--shadow-sm)] space-y-4">
             <div className="flex items-center gap-3">
-              <Avatar className="size-9 rounded-md">
-                <AvatarImage src={company?.logoUrl} alt={company?.name} />
-                <AvatarFallback className="rounded-md">
-                  {company?.name?.slice(0, 2) ?? "—"}
-                </AvatarFallback>
-              </Avatar>
-              <span className="font-medium text-[var(--text-primary)]">
-                {isLoading ? "Loading company…" : company?.name}
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-sm bg-[var(--light)]">
+                {company?.logoUrl ? (
+                  <img
+                    src={company.logoUrl}
+                    alt={company?.name}
+                    style={{ objectFit: "contain", width: "100%", height: "100%" }}
+                    className="p-1"
+                  />
+                ) : (
+                  <span className="text-sm font-semibold text-[var(--normal)]">
+                    {company?.name?.slice(0, 2) ?? "—"}
+                  </span>
+                )}
+              </div>
+              <span className="text-[var(--body-sm)] font-semibold text-[var(--text-primary)]">
+                {isLoading ? "Loading company…" : company?.name ? `${company.name} Company` : "Company"}
               </span>
             </div>
 
-            <div className="flex items-start justify-between gap-4">
+            <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
               <div>
                 <h3 className="text-[var(--h4-size)] font-semibold text-[var(--text-primary)]">
                   {values.jobTitle || "Untitled position"}
@@ -77,18 +84,19 @@ export function JobPublicPreview({
                   {company?.location} · 1 week ago
                 </p>
               </div>
-              <div className="flex items-center gap-2 shrink-0">
-                <Button className="bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white">
+
+              <div className="flex shrink-0 items-center gap-2">
+                <Button className="w-[200px] h-[55px] bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white rounded-sm">
                   Apply
                 </Button>
                 <Button
                   type="button"
-                  variant="outline"
+                  variant="ghost"
                   size="icon"
                   aria-label="Save job"
-                  className="border-[var(--border)]"
+                  className="w-14 h-14 bg-[var(--primary-light)] hover:bg-[var(--primary-light)] text-[var(--primary)] rounded-lg"
                 >
-                  <Bookmark className="size-4" />
+                  <Bookmark className="size-[22px]" />
                 </Button>
               </div>
             </div>
@@ -124,15 +132,7 @@ export function JobPublicPreview({
           </section>
 
           <section className="rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--card)] p-5 shadow-[var(--shadow-sm)] space-y-5 relative">
-            <Button
-              type="button"
-              variant="outline"
-              size="icon"
-              aria-label="Message company"
-              className="absolute top-5 right-5 border-[var(--border)]"
-            >
-              <MessageCircle className="size-4" />
-            </Button>
+           
 
             <div>
               <h4 className="font-semibold text-[var(--text-primary)] mb-1">
@@ -182,13 +182,13 @@ export function JobPublicPreview({
 
         <div className="flex justify-end px-6 py-4 border-t border-[var(--border)]">
           <Button
-            onClick={onContinue}
-            className="bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white"
+            onClick={onCreate}
+            className="bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-body-md! rounded-sm px-10 py-6 text-white"
           >
-            Continue
+            Create
           </Button>
         </div>
-      </DialogContent>
-    </Dialog>
+      </div>
+    </div>
   );
 }

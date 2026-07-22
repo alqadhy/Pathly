@@ -43,14 +43,14 @@ export function AITextareaField<TFormValues extends FieldValues>({
               id={name}
               placeholder={placeholder}
               rows={4}
-              className="resize-none bg-[var(--input)] border-[var(--border)] pb-12"
+              className="resize-none bg-white! h-30  pb-12"
             />
             <Button
               type="button"
               size="sm"
               disabled={isRewriting}
               onClick={() => onRewriteWithAI?.(field.value ?? "")}
-              className="absolute bottom-3 right-3 bg-[var(--primary-darker)] hover:bg-[var(--primary-dark)] text-white gap-1.5"
+              className="absolute bottom-3 right-6 bg-[var(--primary-darker)] hover:bg-[var(--primary-dark)] text-white gap-1.5"
             >
               <Sparkles className="size-3.5" />
               {isRewriting ? "Rewriting..." : "Rewrite by AI"}

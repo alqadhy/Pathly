@@ -69,7 +69,7 @@ export function JobPostingForm({ onSubmit }: JobPostingFormProps) {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="space-y-8 rounded-[var(--radius-lg)] bg-[var(--card)] p-6 shadow-[var(--shadow-sm)]"
+        className="space-y-8 rounded-[var(--radius-lg)]  p-6 "
       >
         <JobDetailsSection control={control} errors={errors} />
         <CompensationSection control={control} errors={errors} />
@@ -86,15 +86,15 @@ export function JobPostingForm({ onSubmit }: JobPostingFormProps) {
             type="button"
             variant="outline"
             onClick={handlePublicPreview}
-            className="border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary-light)]"
+            className="hover:bg-primary-light! rounded-sm  text-primary! text-body-md px-6 py-6 border-2 border-primary!"
           >
             Public preview
           </Button>
           <Button
             type="submit"
-            className="bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white"
+            className="bg-primary rounded-sm!  hover:bg-[var(--primary-hover)] text-white! text-body-md px-10 py-6"
           >
-            Continue
+            Create
           </Button>
         </div>
       </form>

@@ -14,10 +14,8 @@ export default function PostJob() {
   };
 
   return (
-    <div className="mx-auto max-w-3xl py-8 px-4">
-      <h1 className="text-[var(--h3-size)] font-semibold text-[var(--text-primary)] mb-6">
-        Post a New Job
-      </h1>
+    <div className="mx-auto w-full py-8 px-4">
+      
       <JobPostingForm onSubmit={handleSubmit} />
     </div>
   );

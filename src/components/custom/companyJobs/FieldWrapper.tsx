@@ -19,7 +19,7 @@ export function FieldWrapper({
     <div className={className}>
       <label
         htmlFor={htmlFor}
-        className="block text-sm font-medium text-[var(--text-primary)] mb-1.5"
+        className="block text-body-lg font-medium  mb-1.5"
       >
         {label}
       </label>
