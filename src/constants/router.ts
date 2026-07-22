@@ -24,6 +24,7 @@ export const APP_ROUTES = {
     jobDetails: (id: number | string) => `/student/jobs/${id}`,
     applyJob: (id: number | string) => `/student/apply/${id}`,
     learning: "/student/learning",
+    mylearning: "/student/learning/MyLearning",
     profile: "/student/profile",  
     publicProfile: (id: string) => `/student/profile/${id}`,
 
