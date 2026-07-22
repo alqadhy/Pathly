@@ -20,6 +20,7 @@ import PublicProfile from "../pages/student/PublicProfile";
 const Home = lazy(() => import("../pages/Home"));
 
 const Dashboard = lazy(() => import("../pages/student/Dashboard"));
+const AdminDashboard = lazy(() => import("../components/custom/Admin/AdminDashboard"));
 const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
 const JobsInternshipsDashboard = lazy(
   () => import("../pages/student/Jobs-Internships")
@@ -29,6 +30,7 @@ const SavedItems = lazy(() => import("../pages/student/SavedItems"));
 const Community = lazy(() => import("../pages/student/Community"));
 const Profile = lazy(() => import("../pages/student/Profile"));
 const Messages = lazy(() => import("../pages/student/Messages"));
+const AdminRoute = lazy(() => import("./AdminRoute"));
 
 const Learning = lazy(
   () => import("../pages/Lessons/Learning")
@@ -75,6 +77,25 @@ const router = createBrowserRouter([
         <Home />
       </Suspense>
     ),
+  },
+
+  /*admin */
+{
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <AdminRoute />
+      </Suspense>
+    ),
+    children: [
+      {
+        path: APP_ROUTES.Admin.adminDashboard,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <AdminDashboard />
+          </Suspense>
+        ),
+      },
+    ],
   },
 
   /* DASHBOARD */

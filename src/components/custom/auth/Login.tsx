@@ -50,19 +50,19 @@ const Login = ({
             password
           );
 
-        if (
-          users.length > 0
-        ) {
+        if (users.length > 0) {
+          const currentUser = users[0];
+
           localStorage.setItem(
             "currentUser",
-            JSON.stringify(
-              users[0]
-            )
+            JSON.stringify(currentUser)
           );
 
-          navigate(
-            "/student/dashboard"
-          );
+          if (currentUser.role === "admin") {
+            navigate("/admin/dashboard");
+          } else {
+            navigate("/student/dashboard");
+          }
         } else {
           setError(
             "Incorrect email or password"
@@ -79,16 +79,7 @@ const Login = ({
 
   return (
     <div
-      className="
-        flex
-        w-full
-        flex-col
-        items-center
-        justify-center
-        gap-lg
-        px-lg
-        py-xl
-        md:flex-row
+      className=" flex w-full flex-col items-center justify-center gap-lg px-lg py-xl md:flex-row
       "
     >
       {/* LEFT */}
@@ -101,14 +92,7 @@ const Login = ({
       >
         <div className="space-y-lg">
           <p
-            className="
-              text-[34px]
-              font-bold
-              leading-none
-              tracking-[-2px]
-              text-light
-              sm:text-[48px]
-              lg:text-[58px]
+            className="text-[34px]  font-bold  leading-none  tracking-[-2px]  text-light  sm:text-[48px]  lg:text-[58px]
             "
           >
             Login
@@ -121,24 +105,14 @@ const Login = ({
               text-light-active
             "
           >
-            Welcome back,
-            Show your
-            opportunities
+            Welcome back,Show your opportunities
           </p>
         </div>
       </div>
 
       {/* RIGHT */}
       <div
-        className="
-          w-full
-          rounded-md
-          bg-card
-          p-lg
-          shadow-card
-          space-y-lg
-          sm:p-2xl
-          lg:w-[40%]
+        className=" w-full rounded-md bg-card p-lg shadow-card space-y-lg sm:p-2xl lg:w-[40%]
         "
       >
         <AuthInput
@@ -179,12 +153,7 @@ const Login = ({
           onClick={() =>
             setStep("forgot")
           }
-          className="
-            w-full
-            text-center
-            text-body-sm
-            font-medium
-            text-primary
+          className=" w-full text-center text-body-sm font-medium text-primary
           "
         >
           Forgot Password?

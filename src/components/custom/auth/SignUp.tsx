@@ -175,7 +175,7 @@ const SignUp = ({
         <div className="space-y-md">
 
           <p
-            className="text-h2font-boldleading-nonetracking-[-2px]text-light sm:text-display
+            className="text-h2 font-bold leading-none tracking-[-2px] text-light sm:text-display
             "
           >
             Create Your
@@ -203,14 +203,7 @@ const SignUp = ({
 
       {/* FORM */}
       <div
-        className="
-          w-full
-          rounded-xl
-          bg-card
-          p-lg
-          shadow-card
-          sm:p-md
-          lg:w-[45%]
+        className=" w-full rounded-xl bg-card p-lg shadow-card sm:p-md lg:w-[45%]
         "
       >
 
