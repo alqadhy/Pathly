@@ -1,48 +1,78 @@
 import { createBrowserRouter } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
-// Layouts
+/* Layouts */
 import AuthLayout from "../layout/AuthLayout";
 import DashboardLayout from "../layout/DashboardLayout";
 
-// Constants
+/* Constants */
 import { APP_ROUTES } from "../constants";
 
-// Loaders
-import PageLoader from "../components/layout/PageLoader";
+/* Loaders */
 import Loader from "../components/layout/Loader";
+import PageLoader from "../components/layout/PageLoader";
+
+/* Direct Pages */
 import CareerChat from "../pages/student/CareerChat";
 import PublicProfile from "../pages/student/PublicProfile";
 import PublicCompanyProfile from "../pages/company/PublicCompanyProfile";
 
-// Pages
+/* Lazy Pages */
 const Home = lazy(() => import("../pages/Home"));
+
 const Dashboard = lazy(() => import("../pages/student/Dashboard"));
 const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
 const JobsInternshipsDashboard = lazy(
-  () => import("../pages/student/Jobs-Internships"),
+  () => import("../pages/student/Jobs-Internships")
 );
 
 const JobDetails = lazy(() => import("../pages/student/JobDetails"));
 const ApplyJobPage = lazy(() => import("../pages/student/ApplyJobPage"));
 const SavedItems = lazy(() => import("../pages/student/SavedItems"));
-const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
 const Community = lazy(() => import("../pages/student/Community"));
 const Profile = lazy(() => import("../pages/student/Profile"));
 const CompanyProfile = lazy(() => import("../pages/company/CompanyProfile"));
 const PostJob = lazy(() => import("../pages/company/PostJob"));
 const Messages = lazy(() => import("../pages/student/Messages"));
-const CVBuilderAI = lazy(() => import("../pages/student/cv/CVBuilderAI"));
-const CVBuilderManual = lazy(
-  () => import("../pages/student/cv/CVBuilderManual"),
+
+const Learning = lazy(
+  () => import("../pages/Lessons/Learning")
 );
+
+const MyLearning = lazy(
+  () => import("../pages/Lessons/MyLearning")
+);
+
+const LearningDetails = lazy(
+  () => import("../pages/Lessons/LearningDetails")
+);
+
+const LearningLesson = lazy(
+  () => import("../pages/Lessons/LearningLesson")
+);
+
+const CVDashboard = lazy(
+  () => import("../pages/student/cv/CVDashboard")
+);
+
 const TemplateSelection = lazy(
-  () => import("../pages/student/cv/TempleteSelection"),
+  () => import("../pages/student/cv/TempleteSelection")
 );
-const CVDashboard = lazy(() => import("../pages/student/cv/CVDashboard"));
+
+const CVBuilderManual = lazy(
+  () => import("../pages/student/cv/CVBuilderManual")
+);
+
+const CVBuilderAI = lazy(
+  () => import("../pages/student/cv/CVBuilderAI")
+);
+
+const AuthFlow = lazy(
+  () => import("../pages/Auth/AuthFlow")
+);
 
 const router = createBrowserRouter([
-  // Landing Page
+  /* HOME */
   {
     path: APP_ROUTES.home,
     element: (
@@ -52,10 +82,9 @@ const router = createBrowserRouter([
     ),
   },
 
-  // Student Dashboard Routes
+  /* DASHBOARD */
   {
     element: <DashboardLayout />,
-
     children: [
       {
         path: APP_ROUTES.student.dashboard,
@@ -70,6 +99,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <JobsInternshipsDashboard />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.jobDetails(":id"),
+        element: (
+          <Suspense fallback={<Loader />}>
+            <JobDetails />
           </Suspense>
         ),
       },
@@ -185,10 +222,44 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
+
+      /* Learning */
+      {
+        path: APP_ROUTES.student.learning,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Learning />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.mylearning,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <MyLearning />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.Learning.courseDetails,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <LearningDetails />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.Learning.continueCourse,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <LearningLesson />
+          </Suspense>
+        ),
+      },
     ],
   },
 
-  // Auth Routes
+  /* AUTH */
   {
     element: <AuthLayout />,
     children: [

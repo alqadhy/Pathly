@@ -12,18 +12,7 @@ const AuthError = ({
 
   return (
     <p
-      className={`
-        rounded-md
-        border
-        border-danger-light
-        bg-danger-light
-
-        px-md
-        py-sm
-
-        text-body-sm
-        font-medium
-        text-danger-dark
+      className={` rounded-md border border-danger-light bg-danger-light px-md py-sm text-body-sm font-medium text-danger-dark
 
         ${className}
       `}

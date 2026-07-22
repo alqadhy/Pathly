@@ -5,6 +5,7 @@ import { Outlet, useLocation, ScrollRestoration } from "react-router-dom";
 import DashboardHeader from "../components/layout/DashboardHeader";
 import Sidebar from "../components/layout/Sidebar";
 import Footer from "../components/layout/Footer";
+import ScrollToTop from "../components/layout/ScrollToTop";
 
 function DashboardLayout() {
   const location = useLocation();
