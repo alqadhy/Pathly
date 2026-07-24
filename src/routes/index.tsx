@@ -23,6 +23,7 @@ import AdminCompanyDetails from "../pages/admin/CompanyDetails";
 const Home = lazy(() => import("../pages/Home"));
 
 const Dashboard = lazy(() => import("../pages/student/Dashboard"));
+const SettingsPage = lazy(() => import("../pages/Settings/SettingsPage"));
 const AdminDashboard = lazy(() => import("../layout/AdminDashboard"));
 const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
 const JobsInternshipsDashboard = lazy(
@@ -287,6 +288,15 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
+      /* Settings */
+      {
+      path: APP_ROUTES.student.settings,
+      element: (
+        <Suspense fallback={<Loader />}>
+          <SettingsPage />
+        </Suspense>
+      ),
+    },
     ],
   },
 
@@ -370,6 +380,7 @@ const router = createBrowserRouter([
   },
 
   
+
 ]);
 
 export default router;  

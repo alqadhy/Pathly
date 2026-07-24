@@ -1,7 +1,7 @@
 // Components
 import { Link } from "react-router-dom";
 import IconButton from "../custom/IconButton";
-import Searchbar from "../custom/Searchbar";
+import Searchbar from "../custom/search/Searchbar";
 import UserAvatar from "../custom/UserAvatar";
 
 // Icons

@@ -8,6 +8,7 @@ import {
 import { X, Pencil, Search, XCircle, Plus, Trash2 } from 'lucide-react';
 
 import ALL_JOB_TITLES from '../../../../public/mocked/jobs/jobTitles.json';
+import ALL_JOB_TITLES from '../../../../public/mocked/jobs/jobTitles.json';
 import type { EditJobPreferenceModalProps, JobPreferenceData } from '../../../types/preferences.types';
 
 const INITIAL_DATA: JobPreferenceData = {
