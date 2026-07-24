@@ -17,7 +17,9 @@ import CareerChat from "../pages/student/CareerChat";
 import PublicProfile from "../pages/student/PublicProfile";
 import PublicCompanyProfile from "../pages/company/PublicCompanyProfile";
 import AdminCompanies from "../pages/admin/Companies";
-import AdminCompanyDetails from "../pages/admin/CompanyDetails";
+import AdminCompanyDetails from "../components/custom/admin/companies/CompanyDetails";
+import AdminInstructors from "../pages/admin/Instructors";
+import AdminInstructorDetails from "../pages/admin/InstructorDetails";
 
 /* Lazy Pages */
 const Home = lazy(() => import("../pages/Home"));
@@ -115,6 +117,22 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <AdminCompanyDetails />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.admin.instructors,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <AdminInstructors />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.admin.instructorDetails(":id"),
+        element: (
+          <Suspense fallback={<Loader />}>
+            <AdminInstructorDetails />
           </Suspense>
         ),
       },
