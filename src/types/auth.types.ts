@@ -14,4 +14,5 @@ export interface User {
   countryCode: string;
   phone: string;
   role: string;
+  location?: string
 }

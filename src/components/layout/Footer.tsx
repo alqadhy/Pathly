@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <footer className="bg-card-foreground text-popover px-8 py-4 flex flex-wrap justify-between items-center gap-4 text-center">
+    <footer className="bg-card-foreground text-popover px-8 py-4 flex flex-wrap justify-between items-center gap-4 text-center relative bottom-0">
       <p className="w-full md:w-auto">
         Copyright &copy; {new Date().getFullYear()} | All Rights Reserved
       </p>

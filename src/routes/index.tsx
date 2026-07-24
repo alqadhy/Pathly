@@ -25,10 +25,11 @@ import AdminInstructorDetails from "../pages/admin/InstructorDetails";
 const Home = lazy(() => import("../pages/Home"));
 
 const Dashboard = lazy(() => import("../pages/student/Dashboard"));
+const SettingsPage = lazy(() => import("../pages/Settings/SettingsPage"));
 const AdminDashboard = lazy(() => import("../layout/AdminDashboard"));
 const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
 const JobsInternshipsDashboard = lazy(
-  () => import("../pages/student/Jobs-Internships")
+  () => import("../pages/student/Jobs-Internships"),
 );
 
 const JobDetails = lazy(() => import("../pages/student/JobDetails"));
@@ -41,41 +42,27 @@ const PostJob = lazy(() => import("../pages/company/PostJob"));
 const Messages = lazy(() => import("../pages/student/Messages"));
 const AdminRoute = lazy(() => import("./AdminRoute"));
 
-const Learning = lazy(
-  () => import("../pages/Lessons/Learning")
-);
+const Learning = lazy(() => import("../pages/Lessons/Learning"));
 
-const MyLearning = lazy(
-  () => import("../pages/Lessons/MyLearning")
-);
+const MyLearning = lazy(() => import("../pages/Lessons/MyLearning"));
 
-const LearningDetails = lazy(
-  () => import("../pages/Lessons/LearningDetails")
-);
+const LearningDetails = lazy(() => import("../pages/Lessons/LearningDetails"));
 
-const LearningLesson = lazy(
-  () => import("../pages/Lessons/LearningLesson")
-);
+const LearningLesson = lazy(() => import("../pages/Lessons/LearningLesson"));
 
-const CVDashboard = lazy(
-  () => import("../pages/student/cv/CVDashboard")
-);
+const CVDashboard = lazy(() => import("../pages/student/cv/CVDashboard"));
 
 const TemplateSelection = lazy(
-  () => import("../pages/student/cv/TempleteSelection")
+  () => import("../pages/student/cv/TempleteSelection"),
 );
 
 const CVBuilderManual = lazy(
-  () => import("../pages/student/cv/CVBuilderManual")
+  () => import("../pages/student/cv/CVBuilderManual"),
 );
 
-const CVBuilderAI = lazy(
-  () => import("../pages/student/cv/CVBuilderAI")
-);
+const CVBuilderAI = lazy(() => import("../pages/student/cv/CVBuilderAI"));
 
-const AuthFlow = lazy(
-  () => import("../pages/Auth/AuthFlow")
-);
+const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
 
 const router = createBrowserRouter([
   /* HOME */
@@ -89,7 +76,7 @@ const router = createBrowserRouter([
   },
 
   /*admin */
-{
+  {
     element: (
       <Suspense fallback={<PageLoader />}>
         <AdminRoute />
@@ -97,48 +84,53 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: APP_ROUTES.Admin.adminDashboard,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <DashboardLayout />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.admin.companies,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <AdminCompanies />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.admin.companyDetails(":id"),
-        element: (
-          <Suspense fallback={<Loader />}>
-            <AdminCompanyDetails />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.admin.instructors,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <AdminInstructors />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.admin.instructorDetails(":id"),
-        element: (
-          <Suspense fallback={<Loader />}>
-            <AdminInstructorDetails />
-          </Suspense>
-        ),
-      },
+        element: <DashboardLayout />,
+        children: [
+          {
+            path: APP_ROUTES.Admin.adminDashboard,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <h1>Hello</h1>
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.admin.companies,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <AdminCompanies />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.admin.companyDetails(":id"),
+            element: (
+              <Suspense fallback={<Loader />}>
+                <AdminCompanyDetails />
+              </Suspense>
+            ),
+          },
+
+          {
+            path: APP_ROUTES.admin.instructors,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <AdminInstructors />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.admin.instructorDetails(":id"),
+            element: (
+              <Suspense fallback={<Loader />}>
+                <AdminInstructorDetails />
+              </Suspense>
+            ),
+          },
+        ],
+      },  
     ],
   },
-
   /* User */
   {
     element: <DashboardLayout />,
@@ -176,7 +168,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path:  APP_ROUTES.public.saved,
+        path: APP_ROUTES.public.saved,
         element: (
           <Suspense fallback={<Loader />}>
             <SavedItems />
@@ -215,7 +207,7 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-       {
+      {
         path: APP_ROUTES.student.publicProfile(":id"),
         element: (
           <Suspense fallback={<Loader />}>
@@ -235,7 +227,7 @@ const router = createBrowserRouter([
         path: APP_ROUTES.student.messages,
         element: (
           <Suspense fallback={<Loader />}>
-            <Messages  />
+            <Messages />
           </Suspense>
         ),
       },
@@ -305,6 +297,15 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
+      /* Settings */
+      {
+        path: APP_ROUTES.student.settings,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <SettingsPage />
+          </Suspense>
+        ),
+      },
     ],
   },
 
@@ -330,8 +331,8 @@ const router = createBrowserRouter([
       },
     ],
   },
- 
-    // Company
+
+  // Company
 
   {
     element: <DashboardLayout />,
@@ -343,23 +344,23 @@ const router = createBrowserRouter([
             <CompanyProfile />
           </Suspense>
         ),
-        },
-        {
-          path: APP_ROUTES.company.publicProfile(":id"),
-          element: (
-            <Suspense fallback={<Loader />}>
-              <PublicCompanyProfile />
-            </Suspense>
-          ),
-        },
-         {
-          path: APP_ROUTES.company.postJob,
-          element: (
-            <Suspense fallback={<Loader />}>
-              <PostJob />
-            </Suspense>
-          ),
-        },
+      },
+      {
+        path: APP_ROUTES.company.publicProfile(":id"),
+        element: (
+          <Suspense fallback={<Loader />}>
+            <PublicCompanyProfile />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.company.postJob,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <PostJob />
+          </Suspense>
+        ),
+      },
       {
         path: APP_ROUTES.public.community,
         element: (
@@ -386,8 +387,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-
-  
 ]);
 
-export default router;  
+export default router;

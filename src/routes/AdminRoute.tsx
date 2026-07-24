@@ -24,7 +24,7 @@ const AdminRoute = () => {
   }
 
   console.log("Admin");
-  return <Outlet />;
+  return <Outlet/>;
 };
 
 

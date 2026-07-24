@@ -1,17 +1,18 @@
 import { useState } from "react";
-
 import { useNavigate } from "react-router-dom";
 
 import type { AuthStep } from "../../../types/auth.types";
-
 import AuthButton from "./AuthButton";
 import AuthInput from "./AuthInput";
 import Divider from "./Divider";
 import SocialAuth from "./SocialAuth";
 
 import { loginUser } from "../../../Services/auth.service";
+import { notificationService } from "../../../Services/notification.service";
+import { getSettings } from "../../../Services/settings.service";
 import { APP_ROUTES } from "../../../constants";
 import { ROLES } from "../../../roles";
+import { useAuthStore } from "../../../store/auth.store";
 
 type Props = {
   setStep: React.Dispatch<React.SetStateAction<AuthStep>>;
@@ -19,13 +20,10 @@ type Props = {
 
 const Login = ({ setStep }: Props) => {
   const navigate = useNavigate();
-
+  const setCurrentUser = useAuthStore((state) => state.setCurrentUser);
   const [email, setEmail] = useState("");
-
   const [password, setPassword] = useState("");
-
   const [error, setError] = useState("");
-
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
@@ -39,66 +37,59 @@ const Login = ({ setStep }: Props) => {
       if (users.length > 0) {
         const currentUser = users[0];
 
-        localStorage.setItem("currentUser", JSON.stringify(currentUser));
+        setCurrentUser(currentUser);
 
-        // Redirect based on user role
-        if (currentUser.role === ROLES.COMPANY) {
+        try {
+          const settings = getSettings();
+          if (settings.notifications.push) {
+            const allowed = await notificationService.requestPermission();
+
+            if (allowed) {
+              notificationService.show("Welcome back!", {
+                body: "You have successfully logged in.",
+              });
+            }
+          }
+        } catch (error) {
+          console.error("Notification settings error:", error);
+        }
+
+        if (currentUser.role === ROLES.ADMIN) {
+          navigate(APP_ROUTES.admin.dashboard);
+        } else if (currentUser.role === ROLES.COMPANY) {
           navigate(APP_ROUTES.company.profile);
         } else if (currentUser.role === ROLES.USER) {
           navigate(APP_ROUTES.student.dashboard);
-        }else if (currentUser.role === ROLES.ADMIN) {
-          navigate(APP_ROUTES.admin.dashboard);
+        } else {
+          navigate(APP_ROUTES.student.dashboard);
         }
       } else {
         setError("Incorrect email or password");
-      }} catch (err) {
-  console.error(err);
-  setError("Something went wrong");
-
-      } finally {
-        setLoading(false);
       }
-  
+    } catch (err) {
+      console.error(err);
+      setError("Something went wrong");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div
-      className=" flex w-full flex-col items-center justify-center gap-lg px-lg py-xl md:flex-row
-      "
-    >
+    <div className="flex w-full flex-col items-center justify-center gap-lg px-lg py-xl md:flex-row">
       {/* LEFT */}
-      <div
-        className="
-          w-full
-          lg:w-1/2
-          lg:max-w-[45%]
-        "
-      >
+      <div className="w-full lg:w-1/2 lg:max-w-[45%]">
         <div className="space-y-lg">
-          <p
-            className="text-[34px]  font-bold  leading-none  tracking-[-2px]  text-light  sm:text-[48px]  lg:text-[58px]
-            "
-          >
+          <p className="text-[34px] font-bold leading-none tracking-[-2px] text-light sm:text-[48px] lg:text-[58px]">
             Login
           </p>
-
-          <p
-            className="
-              max-w-[500px]
-              text-body-lg
-              text-light-active
-            "
-          >
-            Welcome back,Show your opportunities
+          <p className="max-w-[500px] text-body-lg text-light-active">
+            Welcome back, Show your opportunities
           </p>
         </div>
       </div>
 
       {/* RIGHT */}
-      <div
-        className=" w-full rounded-md bg-card p-lg shadow-card space-y-lg sm:p-2xl lg:w-[40%]
-        "
-      >
+      <div className="w-full rounded-md bg-card p-lg shadow-card space-y-lg sm:p-2xl lg:w-[40%]">
         <AuthInput
           label="Email"
           type="email"
@@ -122,8 +113,7 @@ const Login = ({ setStep }: Props) => {
 
         <button
           onClick={() => setStep("forgot")}
-          className=" w-full text-center text-body-sm font-medium text-primary
-          "
+          className="w-full text-center text-body-sm font-medium text-primary"
         >
           Forgot Password?
         </button>
@@ -132,20 +122,11 @@ const Login = ({ setStep }: Props) => {
 
         <SocialAuth />
 
-        <p
-          className="
-            text-center
-            text-body-sm
-            text-normal
-          "
-        >
+        <p className="text-center text-body-sm text-normal">
           You don't have an account?{" "}
           <button
             onClick={() => navigate(APP_ROUTES.auth.signup)}
-            className="
-              font-semibold
-              text-primary
-            "
+            className="font-semibold text-primary"
           >
             Sign up
           </button>

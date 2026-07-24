@@ -1,4 +1,3 @@
-// Icons
 import {
   House,
   WandSparkles,
@@ -10,13 +9,15 @@ import {
   UsersRound,
   UserRound,
   Settings,
+  Building2,
+  UserCircle,
 } from "lucide-react";
 
-// Constants
 import { APP_ROUTES } from "./router";
+import { ROLES } from "../roles";
 
 export const SIDEBAR_LINKS = {
-  student: [
+  [ROLES.USER]: [
     {
       id: 1,
       title: "MAIN",
@@ -85,6 +86,86 @@ export const SIDEBAR_LINKS = {
           icon: <Settings />,
           text: "Settings",
           to: APP_ROUTES.student.settings,
+        },
+      ],
+    },
+  ],
+
+  [ROLES.COMPANY]: [
+    {
+      id: 1,
+      title: "MAIN",
+      links: [
+        {
+          icon: <House />,
+          text: "Home",
+          to: APP_ROUTES.company.dashboard,
+        },
+        {
+          icon: <UserRound />,
+          text: "Profile",
+          to: APP_ROUTES.company.profile,
+        },
+        {
+          icon: <BriefcaseBusiness />,
+          text: "Jobs",
+          to: APP_ROUTES.company.jobs,
+        },
+      ],
+    },
+    {
+      id: 2,
+      title: "MANAGEMENT",
+      links: [
+        {
+          icon: <UsersRound />,
+          text: "Applicants",
+          to: APP_ROUTES.company.jobs,
+        },
+        {
+          icon: <UsersRound />,
+          text: "Community",
+          to: APP_ROUTES.public.community,
+        },
+        {
+          icon: <ChartColumn />,
+          text: "Analytics",
+          to: APP_ROUTES.student.analytics,
+        },
+      ],
+    },
+    {
+      id: 3,
+      title: "ACCOUNT",
+      links: [
+        {
+          icon: <Settings />,
+          text: "Settings",
+          to: APP_ROUTES.student.settings,
+        },
+      ],
+    },
+  ],
+
+  [ROLES.ADMIN]: [
+    {
+      id: 1,
+      title: "MAIN",
+      links: [
+        {
+          icon: <ChartColumn />,
+          text: "Analytics",
+          to: APP_ROUTES.admin.dashboard,
+        },
+        {
+          icon: <Building2 />,
+          text: "Companies",
+          to: APP_ROUTES.admin.companies,
+        },
+        {
+          icon: <UserCircle />,
+          text: "Instructors",
+          to: "/admin/instructors",
         },
       ],
     },
