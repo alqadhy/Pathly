@@ -12,6 +12,7 @@ import { notificationService } from "../../../Services/notification.service";
 import { getSettings } from "../../../Services/settings.service";
 import { APP_ROUTES } from "../../../constants";
 import { ROLES } from "../../../roles";
+import { useAuthStore } from "../../../store/auth.store";
 
 type Props = {
   setStep: React.Dispatch<React.SetStateAction<AuthStep>>;
@@ -19,7 +20,7 @@ type Props = {
 
 const Login = ({ setStep }: Props) => {
   const navigate = useNavigate();
-
+  const setCurrentUser = useAuthStore((state) => state.setCurrentUser);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -36,7 +37,7 @@ const Login = ({ setStep }: Props) => {
       if (users.length > 0) {
         const currentUser = users[0];
 
-        localStorage.setItem("currentUser", JSON.stringify(currentUser));
+        setCurrentUser(currentUser);
 
         try {
           const settings = getSettings();

@@ -1,25 +1,21 @@
-// Components
 import { Link } from "react-router-dom";
-
-// Constants
 import { SIDEBAR_LINKS, SLOGAN } from "../../constants";
-
-// Hooks
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-
-// State Management
 import { useSidebarStore } from "../../store/sidebar.store";
-
-// Logo
+import { useAuthStore } from "../../store/auth.store";
+import { ROLES } from "../../roles";
 import logo from "../../assets/imgs/logo.png";
-
 
 function Sidebar() {
   const route = useLocation().pathname;
   const { isOpen, close } = useSidebarStore();
+  const currentUser = useAuthStore((state) => state.currentUser);
 
   useEffect(() => close(), [route]);
+
+  const role = currentUser?.role || ROLES.USER;
+  const sections = SIDEBAR_LINKS[role] || SIDEBAR_LINKS[ROLES.USER];
 
   return (
     <aside
@@ -30,7 +26,7 @@ function Sidebar() {
           <img src={logo} alt={SLOGAN} className="w-10!" />
           <h3>Pathly</h3>
         </div>
-        {SIDEBAR_LINKS.student.map(({ id, title, links }) => (
+        {sections.map(({ id, title, links }) => (
           <div className="group" key={id}>
             <span className="text-text-light">{title}</span>
             <div className="grid gap-4 mt-4">
@@ -51,5 +47,4 @@ function Sidebar() {
     </aside>
   );
 }
-
 export default Sidebar;

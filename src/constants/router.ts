@@ -69,5 +69,6 @@ export const APP_ROUTES = {
     dashboard: `/${ROLES.ADMIN}/dashboard`,
     companies: `/${ROLES.ADMIN}/companies`,
     companyDetails: (id: number | string) => `/${ROLES.ADMIN}/companies/${id}`,
+    instructors: `/${ROLES.ADMIN}/instructors`,
   },
 };

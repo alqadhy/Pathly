@@ -96,32 +96,36 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: APP_ROUTES.Admin.adminDashboard,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <DashboardLayout />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.admin.companies,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <AdminCompanies />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.admin.companyDetails(":id"),
-        element: (
-          <Suspense fallback={<Loader />}>
-            <AdminCompanyDetails />
-          </Suspense>
-        ),
-      },
+        element: <DashboardLayout />, 
+        children: [
+          {
+            path: APP_ROUTES.Admin.adminDashboard,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <h1>Hello</h1>
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.admin.companies,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <AdminCompanies />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.admin.companyDetails(":id"),
+            element: (
+              <Suspense fallback={<Loader />}>
+                <AdminCompanyDetails />
+              </Suspense>
+            ),
+          },
+        ]
+      }
     ],
   },
-
   /* User */
   {
     element: <DashboardLayout />,

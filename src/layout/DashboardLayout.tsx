@@ -4,8 +4,6 @@ import { Outlet, useLocation, ScrollRestoration } from "react-router-dom";
 // Layout Components
 import DashboardHeader from "../components/layout/DashboardHeader";
 import Sidebar from "../components/layout/Sidebar";
-import Footer from "../components/layout/Footer";
-import ScrollToTop from "../components/layout/ScrollToTop";
 
 function DashboardLayout() {
   const location = useLocation();
@@ -15,17 +13,20 @@ function DashboardLayout() {
   }, [location.pathname]);
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <ScrollRestoration />
       <DashboardHeader />
-      <div className="flex">
+      <div className="flex flex-1">
         <Sidebar />
-        <div className="w-full lg:w-(--dashboard-container-width) p-6">
-          <Outlet />
+        
+        <div className="flex flex-col flex-1 w-full lg:w-(--dashboard-container-width)">
+          <div className="p-6 flex-1">
+            <Outlet />
+          </div>
+          
         </div>
       </div>
-      <Footer />
-    </>
+    </div>
   );
 }
 
