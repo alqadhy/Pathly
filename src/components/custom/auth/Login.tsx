@@ -20,19 +20,10 @@ type Props = {
 const Login = ({ setStep }: Props) => {
   const navigate = useNavigate();
 
-  const [email, setEmail] =
-    useState("");
-
-  const [
-    password,
-    setPassword,
-  ] = useState("");
-
-  const [error, setError] =
-    useState("");
-
-  const [loading, setLoading] =
-    useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
     setError("");
@@ -45,51 +36,42 @@ const Login = ({ setStep }: Props) => {
       if (users.length > 0) {
         const currentUser = users[0];
 
-          localStorage.setItem(
-            "currentUser",
-            JSON.stringify(currentUser)
-          );
-          try {
-            
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+        try {
           const settings = getSettings();
-            if (settings.notifications.push) {
-              const allowed =
-                await notificationService.requestPermission();
+          if (settings.notifications.push) {
+            const allowed = await notificationService.requestPermission();
 
-              if (allowed) {
-                notificationService.show(
-                  "Welcome back!",
-                  {
-                    body: "You have successfully logged in.",
-                  }
-                );
-              }
+            if (allowed) {
+              notificationService.show("Welcome back!", {
+                body: "You have successfully logged in.",
+              });
             }
-          } catch (error) {
-            console.error(
-              "Notification settings error:",
-              error
-            );
           }
-
-          if (currentUser.role === "admin") {
-            navigate("/admin/dashboard");
-          } else {
-            navigate("/student/dashboard");
-          }
-        } else {
-          setError(
-            "Incorrect email or password"
-          );
+        } catch (error) {
+          console.error("Notification settings error:", error);
         }
-      } catch (err) {
-        console.error(err);
-        setError("Something went wrong");
 
-      } finally {
-        setLoading(false);
+        if (currentUser.role === ROLES.ADMIN) {
+          navigate(APP_ROUTES.admin.dashboard);
+        } else if (currentUser.role === ROLES.COMPANY) {
+          navigate(APP_ROUTES.company.profile);
+        } else if (currentUser.role === ROLES.USER) {
+          navigate(APP_ROUTES.student.dashboard);
+        } else {
+          navigate(APP_ROUTES.student.dashboard);
+        }
+      } else {
+        setError("Incorrect email or password");
       }
-    };
+    } catch (err) {
+      console.error(err);
+      setError("Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="flex w-full flex-col items-center justify-center gap-lg px-lg py-xl md:flex-row">
@@ -129,11 +111,8 @@ const Login = ({ setStep }: Props) => {
         </AuthButton>
 
         <button
-          onClick={() =>
-            setStep("forgot")
-          }
-          className=" w-full text-center text-body-sm font-medium text-primary
-          "
+          onClick={() => setStep("forgot")}
+          className="w-full text-center text-body-sm font-medium text-primary"
         >
           Forgot Password?
         </button>
@@ -142,26 +121,11 @@ const Login = ({ setStep }: Props) => {
 
         <SocialAuth />
 
-        <p
-          className="
-            text-center
-            text-body-sm
-            text-normal
-          "
-        >
-          You don't have an
-          account?{" "}
-
+        <p className="text-center text-body-sm text-normal">
+          You don't have an account?{" "}
           <button
-            onClick={() =>
-              navigate(
-                "/auth/sign-up"
-              )
-            }
-            className="
-              font-semibold
-              text-primary
-            "
+            onClick={() => navigate(APP_ROUTES.auth.signup)}
+            className="font-semibold text-primary"
           >
             Sign up
           </button>
