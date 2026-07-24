@@ -70,5 +70,6 @@ export const APP_ROUTES = {
     companies: `/${ROLES.ADMIN}/companies`,
     companyDetails: (id: number | string) => `/${ROLES.ADMIN}/companies/${id}`,
     instructors: `/${ROLES.ADMIN}/instructors`,
+    instructorDetails: (id: number | string) => `/${ROLES.ADMIN}/instructors/${id}`,
   },
 };

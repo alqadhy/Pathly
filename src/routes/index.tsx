@@ -17,7 +17,9 @@ import CareerChat from "../pages/student/CareerChat";
 import PublicProfile from "../pages/student/PublicProfile";
 import PublicCompanyProfile from "../pages/company/PublicCompanyProfile";
 import AdminCompanies from "../pages/admin/Companies";
-import AdminCompanyDetails from "../pages/admin/CompanyDetails";
+import AdminCompanyDetails from "../components/custom/admin/companies/CompanyDetails";
+import AdminInstructors from "../pages/admin/Instructors";
+import AdminInstructorDetails from "../pages/admin/InstructorDetails";
 
 /* Lazy Pages */
 const Home = lazy(() => import("../pages/Home"));
@@ -27,7 +29,7 @@ const SettingsPage = lazy(() => import("../pages/Settings/SettingsPage"));
 const AdminDashboard = lazy(() => import("../layout/AdminDashboard"));
 const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
 const JobsInternshipsDashboard = lazy(
-  () => import("../pages/student/Jobs-Internships")
+  () => import("../pages/student/Jobs-Internships"),
 );
 
 const JobDetails = lazy(() => import("../pages/student/JobDetails"));
@@ -44,41 +46,27 @@ const AdminRoute = lazy(() => import("./AdminRoute"));
 const StudentRoute = lazy(() => import("./StudentRoute"));
 const CompanyRoute = lazy(() => import("./CompanyRoute"));
 
-const Learning = lazy(
-  () => import("../pages/Lessons/Learning")
-);
+const Learning = lazy(() => import("../pages/Lessons/Learning"));
 
-const MyLearning = lazy(
-  () => import("../pages/Lessons/MyLearning")
-);
+const MyLearning = lazy(() => import("../pages/Lessons/MyLearning"));
 
-const LearningDetails = lazy(
-  () => import("../pages/Lessons/LearningDetails")
-);
+const LearningDetails = lazy(() => import("../pages/Lessons/LearningDetails"));
 
-const LearningLesson = lazy(
-  () => import("../pages/Lessons/LearningLesson")
-);
+const LearningLesson = lazy(() => import("../pages/Lessons/LearningLesson"));
 
-const CVDashboard = lazy(
-  () => import("../pages/student/cv/CVDashboard")
-);
+const CVDashboard = lazy(() => import("../pages/student/cv/CVDashboard"));
 
 const TemplateSelection = lazy(
-  () => import("../pages/student/cv/TempleteSelection")
+  () => import("../pages/student/cv/TempleteSelection"),
 );
 
 const CVBuilderManual = lazy(
-  () => import("../pages/student/cv/CVBuilderManual")
+  () => import("../pages/student/cv/CVBuilderManual"),
 );
 
-const CVBuilderAI = lazy(
-  () => import("../pages/student/cv/CVBuilderAI")
-);
+const CVBuilderAI = lazy(() => import("../pages/student/cv/CVBuilderAI"));
 
-const AuthFlow = lazy(
-  () => import("../pages/Auth/AuthFlow")
-);
+const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
 
 const router = createBrowserRouter([
   /* HOME */
@@ -100,6 +88,7 @@ const router = createBrowserRouter([
     ),
     children: [
       {
+        element: <DashboardLayout />,
         element: <DashboardLayout />,
         children: [
           {

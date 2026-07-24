@@ -1,0 +1,117 @@
+[
+  {
+    "id": 1,
+    "name": "Elena Rodriguez",
+    "email": "elena.r@gmail.com",
+    "avatar": "https://i.pravatar.cc/150?img=1",
+    "teachingCategory": "UI UX Design, Product Design",
+    "courses": 6,
+    "students": 2100,
+    "rating": 5.3,
+    "status": "Active",
+    "location": "New York, NY",
+    "joined": "Mar 2023",
+    "bio": "UI UX Design & Instructor with 6+ years of experience designing digital products. Skilled in UX Research, prototyping, and product design, with a passion for mentoring and helping students grow their design skills.",
+    "skills": ["UI UX Design", "Product Design", "UX Analytics", "UX Research", "Figma", "UI Screens", "UX Writing"],
+     "stats": {
+      "totalCourses": 15,
+      "totalStudents": 11222,
+      "avgRating": 4.8,
+      "completionRate": 92,
+      "responseRate": 97,
+      "totalRevenue": 218600
+    }
+  },
+  {
+    "id": 2,
+    "name": "Sarah Johnson",
+    "email": "sarah.j@email.com",
+    "avatar": "https://i.pravatar.cc/150?img=2",
+    "teachingCategory": "React, Web Development",
+    "courses": 3,
+    "students": 3675,
+    "rating": 3.5,
+    "status": "Active",
+    "location": "San Francisco, CA",
+    "joined": "Jan 2023",
+    "bio": "Full-stack developer and instructor specializing in React and modern web technologies. Passionate about teaching practical coding skills and best practices.",
+    "skills": ["React", "JavaScript", "Node.js", "MongoDB", "Express", "HTML/CSS"],
+     "stats": {
+      "totalCourses": 8,
+      "totalStudents": 5670,
+      "avgRating": 4.5,
+      "completionRate": 88,
+      "responseRate": 95,
+      "totalRevenue": 145200
+    }
+  },
+  {
+    "id": 3,
+    "name": "Michael Chen",
+    "email": "michael.c@email.com",
+    "avatar": "https://i.pravatar.cc/150?img=3",
+    "teachingCategory": "Marketing, Business",
+    "courses": 3,
+    "students": 11455,
+    "rating": 5.4,
+    "status": "Active",
+    "location": "London, UK",
+    "joined": "Jun 2022",
+    "bio": "Digital marketing expert with 10+ years of experience in business strategy and growth. Helps students master marketing fundamentals and business development.",
+    "skills": ["Digital Marketing", "SEO", "Business Strategy", "Social Media", "Analytics", "Content Marketing"],
+    "stats": {
+      "totalCourses": 12,
+      "totalStudents": 18900,
+      "avgRating": 4.9,
+      "completionRate": 94,
+      "responseRate": 98,
+      "totalRevenue": 342500
+    }
+  },
+  {
+    "id": 4,
+    "name": "Omar Hassan",
+    "email": "omar.h@email.com",
+    "avatar": "https://i.pravatar.cc/150?img=4",
+    "teachingCategory": "UX Research, UX Manage",
+    "courses": 2,
+    "students": 892,
+    "rating": 5.3,
+    "status": "Pending",
+    "location": "Dubai, UAE",
+    "joined": "Sep 2023",
+    "bio": "UX Research specialist with expertise in user-centered design and design thinking. Currently pending verification.",
+    "skills": ["UX Research", "User Testing", "Design Thinking", "UX Management", "Prototyping"],
+    "stats": {
+      "totalCourses": 6,
+      "totalStudents": 2340,
+      "avgRating": 4.7,
+      "completionRate": 90,
+      "responseRate": 96,
+      "totalRevenue": 98700
+    }
+  },
+  {
+    "id": 5,
+      "name": "Emily Watson",
+    "email": "emily.w@email.com",
+    "avatar": "https://i.pravatar.cc/150?img=5",
+    "teachingCategory": "Node.js, Python",
+    "courses": 3,
+    "students": 1600,
+    "rating": 4.8,
+    "status": "Active",
+    "location": "Berlin, Germany",
+    "joined": "Nov 2022",
+    "bio": "Backend developer and instructor focused on Node.js and Python. Experienced in building scalable applications and teaching backend development.",
+    "skills": ["Node.js", "Python", "Express", "Django", "PostgreSQL", "Redis", "Docker"],
+    "stats": {
+      "totalCourses": 11,
+      "totalStudents": 8900,
+      "avgRating": 4.6,
+      "completionRate": 91,
+      "responseRate": 94,
+      "totalRevenue": 198400
+    }
+  }
+]

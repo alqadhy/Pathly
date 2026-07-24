@@ -1,0 +1,580 @@
+{
+  "1": {
+    "id": 1,
+    "name": "Elena Rodriguez",
+    "email": "elena.r@gmail.com",
+    "avatar": "https://i.pravatar.cc/150?img=1",
+    "teachingCategory": "UI UX Design, Product Design",
+    "students": 2100,
+    "rating": 5.3,
+    "status": "Active",
+    "location": "New York, NY",
+    "joined": "Mar 2023",
+    "bio": "UI UX Design & Instructor with 6+ years of experience designing digital products. Skilled in UX Research, prototyping, and product design, with a passion for mentoring and helping students grow their design skills.",
+    "skills": ["UI UX Design", "Product Design", "UX Analytics", "UX Research", "Figma", "UI Screens", "UX Writing"],
+    "phone": "+1 (555) 234-5678",
+    "website": "https://elenarodriguez.design",
+    "socialMedia": {
+      "linkedin": "https://linkedin.com/in/elenarodriguez",
+      "twitter": "https://twitter.com/elenarodriguez",
+      "portfolio": "https://elenarodriguez.design"
+    },
+    "certifications": [
+      {
+        "name": "Google UX Design Certificate",
+        "issuer": "Google",
+        "year": "2022"
+      },
+      {
+        "name": "Certified Professional in User Experience (CPUX)",
+        "issuer": "UX Certification Institute",
+        "year": "2021"
+      }
+    ],
+    "education": [
+      {
+        "degree": "Master of Fine Arts in Design",
+        "institution": "Parsons School of Design",
+        "year": "2018"
+      },
+      {
+        "degree": "Bachelor of Science in Computer Science",
+        "institution": "NYU",
+        "year": "2016"
+      }
+    ],
+    "experience": [
+      {
+        "title": "Senior UX Designer",
+        "company": "Spotify",
+        "duration": "2020 - Present"
+      },
+      {
+        "title": "UX Designer",
+        "company": "Airbnb",
+        "duration": "2018 - 2020"
+      }
+    ],
+    "stats": {
+      "totalCourses": 15,
+      "totalStudents": 11222,
+      "avgRating": 4.8,
+      "completionRate": 92,
+      "responseRate": 97,
+      "totalRevenue": 218600
+    },
+    "courses": [
+      {
+        "id": 1,
+        "title": "UI UX Design Course 1",
+        "students": 365,
+        "lessons": 9,
+        "status": "Published"
+      },
+      {
+        "id": 2,
+        "title": "UI UX Design Course 2",
+        "students": 341,
+        "lessons": 12,
+        "status": "Published"
+      },
+      {
+        "id": 3,
+        "title": "UI UX Design Course 3",
+        "students": 341,
+        "lessons": 5,
+        "status": "Published"
+      },
+      {
+        "id": 4,
+        "title": "UI UX Design Course 4",
+        "students": 333,
+        "lessons": 10,
+        "status": "Published"
+      },
+      {
+        "id": 5,
+        "title": "UI UX Design Course 5",
+        "students": 400,
+        "lessons": 14,
+        "status": "Published"
+      },
+      {
+        "id": 6,
+        "title": "UI UX Design Course 6",
+        "students": 456,
+        "lessons": 13,
+        "status": "Published"
+      }
+    ],
+    "ratingDistribution": [
+      { "stars": 5, "percentage": 67 },
+      { "stars": 4, "percentage": 22 },
+      { "stars": 3, "percentage": 8 },
+      { "stars": 2, "percentage": 4 },
+      { "stars": 1, "percentage": 2 }
+    ],
+    "recentReviews": [
+      {
+        "studentName": "John Doe",
+        "rating": 5,
+        "comment": "Excellent course! Elena explains concepts clearly and the projects are very practical.",
+        "date": "2 days ago"
+      },
+      {
+        "studentName": "Jane Smith",
+        "rating": 5,
+        "comment": "Best UX design instructor I've learned from. Highly recommend!",
+        "date": "1 week ago"
+      }
+    ],
+    "earnings": {
+      "thisMonth": 18500,
+      "lastMonth": 16200,
+      "total": 218600
+    },
+    "profileCompletion": 95
+  },
+  "2": {
+    "id": 2,
+    "name": "Sarah Johnson",
+    "email": "sarah.j@email.com",
+    "avatar": "https://i.pravatar.cc/150?img=2",
+    "teachingCategory": "React, Web Development",
+    "students": 3675,
+    "rating": 3.5,
+    "status": "Active",
+    "location": "San Francisco, CA",
+    "joined": "Jan 2023",
+    "bio": "Full-stack developer and instructor specializing in React and modern web technologies. Passionate about teaching practical coding skills and best practices.",
+    "skills": ["React", "JavaScript", "Node.js", "MongoDB", "Express", "HTML/CSS"],
+    "phone": "+1 (555) 876-5432",
+    "website": "https://sarahjohnson.dev",
+    "socialMedia": {
+      "linkedin": "https://linkedin.com/in/sarahjohnson",
+      "github": "https://github.com/sarahjohnson",
+      "portfolio": "https://sarahjohnson.dev"
+    },
+    "certifications": [
+      {
+        "name": "AWS Certified Developer",
+        "issuer": "Amazon Web Services",
+        "year": "2022"
+      },
+      {
+        "name": "Meta Frontend Developer Certificate",
+        "issuer": "Meta",
+        "year": "2021"
+      }
+    ],
+    "education": [
+      {
+        "degree": "Bachelor of Science in Computer Science",
+        "institution": "Stanford University",
+        "year": "2019"
+      }
+    ],
+    "experience": [
+      {
+        "title": "Senior Frontend Engineer",
+        "company": "Meta",
+        "duration": "2021 - Present"
+      },
+      {
+        "title": "Software Engineer",
+        "company": "Google",
+        "duration": "2019 - 2021"
+      }
+    ],
+    "stats": {
+      "totalCourses": 8,
+      "totalStudents": 5670,
+      "avgRating": 4.5,
+      "completionRate": 88,
+      "responseRate": 95,
+      "totalRevenue": 145200
+    },
+    "courses": [
+      {
+        "id": 7,
+        "title": "React Fundamentals",
+        "students": 450,
+        "lessons": 15,
+        "status": "Published"
+      },
+      {
+        "id": 8,
+        "title": "Advanced React Patterns",
+        "students": 380,
+        "lessons": 12,
+        "status": "Published"
+      },
+      {
+        "id": 9,
+        "title": "Full-Stack Development with MERN",
+        "students": 520,
+        "lessons": 20,
+        "status": "Published"
+      }
+    ],
+    "ratingDistribution": [
+      { "stars": 5, "percentage": 45 },
+      { "stars": 4, "percentage": 35 },
+      { "stars": 3, "percentage": 12 },
+      { "stars": 2, "percentage": 5 },
+      { "stars": 1, "percentage": 3 }
+    ],
+    "recentReviews": [
+      {
+        "studentName": "Mike Johnson",
+        "rating": 5,
+        "comment": "Sarah's React course is comprehensive and well-structured. Great instructor!",
+        "date": "3 days ago"
+      },
+      {
+        "studentName": "Lisa Wang",
+        "rating": 4,
+        "comment": "Good content, but could use more advanced examples.",
+        "date": "1 week ago"
+      }
+    ],
+    "earnings": {
+      "thisMonth": 12400,
+      "lastMonth": 11800,
+      "total": 145200
+    },
+    "profileCompletion": 88
+  },
+  "3": {
+    "id": 3,
+    "name": "Michael Chen",
+    "email": "michael.c@email.com",
+    "avatar": "https://i.pravatar.cc/150?img=3",
+    "teachingCategory": "Marketing, Business",
+    "students": 11455,
+    "rating": 5.4,
+    "status": "Active",
+    "location": "London, UK",
+    "joined": "Jun 2022",
+    "bio": "Digital marketing expert with 10+ years of experience in business strategy and growth. Helps students master marketing fundamentals and business development.",
+    "skills": ["Digital Marketing", "SEO", "Business Strategy", "Social Media", "Analytics", "Content Marketing"],
+    "phone": "+44 20 7946 0958",
+    "website": "https://michaelchenmarketing.com",
+    "socialMedia": {
+      "linkedin": "https://linkedin.com/in/michaelchen",
+      "twitter": "https://twitter.com/michaelchen",
+      "portfolio": "https://michaelchenmarketing.com"
+    },
+    "certifications": [
+      {
+        "name": "Google Analytics Certified",
+        "issuer": "Google",
+        "year": "2021"
+      },
+      {
+        "name": "HubSpot Marketing Certification",
+        "issuer": "HubSpot",
+        "year": "2020"
+      },
+      {
+        "name": "Facebook Blueprint Certification",
+        "issuer": "Meta",
+        "year": "2022"
+      }
+    ],
+    "education": [
+      {
+        "degree": "MBA in Marketing",
+        "institution": "London Business School",
+        "year": "2015"
+      },
+      {
+        "degree": "Bachelor of Commerce",
+        "institution": "University of Oxford",
+        "year": "2012"
+      }
+    ],
+    "experience": [
+      {
+        "title": "Marketing Director",
+        "company": "Unilever",
+        "duration": "2018 - Present"
+      },
+      {
+        "title": "Senior Marketing Manager",
+        "company": "Procter & Gamble",
+        "duration": "2015 - 2018"
+      }
+    ],
+    "stats": {
+      "totalCourses": 12,
+      "totalStudents": 18900,
+      "avgRating": 4.9,
+      "completionRate": 94,
+      "responseRate": 98,
+      "totalRevenue": 342500
+    },
+    "courses": [
+      {
+        "id": 10,
+        "title": "Digital Marketing Mastery",
+        "students": 1200,
+        "lessons": 18,
+        "status": "Published"
+      },
+      {
+        "id": 11,
+        "title": "SEO Optimization Course",
+        "students": 980,
+        "lessons": 14,
+        "status": "Published"
+      },
+      {
+        "id": 12,
+        "title": "Social Media Marketing Strategy",
+        "students": 850,
+        "lessons": 12,
+        "status": "Published"
+      }
+    ],
+    "ratingDistribution": [
+      { "stars": 5, "percentage": 78 },
+      { "stars": 4, "percentage": 15 },
+      { "stars": 3, "percentage": 5 },
+      { "stars": 2, "percentage": 1 },
+      { "stars": 1, "percentage": 1 }
+    ],
+    "recentReviews": [
+      {
+        "studentName": "David Brown",
+        "rating": 5,
+        "comment": "Michael's marketing courses transformed my business. Incredible insights!",
+        "date": "1 day ago"
+      },
+      {
+        "studentName": "Emma Wilson",
+        "rating": 5,
+        "comment": "Best marketing instructor on the platform. Worth every penny.",
+        "date": "4 days ago"
+      }
+    ],
+    "earnings": {
+      "thisMonth": 28500,
+      "lastMonth": 27200,
+      "total": 342500
+    },
+    "profileCompletion": 98
+  },
+  "4": {
+    "id": 4,
+    "name": "Omar Hassan",
+    "email": "omar.h@email.com",
+    "avatar": "https://i.pravatar.cc/150?img=4",
+    "teachingCategory": "UX Research, UX Management",
+    "students": 892,
+    "rating": 5.3,
+    "status": "Pending",
+    "location": "Dubai, UAE",
+    "joined": "Sep 2023",
+    "bio": "UX Research specialist with expertise in user-centered design and design thinking. Currently pending verification.",
+    "skills": ["UX Research", "User Testing", "Design Thinking", "UX Management", "Prototyping"],
+    "phone": "+971 4 123 4567",
+    "website": "https://omarhassanux.com",
+    "socialMedia": {
+      "linkedin": "https://linkedin.com/in/omarhassan",
+      "portfolio": "https://omarhassanux.com"
+    },
+    "certifications": [
+      {
+        "name": "Certified UX Professional",
+        "issuer": "Nielsen Norman Group",
+        "year": "2022"
+      }
+    ],
+    "education": [
+      {
+        "degree": "Master of Science in Human-Computer Interaction",
+        "institution": "Carnegie Mellon University",
+        "year": "2020"
+      },
+      {
+        "degree": "Bachelor of Design",
+        "institution": "American University of Beirut",
+        "year": "2018"
+      }
+    ],
+    "experience": [
+      {
+        "title": "UX Research Lead",
+        "company": "Careem",
+        "duration": "2021 - Present"
+      },
+      {
+        "title": "UX Designer",
+        "company": "Microsoft",
+        "duration": "2020 - 2021"
+      }
+    ],
+    "stats": {
+      "totalCourses": 6,
+      "totalStudents": 2340,
+      "avgRating": 4.7,
+      "completionRate": 90,
+      "responseRate": 96,
+      "totalRevenue": 98700
+    },
+    "courses": [
+      {
+        "id": 13,
+        "title": "UX Research Fundamentals",
+        "students": 320,
+        "lessons": 10,
+        "status": "Published"
+      },
+      {
+        "id": 14,
+        "title": "Advanced User Testing Methods",
+        "students": 280,
+        "lessons": 8,
+        "status": "Published"
+      }
+    ],
+    "ratingDistribution": [
+      { "stars": 5, "percentage": 72 },
+      { "stars": 4, "percentage": 20 },
+      { "stars": 3, "percentage": 6 },
+      { "stars": 2, "percentage": 2 },
+      { "stars": 1, "percentage": 0 }
+    ],
+    "recentReviews": [
+      {
+        "studentName": "Ahmed Ali",
+        "rating": 5,
+        "comment": "Omar's UX research course gave me practical skills I use daily.",
+        "date": "5 days ago"
+      }
+    ],
+    "earnings": {
+      "thisMonth": 8200,
+      "lastMonth": 7800,
+      "total": 98700
+    },
+    "profileCompletion": 75,
+    "verificationNotes": "Application under review. awaiting final documentation."
+  },
+  "5": {
+    "id": 5,
+    "name": "Emily Watson",
+    "email": "emily.w@email.com",
+    "avatar": "https://i.pravatar.cc/150?img=5",
+    "teachingCategory": "Node.js, Python",
+    "students": 1600,
+    "rating": 4.8,
+    "status": "Active",
+    "location": "Berlin, Germany",
+    "joined": "Nov 2022",
+    "bio": "Backend developer and instructor focused on Node.js and Python. Experienced in building scalable applications and teaching backend development.",
+    "skills": ["Node.js", "Python", "Express", "Django", "PostgreSQL", "Redis", "Docker"],
+    "phone": "+49 30 1234 5678",
+    "website": "https://emilywatson.dev",
+    "socialMedia": {
+      "linkedin": "https://linkedin.com/in/emilywatson",
+      "github": "https://github.com/emilywatson",
+      "portfolio": "https://emilywatson.dev"
+    },
+    "certifications": [
+      {
+        "name": "AWS Solutions Architect",
+        "issuer": "Amazon Web Services",
+        "year": "2021"
+      },
+      {
+        "name": "Python Institute Certified Professional",
+        "issuer": "Python Institute",
+        "year": "2020"
+      }
+    ],
+    "education": [
+      {
+        "degree": "Master of Engineering in Software Engineering",
+        "institution": "Technical University of Munich",
+        "year": "2019"
+      },
+      {
+        "degree": "Bachelor of Science in Computer Science",
+        "institution": "University of Berlin",
+        "year": "2017"
+      }
+    ],
+    "experience": [
+      {
+        "title": "Senior Backend Engineer",
+        "company": "Siemens",
+        "duration": "2020 - Present"
+      },
+      {
+        "title": "Software Engineer",
+        "company": "SAP",
+        "duration": "2018 - 2020"
+      }
+    ],
+    "stats": {
+      "totalCourses": 11,
+      "totalStudents": 8900,
+      "avgRating": 4.6,
+      "completionRate": 91,
+      "responseRate": 94,
+      "totalRevenue": 198400
+    },
+    "courses": [
+      {
+        "id": 15,
+        "title": "Node.js Complete Guide",
+        "students": 580,
+        "lessons": 22,
+        "status": "Published"
+      },
+      {
+        "id": 16,
+        "title": "Python for Backend Development",
+        "students": 620,
+        "lessons": 18,
+        "status": "Published"
+      },
+      {
+        "id": 17,
+        "title": "Django REST Framework",
+        "students": 400,
+        "lessons": 15,
+        "status": "Published"
+      }
+    ],
+    "ratingDistribution": [
+      { "stars": 5, "percentage": 58 },
+      { "stars": 4, "percentage": 28 },
+      { "stars": 3, "percentage": 9 },
+      { "stars": 2, "percentage": 3 },
+      { "stars": 1, "percentage": 2 }
+    ],
+    "recentReviews": [
+      {
+        "studentName": "Chris Evans",
+        "rating": 5,
+        "comment": "Emily's Node.js course is the best I've taken. Clear explanations and great examples.",
+        "date": "2 days ago"
+      },
+      {
+        "studentName": "Maria Garcia",
+        "rating": 4,
+        "comment": "Very thorough Python course. Would recommend to anyone starting backend development.",
+        "date": "1 week ago"
+      }
+    ],
+    "earnings": {
+      "thisMonth": 15600,
+      "lastMonth": 14200,
+      "total": 198400
+    },
+    "profileCompletion": 92
+  }
+}
