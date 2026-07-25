@@ -22,7 +22,7 @@ type CommunityTabsProps = {
 
 export default function CommunityTabs({ activeTab, onTabChange }: CommunityTabsProps) {
   return (
-    <section className="rounded-2xl bg-white p-1 shadow-[0_6px_18px_rgba(15,23,42,0.05)] ring-1 ring-border/50 backdrop-blur-sm">
+    <section className="rounded-2xl bg-white shadow-[0_6px_18px_rgba(15,23,42,0.05)] ring-1 ring-border/50 backdrop-blur-sm">
       <div className="grid grid-cols-2 gap-1">
         {communityTabs.map(({ id, label, icon: Icon }) => {
           const isActive = id === activeTab;
@@ -35,7 +35,7 @@ export default function CommunityTabs({ activeTab, onTabChange }: CommunityTabsP
               aria-current={isActive ? "page" : undefined}
               className={`group flex h-11 items-center justify-center gap-2 rounded-[14px] text-sm font-semibold transition-all duration-200 ${
                 isActive
-                  ? "bg-primary-light text-primary shadow-[0_10px_24px_rgba(85,59,230,0.14)]"
+                  ? "bg-primary-light text-primary"
                   : "text-normal hover:bg-light hover:text-darker"
               }`}
             >

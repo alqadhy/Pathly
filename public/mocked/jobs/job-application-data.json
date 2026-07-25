@@ -1,0 +1,29 @@
+{
+  "id": "job_ui_ux_001",
+  "jobTitle": "UI/UX Designer",
+  "company": "Pathly Corp",
+  "screeningQuestions": [
+    {
+      "id": "q1",
+      "question": "How many years of experience do you have in UI/UX Design",
+      "type": "Multiple Choice",
+      "options": ["Less than 1 year", "1-2 years", "3-5 years", "5+ years"]
+    },
+    {
+      "id": "q2",
+      "question": "Which design tools are you proficient in",
+      "type": "Check Box",
+      "options": ["Figma", "Adobe XD", "Sketch", "Photoshop"]
+    },
+    {
+      "id": "q3",
+      "question": "What is your expected monthly salary",
+      "type": "Short Answer"
+    },
+    {
+      "id": "q4",
+      "question": "Is there anything else you'd like us to know about your application",
+      "type": "Long Answer"
+    }
+  ]
+}

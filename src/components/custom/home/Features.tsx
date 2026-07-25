@@ -1,4 +1,4 @@
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useScrollAnimation } from "../../../hooks/useScrollAnimation";
 import { BookOpen, FileText, Target, Mic2 } from 'lucide-react'
 
 const features = [

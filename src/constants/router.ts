@@ -1,3 +1,4 @@
+import { ROLES } from "../roles";
 export const APP_ROUTES = {
   // Landing Page
   home: "/",
@@ -12,15 +13,13 @@ export const APP_ROUTES = {
   // Student Routes
   student: {
     dashboard: "/student/dashboard",
-    aiAssistant: "/student/ai-assistant",
     analytics: "/student/analytics",
     cv: "/student/cv",
     jobs: "/student/jobs",
     jobDetails: (id: number | string) => `/student/jobs/${id}`,
-    saved: "/student/saved",
+    applyJob: (id: number | string) => `/student/apply/${id}`,
     learning: "/student/learning",
-    community: "/student/community",
-    profile: "/student/profile",
+    profile: "/student/profile",  
     publicProfile: (id: string) => `/student/profile/${id}`,
     settings: "/student/settings",
     messages: "/student/messages",
@@ -32,5 +31,16 @@ export const APP_ROUTES = {
         `/student/cv/builder/manual/${templateId}`,
       aiBuilder: (templateId: string) => `/student/cv/builder/ai/${templateId}`,
     },
+  },
+  public: {
+    community: "/community",
+    saved: "/saved",
+    aiAssistant: "/ai-assistant",
+  },
+  // Company Routes
+  company: {
+    dashboard: `/${ROLES.COMPANY}/dashboard`,
+    profile: `/${ROLES.COMPANY}/profile`,
+    publicProfile: (id: string) => `/${ROLES.COMPANY}/profile/${id}`,
   },
 };

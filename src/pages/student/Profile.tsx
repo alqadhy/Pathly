@@ -23,6 +23,7 @@ import {
   DeleteConfirmationModal,
   ProgressBar,
 } from "../../components/custom/Profile";
+import ShareModal from "../../components/custom/Profile/ShareModal";
 
 const Profile: React.FC = () => {
   const [profile, setProfile] = useState<ProfileType | null>(null);
@@ -35,6 +36,7 @@ const Profile: React.FC = () => {
     section: string;
     item: any;
   }>({ isOpen: false, section: "", item: null });
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
   useEffect(() => {
     fetchProfile();
@@ -333,6 +335,14 @@ const Profile: React.FC = () => {
     setDeleteModal({ isOpen: true, section, item });
   };
 
+  const handleShareClick = () => {
+    setIsShareModalOpen(true);
+  };
+
+  const handleShareClose = () => {
+    setIsShareModalOpen(false);
+  };
+
   const handleDeleteConfirm = () => {
     setProfile((prev) => {
       if (!prev) return prev;
@@ -412,6 +422,7 @@ const Profile: React.FC = () => {
           profile={profile}
           onAvatarChange={handleAvatarChange}
           onCoverChange={handleCoverChange}
+          onShareClick={handleShareClick}
         />
       </div>
 
@@ -530,6 +541,14 @@ const Profile: React.FC = () => {
           deleteModal.item?.name ||
           ""
         }
+      />
+
+      {/* Share Modal */}
+      <ShareModal
+        isOpen={isShareModalOpen}
+        onClose={handleShareClose}
+        profileName={profile.name}
+        profileUrl={`${window.location.origin}/student/profile/${profile.id}`}
       />
     </div>
   );

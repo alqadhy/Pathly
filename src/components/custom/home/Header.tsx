@@ -5,7 +5,11 @@ import { Button } from "../../ui/button";
 import { useNavigate, useLocation } from "react-router-dom";
 import logo from "@/assets/imgs/logo.png";
 import { APP_ROUTES } from "../../../constants";
-import { getCurrentUser, clearCurrentUser } from "../../../components/custom/Profile/crud/profileStorage";
+import {
+  getCurrentUser,
+  clearCurrentUser,
+} from "../../../components/custom/Profile/crud/profileStorage";
+import { ROLES } from "../../../roles";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -20,6 +24,18 @@ export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   const currentUser = getCurrentUser();
+
+  const handleuserProfileClick = () => {
+    if (currentUser) {
+      if (currentUser.role === ROLES.USER) {
+        navigate(APP_ROUTES.student.profile);
+      } else if (currentUser.role === ROLES.COMPANY) {
+        navigate(APP_ROUTES.company.profile);
+      }
+    } else {
+      navigate(APP_ROUTES.auth.login);
+    }
+  };
 
   const handleLogout = () => {
     clearCurrentUser();
@@ -76,16 +92,16 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-              <Button
-                onClick={() => navigate(currentUser ? "/student/profile" : "/auth")}
-                className="cursor-pointer hidden sm:inline-flex rounded-full font-semibold px-6 text-white h-10"
-                style={{
-                  backgroundColor: "var(--primary)",
-                  fontSize: "var(--body-sm)",
-                }}
-              >
-                {currentUser ? "My Account" : "Get Started"}
-              </Button>
+          <Button
+            onClick={handleuserProfileClick}
+            className="cursor-pointer hidden sm:inline-flex rounded-full font-semibold px-6 text-white h-10"
+            style={{
+              backgroundColor: "var(--primary)",
+              fontSize: "var(--body-sm)",
+            }}
+          >
+            {currentUser ? "My Account" : "Get Started"}
+          </Button>
           {currentUser && (
             <Button
               onClick={handleLogout}
@@ -134,7 +150,7 @@ export default function Header() {
             <Button
               onClick={() => {
                 setMenuOpen(false);
-                navigate(currentUser ? "/student/profile" : "/auth");
+               {handleuserProfileClick}
               }}
               className="w-full rounded-full font-semibold text-white bg-primary hover:bg-primary-hover h-12"
             >

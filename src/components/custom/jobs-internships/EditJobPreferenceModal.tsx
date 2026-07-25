@@ -4,10 +4,10 @@ import {
   DialogContent,
   DialogTitle,
   DialogDescription,
-} from '@/components/ui/dialog';
+} from '../../../components/ui/dialog';
 import { X, Pencil, Search, XCircle, Plus, Trash2 } from 'lucide-react';
 
-import ALL_JOB_TITLES from '@mocked/jobs/jobTitles.json';
+import ALL_JOB_TITLES from '../../../../public/mocked/jobs/jobTitles.json';
 import type { EditJobPreferenceModalProps, JobPreferenceData } from '../../../types/preferences.types';
 
 const INITIAL_DATA: JobPreferenceData = {

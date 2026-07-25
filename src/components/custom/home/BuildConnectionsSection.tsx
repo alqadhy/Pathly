@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "../../../components/ui/button";
+import { Card, CardContent } from "../../../components/ui/card";
 import { ArrowRight } from "lucide-react";
-import type { Mentor } from "@/types/mentors.types";
-import mentors from "@mocked/mentors/mentors.json";
+import type { Mentor } from "../../../types/mentors.types";
+import mentors from "../../../../public/mocked/mentors/mentors.json";
 
 const avatarColors = [
   "hsl(242, 85%, 57%)", 

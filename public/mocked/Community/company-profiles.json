@@ -1,0 +1,201 @@
+{
+  "companies": {
+    "1": {
+      "id": 1,
+      "name": "Vortex AI",
+      "industry": "Artificial Intelligence & SaaS",
+      "location": "Giza, Egypt",
+      "followers": 7359,
+      "about": "Vortex AI develops AI-powered products that help businesses automate workflows, analyze data, and make smarter decisions. The company specializes in generative AI, machine learning, and enterprise automation, delivering scalable solutions across healthcare, finance, retail, and technology.\n\nWith a global team of engineers, designers, and AI researchers, Vortex AI focuses on building intuitive, human-centered products that simplify complex business processes.",
+      "vision": "To become the leading AI technology company in the Middle East and Africa, empowering businesses with intelligent, human-centered solutions that drive innovation, productivity, and sustainable growth.",
+      "mission": "At Vortex AI, our mission is to build accessible and reliable AI-powered products that help organizations solve real-world challenges. Through cutting-edge technology, exceptional user experiences, and a culture of continuous innovation, we enable businesses to work smarter, make data-driven decisions, and unlock their full potential.",
+      "coverImage": {
+        "url": "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&h=400&fit=crop",
+        "alt": "Vortex AI Cover"
+      },
+      "avatarImage": {
+        "url": "https://images.unsplash.com/photo-1560179707-14a3145a7b18?w=200&h=200&fit=crop",
+        "alt": "Vortex AI Logo"
+      },
+      "companyInfo": {
+        "foundedYear": 1992,
+        "employeeCount": "320",
+        "email": "vortexai@gmail.com",
+        "phone": "+201012345678",
+        "website": "https://vortexai.com"
+      },
+      "hiringInfo": {
+        "openPositions": 4,
+        "avgTimeToHire": "15 days",
+        "acceptanceRate": "15%",
+        "remotePolicy": "Flexible"
+      },
+      "cultureValues": [
+        "fast growth",
+        "remote friendly",
+        "diverse team",
+        "flexible hours",
+        "continuous learning",
+        "open communication"
+      ],
+      "jobs": [
+        {
+          "id": "job-1",
+          "title": "Front-End Developer",
+          "type": "on-site",
+          "experience": "Entry Level",
+          "location": "Cairo",
+          "applicants": 30,
+          "postedDate": "1 day ago"
+        },
+        {
+          "id": "job-2",
+          "title": "Senior Product Designer",
+          "type": "hybrid",
+          "experience": "5-7 years",
+          "location": "Cairo",
+          "applicants": 80,
+          "postedDate": "5 days ago"
+        },
+        {
+          "id": "job-3",
+          "title": "AI Engineer",
+          "type": "remote",
+          "experience": "2-3 years",
+          "location": "Remote",
+          "applicants": 110,
+          "postedDate": "10 days ago"
+        },
+        {
+          "id": "job-4",
+          "title": "Product Manager",
+          "type": "hybrid",
+          "experience": "4-6 years",
+          "location": "Cairo",
+          "applicants": 70,
+          "postedDate": "12 days ago"
+        }
+      ],
+      "people": {
+        "managementTeam": [
+          {
+            "id": "person-1",
+            "name": "Menna Mohamed",
+            "position": "Chief Executive Officer (CEO)",
+            "image": "https://i.pravatar.cc/160?img=1",
+            "mutualConnections": 6
+          },
+          {
+            "id": "person-2",
+            "name": "Omar Sameh",
+            "position": "Chief Technology Officer (CTO)",
+            "image": "https://i.pravatar.cc/160?img=2",
+            "mutualConnections": 8
+          }
+        ],
+        "designerTeam": [
+          {
+            "id": "person-3",
+            "name": "Amal Mosa",
+            "position": "Chief Product Officer",
+            "image": "https://i.pravatar.cc/160?img=3",
+            "mutualConnections": 10
+          },
+          {
+            "id": "person-4",
+            "name": "Youssef Ahmed",
+            "position": "Senior Product Designer",
+            "image": "https://i.pravatar.cc/160?img=4",
+            "mutualConnections": 5
+          }
+        ]
+      }
+    },
+    "2": {
+      "id": 2,
+      "name": "TechCorp Egypt",
+      "industry": "Software Development",
+      "location": "Cairo, Egypt",
+      "followers": 5420,
+      "about": "TechCorp Egypt is a leading software development company specializing in enterprise solutions, mobile applications, and cloud infrastructure. We deliver cutting-edge technology solutions to businesses across the Middle East and Africa.\n\nOur team of 200+ engineers and developers work on challenging projects that push the boundaries of what's possible with modern technology.",
+      "vision": "To be the premier software development partner for enterprises seeking digital transformation in the MENA region.",
+      "mission": "We empower businesses through innovative software solutions, combining technical excellence with deep domain expertise to deliver products that drive growth and efficiency.",
+      "coverImage": {
+        "url": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=400&fit=crop",
+        "alt": "TechCorp Egypt Cover"
+      },
+      "avatarImage": {
+        "url": "https://images.unsplash.com/photo-1560179707-14a3145a7b18?w=200&h=200&fit=crop",
+        "alt": "TechCorp Egypt Logo"
+      },
+      "companyInfo": {
+        "foundedYear": 2010,
+        "employeeCount": "200+",
+        "email": "info@techcorpegypt.com",
+        "phone": "+201098765432",
+        "website": "https://techcorpegypt.com"
+      },
+      "hiringInfo": {
+        "openPositions": 8,
+        "avgTimeToHire": "20 days",
+        "acceptanceRate": "25%",
+        "remotePolicy": "Hybrid"
+      },
+      "cultureValues": [
+        "innovation",
+        "collaboration",
+        "work-life balance",
+        "continuous learning",
+        "diversity & inclusion",
+        "agile methodology"
+      ],
+      "jobs": [
+        {
+          "id": "job-5",
+          "title": "Full Stack Developer",
+          "type": "hybrid",
+          "experience": "3-5 years",
+          "location": "Cairo",
+          "applicants": 45,
+          "postedDate": "2 days ago"
+        },
+        {
+          "id": "job-6",
+          "title": "DevOps Engineer",
+          "type": "on-site",
+          "experience": "2-4 years",
+          "location": "Cairo",
+          "applicants": 28,
+          "postedDate": "1 week ago"
+        }
+      ],
+      "people": {
+        "managementTeam": [
+          {
+            "id": "person-5",
+            "name": "Ahmed Hassan",
+            "position": "Chief Executive Officer (CEO)",
+            "image": "https://i.pravatar.cc/160?img=5",
+            "mutualConnections": 12
+          },
+          {
+            "id": "person-6",
+            "name": "Sarah Mohamed",
+            "position": "Chief Operating Officer (COO)",
+            "image": "https://i.pravatar.cc/160?img=6",
+            "mutualConnections": 9
+          }
+        ],
+        "designerTeam": [
+          {
+            "id": "person-7",
+            "name": "Mohammed Ali",
+            "position": "Lead UX Designer",
+            "image": "https://i.pravatar.cc/160?img=7",
+            "mutualConnections": 7
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,9 +1,8 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Check, X as XIcon ,CircleCheck, Bookmark} from "lucide-react";
 import { useEffect, useState } from "react";
 
 import JobListCard from "@/components/custom/jobs-internships/JobListCard";
-import ApplyJobModal from "@/components/custom/jobs-internships/ApplyJobModal";
 import { APP_ROUTES } from "@/constants";
 import { useSavedItemsStore } from "@/store/saved-items.store";
 import type { Job, JobDetail } from "../../types/jobs.types";
@@ -110,17 +109,16 @@ async function loadJobDetails(): Promise<Record<number, JobDetail>> {
 function Tag({ label }: { label: string }) {
   return (
     <span className="flex w-[120px] h-8 items-center justify-center gap-1 rounded-sm bg-primary px-md py-1 text-body-sm font-medium text-white">
-  {label}
-    <CircleCheck size={16} className="text-white" />
-
-</span>
+      {label}
+      <CircleCheck size={16} className="text-white" />
+    </span>
   );
 }
 
 export default function JobDetailsPage() {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [allJobDetails, setAllJobDetails] = useState<Record<number, JobDetail>>({});
-  const [isApplyOpen, setIsApplyOpen] = useState(false);
   const [recommendedJobs, setRecommendedJobs] = useState<Job[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { savedItems, saveItem, removeItem } = useSavedItemsStore();
@@ -151,7 +149,7 @@ export default function JobDetailsPage() {
 
   const job = id ? allJobDetails[Number(id)] : undefined;
 
-  const isSaved = job ? savedItems.jobs.some((savedJob : { id: number }) => savedJob.id === job.id) : false;
+  const isSaved = job ? savedItems.jobs.some((savedJob: { id: number }) => savedJob.id === job.id) : false;
 
   const handleToggleSave = () => {
     if (!job) return;
@@ -221,7 +219,7 @@ export default function JobDetailsPage() {
             <div className="flex shrink-0 items-center gap-sm">
               <button
                 type="button"
-                onClick={() => setIsApplyOpen(true)}
+                onClick={() => navigate(APP_ROUTES.student.applyJob(job.id))}
                 className="rounded-sm w-[200px] h-[55px] bg-primary px-lg py-3 text-body-sm font-semibold text-white transition-colors hover:bg-primary-hover"
               >
                 Apply
@@ -230,13 +228,13 @@ export default function JobDetailsPage() {
                 type="button"
                 aria-label={isSaved ? "Unsave job" : "Save job"}
                 onClick={handleToggleSave}
-                className="flex items-center    w-14 h-14  justify-center rounded-lg bg-primary-light text-black transition-colors hover:bg-primary-light-hover"
+                className="flex items-center w-14 h-14 justify-center rounded-lg bg-primary-light text-black transition-colors hover:bg-primary-light-hover"
               >
-               <Bookmark
-                 size={22}
-                 className={isSaved ? "text-warning" : "text-primary"}
-                 fill={isSaved ? "var(--warning)" : "none"}
-               />
+                <Bookmark
+                  size={22}
+                  className={isSaved ? "text-warning" : "text-primary"}
+                  fill={isSaved ? "var(--warning)" : "none"}
+                />
               </button>
             </div>
           </div>
@@ -247,7 +245,6 @@ export default function JobDetailsPage() {
             ))}
           </div>
         </section>
-
 
         {job.qualificationMatch && (
           <section className="rounded-2xl border border-border bg-card p-lg shadow-sm">
@@ -278,38 +275,33 @@ export default function JobDetailsPage() {
               <ul className="m-0 flex list-none flex-col gap-sm p-0">
                 {job.qualificationMatch.gaps.map((item: string) => (
                   <li key={item} className="flex items-start gap-2 text-body-sm text-normal">
-                    <XIcon size={22} className="mt-0.5 text-bold!  shrink-0 text-danger" />
+                    <XIcon size={22} className="mt-0.5 text-bold! shrink-0 text-danger" />
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
-
-           
           </section>
         )}
 
-
         <section className="space-y-md rounded-2xl border border-border bg-card p-md shadow-sm">
-             {job.hiringContact && (
-              <div className="mt-lg flex items-center justify-between   border-border mb-10">
-                <div className="flex items-center  gap-sm">
-                   <img
-      src={job.companyLogo}
-      alt={job.company}
-      className="h-10 w-10 rounded-full object-contain bg-light p-2"
-    />
-                  <div>
-<p className="m-0 text-body-md font-semibold! text-text-primary">
-  <span className="inline">{job.company}</span>
-  <span className="inline ml-1">Company</span>
-</p>      
-                  </div>
+          {job.hiringContact && (
+            <div className="mt-lg flex items-center justify-between border-border mb-10">
+              <div className="flex items-center gap-sm">
+                <img
+                  src={job.companyLogo}
+                  alt={job.company}
+                  className="h-10 w-10 rounded-full object-contain bg-light p-2"
+                />
+                <div>
+                  <p className="m-0 text-body-md font-semibold! text-text-primary">
+                    <span className="inline">{job.company}</span>
+                    <span className="inline ml-1">Company</span>
+                  </p>
                 </div>
-
-                
               </div>
-            )}
+            </div>
+          )}
           <div>
             <h3 className="m-0 text-body-md! font-bold! text-text-primary">About {job.company}:</h3>
             <p className="m-0 mt-1 text-body-sm leading-relaxed text-black">
@@ -346,22 +338,15 @@ export default function JobDetailsPage() {
         </section>
       </main>
 
-
-     <aside className="hidden xl:block xl:w-95 xl:shrink-0 order-1">
+      <aside className="hidden xl:block xl:w-95 xl:shrink-0 order-1">
         <JobListCard
           title="Job that match your Preferences"
           subtitle="UI/UX Designer, on site or hybrid ore remote in Cairo"
-          jobs={recommendedJobs} 
-          getJobHref={(job : Job) => APP_ROUTES.student.jobDetails(job.id)}
-          onRemoveJob={handleRemoveJob} 
+          jobs={recommendedJobs}
+          getJobHref={(job: Job) => APP_ROUTES.student.jobDetails(job.id)}
+          onRemoveJob={handleRemoveJob}
         />
       </aside>
-
-      <ApplyJobModal
-        isOpen={isApplyOpen}
-        onClose={() => setIsApplyOpen(false)}
-        job={{ title: job.title, company: job.company }}
-      />
     </div>
   );
 }

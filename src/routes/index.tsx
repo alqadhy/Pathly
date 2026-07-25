@@ -13,6 +13,7 @@ import PageLoader from "../components/layout/PageLoader";
 import Loader from "../components/layout/Loader";
 import CareerChat from "../pages/student/CareerChat";
 import PublicProfile from "../pages/student/PublicProfile";
+import PublicCompanyProfile from "../pages/company/PublicCompanyProfile";
 
 // Pages
 const Home = lazy(() => import("../pages/Home"));
@@ -21,11 +22,14 @@ const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
 const JobsInternshipsDashboard = lazy(
   () => import("../pages/student/Jobs-Internships"),
 );
+
 const JobDetails = lazy(() => import("../pages/student/JobDetails"));
+const ApplyJobPage = lazy(() => import("../pages/student/ApplyJobPage"));
 const SavedItems = lazy(() => import("../pages/student/SavedItems"));
 const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
 const Community = lazy(() => import("../pages/student/Community"));
 const Profile = lazy(() => import("../pages/student/Profile"));
+const CompanyProfile = lazy(() => import("../pages/company/CompanyProfile"));
 const Messages = lazy(() => import("../pages/student/Messages"));
 const CVBuilderAI = lazy(() => import("../pages/student/cv/CVBuilderAI"));
 const CVBuilderManual = lazy(
@@ -86,7 +90,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: APP_ROUTES.student.saved,
+        path:  APP_ROUTES.public.saved,
         element: (
           <Suspense fallback={<Loader />}>
             <SavedItems />
@@ -110,7 +114,15 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: APP_ROUTES.student.community,
+        path: APP_ROUTES.student.applyJob(":id"),
+        element: (
+          <Suspense fallback={<Loader />}>
+            <ApplyJobPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.public.community,
         element: (
           <Suspense fallback={<Loader />}>
             <Community />
@@ -122,6 +134,30 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <Profile />
+          </Suspense>
+        ),
+      },
+       {
+        path: APP_ROUTES.student.publicProfile(":id"),
+        element: (
+          <Suspense fallback={<Loader />}>
+            <PublicProfile />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.public.aiAssistant,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <CareerChat />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.messages,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Messages  />
           </Suspense>
         ),
       },
@@ -207,6 +243,51 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+  {
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: APP_ROUTES.company.profile,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <CompanyProfile />
+          </Suspense>
+        ),
+        },
+        {
+          path: APP_ROUTES.company.publicProfile(":id"),
+          element: (
+            <Suspense fallback={<Loader />}>
+              <PublicCompanyProfile />
+            </Suspense>
+          ),
+        },
+      {
+        path: APP_ROUTES.public.community,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Community />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.public.saved,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <SavedItems />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.public.aiAssistant,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <CareerChat />
+          </Suspense>
+        ),
+      },
+    ],
+  },
+]);     
 
-export default router;
+export default router;  

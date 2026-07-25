@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
-import { useCVStore } from "@/store/useCVStore";
-import { useResumeStore } from "@/store/useResumeStore";
-import BuilderStepper from "@/components/custom/resume/BuilderStepper";
+import { useCVStore } from "../../../store/useCVStore";
+import { useResumeStore } from "../../../store/useResumeStore";
+import BuilderStepper from "../../../components/custom/resume/BuilderStepper";
 
 function CVBuilderManual() {
   const { templateId } = useParams<{ templateId: string }>();
