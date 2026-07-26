@@ -20,6 +20,7 @@ import AdminCompanies from "../pages/admin/Companies";
 import AdminCompanyDetails from "../components/custom/admin/companies/CompanyDetails";
 import AdminInstructors from "../pages/admin/Instructors";
 import AdminInstructorDetails from "../pages/admin/InstructorDetails";
+import NotFound from "../pages/NotFound";
 
 /* Lazy Pages */
 const Home = lazy(() => import("../pages/Home"));
@@ -39,11 +40,14 @@ const Profile = lazy(() => import("../pages/student/Profile"));
 const CompanyProfile = lazy(() => import("../pages/company/CompanyProfile"));
 const PostJob = lazy(() => import("../pages/company/PostJob"));
 const Messages = lazy(() => import("../pages/student/Messages"));
-
-/* Route Guards */
+const Notifications = lazy(
+  () => import("../pages/Notifications/Notifications"),
+);
+const Searchbar = lazy(() => import("../components/custom/search/Searchbar"));
 const AdminRoute = lazy(() => import("./AdminRoute"));
 const StudentRoute = lazy(() => import("./StudentRoute"));
 const CompanyRoute = lazy(() => import("./CompanyRoute"));
+const PublicRoute = lazy(() => import("./PublicRoute"));
 
 const Learning = lazy(() => import("../pages/Lessons/Learning"));
 
@@ -78,7 +82,7 @@ const router = createBrowserRouter([
     ),
   },
 
-  /* Admin */
+  /* Admin Routes */
   {
     element: (
       <Suspense fallback={<PageLoader />}>
@@ -90,7 +94,7 @@ const router = createBrowserRouter([
         element: <DashboardLayout />,
         children: [
           {
-            path: APP_ROUTES.Admin.adminDashboard,
+            path: APP_ROUTES.admin.dashboard,
             element: (
               <Suspense fallback={<Loader />}>
                 <h1>Hello</h1>
@@ -113,7 +117,7 @@ const router = createBrowserRouter([
               </Suspense>
             ),
           },
-           {
+          {
             path: APP_ROUTES.admin.instructors,
             element: (
               <Suspense fallback={<Loader />}>
@@ -133,7 +137,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-
+  /* Student Routes */
   {
     element: (
       <Suspense fallback={<PageLoader />}>
@@ -177,26 +181,10 @@ const router = createBrowserRouter([
             ),
           },
           {
-            path: APP_ROUTES.public.saved,
-            element: (
-              <Suspense fallback={<Loader />}>
-                <SavedItems />
-              </Suspense>
-            ),
-          },
-          {
             path: APP_ROUTES.student.applyJob(":id"),
             element: (
               <Suspense fallback={<Loader />}>
                 <ApplyJobPage />
-              </Suspense>
-            ),
-          },
-          {
-            path: APP_ROUTES.public.community,
-            element: (
-              <Suspense fallback={<Loader />}>
-                <Community />
               </Suspense>
             ),
           },
@@ -209,26 +197,35 @@ const router = createBrowserRouter([
             ),
           },
           {
-            path: APP_ROUTES.student.publicProfile(":id"),
-            element: (
-              <Suspense fallback={<Loader />}>
-                <PublicProfile />
-              </Suspense>
-            ),
-          },
-          {
-            path: APP_ROUTES.public.aiAssistant,
-            element: (
-              <Suspense fallback={<Loader />}>
-                <CareerChat />
-              </Suspense>
-            ),
-          },
-          {
             path: APP_ROUTES.student.messages,
             element: (
               <Suspense fallback={<Loader />}>
                 <Messages />
+              </Suspense>
+            ),
+          },
+
+          {
+            path: APP_ROUTES.student.search,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <Searchbar />
+              </Suspense>
+            ),
+          },
+          // {
+          //   path: APP_ROUTES.student.notification,
+          //   element: (
+          //     <Suspense fallback={<Loader />}>
+          //       <Notifications />
+          //     </Suspense>
+          //   ),
+          // },
+          {
+            path: APP_ROUTES.student.careerChat,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <CareerChat />
               </Suspense>
             ),
           },
@@ -298,15 +295,7 @@ const router = createBrowserRouter([
               </Suspense>
             ),
           },
-          /* Settings */
-          {
-            path: APP_ROUTES.student.settings,
-            element: (
-              <Suspense fallback={<Loader />}>
-                <SettingsPage />
-              </Suspense>
-            ),
-          },
+        
         ],
       },
     ],
@@ -334,6 +323,7 @@ const router = createBrowserRouter([
     ],
   },
 
+  /* Company Routes */
   {
     element: (
       <Suspense fallback={<PageLoader />}>
@@ -345,7 +335,7 @@ const router = createBrowserRouter([
         element: <DashboardLayout />,
         children: [
           {
-            path: APP_ROUTES.company.profile,
+            path: APP_ROUTES.company.dashboard,
             element: (
               <Suspense fallback={<Loader />}>
                 <CompanyProfile />
@@ -353,10 +343,10 @@ const router = createBrowserRouter([
             ),
           },
           {
-            path: APP_ROUTES.company.publicProfile(":id"),
+            path: APP_ROUTES.company.profile,
             element: (
               <Suspense fallback={<Loader />}>
-                <PublicCompanyProfile />
+                <CompanyProfile />
               </Suspense>
             ),
           },
@@ -368,6 +358,30 @@ const router = createBrowserRouter([
               </Suspense>
             ),
           },
+          {
+            path: APP_ROUTES.company.jobs,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <PostJob />
+              </Suspense>
+            ),
+          },
+        ],
+      },
+    ],
+  },
+
+  /* Public Routes - Accessible to all authenticated users */
+  {
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <PublicRoute />
+      </Suspense>
+    ),
+    children: [
+      {
+        element: <DashboardLayout />,
+        children: [
           {
             path: APP_ROUTES.public.community,
             element: (
@@ -392,9 +406,52 @@ const router = createBrowserRouter([
               </Suspense>
             ),
           },
+          {
+            path: APP_ROUTES.public.publicProfile(":id"),
+            element: (
+              <Suspense fallback={<Loader />}>
+                <PublicProfile />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.public.companyProfile(":id"),
+            element: (
+              <Suspense fallback={<Loader />}>
+                <PublicCompanyProfile />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.public.notification,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <Notifications />
+              </Suspense>
+            ),
+          },
+            /* Settings */
+          {
+            path: APP_ROUTES.public.settings,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <SettingsPage />
+              </Suspense>
+            ),
+          },
         ],
       },
     ],
+  },
+
+  /* 404 Not Found - Catch all unmatched routes */
+  {
+    path: "*",
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <NotFound />
+      </Suspense>
+    ),
   },
 ]);
 

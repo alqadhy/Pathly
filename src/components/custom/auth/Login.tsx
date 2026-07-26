@@ -13,6 +13,7 @@ import { getSettings } from "../../../Services/settings.service";
 import { APP_ROUTES } from "../../../constants";
 import { ROLES } from "../../../roles";
 import { useAuthStore } from "../../../store/auth.store";
+import { generateNotifications } from "../../../utils/notificationGenerator";
 
 type Props = {
   setStep: React.Dispatch<React.SetStateAction<AuthStep>>;
@@ -36,10 +37,12 @@ const Login = ({ setStep }: Props) => {
 
       if (users.length > 0) {
         const currentUser = users[0];
-
         setCurrentUser(currentUser);
 
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
         try {
+          generateNotifications();
+          window.dispatchEvent(new Event("userChanged"));
           const settings = getSettings();
           if (settings.notifications.push) {
             const allowed = await notificationService.requestPermission();

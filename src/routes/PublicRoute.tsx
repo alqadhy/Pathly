@@ -1,9 +1,8 @@
-// routes/StudentRoute.tsx
 import { Navigate, Outlet } from "react-router-dom";
 import { APP_ROUTES } from "../constants";
 import { ROLES } from "../roles";
 
-const StudentRoute = () => {
+const PublicRoute = () => {
   const currentUser = JSON.parse(
     localStorage.getItem("currentUser") || "null"
   );
@@ -11,17 +10,17 @@ const StudentRoute = () => {
   if (!currentUser) {
     return <Navigate to={APP_ROUTES.auth.login} replace />;
   }
-  if (currentUser.role !== ROLES.USER) {
-    if (currentUser.role === ROLES.ADMIN) {
-      return <Navigate to={APP_ROUTES.admin.dashboard} replace />;
-    }
-    if (currentUser.role === ROLES.COMPANY) {
-      return <Navigate to={APP_ROUTES.company.profile} replace />;
-    }
+
+  // Allow access for admin, company, and student roles
+  if (
+    currentUser.role !== ROLES.ADMIN &&
+    currentUser.role !== ROLES.COMPANY &&
+    currentUser.role !== ROLES.USER
+  ) {
     return <Navigate to={APP_ROUTES.auth.login} replace />;
   }
 
   return <Outlet />;
 };
 
-export default StudentRoute;
+export default PublicRoute;

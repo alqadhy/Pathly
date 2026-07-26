@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { GraduationCap } from "lucide-react";
 
 import { Button } from "../../../ui/button";
+import { ROLES } from "../../../../roles";
 
 const EmptyMyLearning = () => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const EmptyMyLearning = () => {
       <Button
         className="mt-xl h-[60px] rounded-xl px-2xl text-[20px] font-semibold"
         onClick={() =>
-          navigate("/student/learning")
+          navigate(`/${ROLES.USER}/learning`)
         }
       >
         Browse Courses
