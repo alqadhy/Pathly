@@ -6,10 +6,13 @@ import DashboardHeader from "../components/layout/DashboardHeader";
 import Sidebar from "../components/layout/Sidebar";
 import Footer from "../components/layout/Footer";
 import ScrollToTop from "../components/layout/ScrollToTop";
+import {generateNotifications} from "../utils/notificationGenerator";
 
 function DashboardLayout() {
   const location = useLocation();
-
+useEffect(() => {
+  generateNotifications();
+}, []);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);

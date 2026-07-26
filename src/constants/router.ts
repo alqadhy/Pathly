@@ -38,6 +38,8 @@ export const APP_ROUTES = {
     settings: "/student/settings",
 
     messages: "/student/messages",
+    search: "/student/search",
+    notification: "/student/notification",
 
     careerChat: "/student/career-chat",
 

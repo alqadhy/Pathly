@@ -19,7 +19,11 @@ import { useSidebarStore } from "../../store/sidebar.store";
 // Logo
 import logo from "../../assets/imgs/logo.png";
 
+import { useNotifications } from "../../hooks/useNotifications";
+
+
 function DashboardHeader() {
+  const { unreadCount } = useNotifications();
   const [isScrolled, setIsScrolled] = useState(false);
   const { isOpen, open, close } = useSidebarStore();
 
@@ -66,9 +70,39 @@ function DashboardHeader() {
         <IconButton title="Search" className="md:hidden">
           <Search />
         </IconButton>
-        <IconButton title="Notifications">
-          <Bell />
-        </IconButton>
+
+        <Link to={APP_ROUTES.student.notification}>
+          <div className="relative">
+            <IconButton title="Notifications">
+              <Bell />
+            </IconButton>
+
+            {unreadCount > 0 && (
+              <span
+                className="
+                  absolute
+                  -right-1
+                  -top-1
+                  flex
+                  h-5
+                  min-w-5
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-red-500
+                  px-1
+                  text-[10px]
+                  font-bold
+                  text-white
+                  shadow-md
+                "
+              >
+                {unreadCount > 99 ? "99+" : unreadCount}
+              </span>
+            )}
+          </div>
+        </Link>
+
         <Link to={APP_ROUTES.student.messages}>
           <IconButton title="Messages">
             <MessagesSquare />

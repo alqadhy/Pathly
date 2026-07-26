@@ -31,6 +31,8 @@ const SavedItems = lazy(() => import("../pages/student/SavedItems"));
 const Community = lazy(() => import("../pages/student/Community"));
 const Profile = lazy(() => import("../pages/student/Profile"));
 const Messages = lazy(() => import("../pages/student/Messages"));
+const Notifications = lazy(() => import("../pages/Notifications/Notifications"));
+const Searchbar = lazy(() => import("../components/custom/search/Searchbar"));
 const AdminRoute = lazy(() => import("./AdminRoute"));
 
 const Learning = lazy(
@@ -164,6 +166,22 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <Messages />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.search,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Searchbar />
+          </Suspense>
+        ),
+      },
+      {
+        path: APP_ROUTES.student.notification,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Notifications />
           </Suspense>
         ),
       },

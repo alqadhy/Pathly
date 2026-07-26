@@ -12,6 +12,7 @@ import SocialAuth from "./SocialAuth";
 import { loginUser } from "../../../Services/auth.service";
 import { notificationService } from "../../../Services/notification.service";
 import { getSettings } from "../../../Services/settings.service";
+import { generateNotifications } from "../../../utils/notificationGenerator";
 
 type Props = {
   setStep: React.Dispatch<
@@ -60,7 +61,10 @@ const Login = ({
             JSON.stringify(currentUser)
           );
           try {
-            
+          generateNotifications();  
+          window.dispatchEvent(
+            new Event("userChanged")
+          );
           const settings = getSettings();
             if (settings.notifications.push) {
               const allowed =
