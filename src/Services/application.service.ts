@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { JobApplicationMockData } from '../types/application.types';
 import type { JobApplicationFormData} from '../types/application.types'
-import { useApplicationsStore } from '@/store/useApplicationsStore';
+import { useApplicationsStore } from '../store/useApplicationsStore';
 
 export const getJobApplicationData = async (): Promise<JobApplicationMockData> => {
   const response = await axios.get<JobApplicationMockData>('/mocked/jobs/job-application-data.json');
