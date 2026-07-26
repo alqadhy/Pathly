@@ -26,7 +26,6 @@ const Home = lazy(() => import("../pages/Home"));
 
 const Dashboard = lazy(() => import("../pages/student/Dashboard"));
 const SettingsPage = lazy(() => import("../pages/Settings/SettingsPage"));
-const AdminDashboard = lazy(() => import("../layout/AdminDashboard"));
 const Analytics = lazy(() => import("../pages/student/AnalyticsDashboard"));
 const JobsInternshipsDashboard = lazy(
   () => import("../pages/student/Jobs-Internships"),
@@ -40,7 +39,11 @@ const Profile = lazy(() => import("../pages/student/Profile"));
 const CompanyProfile = lazy(() => import("../pages/company/CompanyProfile"));
 const PostJob = lazy(() => import("../pages/company/PostJob"));
 const Messages = lazy(() => import("../pages/student/Messages"));
+
+/* Route Guards */
 const AdminRoute = lazy(() => import("./AdminRoute"));
+const StudentRoute = lazy(() => import("./StudentRoute"));
+const CompanyRoute = lazy(() => import("./CompanyRoute"));
 
 const Learning = lazy(() => import("../pages/Lessons/Learning"));
 
@@ -75,7 +78,7 @@ const router = createBrowserRouter([
     ),
   },
 
-  /*admin */
+  /* Admin */
   {
     element: (
       <Suspense fallback={<PageLoader />}>
@@ -110,8 +113,7 @@ const router = createBrowserRouter([
               </Suspense>
             ),
           },
-
-          {
+           {
             path: APP_ROUTES.admin.instructors,
             element: (
               <Suspense fallback={<Loader />}>
@@ -128,188 +130,188 @@ const router = createBrowserRouter([
             ),
           },
         ],
-      },  
+      },
     ],
   },
-  /* User */
+
   {
-    element: <DashboardLayout />,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <StudentRoute />
+      </Suspense>
+    ),
     children: [
       {
-        path: APP_ROUTES.student.dashboard,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <Dashboard />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.student.jobs,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <JobsInternshipsDashboard />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.student.jobDetails(":id"),
-        element: (
-          <Suspense fallback={<Loader />}>
-            <JobDetails />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.student.analytics,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <Analytics />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.public.saved,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <SavedItems />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.student.jobDetails(":id"),
-        element: (
-          <Suspense fallback={<Loader />}>
-            <JobDetails />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.student.applyJob(":id"),
-        element: (
-          <Suspense fallback={<Loader />}>
-            <ApplyJobPage />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.public.community,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <Community />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.student.profile,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <Profile />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.student.publicProfile(":id"),
-        element: (
-          <Suspense fallback={<Loader />}>
-            <PublicProfile />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.public.aiAssistant,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <CareerChat />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.student.messages,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <Messages />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.student.cvBuilder.dashboard,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <CVDashboard />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.student.cvBuilder.templateSelection(":mode"),
-        element: (
-          <Suspense fallback={<Loader />}>
-            <TemplateSelection />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.student.cvBuilder.manualBuilder(":templateId"),
-        element: (
-          <Suspense fallback={<Loader />}>
-            <CVBuilderManual />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.student.cvBuilder.aiBuilder(":templateId"),
-        element: (
-          <Suspense fallback={<Loader />}>
-            <CVBuilderAI />
-          </Suspense>
-        ),
-      },
+        element: <DashboardLayout />,
+        children: [
+          {
+            path: APP_ROUTES.student.dashboard,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <Dashboard />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.student.jobs,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <JobsInternshipsDashboard />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.student.jobDetails(":id"),
+            element: (
+              <Suspense fallback={<Loader />}>
+                <JobDetails />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.student.analytics,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <Analytics />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.public.saved,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <SavedItems />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.student.applyJob(":id"),
+            element: (
+              <Suspense fallback={<Loader />}>
+                <ApplyJobPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.public.community,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <Community />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.student.profile,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <Profile />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.student.publicProfile(":id"),
+            element: (
+              <Suspense fallback={<Loader />}>
+                <PublicProfile />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.public.aiAssistant,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <CareerChat />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.student.messages,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <Messages />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.student.cvBuilder.dashboard,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <CVDashboard />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.student.cvBuilder.templateSelection(":mode"),
+            element: (
+              <Suspense fallback={<Loader />}>
+                <TemplateSelection />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.student.cvBuilder.manualBuilder(":templateId"),
+            element: (
+              <Suspense fallback={<Loader />}>
+                <CVBuilderManual />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.student.cvBuilder.aiBuilder(":templateId"),
+            element: (
+              <Suspense fallback={<Loader />}>
+                <CVBuilderAI />
+              </Suspense>
+            ),
+          },
 
-      /* Learning */
-      {
-        path: APP_ROUTES.student.learning,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <Learning />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.student.mylearning,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <MyLearning />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.Learning.courseDetails,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <LearningDetails />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.Learning.continueCourse,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <LearningLesson />
-          </Suspense>
-        ),
-      },
-      /* Settings */
-      {
-        path: APP_ROUTES.student.settings,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <SettingsPage />
-          </Suspense>
-        ),
+          /* Learning */
+          {
+            path: APP_ROUTES.student.learning,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <Learning />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.student.mylearning,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <MyLearning />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.Learning.courseDetails,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <LearningDetails />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.Learning.continueCourse,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <LearningLesson />
+              </Suspense>
+            ),
+          },
+          /* Settings */
+          {
+            path: APP_ROUTES.student.settings,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <SettingsPage />
+              </Suspense>
+            ),
+          },
+        ],
       },
     ],
   },
 
-  /* AUTH */
   {
     element: <AuthLayout />,
     children: [
@@ -332,58 +334,65 @@ const router = createBrowserRouter([
     ],
   },
 
-  // Company
-
   {
-    element: <DashboardLayout />,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <CompanyRoute />
+      </Suspense>
+    ),
     children: [
       {
-        path: APP_ROUTES.company.profile,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <CompanyProfile />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.company.publicProfile(":id"),
-        element: (
-          <Suspense fallback={<Loader />}>
-            <PublicCompanyProfile />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.company.postJob,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <PostJob />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.public.community,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <Community />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.public.saved,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <SavedItems />
-          </Suspense>
-        ),
-      },
-      {
-        path: APP_ROUTES.public.aiAssistant,
-        element: (
-          <Suspense fallback={<Loader />}>
-            <CareerChat />
-          </Suspense>
-        ),
+        element: <DashboardLayout />,
+        children: [
+          {
+            path: APP_ROUTES.company.profile,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <CompanyProfile />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.company.publicProfile(":id"),
+            element: (
+              <Suspense fallback={<Loader />}>
+                <PublicCompanyProfile />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.company.postJob,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <PostJob />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.public.community,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <Community />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.public.saved,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <SavedItems />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.public.aiAssistant,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <CareerChat />
+              </Suspense>
+            ),
+          },
+        ],
       },
     ],
   },
