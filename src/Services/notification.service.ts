@@ -69,6 +69,17 @@ class NotificationService {
     });
   }
 
+  // Course completed notification
+  courseCompleted(
+    title: string,
+    body: string
+  ) {
+    this.show(title, {
+      body,
+      tag: "course-completed",
+    });
+  }
+
   job(title: string, body: string) {
     this.show(title, {
       body,

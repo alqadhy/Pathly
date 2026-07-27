@@ -140,6 +140,7 @@ const useLearningPlayer = ({
         currentLesson.id,
       currentTime,
       completedLessons,
+      updatedAt: new Date().toISOString(),
     });
   };
 

@@ -1,11 +1,11 @@
-import {
-  addNotification,
-} from "./notificationStorage";
+import { addNotification } from "./notificationStorage";
 
 import { getRecommendedJobs } from "../Services/search.service";
 import { getStoredProfile } from "../components/custom/Profile/crud/profileStorage";
 import { learningCourses } from "../../public/mocked/learning/learning";
 import { getAllPlayerStates } from "../../public/mocked/learning/learningPlayerStorage";
+import { APP_ROUTES } from "../constants";
+import { ROLES } from "../roles";
 
 const normalizeTrack = (track: string) => {
   switch (track.toLowerCase().trim()) {
@@ -18,42 +18,69 @@ const normalizeTrack = (track: string) => {
   }
 };
 
-export const generateNotifications = () => {
-  const currentUser = JSON.parse(
+const getCurrentUser = () =>
+  JSON.parse(
     localStorage.getItem("currentUser") || "{}"
   );
 
+const getRouteByRole = (
+  role: string,
+  type: "profile" | "learning"
+) => {
+  switch (role) {
+    case ROLES.ADMIN:
+      return type === "profile"
+        ? APP_ROUTES.admin.dashboard
+        : APP_ROUTES.Learning.courseDetails;
+
+    case ROLES.COMPANY:
+      return type === "profile"
+        ? APP_ROUTES.company.profile
+        : APP_ROUTES.Learning.courseDetails;
+
+    case ROLES.USER:
+    default:
+      return type === "profile"
+        ? APP_ROUTES.student.profile
+        : APP_ROUTES.Learning.courseDetails;
+  }
+};
+
+const getJobRouteByRole = (
+  role: string,
+  id: number | string
+) => {
+  switch (role) {
+    case ROLES.ADMIN:
+      return APP_ROUTES.admin.companyDetails(id);
+
+    case ROLES.COMPANY:
+      return APP_ROUTES.company.jobDetails(id);
+
+    case ROLES.USER:
+    default:
+      return APP_ROUTES.student.jobDetails(id);
+  }
+};
+
+export const generateNotifications = () => {
+  const currentUser = getCurrentUser();
+
   if (!currentUser.email) return;
 
-  console.log(
-    "GENERATING FOR:",
-    currentUser.email
-  );
-
   generateProfileReminder();
-
-  generateLearningReminder(
-    currentUser.email
-  );
-
-  generateCompletedCourseNotification(
-    currentUser.email
-  );
-
+  generateLearningReminder(currentUser.email);
+  generateCompletedCourseNotification(currentUser.email);
   generateCourseRecommendation();
-
   generateJobRecommendation();
 };
 
 const generateProfileReminder = () => {
-  const currentUser = JSON.parse(
-    localStorage.getItem("currentUser") || "{}"
-  );
+  const currentUser = getCurrentUser();
 
-  const profileData =
-    localStorage.getItem(
-      `pathly.profile.${currentUser.email}`
-    );
+  const profileData = localStorage.getItem(
+    `pathly.profile.${currentUser.email}`
+  );
 
   const profile = profileData
     ? JSON.parse(profileData)
@@ -66,12 +93,13 @@ const generateProfileReminder = () => {
       description:
         "Complete your profile to receive better job and course recommendations.",
       type: "profile",
-      targetRoute:
-        "/student/profile",
-      createdAt:
-        new Date().toISOString(),
-      isRead:false,
-      generated:true,
+      targetRoute: getRouteByRole(
+        currentUser.role,
+        "profile"
+      ),
+      createdAt: new Date().toISOString(),
+      isRead: false,
+      generated: true,
     });
 
     return;
@@ -85,197 +113,178 @@ const generateProfileReminder = () => {
     profile.education?.length &&
     profile.cv;
 
-  if(isComplete) return;
+  if (isComplete) return;
 
   addNotification({
-    id:"profile-reminder",
-    title:"Complete your profile",
+    id: "profile-reminder",
+    title: "Complete your profile",
     description:
       "Complete your profile to receive better job and course recommendations.",
-    type:"profile",
-    targetRoute:"/student/profile",
-    createdAt:
-      new Date().toISOString(),
-    isRead:false,
-    generated:true,
+    type: "profile",
+    targetRoute: getRouteByRole(
+      currentUser.role,
+      "profile"
+    ),
+    createdAt: new Date().toISOString(),
+    isRead: false,
+    generated: true,
   });
 };
 
 const generateLearningReminder = (
-  email:string
+  email: string
 ) => {
-  const states =
-    getAllPlayerStates().filter(
-      item =>
-        item.userEmail === email
+  const currentUser = getCurrentUser();
+
+  const states = getAllPlayerStates().filter(
+    (item) => item.userEmail === email
+  );
+
+  states.forEach((state) => {
+    const course = learningCourses.find(
+      (item) => item.id === state.courseId
     );
 
-  states.forEach(state=>{
-    const course =
-      learningCourses.find(
-        item =>
-          item.id === state.courseId
-      );
-
-    if(!course) return;
+    if (!course) return;
 
     const completed =
       state.completedLessons.length;
 
-    if(
+    if (
       completed === 0 ||
       completed === course.totalLessons
     )
       return;
 
     addNotification({
-      id:
-        `continue-course-${course.id}`,
-      title:
-        "Continue Learning",
-      description:
-        `Continue "${course.title}" where you left off.`,
-      type:"course",
-      image:
-        course.image,
-      targetId:
-        course.id,
-      targetRoute:
-        "/student/learning",
-      createdAt:
-        new Date().toISOString(),
-      isRead:false,
-      generated:true,
+      id: `continue-course-${course.id}`,
+      title: "Continue Learning",
+      description: `Continue "${course.title}" where you left off.`,
+      type: "course",
+      image: course.image,
+      targetId: course.id,
+      targetRoute: getRouteByRole(
+        currentUser.role,
+        "learning"
+      ).replace(":id", String(course.id)),
+      createdAt: new Date().toISOString(),
+      isRead: false,
+      generated: true,
     });
   });
 };
 
 const generateCompletedCourseNotification = (
-  email:string
+  email: string
 ) => {
-  const states =
-    getAllPlayerStates().filter(
-      item =>
-        item.userEmail === email
+  const currentUser = getCurrentUser();
+
+  const states = getAllPlayerStates().filter(
+    (item) => item.userEmail === email
+  );
+
+  states.forEach((state) => {
+    const course = learningCourses.find(
+      (item) => item.id === state.courseId
     );
 
-  states.forEach(state=>{
-    const course =
-      learningCourses.find(
-        item =>
-          item.id === state.courseId
-      );
+    if (!course) return;
 
-    if(!course) return;
-
-    if(
+    if (
       state.completedLessons.length !==
       course.totalLessons
     )
       return;
 
     addNotification({
-      id:
-        `certificate-${course.id}`,
-      title:
-        "Congratulations 🎉",
-      description:
-        `You successfully completed "${course.title}".`,
-      type:"certificate",
-      image:
-        course.image,
-      targetId:
-        course.id,
-      targetRoute:
-        "/student/learning",
-      createdAt:
-        new Date().toISOString(),
-      isRead:false,
-      generated:true,
+      id: `certificate-${course.id}`,
+      title: "Congratulations 🎉",
+      description: `You successfully completed "${course.title}".`,
+      type: "certificate",
+      image: course.image,
+      targetId: course.id,
+      targetRoute: getRouteByRole(
+        currentUser.role,
+        "learning"
+      ).replace(":id", String(course.id)),
+      createdAt: new Date().toISOString(),
+      isRead: false,
+      generated: true,
     });
   });
 };
 
 const generateCourseRecommendation = () => {
-  const profile =
-    getStoredProfile();
+  const currentUser = getCurrentUser();
 
-  if(!profile) return;
+  const profile = getStoredProfile();
+
+  if (!profile) return;
 
   const tracks =
-    profile.tracks?.map(
-      track =>
-        normalizeTrack(track.name)
+    profile.tracks?.map((track) =>
+      normalizeTrack(track.name)
     ) ?? [];
 
-  const courses =
-    learningCourses.filter(
-      course =>
-        course.track &&
-        tracks.includes(
-          normalizeTrack(course.track)
-        )
-    );
+  const courses = learningCourses.filter(
+    (course) =>
+      course.track &&
+      tracks.includes(
+        normalizeTrack(course.track)
+      )
+  );
 
-  courses.slice(0,3).forEach(course=>{
+  courses.slice(0, 3).forEach((course) => {
     addNotification({
-      id:
-        `course-recommend-${course.id}`,
-      title:
-        "New Course Recommendation",
-      description:
-        `"${course.title}" matches your interests.`,
-      type:"course",
-      image:
-        course.image,
-      targetId:
-        course.id,
-      targetRoute:
-        "/student/learning",
-      createdAt:
-        new Date().toISOString(),
-      isRead:false,
-      generated:true,
+      id: `course-recommend-${course.id}`,
+      title: "New Course Recommendation",
+      description: `"${course.title}" matches your interests.`,
+      type: "course",
+      image: course.image,
+      targetId: course.id,
+      targetRoute: getRouteByRole(
+        currentUser.role,
+        "learning"
+      ).replace(":id", String(course.id)),
+      createdAt: new Date().toISOString(),
+      isRead: false,
+      generated: true,
     });
   });
 };
 
 const generateJobRecommendation = () => {
-  const profile =
-    getStoredProfile();
+  const currentUser = getCurrentUser();
 
-  if(!profile) return;
+  const profile = getStoredProfile();
+
+  if (!profile) return;
 
   const tracks =
-    profile.tracks?.map(
-      track =>
-        normalizeTrack(track.name)
+    profile.tracks?.map((track) =>
+      normalizeTrack(track.name)
     ) ?? [];
 
   const jobs =
     getRecommendedJobs(tracks);
 
-  if(!jobs.length) return;
+  if (!jobs.length) return;
 
-  jobs.slice(0,3).forEach(job=>{
+  jobs.slice(0, 3).forEach((job) => {
     addNotification({
-      id:
-        `job-recommend-${job.id}`,
-      title:
-        "New Job Recommendation",
-      description:
-        `${job.title} at ${job.company} matches your interests.`,
-      type:"job",
-      image:
-        job.companyLogo,
-      targetId:
-        job.id,
-      targetRoute:
-        "/student/jobs",
-      createdAt:
-        new Date().toISOString(),
-      isRead:false,
-      generated:true,
+      id: `job-recommend-${job.id}`,
+      title: "New Job Recommendation",
+      description: `${job.title} at ${job.company} matches your interests.`,
+      type: "job",
+      image: job.companyLogo,
+      targetId: job.id,
+      targetRoute: getJobRouteByRole(
+        currentUser.role,
+        job.id
+      ),
+      createdAt: new Date().toISOString(),
+      isRead: false,
+      generated: true,
     });
   });
 };

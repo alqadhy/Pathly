@@ -23,7 +23,7 @@ export const learningCourses: Course[] = [
       "OOP",
       "File Handling",
     ],
-    totalLessons: 18,
+    totalLessons: 8,
   },
 
   {
@@ -48,7 +48,7 @@ export const learningCourses: Course[] = [
       "Express",
       "MongoDB",
     ],
-    totalLessons: 18,
+    totalLessons: 8,
   },
 
   {
@@ -73,7 +73,7 @@ export const learningCourses: Course[] = [
       "Context API",
       "Projects",
     ],
-    totalLessons: 18,
+    totalLessons: 8,
   },
 
   {
@@ -98,7 +98,7 @@ export const learningCourses: Course[] = [
       "DOM",
       "Modules",
     ],
-    totalLessons: 18,
+    totalLessons: 8,
   },
 
   {
@@ -123,7 +123,7 @@ export const learningCourses: Course[] = [
       "MongoDB",
       "Deployment",
     ],
-    totalLessons: 18,
+    totalLessons: 8,
   },
 
   {
@@ -148,7 +148,7 @@ export const learningCourses: Course[] = [
       "Aggregation",
       "Views",
     ],
-    totalLessons: 18,
+    totalLessons: 8,
   },
 
   {
@@ -173,7 +173,7 @@ export const learningCourses: Course[] = [
       "Charts",
       "Reports",
     ],
-    totalLessons: 18,
+    totalLessons: 8,
   },
 
   {
@@ -198,7 +198,7 @@ export const learningCourses: Course[] = [
       "Clustering",
       "Projects",
     ],
-    totalLessons: 18,
+    totalLessons: 8,
   },
 
   {
@@ -223,7 +223,7 @@ export const learningCourses: Course[] = [
       "Auto Layout",
       "Prototype",
     ],
-    totalLessons: 18,
+    totalLessons: 8,
   },
 
   {
@@ -248,7 +248,7 @@ export const learningCourses: Course[] = [
       "Firebase",
       "API Integration",
     ],
-    totalLessons: 18,
+    totalLessons: 8,
   },
   {
   id: 11,
@@ -290,7 +290,7 @@ export const learningCourses: Course[] = [
     "Linux Basics",
     "Penetration Testing",
   ],
-  totalLessons: 18,
+  totalLessons: 8,
 },
 
 {
@@ -333,7 +333,7 @@ export const learningCourses: Course[] = [
     "Exploitation",
     "Reporting",
   ],
-  totalLessons: 18,
+  totalLessons: 8,
 },
 
 {
@@ -376,7 +376,7 @@ export const learningCourses: Course[] = [
     "IAM",
     "Cloud Basics",
   ],
-  totalLessons: 18,
+  totalLessons: 8,
 },
 
 {
@@ -419,7 +419,7 @@ export const learningCourses: Course[] = [
     "Kubernetes",
     "CI/CD",
   ],
-  totalLessons: 18,
+  totalLessons: 8,
 },
 
 {
@@ -462,7 +462,7 @@ export const learningCourses: Course[] = [
     "Visualization",
     "Machine Learning",
   ],
-  totalLessons: 18,
+  totalLessons: 8,
 },
 
 {
@@ -505,7 +505,7 @@ export const learningCourses: Course[] = [
     "RNN",
     "TensorFlow",
   ],
-  totalLessons: 18,
+  totalLessons: 8,
 },
 
 {
@@ -548,7 +548,7 @@ export const learningCourses: Course[] = [
     "RxJS",
     "Routing",
   ],
-  totalLessons: 18,
+  totalLessons: 8,
 },
 
 {
@@ -591,7 +591,7 @@ export const learningCourses: Course[] = [
     "Vue Router",
     "Pinia",
   ],
-  totalLessons: 18,
+  totalLessons: 8,
 },
 
 {
@@ -634,7 +634,7 @@ export const learningCourses: Course[] = [
     "Navigation",
     "API Integration",
   ],
-  totalLessons: 18,
+  totalLessons: 8,
 },
 
 {
@@ -677,7 +677,7 @@ export const learningCourses: Course[] = [
     "Cloud Run",
     "IAM",
   ],
-  totalLessons: 18,
+  totalLessons: 8,
 },
 {
   id: 21,
@@ -719,7 +719,7 @@ export const learningCourses: Course[] = [
     "Authentication",
     "REST API",
   ],
-  totalLessons: 18,
+  totalLessons: 8,
 },
 
 {
@@ -762,7 +762,7 @@ export const learningCourses: Course[] = [
     "Sessions",
     "MySQL",
   ],
-  totalLessons: 18,
+  totalLessons: 8,
 },
 
 {
@@ -805,7 +805,7 @@ export const learningCourses: Course[] = [
     "Authentication",
     "Swagger",
   ],
-  totalLessons: 18,
+  totalLessons: 8,
 },
 
 {
@@ -848,7 +848,7 @@ export const learningCourses: Course[] = [
     "Security",
     "JPA",
   ],
-  totalLessons: 18,
+  totalLessons: 8,
 },
 
 {
@@ -891,7 +891,7 @@ export const learningCourses: Course[] = [
     "Authentication",
     "Deployment",
   ],
-  totalLessons: 18,
+  totalLessons: 8,
 },
 
 {
@@ -934,7 +934,7 @@ export const learningCourses: Course[] = [
     "SEO",
     "Deployment",
   ],
-  totalLessons: 18,
+  totalLessons: 8,
 },
 
 {
@@ -977,7 +977,7 @@ export const learningCourses: Course[] = [
     "APIs",
     "Firebase",
   ],
-  totalLessons: 18,
+  totalLessons: 8,
 },
 
 {
@@ -1020,7 +1020,7 @@ export const learningCourses: Course[] = [
     "Pivot Tables",
     "Dashboards",
   ],
-  totalLessons: 18,
+  totalLessons: 8,
 },
 
 {
@@ -1063,7 +1063,7 @@ export const learningCourses: Course[] = [
     "Calculated Fields",
     "Story Points",
   ],
-  totalLessons: 18,
+  totalLessons: 8,
 },
 
 {
@@ -1106,6 +1106,6 @@ export const learningCourses: Course[] = [
     "Pull Requests",
     "GitHub Flow",
   ],
-  totalLessons: 18,
+  totalLessons: 8,
 },
 ];
