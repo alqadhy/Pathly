@@ -39,7 +39,7 @@ import {
 
 // Helper Functions
 import { getCurrentUser } from "./../Profile/crud/profileStorage";
-import { getNames } from "country-list";
+import { getNames } from 'country-list'
 
 export function SelectBox({
   items,
