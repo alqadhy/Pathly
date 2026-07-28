@@ -8,6 +8,7 @@ export const APP_ROUTES = {
     login: "/auth/",
     signup: "/auth/sign-up",
   },
+  onBoarding: "/on-boarding",
   // Auth Rotues
   Learning: {
     courseDetails:`/${ROLES.USER}/learning/:id`,
@@ -53,6 +54,7 @@ export const APP_ROUTES = {
     companyProfile: (id: string) => `/${ROLES.COMPANY}/profile/${id}`,
     notification: `/notification`,
     settings: `/settings`,
+    
   },
   // Company Routes
   company: {

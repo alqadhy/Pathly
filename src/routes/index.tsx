@@ -70,7 +70,7 @@ const CVBuilderManual = lazy(
 const CVBuilderAI = lazy(() => import("../pages/student/cv/CVBuilderAI"));
 
 const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
-
+const OnBoarding = lazy(() => import("../pages/OnBoarding"));
 const router = createBrowserRouter([
   /* HOME */
   {
@@ -81,7 +81,14 @@ const router = createBrowserRouter([
       </Suspense>
     ),
   },
-
+  {
+    path: APP_ROUTES.onBoarding,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <OnBoarding />
+      </Suspense>
+    ),
+  },
   /* Admin Routes */
   {
     element: (
