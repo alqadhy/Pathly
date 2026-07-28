@@ -1,8 +1,5 @@
 import { useState } from "react";
-
 import { useNavigate } from "react-router-dom";
-
-// import { roleSchema } from "../../../schemas/auth.schema";
 
 import { signUpUser } from "../../../Services/auth.service";
 
@@ -33,7 +30,6 @@ const ChooseRole = ({ setStep }: Props) => {
   const navigate = useNavigate();
 
   const [selectedRole, setSelectedRole] = useState("");
-
   const [loading, setLoading] = useState(false);
 
   const handleContinue = async () => {
@@ -48,12 +44,6 @@ const ChooseRole = ({ setStep }: Props) => {
 
       const parsedUser = JSON.parse(pendingUser);
 
-      // const result = roleSchema.safeParse({
-      //   role: selectedRole,
-      // });
-
-      // if (!result.success) return;
-
       const finalUser = {
         ...parsedUser,
         role: selectedRole,
@@ -63,7 +53,19 @@ const ChooseRole = ({ setStep }: Props) => {
 
       sessionStorage.removeItem("pendingUser");
 
-      navigate(APP_ROUTES.auth.login);
+        switch (selectedRole) {
+          case ROLES.COMPANY:
+            navigate(APP_ROUTES.onBoarding.company);
+          break;
+
+          case ROLES.USER:
+             navigate(APP_ROUTES.onBoarding.student);
+            break;
+          case ROLES.INSTRUCTOR:
+          default:
+            navigate(APP_ROUTES.auth.login);
+            break;
+        }
     } catch (err) {
       console.log(err);
     } finally {
@@ -72,141 +74,43 @@ const ChooseRole = ({ setStep }: Props) => {
   };
 
   return (
-    <div
-      className="
-        flex
-        w-full
-        flex-col
-        items-center
-        justify-center
-        gap-xl
-
-        px-lg
-        py-xl
-
-        md:flex-row
-      "
-    >
-      {/* LEFT */}
-      <div
-        className="
-          w-full
-
-          lg:w-1/2
-          lg:max-w-[45%]
-        "
-      >
+    <div className="flex w-full flex-col items-center justify-center gap-xl px-lg py-xl md:flex-row">
+      <div className="w-full lg:w-1/2 lg:max-w-[45%]">
         <div className="space-y-md">
-          <p
-            className="
-              text-h2
-              font-bold
-              leading-none
-              tracking-[-2px]
-              text-light
-
-              sm:text-display
-            "
-          >
+          <p className="text-h2 font-bold leading-none tracking-[-2px] text-light sm:text-display">
             Tell Us
             <br />
             Who You Are
           </p>
 
-          <p
-            className="
-              max-w-[500px]
-              text-body-lg
-              leading-relaxed
-              text-light-active
-            "
-          >
-            Choose the role that best describes you to personalize your
-            experience.
+          <p className="max-w-[500px] text-body-lg leading-relaxed text-light-active">
+            Choose the role that best describes you to personalize your experience.
           </p>
         </div>
       </div>
 
-      {/* FORM */}
-      <div
-        className="
-          w-full
-
-          rounded-xl
-          bg-card
-
-          p-lg
-          shadow-card
-
-          sm:p-2xl
-
-          lg:w-[45%]
-        "
-      >
+      <div className="w-full rounded-xl bg-card p-lg shadow-card sm:p-2xl lg:w-[45%]">
         <div className="space-y-xl">
           <div className="space-y-sm">
-            <h2
-              className="
-                text-h4
-                font-bold
-                text-text-primary
-              "
-            >
+            <h2 className="text-h4 font-bold text-text-primary">
               Select Your Role
             </h2>
 
-            <p
-              className="
-                text-body-sm
-                text-normal
-              "
-            >
+            <p className="text-body-sm text-normal">
               Choose one option to continue
             </p>
           </div>
 
-          <div
-            className="
-              flex
-              flex-col
-              gap-md
-            "
-          >
+          <div className="flex flex-col gap-md">
             {roles.map((role) => (
               <button
                 key={role.id}
                 onClick={() => setSelectedRole(role.id)}
-                className={`
-                  flex
-                  h-[72px]
-                  items-center
-                  justify-center
-
-                  rounded-xl
-
-                  border-2
-
-                  text-body-md
-                  font-semibold
-
-                  transition-all
-
-                  ${
-                    selectedRole === role.id
-                      ? `
-                        border-primary
-                        bg-primary-light
-                        text-primary
-                      `
-                      : `
-                        border-border
-                        bg-background
-                        text-text-primary
-
-                        hover:border-primary
-                      `
-                  }
-                `}
+                className={`flex h-[72px] items-center justify-center rounded-xl border-2 text-body-md font-semibold transition-all ${
+                  selectedRole === role.id
+                    ? "border-primary bg-primary-light text-primary"
+                    : "border-border bg-background text-text-primary hover:border-primary"
+                }`}
               >
                 {role.title}
               </button>
@@ -216,25 +120,7 @@ const ChooseRole = ({ setStep }: Props) => {
           <button
             onClick={handleContinue}
             disabled={!selectedRole || loading}
-            className="
-              h-[60px]
-              w-full
-
-              rounded-xl
-
-              bg-primary
-
-              text-lg
-              font-semibold
-              text-white
-
-              transition-all
-
-              hover:bg-primary-hover
-
-              disabled:cursor-not-allowed
-              disabled:opacity-50
-            "
+            className="h-[60px] w-full rounded-xl bg-primary text-lg font-semibold text-white transition-all hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-50"
           >
             {loading ? "Saving..." : "Continue"}
           </button>
