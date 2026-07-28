@@ -18,31 +18,48 @@ function EducationForm() {
       <h3 className="text-h4-size! text-bold!">Education</h3>
 
       {education.length === 0 && (
-        <p className="text-(--body-sm) text-(--muted-foreground)">No education added yet.</p>
+        <p className="text-(--body-sm) text-(--muted-foreground)">
+          No education added yet.
+        </p>
       )}
 
       {education.map((entry) => (
-        <div key={entry.id} className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-end border-b border-(--border) pb-4 last:border-0 last:pb-0">
+        <div
+          key={entry.id}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-end border-b border-(--border) pb-4 last:border-0 last:pb-0"
+        >
           <div className="flex flex-col gap-1.5">
             <Label className="text-semibold! text-body-md!">University</Label>
             <Input
               value={entry.university}
-              onChange={(e) => updateEducation(entry.id, { university: e.target.value })}
+              onChange={(e) =>
+                updateEducation(entry.id, { university: e.target.value })
+              }
               placeholder="Cairo University"
               className={inputClass}
             />
           </div>
           <div className="flex flex-col gap-1.5">
-            <Label className="text-semibold! text-body-md!">Years of Graduation</Label>
+            <Label className="text-semibold! text-body-md!">
+              Years of Graduation
+            </Label>
             <div className="flex gap-2">
               <Input
                 value={entry.yearsOfGraduation}
-                onChange={(e) => updateEducation(entry.id, { yearsOfGraduation: e.target.value })}
+                onChange={(e) =>
+                  updateEducation(entry.id, {
+                    yearsOfGraduation: e.target.value,
+                  })
+                }
                 placeholder="2022"
                 className={inputClass}
-                
               />
-              <Button type="button" variant="ghost" size="icon" onClick={() => removeEducation(entry.id)}>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                onClick={() => removeEducation(entry.id)}
+              >
                 <Trash2 size={16} className="text-(--danger)" />
               </Button>
             </div>
@@ -53,10 +70,9 @@ function EducationForm() {
       <Button
         type="button"
         onClick={() => addEducation()}
-            className="self-end  bg-primary hover:bg-(--primary-hover) text-white rounded-(--radius-sm) py-6 px-4 shrink-0"
-            
+        className="self-end  bg-primary hover:bg-(--primary-hover) text-white rounded-(--radius-sm) py-6 px-4 shrink-0"
       >
-         Add Education +
+        Add Education +
       </Button>
     </div>
   );
