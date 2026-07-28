@@ -1,11 +1,20 @@
 // Components
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import IconButton from "../custom/IconButton";
 import Searchbar from "../custom/search/Searchbar";
 import UserAvatar from "../custom/UserAvatar";
 
 // Icons
-import { Bell, Menu, MessagesSquare, Search, X, LogOut, User, Home } from "lucide-react";
+import {
+  Bell,
+  Menu,
+  MessagesSquare,
+  Search,
+  X,
+  LogOut,
+  User,
+  Home,
+} from "lucide-react";
 
 // Constants
 import { APP_ROUTES, SLOGAN } from "../../constants";
@@ -18,7 +27,10 @@ import { useSidebarStore } from "../../store/sidebar.store";
 
 // Logo
 import logo from "../../assets/imgs/logo.png";
-import { getCurrentUser } from "../custom/Profile/crud/profileStorage";
+import {
+  getCurrentUser,
+  clearCurrentUser,
+} from "../custom/Profile/crud/profileStorage";
 import { ROLES } from "../../roles";
 
 import { useNotifications } from "../../hooks/useNotifications";
@@ -28,7 +40,7 @@ function DashboardHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { isOpen, open, close } = useSidebarStore();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const currentUser = getCurrentUser();
 
@@ -38,6 +50,11 @@ function DashboardHeader() {
 
   const closeDropdown = () => {
     setIsDropdownOpen(false);
+  };
+
+  const handleLogout = () => {
+    clearCurrentUser();
+    navigate("/");
   };
 
   // const handleuserProfileClick = () => {
@@ -172,10 +189,7 @@ function DashboardHeader() {
           {/* Dropdown Menu */}
           {isDropdownOpen && (
             <>
-              <div
-                className="fixed inset-0 z-10"
-                onClick={closeDropdown}
-              ></div>
+              <div className="fixed inset-0 z-10" onClick={closeDropdown}></div>
               <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-20 py-2">
                 {/* Profile Link */}
                 <Link
@@ -183,8 +197,8 @@ function DashboardHeader() {
                     currentUser?.role === ROLES.COMPANY
                       ? APP_ROUTES.company.profile
                       : currentUser?.role === ROLES.USER
-                      ? APP_ROUTES.student.profile
-                      : APP_ROUTES.admin.dashboard
+                        ? APP_ROUTES.student.profile
+                        : APP_ROUTES.admin.dashboard
                   }
                   className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors"
                   onClick={closeDropdown}
@@ -206,7 +220,7 @@ function DashboardHeader() {
                 {/* Logout Button */}
                 <button
                   onClick={() => {
-                    localStorage.removeItem("currentUser");
+                    handleLogout();
                     closeDropdown();
                     window.location.href = APP_ROUTES.auth.login;
                   }}
