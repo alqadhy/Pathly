@@ -62,6 +62,9 @@ const ChooseRole = ({ setStep }: Props) => {
              navigate(APP_ROUTES.onBoarding.student);
             break;
           case ROLES.INSTRUCTOR:
+              console.log("Instructor route:", APP_ROUTES.instructor.myCourses);
+            navigate(APP_ROUTES.instructor.myCourses);
+          break;
           default:
             navigate(APP_ROUTES.auth.login);
             break;

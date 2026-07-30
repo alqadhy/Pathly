@@ -19,6 +19,9 @@ const CompanyRoute = () => {
     if (currentUser.role === ROLES.USER) {
       return <Navigate to={APP_ROUTES.student.dashboard} replace />;
     }
+    if (currentUser.role === ROLES.INSTRUCTOR) {
+      return <Navigate to={APP_ROUTES.instructor.dashboard} replace />;
+    }
     return <Navigate to={APP_ROUTES.auth.login} replace />;
   }
 

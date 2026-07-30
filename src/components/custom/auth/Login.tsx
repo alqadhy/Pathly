@@ -63,6 +63,8 @@ const Login = ({ setStep }: Props) => {
           navigate(APP_ROUTES.company.profile);
         } else if (currentUser.role === ROLES.USER) {
           navigate(APP_ROUTES.student.dashboard);
+        } else if (currentUser.role === ROLES.INSTRUCTOR) {
+          navigate(APP_ROUTES.instructor.dashboard);
         } else {
           navigate(APP_ROUTES.student.dashboard);
         }

@@ -1,19 +1,19 @@
 import { useState } from "react";
 
+import type { Course } from "../../../../types/courses.types";
+
 import PaymentHeader from "./PaymentHeader";
 import OrderSummary from "./OrderSummary";
 import PaymentMethods from "./PaymentMethods";
 import PaymentActions from "./PaymentActions";
 
 type Props = {
-  courseId: number;
-  price: number;
+  course: Course;
   onSuccess: () => void;
 };
 
 const LearningPayment = ({
-  courseId,
-  price,
+  course,
   onSuccess,
 }: Props) => {
   const [paymentMethod, setPaymentMethod] =
@@ -32,7 +32,7 @@ const LearningPayment = ({
     <div className="w-full space-y-2xl">
       <PaymentHeader title="Payment" />
 
-      <OrderSummary price={price} />
+      <OrderSummary price={course.price} />
 
       <PaymentMethods
         paymentMethod={paymentMethod}
@@ -46,8 +46,7 @@ const LearningPayment = ({
       />
 
       <PaymentActions
-        courseId={courseId}
-        coursePrice={price}
+        course={course}
         paymentMethod={paymentMethod}
         cardNumber={cardNumber}
         expiry={expiry}

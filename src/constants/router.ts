@@ -78,4 +78,19 @@ onBoarding: {
     instructors: `/${ROLES.ADMIN}/instructors`,
     instructorDetails: (id: number | string) => `/${ROLES.ADMIN}/instructors/${id}`,
   },
+
+  // instractor
+instructor: {
+  dashboard: `/${ROLES.INSTRUCTOR}/dashboard`,
+  myCourses: `/${ROLES.INSTRUCTOR}/my-courses`,
+  addCourse: `/${ROLES.INSTRUCTOR}/add-course`,
+  studentManagement: `/${ROLES.INSTRUCTOR}/student-management`,
+  earnings: `/${ROLES.INSTRUCTOR}/earnings`,
+  profile: `/${ROLES.INSTRUCTOR}/profile`,
+  courseDetails: (id: number | string) =>
+    `/${ROLES.INSTRUCTOR}/my-courses/${id}`,
+  editCourse: (id: number | string) =>
+    `/${ROLES.INSTRUCTOR}/my-courses/${id}/edit`,
+},
 };
+

@@ -170,4 +170,88 @@ export const SIDEBAR_LINKS = {
       ],
     },
   ],
+  [ROLES.INSTRUCTOR]: [
+  {
+    id: 1,
+    title: "MAIN",
+    links: [
+      {
+        icon: <House />,
+        text: "Home",
+        to: APP_ROUTES.instructor.dashboard,
+      },
+      {
+        icon: <WandSparkles />,
+        text: "AI Assistant",
+        to: APP_ROUTES.public.aiAssistant,
+      },
+    ],
+  },
+
+  /* {
+    id: 2,
+    title: "LEARNING",
+    links: [
+      {
+        icon: <BookOpen />,
+        text: "Learning",
+        to: APP_ROUTES.student.learning,
+      },
+      {
+        icon: <BookOpen />,
+        text: "My Learning",
+        to: APP_ROUTES.student.mylearning,
+      },
+    ],
+  }, */
+
+  {
+    id: 3,
+    title: "TEACHING",
+    links: [
+      {
+        icon: <BookOpen />,
+        text: "My Courses",
+        to: APP_ROUTES.instructor.myCourses,
+      },
+      {
+        icon: <UsersRound />,
+        text: "Students Management",
+        to: APP_ROUTES.instructor.studentManagement,
+      },
+      {
+        icon: <ChartColumn />,
+        text: "Earnings",
+        to: APP_ROUTES.instructor.earnings,
+      },
+            {
+        icon: <Bookmark />,
+        text: "Saved Items",
+        to: APP_ROUTES.public.saved,
+      },
+      {
+        icon: <UsersRound />,
+        text: "Community",
+        to: APP_ROUTES.public.community,
+      },
+    ],
+  },
+
+  {
+    id: 4,
+    title: "ACCOUNT",
+    links: [
+      {
+        icon: <UserRound />,
+        text: "Profile",
+        to: APP_ROUTES.instructor.profile
+      },
+      {
+        icon: <Settings />,
+        text: "Settings",
+        to: APP_ROUTES.public.settings,
+      },
+    ],
+  },
+],
 };
