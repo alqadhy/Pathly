@@ -71,6 +71,8 @@ const CVBuilderAI = lazy(() => import("../pages/student/cv/CVBuilderAI"));
 
 const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
 const OnBoarding = lazy(() => import("../pages/OnBoarding"));
+const ApplicationsPage = lazy(() => import("../pages/company/applications"));
+
 const router = createBrowserRouter([
   /* HOME */
   {
@@ -160,6 +162,14 @@ const router = createBrowserRouter([
             element: (
               <Suspense fallback={<Loader />}>
                 <Dashboard />
+              </Suspense>
+            ),
+          },
+          {
+            path: "/student/test",
+            element: (
+              <Suspense fallback={<Loader />}>
+                <ApplicationsPage />
               </Suspense>
             ),
           },
@@ -302,7 +312,6 @@ const router = createBrowserRouter([
               </Suspense>
             ),
           },
-        
         ],
       },
     ],
@@ -437,7 +446,7 @@ const router = createBrowserRouter([
               </Suspense>
             ),
           },
-            /* Settings */
+          /* Settings */
           {
             path: APP_ROUTES.public.settings,
             element: (

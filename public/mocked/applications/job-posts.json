@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "company": {
+      "name": "ABB Company",
+      "companyLogo": "../../../src/assets/imgs/companies/abb.png"
+    },
+    "title": "Senior Product Designer",
+    "location": "6th of October, Cairo, Egypt",
+    "postedAt": {
+      "text": "1 week ago",
+      "date": "Jun 15"
+    },
+    "totalApplications": 132,
+    "workType": {
+      "type": "Hybrid",
+      "time": "Full time",
+      "location": "Cairo"
+    },
+    "deadline": "Jul 15",
+    "status": "active",
+    "department": "Design"
+  },
+  {
+    "id": 2,
+    "company": {
+      "name": "ABB Company",
+      "companyLogo": "../../../src/assets/imgs/companies/abb.png"
+    },
+    "title": "Front-End Engineer",
+    "location": "6th of October, Cairo, Egypt",
+    "postedAt": {
+      "text": "1 week ago",
+      "date": "Jun 15"
+    },
+    "totalApplications": 190,
+    "workType": {
+      "type": "Hybrid",
+      "time": "Full time",
+      "location": "Cairo"
+    },
+    "deadline": "Jul 15",
+    "status": "closed",
+    "department": "Design"
+  },
+  {
+    "id": 3,
+    "company": {
+      "name": "ABB Company",
+      "companyLogo": "../../../src/assets/imgs/companies/abb.png"
+    },
+    "title": "Back-End Engineer",
+    "location": "6th of October, Cairo, Egypt",
+    "postedAt": {
+      "text": "1 week ago",
+      "date": "Jun 15"
+    },
+    "totalApplications": 52,
+    "workType": {
+      "type": "On-Site",
+      "time": "Full time",
+      "location": "Cairo"
+    },
+    "deadline": "Jul 15",
+    "status": "draft",
+    "department": "Design"
+  },
+  {
+    "id": 4,
+    "company": {
+      "name": "ABB Company",
+      "companyLogo": "../../../src/assets/imgs/companies/abb.png"
+    },
+    "title": "Mid-Level Data Analyst",
+    "location": "6th of October, Cairo, Egypt",
+    "postedAt": {
+      "text": "1 week ago",
+      "date": "Jun 15"
+    },
+    "totalApplications": 241,
+    "workType": {
+      "type": "Hybrid",
+      "time": "Full time",
+      "location": "Cairo"
+    },
+    "deadline": "Jul 15",
+    "status": "active",
+    "department": "Design"
+  },
+  {
+    "id": 5,
+    "company": {
+      "name": "ABB Company",
+      "companyLogo": "../../../src/assets/imgs/companies/abb.png"
+    },
+    "title": "Marketing Specialist",
+    "location": "6th of October, Cairo, Egypt",
+    "postedAt": {
+      "text": "1 week ago",
+      "date": "Jun 15"
+    },
+    "totalApplications": 104,
+    "workType": {
+      "type": "Hybrid",
+      "time": "Part time",
+      "location": "Cairo"
+    },
+    "deadline": "Jul 15",
+    "status": "draft",
+    "department": "Design"
+  }
+]
