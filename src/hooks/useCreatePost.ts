@@ -43,7 +43,6 @@ export const useCreatePostLogic = () => {
     }
   };
 
-  // دالة جديدة مخصصة للنشر المباشر بدون إظهار رسالة الـ Draft
   const handlePublishDirect = (onSuccess?: () => void) => {
     localStorage.removeItem("postDraft");
     setPostText("");

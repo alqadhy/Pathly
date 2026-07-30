@@ -22,6 +22,7 @@ import AdminInstructors from "../pages/admin/Instructors";
 import AdminInstructorDetails from "../pages/admin/InstructorDetails";
 import NotFound from "../pages/NotFound";
 import DashboardHome from "../pages/DasshboardHome";
+import CompanyAnalytics from "../pages/company/CompanyAnalytics";
 
 /* Lazy Pages */
 const Home = lazy(() => import("../pages/Home"));
@@ -396,6 +397,14 @@ const router = createBrowserRouter([
             element: (
               <Suspense fallback={<Loader />}>
                 <ApplicantsPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.company.analytics,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <CompanyAnalytics />
               </Suspense>
             ),
           },
