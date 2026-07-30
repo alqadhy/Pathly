@@ -57,18 +57,6 @@ function DashboardHeader() {
     navigate("/");
   };
 
-  // const handleuserProfileClick = () => {
-  //   if (currentUser) {
-  //     if (currentUser.role === "student") {
-  //       navigate(APP_ROUTES.student.dashboard);
-  //     } else if (currentUser.role === "company") {
-  //       navigate(APP_ROUTES.company.dashboard);
-  //     }
-  //   } else {
-  //     navigate(APP_ROUTES.auth.login);
-  //   }
-  // };
-
   function toggleSidebar() {
     if (isOpen) close();
     else open();
@@ -176,15 +164,32 @@ function DashboardHeader() {
 
         {/* User Avatar with Dropdown */}
         <div className="relative">
-          <button
+          {/*
+            FIX: this used to be <button onClick={toggleDropdown}> wrapping <UserAvatar />.
+            UserAvatar renders a shadcn <Button>, which is itself a <button> under the hood —
+            so the DOM ended up as <button><button/></button>, which is invalid HTML and is
+            exactly what caused the hydration mismatch. Swapping the outer element for a div
+            with role="button" keeps the same click + keyboard behavior without nesting buttons.
+          */}
+          <div
+            role="button"
+            tabIndex={0}
             onClick={toggleDropdown}
-            className="flex items-center"
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                toggleDropdown();
+              }
+            }}
+            className="flex items-center cursor-pointer"
             title="User menu"
+            aria-haspopup="menu"
+            aria-expanded={isDropdownOpen}
           >
             {currentUser?.role === ROLES.COMPANY && <UserAvatar />}
             {currentUser?.role === ROLES.USER && <UserAvatar />}
             {currentUser?.role === ROLES.ADMIN && <UserAvatar />}
-          </button>
+          </div>
 
           {/* Dropdown Menu */}
           {isDropdownOpen && (

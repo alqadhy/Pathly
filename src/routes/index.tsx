@@ -45,6 +45,7 @@ const SavedItems = lazy(() => import("../pages/student/SavedItems"));
 const Community = lazy(() => import("../pages/student/Community"));
 const Profile = lazy(() => import("../pages/student/Profile"));
 const CompanyProfile = lazy(() => import("../pages/company/CompanyProfile"));
+const ApplicantsPage = lazy(() => import("../pages/company/ApplicantsPage"));
 const PostJob = lazy(() => import("../pages/company/PostJob"));
 const Messages = lazy(() => import("../pages/student/Messages"));
 const Notifications = lazy(
@@ -235,14 +236,7 @@ const router = createBrowserRouter([
               </Suspense>
             ),
           },
-          // {
-          //   path: APP_ROUTES.student.notification,
-          //   element: (
-          //     <Suspense fallback={<Loader />}>
-          //       <Notifications />
-          //     </Suspense>
-          //   ),
-          // },
+       
           {
             path: APP_ROUTES.student.careerChat,
             element: (
@@ -385,6 +379,22 @@ const router = createBrowserRouter([
             element: (
               <Suspense fallback={<Loader />}>
                 <PostJob />
+              </Suspense>
+            ),
+          },
+           {
+            path: APP_ROUTES.company.applicants,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <ApplicantsPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.company.jobApplicants(":id"),
+            element: (
+              <Suspense fallback={<Loader />}>
+                <ApplicantsPage />
               </Suspense>
             ),
           },

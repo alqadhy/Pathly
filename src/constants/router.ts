@@ -67,7 +67,8 @@ onBoarding: {
     jobDetails: (id: number | string) => `/${ROLES.COMPANY}/jobs/${id}`,
     postJob: `/${ROLES.COMPANY}/jobs/new`,
     editJob: (id: number | string) => `/${ROLES.COMPANY}/jobs/${id}/edit`,
-  },
+    applicants: `/${ROLES.COMPANY}/applicants`,
+    jobApplicants: (id: number | string) => `/${ROLES.COMPANY}/jobs/${id}/applicants`,  },
 
   // Admin Routes
   admin: {

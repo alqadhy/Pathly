@@ -120,7 +120,7 @@ export const SIDEBAR_LINKS = {
         {
           icon: <UsersRound />,
           text: "Applicants",
-          to: APP_ROUTES.company.jobs,
+          to: APP_ROUTES.company.applicants,
         },
         {
           icon: <UsersRound />,
