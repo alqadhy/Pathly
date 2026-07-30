@@ -181,5 +181,35 @@
     "status": "rejected",
     "submittedAt": "2036-11-18T09:00:00.000Z",
     "avatarUrl": "https://i.pravatar.cc/150?img=9"
+  },
+  {
+    "id": "app_seed_13",
+    "jobId": "job_1",
+    "jobTitle": "Senior Product Designer Position",
+    "companyName": "compdde",
+    "name": "Sarah Johnson",
+    "email": "sarah.j@example.com",
+    "phoneNumber": "123-456-7890",
+    "location": "Cairo, Egypt",
+    "employmentType": "Full Time",
+    "yearsOfExperience": "3-5 years",
+    "status": "hired",
+    "submittedAt": "2036-11-18T09:00:00.000Z",
+    "avatarUrl": "https://i.pravatar.cc/150?img=5"
+  },
+  {
+    "id": "app_seed_14",
+    "jobId": "job_1",
+    "jobTitle": "Senior Product Designer Position",
+    "companyName": "compdde",
+    "name": "Michael Chen",
+    "email": "michael.c@example.com",
+    "phoneNumber": "098-765-4321",
+    "location": "Cairo, Egypt",
+    "employmentType": "Full Time",
+    "yearsOfExperience": "5+ years",
+    "status": "hired",
+    "submittedAt": "2036-11-18T09:00:00.000Z",
+    "avatarUrl": "https://i.pravatar.cc/150?img=8"
   }
 ]
