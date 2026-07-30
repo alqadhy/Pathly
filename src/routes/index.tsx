@@ -21,6 +21,7 @@ import AdminCompanyDetails from "../components/custom/admin/companies/CompanyDet
 import AdminInstructors from "../pages/admin/Instructors";
 import AdminInstructorDetails from "../pages/admin/InstructorDetails";
 import NotFound from "../pages/NotFound";
+import DashboardHome from "../pages/DasshboardHome";
 
 /* Lazy Pages */
 const Home = lazy(() => import("../pages/Home"));
@@ -361,7 +362,7 @@ const router = createBrowserRouter([
             path: APP_ROUTES.company.dashboard,
             element: (
               <Suspense fallback={<Loader />}>
-                <CompanyProfile />
+                <DashboardHome />
               </Suspense>
             ),
           },

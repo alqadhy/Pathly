@@ -11,21 +11,21 @@
         "candidateName": "Sarah Johnson",
         "role": "Sr.Frontend Engineer",
         "time": "Today, 2:00 PM",
-        "avatar": "/assets/imgs/sarah_avatar.png"
+        "avatar": "/src/assets/imgs/home/Profile/sbP1.jpg"
       },
       {
         "id": "int2",
         "candidateName": "Aisha Patel",
         "role": "Data Scientist",
         "time": "Today, 2:00 PM",
-        "avatar": "/assets/imgs/aisha_avatar.png"
+        "avatar": "/src/assets/imgs/home/Profile/sbP2.png"
       },
       {
         "id": "int3",
         "candidateName": "Marcus chen",
         "role": "Product Manager",
         "time": "Today, 2:00 PM",
-        "avatar": "/assets/imgs/marcus_avatar.png"
+        "avatar": "/src/assets/imgs/home/Profile/sbP2.png"
       }
     ]
   },
@@ -37,11 +37,11 @@
           "id": "a1",
           "name": "Sara Ahmed",
           "headline": "UI/UX Designer | Designing Mobile Apps, Websites & SaaS Products",
-          "avatar": "/assets/imgs/sara_avatar.png",
+          "avatar": "/src/assets/imgs/home/Profile/sbP1.jpg",
           "timeAgo": "8h"
         },
         "content": "We're Hiring!\nLooking for passionate and talented professionals to join our team.\n📌 Multiple opportunities available.\n📩 Apply now and be part of something impactful.\n#Hiring #JoinOurTeam #CareerGrowth",
-        "image": "/assets/imgs/hiring_post.png",
+        "image": "/src/assets/imgs/home/posts/post1.png",
         "engagement": {
           "likes": 150,
           "comments": 24,
@@ -54,11 +54,11 @@
           "id": "c1",
           "name": "TechCorp",
           "headline": "Technology Company",
-          "avatar": "/assets/imgs/techcorp_avatar.png",
+          "avatar": "/src/assets/imgs/home/Profile/img3.png",
           "timeAgo": "1d"
         },
         "content": "🏆 Proud to announce that our company has been ranked #12 in the Top 50 Best Tech Companies to Work For in 2026! This recognition belongs to our incredible team of 500+ employees who make TechCorp such a special place. Thank you for your dedication and hard work! 🙌",
-        "image": "/assets/imgs/techcorp_post.png",
+        "image": "/src/assets/imgs/home/posts/post2.png",
         "engagement": {
           "likes": 890,
           "comments": 45,
@@ -72,28 +72,28 @@
         "name": "Figma",
         "category": "Company . Design",
         "followers": "178,900 followers",
-        "logo": "/assets/imgs/figma_logo.png"
+        "logo": "/src/assets/imgs/home/logos/figma_logo.png"
       },
       {
         "id": "s2",
         "name": "Notion",
         "category": "Company . Design",
         "followers": "178,900 followers",
-        "logo": "/assets/imgs/notion_logo.png"
+        "logo": "/src/assets/imgs/home/logos/notion_logo.png"
       },
       {
         "id": "s3",
         "name": "Google",
         "category": "Company . Design",
         "followers": "178,900 followers",
-        "logo": "/assets/imgs/google_logo.png"
+        "logo": "/src/assets/imgs/home/logos/google_logo.png"
       },
       {
         "id": "s4",
         "name": "Behance",
         "category": "Company . Design",
         "followers": "178,900 followers",
-        "logo": "/assets/imgs/behance_logo.png"
+        "logo": "/src/assets/imgs/home/logos/behance_logo.png"
       }
     ]
   }

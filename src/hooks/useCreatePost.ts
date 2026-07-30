@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 
-// Types
 export type MediaItem = {
   url: string;
   type: "image" | "video" | "file";
@@ -42,6 +41,22 @@ export const useCreatePostLogic = () => {
     } else {
       setIsPostModalOpen(true);
     }
+  };
+
+  // دالة جديدة مخصصة للنشر المباشر بدون إظهار رسالة الـ Draft
+  const handlePublishDirect = (onSuccess?: () => void) => {
+    localStorage.removeItem("postDraft");
+    setPostText("");
+    setSelectedMedia([]);
+    setErrorMsg("");
+    if (fileInputRef.current) fileInputRef.current.value = "";
+    setIsPostModalOpen(false);
+
+    if (onSuccess) onSuccess();
+
+    setTimeout(() => {
+      document.body.style.pointerEvents = "";
+    }, 50);
   };
 
   // Handle discard
@@ -148,6 +163,7 @@ export const useCreatePostLogic = () => {
     setErrorMsg,
     fileInputRef,
     handleMainModalChange,
+    handlePublishDirect,
     handleDiscard,
     handleSaveDraft,
     handleMediaUpload,

@@ -19,9 +19,65 @@ import { useCreatePostLogic } from "../../../../hooks/useCreatePost";
 import { PostSettingsModal } from "./PostSettingsModal";
 import { DraftAlertDialog } from "./DraftAlertDialog";
 
-const CreatePost: React.FC = () => {
+interface CreatePostProps {
+  onPostCreated?: (newPost: {
+    id: string;
+    author: {
+      id: string;
+      name: string;
+      headline: string;
+      avatar: string;
+      timeAgo: string;
+    };
+    content: string;
+    image?: string;
+    video?: string;
+    file?: string;
+    engagement: {
+      likes: number;
+      comments: number;
+      reposts: number;
+    };
+  }) => void;
+}
+
+const CreatePost: React.FC<CreatePostProps> = ({ onPostCreated }) => {
   const logic = useCreatePostLogic();
   const user = dashboardData.currentUser;
+
+  const handlePublish = () => {
+    if (!logic.postText.trim() && logic.selectedMedia.length === 0) return;
+
+    const mediaItem =
+      logic.selectedMedia.length > 0 ? logic.selectedMedia[0] : null;
+
+    const newPostObj = {
+      id: "p_" + Date.now(),
+      author: {
+        id: user.id || "c1",
+        name: user.name,
+        headline: "Technology Company",
+        avatar: user.avatar,
+        timeAgo: "Just now",
+      },
+      content: logic.postText,
+
+      image: mediaItem?.type === "image" ? mediaItem.url : undefined,
+      video: mediaItem?.type === "video" ? mediaItem.url : undefined,
+      file: mediaItem?.type === "file" ? mediaItem.url : undefined,
+      engagement: {
+        likes: 0,
+        comments: 0,
+        reposts: 0,
+      },
+    };
+
+    if (onPostCreated) {
+      onPostCreated(newPostObj);
+    }
+
+    logic.handlePublishDirect();
+  };
 
   return (
     <>
@@ -124,7 +180,6 @@ const CreatePost: React.FC = () => {
                   </button>
                 </div>
               </div>
-              {/* زرار الإغلاق الأساسي */}
               <button
                 type="button"
                 onClick={(e) => {
@@ -185,7 +240,6 @@ const CreatePost: React.FC = () => {
                       />
                     )}
 
-                    {/* زرار مسح الصورة المرفوعة */}
                     <button
                       type="button"
                       onClick={(e) => {
@@ -243,8 +297,13 @@ const CreatePost: React.FC = () => {
             </div>
             <button
               type="button"
+              onClick={handlePublish}
               disabled={logic.isPostDisabled}
-              className={`px-8 py-2.5 rounded-xl text-sm font-bold transition-all ${!logic.isPostDisabled ? "bg-primary text-white hover:bg-primary-dark shadow-md" : "bg-primary/50 text-white/70 cursor-not-allowed"}`}
+              className={`px-8 py-2.5 rounded-xl text-sm font-bold transition-all ${
+                !logic.isPostDisabled
+                  ? "bg-primary text-white hover:bg-primary-dark shadow-md cursor-pointer"
+                  : "bg-primary/50 text-white/70 cursor-not-allowed"
+              }`}
             >
               Post
             </button>
