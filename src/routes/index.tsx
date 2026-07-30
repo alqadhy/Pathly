@@ -33,13 +33,9 @@ const JobsInternshipsDashboard = lazy(
 );
 
 const JobDetails = lazy(() => import("../pages/student/JobDetails"));
-const Company = lazy(
-  () => import("../components/custom/onBoarding/company")
-);
+const Company = lazy(() => import("../components/custom/onBoarding/company"));
 
-const Student = lazy(
-  () => import("../components/custom/onBoarding/student")
-);
+const Student = lazy(() => import("../components/custom/onBoarding/student"));
 const ApplyJobPage = lazy(() => import("../pages/student/ApplyJobPage"));
 const SavedItems = lazy(() => import("../pages/student/SavedItems"));
 const Community = lazy(() => import("../pages/student/Community"));
@@ -89,22 +85,22 @@ const router = createBrowserRouter([
       </Suspense>
     ),
   },
-{
-  path: APP_ROUTES.onBoarding.student,
-  element: (
-    <Suspense fallback={<PageLoader />}>
-      <Student/>
-    </Suspense>
-  ),
-},
-{
-  path: APP_ROUTES.onBoarding.company,
-  element: (
-    <Suspense fallback={<PageLoader />}>
-      <Company />
-    </Suspense>
-  ),
-},
+  {
+    path: APP_ROUTES.onBoarding.student,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <Student />
+      </Suspense>
+    ),
+  },
+  {
+    path: APP_ROUTES.onBoarding.company,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <Company />
+      </Suspense>
+    ),
+  },
   /* Admin Routes */
   {
     element: (
@@ -236,7 +232,7 @@ const router = createBrowserRouter([
               </Suspense>
             ),
           },
-       
+
           {
             path: APP_ROUTES.student.careerChat,
             element: (
@@ -311,7 +307,6 @@ const router = createBrowserRouter([
               </Suspense>
             ),
           },
-        
         ],
       },
     ],
@@ -382,7 +377,7 @@ const router = createBrowserRouter([
               </Suspense>
             ),
           },
-           {
+          {
             path: APP_ROUTES.company.applicants,
             element: (
               <Suspense fallback={<Loader />}>
@@ -462,7 +457,7 @@ const router = createBrowserRouter([
               </Suspense>
             ),
           },
-            /* Settings */
+          /* Settings */
           {
             path: APP_ROUTES.public.settings,
             element: (
