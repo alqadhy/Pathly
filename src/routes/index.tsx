@@ -21,6 +21,7 @@ import AdminCompanyDetails from "../components/custom/admin/companies/CompanyDet
 import AdminInstructors from "../pages/admin/Instructors";
 import AdminInstructorDetails from "../pages/admin/InstructorDetails";
 import NotFound from "../pages/NotFound";
+import DashboardHome from "../pages/DasshboardHome";
 
 /* Lazy Pages */
 const Home = lazy(() => import("../pages/Home"));
@@ -75,6 +76,7 @@ const CVBuilderAI = lazy(() => import("../pages/student/cv/CVBuilderAI"));
 
 const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
 const OnBoarding = lazy(() => import("../pages/OnBoarding"));
+const CompanyHome = lazy(() => import("../pages/company/CompanyHome"));
 const router = createBrowserRouter([
   /* HOME */
   {
@@ -349,7 +351,7 @@ const router = createBrowserRouter([
             path: APP_ROUTES.company.dashboard,
             element: (
               <Suspense fallback={<Loader />}>
-                <CompanyProfile />
+                <DashboardHome />
               </Suspense>
             ),
           },
