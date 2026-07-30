@@ -21,9 +21,7 @@ import AdminCompanyDetails from "../components/custom/admin/companies/CompanyDet
 import AdminInstructors from "../pages/admin/Instructors";
 import AdminInstructorDetails from "../pages/admin/InstructorDetails";
 import NotFound from "../pages/NotFound";
-import DashboardHome from "../pages/DasshboardHome";
 import CompanyAnalytics from "../pages/company/CompanyAnalytics";
-
 /* Lazy Pages */
 const Home = lazy(() => import("../pages/Home"));
 
@@ -80,6 +78,7 @@ const CVBuilderAI = lazy(() => import("../pages/student/cv/CVBuilderAI"));
 const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
 const MyCourses = lazy(() => import("../pages/instructor/MyCourses"));
 const CompanyHome = lazy(() => import("../pages/company/CompanyHome"));
+
 const AddCourse = lazy(() => import("../pages/instructor/AddCourse"));
 const StudentManagement = lazy(
   () => import("../pages/instructor/StudentManagement")
