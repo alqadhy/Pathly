@@ -108,6 +108,15 @@ function DashboardHeader() {
             <img src={logo} alt={SLOGAN} className="h-10" />
           </Link>
         )}
+        {currentUser?.role === ROLES.INSTRUCTOR && (
+          <Link
+            to={APP_ROUTES.instructor.dashboard}
+            title={SLOGAN}
+            className="hidden lg:block"
+          >
+            <img src={logo} alt={SLOGAN} className="h-10" />
+          </Link>
+        )}
 
         <Searchbar />
       </div>
@@ -167,6 +176,7 @@ function DashboardHeader() {
             {currentUser?.role === ROLES.COMPANY && <UserAvatar />}
             {currentUser?.role === ROLES.USER && <UserAvatar />}
             {currentUser?.role === ROLES.ADMIN && <UserAvatar />}
+            {currentUser?.role === ROLES.INSTRUCTOR && <UserAvatar />}
           </button>
 
           {/* Dropdown Menu */}
@@ -184,6 +194,8 @@ function DashboardHeader() {
                       ? APP_ROUTES.company.profile
                       : currentUser?.role === ROLES.USER
                       ? APP_ROUTES.student.profile
+                      : currentUser?.role === ROLES.INSTRUCTOR
+                      ? APP_ROUTES.instructor.profile
                       : APP_ROUTES.admin.dashboard
                   }
                   className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors"

@@ -14,6 +14,11 @@ export const getRoleRoute = (
       return path === "notifications"
         ? `/${ROLES.COMPANY}/notifications`
         : `/${ROLES.COMPANY}/profile`;
+        
+    case ROLES.INSTRUCTOR:
+      return path === "notifications"
+        ? `/${ROLES.INSTRUCTOR}/notifications`
+        : `/${ROLES.INSTRUCTOR}/profile`;
 
     case ROLES.USER:
     default:

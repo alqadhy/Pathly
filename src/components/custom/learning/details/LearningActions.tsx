@@ -13,9 +13,10 @@ import { APP_ROUTES } from "../../../../constants";
 import LearningPayment from "../payment/LearningPayment";
 import PaymentSuccessModal from "../payment/PaymentSuccessModal";
 
+import type { Course } from "../../../../types/courses.types";
+
 type Props = {
-  courseId: number;
-  price: number;
+  course: Course;
 
   isEnrolled: boolean;
 
@@ -37,8 +38,7 @@ type Props = {
 };
 
 const LearningActions = ({
-  courseId,
-  price,
+  course,
   isEnrolled,
   setIsEnrolled,
   dialogOpen,
@@ -81,7 +81,7 @@ const LearningActions = ({
           >
             {paymentSuccess ? (
               <PaymentSuccessModal
-                courseId={courseId}
+                courseId={course.id}
                 onClose={() => {
                   setDialogOpen(false);
                   setPaymentSuccess(false);
@@ -94,8 +94,7 @@ const LearningActions = ({
             ) : (
               <div className="max-h-[85vh] overflow-y-auto p-8">
                 <LearningPayment
-                  courseId={courseId}
-                  price={price}
+                  course={course}
                   onSuccess={() => {
                     setPaymentSuccess(true);
                   }}
@@ -110,18 +109,18 @@ const LearningActions = ({
             navigate(
               APP_ROUTES.Learning.continueCourse.replace(
                 ":id",
-                String(courseId)
+                String(course.id)
               )
             )
           }
-          className="h-[50px] px-md w-full rounded-sm bg-success text-[23px] font-bold text-white hover:bg-success-hover md:w-[200px]"
+          className="h-[50px] w-full rounded-sm bg-success px-md text-[23px] font-bold text-white hover:bg-success-hover md:w-[200px]"
         >
           Continue Learning
         </Button>
       )}
 
       <div className="flex h-[50px] w-full items-center justify-center rounded-sm border-2 border-primary bg-card text-[22px] font-bold text-primary md:w-[200px]">
-        {price} EGP
+        {course.price} EGP
       </div>
     </div>
   );

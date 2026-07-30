@@ -55,7 +55,9 @@ const AdminRoute = lazy(() => import("./AdminRoute"));
 const StudentRoute = lazy(() => import("./StudentRoute"));
 const CompanyRoute = lazy(() => import("./CompanyRoute"));
 const PublicRoute = lazy(() => import("./PublicRoute"));
-
+const InstructorRoute = lazy(
+  () => import("./InstructorRoute")
+);
 const Learning = lazy(() => import("../pages/Lessons/Learning"));
 
 const MyLearning = lazy(() => import("../pages/Lessons/MyLearning"));
@@ -77,7 +79,17 @@ const CVBuilderManual = lazy(
 const CVBuilderAI = lazy(() => import("../pages/student/cv/CVBuilderAI"));
 
 const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
-const OnBoarding = lazy(() => import("../pages/OnBoarding"));
+const MyCourses = lazy(() => import("../pages/instructor/MyCourses"));
+const AddCourse = lazy(() => import("../pages/instructor/AddCourse"));
+const StudentManagement = lazy(
+  () => import("../pages/instructor/StudentManagement")
+);
+const Earnings = lazy(
+  () => import("../pages/instructor/Earnings"));
+
+const EditCourse = lazy(
+  () => import("../pages/instructor/EditCourse"));
+
 const router = createBrowserRouter([
   /* HOME */
   {
@@ -465,6 +477,77 @@ const router = createBrowserRouter([
       },
     ],
   },
+  //instractor
+  {
+  element: (
+    <Suspense fallback={<PageLoader />}>
+      <InstructorRoute />
+    </Suspense>
+  ),
+  children: [
+    {
+      element: <DashboardLayout />,
+      children: [
+        {
+          path: APP_ROUTES.instructor.dashboard,
+          element: (
+            <Suspense fallback={<Loader />}>
+              <MyCourses />
+            </Suspense>
+          ),
+        },
+        {
+          path: APP_ROUTES.instructor.myCourses,
+          element: (
+            <Suspense fallback={<Loader />}>
+              <MyCourses />
+            </Suspense>
+          ),
+        },
+        {
+          path: APP_ROUTES.instructor.addCourse,
+          element: (
+            <Suspense fallback={<Loader />}>
+              <AddCourse />
+            </Suspense>
+          ),
+        },
+        {
+          path: APP_ROUTES.instructor.studentManagement,
+          element: (
+            <Suspense fallback={<Loader />}>
+              <StudentManagement />
+            </Suspense>
+          ),
+        },
+        {
+          path: APP_ROUTES.instructor.earnings,
+          element: (
+            <Suspense fallback={<Loader />}>
+              <Earnings />
+            </Suspense>
+          ),
+        },
+        {
+          path: APP_ROUTES.instructor.profile,
+          element: (
+            <Suspense fallback={<Loader />}>
+              <Profile />
+            </Suspense>
+          ),
+        },
+        {
+          path: APP_ROUTES.instructor.editCourse(":id"),
+          element: (
+            <Suspense fallback={<Loader />}>
+              <EditCourse />
+            </Suspense>
+          ),
+        },
+      ],
+    },
+  ],
+},
 
   /* 404 Not Found - Catch all unmatched routes */
   {

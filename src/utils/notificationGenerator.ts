@@ -27,40 +27,48 @@ const getRouteByRole = (
   role: string,
   type: "profile" | "learning"
 ) => {
-  switch (role) {
-    case ROLES.ADMIN:
-      return type === "profile"
-        ? APP_ROUTES.admin.dashboard
-        : APP_ROUTES.Learning.courseDetails;
+ switch (role) {
+  case ROLES.ADMIN:
+    return type === "profile"
+      ? APP_ROUTES.admin.dashboard
+      : APP_ROUTES.Learning.courseDetails;
 
-    case ROLES.COMPANY:
-      return type === "profile"
-        ? APP_ROUTES.company.profile
-        : APP_ROUTES.Learning.courseDetails;
+  case ROLES.COMPANY:
+    return type === "profile"
+      ? APP_ROUTES.company.profile
+      : APP_ROUTES.Learning.courseDetails;
 
-    case ROLES.USER:
-    default:
-      return type === "profile"
-        ? APP_ROUTES.student.profile
-        : APP_ROUTES.Learning.courseDetails;
-  }
+  case ROLES.INSTRUCTOR:
+    return type === "profile"
+      ? APP_ROUTES.instructor.profile
+      : APP_ROUTES.Learning.courseDetails;
+
+  case ROLES.USER:
+  default:
+    return type === "profile"
+      ? APP_ROUTES.student.profile
+      : APP_ROUTES.Learning.courseDetails;
+}
 };
 
 const getJobRouteByRole = (
   role: string,
   id: number | string
 ) => {
-  switch (role) {
-    case ROLES.ADMIN:
-      return APP_ROUTES.admin.companyDetails(id);
+switch (role) {
+  case ROLES.ADMIN:
+    return APP_ROUTES.admin.companyDetails(id);
 
-    case ROLES.COMPANY:
-      return APP_ROUTES.company.jobDetails(id);
+  case ROLES.COMPANY:
+    return APP_ROUTES.company.jobDetails(id);
 
-    case ROLES.USER:
-    default:
-      return APP_ROUTES.student.jobDetails(id);
-  }
+  case ROLES.INSTRUCTOR:
+    return APP_ROUTES.Learning.courseDetails.replace(":id", String(id));
+
+  case ROLES.USER:
+  default:
+    return APP_ROUTES.Learning.courseDetails.replace(":id", String(id));
+}
 };
 
 export const generateNotifications = () => {

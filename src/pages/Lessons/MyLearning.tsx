@@ -5,70 +5,114 @@ import {
 } from "../../../public/mocked/learning/learning";
 
 import {
-  getUserPurchases,
-} from "../../../public/mocked/learning/learningPurchaseStorage";
+  getUserEnrollments,
+} from "../../utils/learningEnrollmentStorage";
+
+import {
+  instructorService,
+} from "../../Services/instructor.service";
 
 import MyLearningHeader from "../../components/custom/learning/my-learning/MyLearningHeader";
 import MyLearningGrid from "../../components/custom/learning/my-learning/MyLearningGrid";
 import EmptyMyLearning from "../../components/custom/learning/my-learning/EmptyLearningState";
 
+
 const MyLearning = () => {
+
   const [courses, setCourses] =
     useState<any[]>([]);
 
+
   useEffect(() => {
+
     const currentUser = JSON.parse(
-      localStorage.getItem("currentUser") ||
-        "{}"
+      localStorage.getItem("currentUser") || "{}"
     );
+
 
     if (!currentUser.email) return;
 
-    const purchases =
-      getUserPurchases(
+
+    const enrollments =
+      getUserEnrollments(
         currentUser.email
       );
 
+
+    // Mock courses + instructor published courses
+    const instructorCourses =
+      instructorService
+        .getPublishedCourses();
+
+
+    const allCourses = [
+      ...learningCourses,
+      ...instructorCourses,
+    ];
+
+
     const enrolledCourses =
-      purchases
-        .map((purchase) => {
+      enrollments
+        .map((enrollment) => {
+
           const course =
-            learningCourses.find(
+            allCourses.find(
               (item) =>
-                item.id ===
-                purchase.courseId
+                item.id === enrollment.courseId
             );
+
 
           if (!course) return null;
 
+
           return {
             ...course,
+
             progress:
-              purchase.progress,
+              enrollment.progress,
+
             purchaseDate:
-              purchase.purchaseDate,
+              enrollment.joinedAt,
           };
+
         })
         .filter(Boolean);
+
 
     setCourses(
       enrolledCourses as any[]
     );
+
+
   }, []);
 
-  return (
-<section className="min-h-screen bg-background">
-  <div className="mx-auto max-w-[1280px] p-lg lg:p-2xl">
-    <MyLearningHeader totalCourses={courses.length} />
 
-    {courses.length === 0 ? (
-      <EmptyMyLearning />
-    ) : (
-      <MyLearningGrid courses={courses} />
-    )}
-  </div>
-</section>
+
+  return (
+    <section className="min-h-screen bg-background">
+      <div className="mx-auto max-w-[1280px] p-lg lg:p-2xl">
+
+        <MyLearningHeader
+          totalCourses={courses.length}
+        />
+
+
+        {courses.length === 0 ? (
+
+          <EmptyMyLearning />
+
+        ) : (
+
+          <MyLearningGrid
+            courses={courses}
+          />
+
+        )}
+
+      </div>
+    </section>
   );
 };
+
 
 export default MyLearning;

@@ -1,10 +1,16 @@
 import { Button } from "../../../ui/button";
 
 import { saveLearningPurchase } from "../../../../../public/mocked/learning/learningPurchaseStorage";
+import { enrollStudent } from "../../../../utils/learningEnrollmentStorage";
+import {
+  addTransaction
+} from "../../../../utils/instructorTransactionStorage";
+import { instructorService } from "../../../../Services/instructor.service";
+
+import type { Course } from "../../../../types/courses.types";
 
 type Props = {
-  courseId: number;
-  coursePrice: number;
+  course: Course;
   onSuccess: () => void;
 
   paymentMethod: "card" | "paypal" | "";
@@ -15,14 +21,14 @@ type Props = {
 };
 
 const PaymentActions = ({
-  courseId,
-  coursePrice,
+  course,
   onSuccess,
   paymentMethod,
   cardNumber,
   expiry,
   cvc,
 }: Props) => {
+
   const handlePayment = () => {
     const currentUser = JSON.parse(
       localStorage.getItem("currentUser") || "{}"
@@ -30,22 +36,69 @@ const PaymentActions = ({
 
     if (!currentUser.email) return;
 
+
+    // Save student purchase
     saveLearningPurchase({
       userEmail: currentUser.email,
-      courseId,
-      purchaseDate: new Date().toISOString(),
+
+      courseId: course.id,
+
+      purchaseDate:
+        new Date().toISOString(),
+
       progress: 0,
     });
+
+
+    // Save enrollment for instructor
+    enrollStudent(course);
+
+
+    // Update instructor students count
+ if (course.instructorEmail) {
+    addTransaction({
+      id: Date.now(),
+
+      instructorEmail: course.instructorEmail!,
+
+      studentName: currentUser.name || "Student",
+
+      studentEmail: currentUser.email,
+
+      studentAvatar:
+        currentUser.avatar ||
+        "https://ui-avatars.com/api/?name=Student",
+
+      courseTitle: course.title,
+
+      amount: course.price,
+
+      status: "Completed",
+
+      date: new Date().toISOString(),
+    });
+
+
+  instructorService.incrementStudents(
+    course.instructorEmail,
+    course.id
+  );
+}
+
 
     onSuccess();
   };
 
+
   const canPay =
     paymentMethod === "paypal" ||
-    (paymentMethod === "card" &&
+    (
+      paymentMethod === "card" &&
       cardNumber.trim() !== "" &&
       expiry.trim() !== "" &&
-      cvc.trim() !== "");
+      cvc.trim() !== ""
+    );
+
 
   return (
     <Button
@@ -53,7 +106,7 @@ const PaymentActions = ({
       disabled={!canPay}
       className="h-[64px] w-full rounded-2xl bg-primary text-h4 font-bold text-primary-foreground transition-all duration-300 hover:bg-primary-hover active:bg-primary-active active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
     >
-      Pay {coursePrice} EGP
+      Pay {course.price} EGP
     </Button>
   );
 };
