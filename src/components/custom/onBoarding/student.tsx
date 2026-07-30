@@ -8,7 +8,7 @@ import {
 } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-
+import { APP_ROUTES } from "../../../constants";
 // Components
 import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
@@ -300,7 +300,7 @@ function StudentOnBoarding() {
       profileImage: undefined,
     });
     localStorage.setItem("onboardingData", JSON.stringify(emptySnapshot));
-    navigate("/student/dashboard");
+    navigate(APP_ROUTES.auth.login);
   };
 
   return (

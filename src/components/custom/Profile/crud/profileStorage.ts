@@ -372,6 +372,9 @@ export const clearCurrentUser = (): void => {
     window.localStorage.removeItem(
       "saved-items"
     );
+    window.localStorage.removeItem(
+      "pathly.company.profile"
+    );
   } catch {}
 };
 

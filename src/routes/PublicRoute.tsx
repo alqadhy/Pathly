@@ -15,7 +15,8 @@ const PublicRoute = () => {
   if (
     currentUser.role !== ROLES.ADMIN &&
     currentUser.role !== ROLES.COMPANY &&
-    currentUser.role !== ROLES.USER
+    currentUser.role !== ROLES.USER &&
+    currentUser.role !== ROLES.INSTRUCTOR
   ) {
     return <Navigate to={APP_ROUTES.auth.login} replace />;
   }

@@ -8,11 +8,14 @@ export const APP_ROUTES = {
     login: "/auth/",
     signup: "/auth/sign-up",
   },
-  onBoarding: "/on-boarding",
+  onBoarding: {
+    student: "/on-boarding/student",
+    company: "/on-boarding/company",
+  },
   // Auth Rotues
   Learning: {
-    courseDetails:`/${ROLES.USER}/learning/:id`,
-    continueCourse:`/${ROLES.USER}/learning/:id/player`
+    courseDetails: `/${ROLES.USER}/learning/:id`,
+    continueCourse: `/${ROLES.USER}/learning/:id/player`,
   },
 
   // Student Routes
@@ -28,11 +31,8 @@ export const APP_ROUTES = {
     mylearning: `/${ROLES.USER}/learning/MyLearning`,
     profile: `/${ROLES.USER}/profile`,
 
-    
-
     messages: `/${ROLES.USER}/messages`,
     search: `/${ROLES.USER}/search`,
-    
 
     careerChat: `/${ROLES.USER}/career-chat`,
 
@@ -54,7 +54,6 @@ export const APP_ROUTES = {
     companyProfile: (id: string) => `/${ROLES.COMPANY}/profile/${id}`,
     notification: `/notification`,
     settings: `/settings`,
-    
   },
   // Company Routes
   company: {
@@ -62,8 +61,12 @@ export const APP_ROUTES = {
     profile: `/${ROLES.COMPANY}/profile`,
     jobs: `/${ROLES.COMPANY}/jobs`,
     jobDetails: (id: number | string) => `/${ROLES.COMPANY}/jobs/${id}`,
+    analytics: `/${ROLES.COMPANY}/analytics`,
     postJob: `/${ROLES.COMPANY}/jobs/new`,
     editJob: (id: number | string) => `/${ROLES.COMPANY}/jobs/${id}/edit`,
+    applicants: `/${ROLES.COMPANY}/applicants`,
+    jobApplicants: (id: number | string) =>
+      `/${ROLES.COMPANY}/jobs/${id}/applicants`,
   },
 
   // Admin Routes
@@ -72,6 +75,22 @@ export const APP_ROUTES = {
     companies: `/${ROLES.ADMIN}/companies`,
     companyDetails: (id: number | string) => `/${ROLES.ADMIN}/companies/${id}`,
     instructors: `/${ROLES.ADMIN}/instructors`,
-    instructorDetails: (id: number | string) => `/${ROLES.ADMIN}/instructors/${id}`,
+    instructorDetails: (id: number | string) =>
+      `/${ROLES.ADMIN}/instructors/${id}`,
   },
+
+  // instractor
+instructor: {
+  dashboard: `/${ROLES.INSTRUCTOR}/dashboard`,
+  myCourses: `/${ROLES.INSTRUCTOR}/my-courses`,
+  addCourse: `/${ROLES.INSTRUCTOR}/add-course`,
+  studentManagement: `/${ROLES.INSTRUCTOR}/student-management`,
+  earnings: `/${ROLES.INSTRUCTOR}/earnings`,
+  profile: `/${ROLES.INSTRUCTOR}/profile`,
+  courseDetails: (id: number | string) =>
+    `/${ROLES.INSTRUCTOR}/my-courses/${id}`,
+  editCourse: (id: number | string) =>
+    `/${ROLES.INSTRUCTOR}/my-courses/${id}/edit`,
+},
 };
+

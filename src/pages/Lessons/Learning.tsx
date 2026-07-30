@@ -9,6 +9,8 @@ import { getAllPlayerStates } from "../../../public/mocked/learning/learningPlay
 
 import { getStoredProfile } from "../../components/custom/Profile/crud/profileStorage";
 
+import { instructorService } from "../../Services/instructor.service";
+
 import { Button } from "../../components/ui/button";
 
 const normalizeTrack = (track: string) => {
@@ -46,6 +48,17 @@ const Learning = () => {
     );
   }, [currentUser.email]);
 
+const publishedInstructorCourses =
+  instructorService.getPublishedCourses();
+
+  const allCourses = useMemo(
+    () => [
+      ...learningCourses,
+      ...publishedInstructorCourses,
+    ],
+    [publishedInstructorCourses]
+  );
+
   const lastLearningCourse = useMemo(() => {
     if (!playerStates.length) return null;
 
@@ -57,7 +70,7 @@ const Learning = () => {
 
     const latest = sorted[0];
 
-    const course = learningCourses.find(
+    const course = allCourses.find(
       (item) => item.id === latest.courseId
     );
 
@@ -67,69 +80,69 @@ const Learning = () => {
       ...course,
       progress: latest,
     };
-  }, [playerStates]);
+  }, [playerStates, allCourses]);
 
   const filteredCourses = useMemo(() => {
-    if (!userTracks.length) return learningCourses;
+    if (!userTracks.length) return allCourses;
 
-    return learningCourses.filter((course) =>
+    return allCourses.filter((course) =>
       userTracks.includes(
         normalizeTrack(course.track)
       )
     );
-  }, [userTracks]);
+  }, [userTracks, allCourses]);
 
   const displayedCourses = showAll
     ? filteredCourses
     : filteredCourses.slice(0, 6);
 
-return (
-  <div className="space-y-2xl p-lg lg:p-2xl">
-    {/* HERO */}
-    {lastLearningCourse ? (
-      <ContinueLearning
-        course={lastLearningCourse}
-        progress={lastLearningCourse.progress}
-      />
-    ) : (
-      <EmptyLearningState />
-    )}
+  return (
+    <div className="space-y-2xl p-lg lg:p-2xl">
+      {lastLearningCourse ? (
+        <ContinueLearning
+          course={lastLearningCourse}
+          progress={lastLearningCourse.progress}
+        />
+      ) : (
+        <EmptyLearningState />
+      )}
 
-    {/* COURSES */}
-    <div className="space-y-lg">
-      <div className="flex items-center justify-between">
-        <h2 className="text-h3 font-bold text-text-primary">
-          Recommended Courses
-        </h2>
-      </div>
+      <div className="space-y-lg">
+        <div className="flex items-center justify-between">
+          <h2 className="text-h3 font-bold text-text-primary">
+            Recommended Courses
+          </h2>
+        </div>
 
-      <div className="grid gap-lg sm:grid-cols-2 xl:grid-cols-3">
-        {displayedCourses.map((course) => {
-          const state = playerStates.find(
-            (item) => item.courseId === course.id
-          );
+        <div className="grid gap-lg sm:grid-cols-2 xl:grid-cols-3">
+          {displayedCourses.map((course) => {
+            const state = playerStates.find(
+              (item) => item.courseId === course.id
+            );
 
-          return (
-            <LearningCard
-              key={course.id}
-              course={course}
-              progress={state}
-            />
-          );
-        })}
-      </div>
+            return (
+              <LearningCard
+                key={course.id}
+                course={course}
+                progress={state}
+              />
+            );
+          })}
+        </div>
 
-      <div className="mt-2xl flex justify-center">
-        <Button
-          onClick={() => setShowAll(!showAll)}
-          className="h-[68px] min-w-[260px] rounded-xl bg-primary text-body-lg font-bold text-primary-foreground hover:bg-primary-hover active:bg-primary-active"
-        >
-          {showAll ? "Show Less" : "View All"}
-        </Button>
+        <div className="mt-2xl flex justify-center">
+          <Button
+            onClick={() => setShowAll(!showAll)}
+            className="h-[68px] min-w-[260px] rounded-xl bg-primary text-body-lg font-bold text-primary-foreground hover:bg-primary-hover active:bg-primary-active"
+          >
+            {showAll
+              ? "Show Less"
+              : "View All"}
+          </Button>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
 };
 
 export default Learning;

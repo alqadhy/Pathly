@@ -1,0 +1,118 @@
+{
+  "currentUser": {
+    "id": "u1",
+    "name": "Mohamed Fawzei Abdullah",
+    "avatar": "../../src/assets/imgs/avatar_placeholder.png",
+    "headline": "Frontend Developer"
+  },
+  "sidebar": {
+    "streakDays": 54,
+    "activeCourses": [
+      {
+        "id": "c1",
+        "title": "Advance UI/UX Design",
+        "category": "DESIGN",
+        "logo": "/src/assets/imgs/home/logos/adv_UI_UX.png",
+        "progress": 60,
+        "lessonsCompleted": 18,
+        "lessonsTotal": 40,
+        "timeLeft": "2 hours left"
+      }
+    ],
+    "recommendedJobs": [
+      {
+        "id": "j1",
+        "title": "Product Designer",
+        "company": "Google",
+        "location": "Cairo, Egypt",
+        "type": "Full-time",
+        "salary": "EGP 20K - EGP 80K",
+        "postedAt": "Posted 2 days ago",
+        "matchScore": 90,
+        "tags": ["Figma", "UI/UX", "Prototyping"]
+      }
+    ]
+  },
+  "feed": {
+    "posts": [
+      {
+        "id": "p1",
+        "author": {
+          "id": "a1",
+          "name": "Sara Ahmed",
+          "headline": "UI/UX Designer | Designing Mobile Apps, Websites & SaaS Products",
+          "avatar": "/src/assets/imgs/home/Profile/img1.png",
+          "timeAgo": "8h"
+        },
+        "content": "A beautiful interface can attract users.\nA great user experience makes them stay.\nUI is how it looks.\nUX is how it works.\nYou need both.",
+        "image": "/src/assets/imgs/home/posts/post2.png",
+        "engagement": {
+          "likes": 124,
+          "comments": 2,
+          "reposts": 12
+        },
+        "comments": [
+          {
+            "id": "comment1",
+            "author": {
+              "name": "Sara Ahmed",
+              "headline": "UI/UX Designer | Designing Mobile Apps...",
+              "avatar": "/src/assets/imgs/home/Profile/img1.png",
+              "timeAgo": "2h"
+            },
+            "content": "Very helpful, thanks for sharing.",
+            "likes": 1
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "author": {
+          "id": "a2",
+          "name": "Menna Mohamed",
+          "headline": "UI/UX Designer | Designing Mobile Apps, Websites & SaaS Products",
+          "avatar": "/src/assets/imgs/home/Profile/img3.png",
+          "timeAgo": "1d"
+        },
+        "content": "UI/UX is not about making screens look pretty. It's about understanding people, solving problems, and creating experiences that feel effortless. Design starts with empathy.",
+        "image": "/src/assets/imgs/home/posts/post1.png",
+        "engagement": {
+          "likes": 89,
+          "comments": 5,
+          "reposts": 4
+        },
+        "comments": []
+      }
+    ],
+    "suggestions": [
+      {
+        "id": "s1",
+        "name": "Figma",
+        "category": "Company . Design",
+        "followers": "178,900 followers",
+        "logo": "/src/assets/imgs/home/logos/figma_logo.png"
+      },
+      {
+        "id": "s2",
+        "name": "Notion",
+        "category": "Company . Design",
+        "followers": "178,900 followers",
+        "logo": "/src/assets/imgs/home/logos/notion_logo.png"
+      },
+      {
+        "id": "s3",
+        "name": "Google",
+        "category": "Company . Design",
+        "followers": "178,900 followers",
+        "logo": "/src/assets/imgs/home/logos/google_logo.png"
+      },
+      {
+        "id": "s4",
+        "name": "Behance",
+        "category": "Company . Design",
+        "followers": "178,900 followers",
+        "logo": "/src/assets/imgs/home/logos/behance_logo.png"
+      }
+    ]
+  }
+}

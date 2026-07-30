@@ -1,11 +1,20 @@
 // Components
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import IconButton from "../custom/IconButton";
 import Searchbar from "../custom/search/Searchbar";
 import UserAvatar from "../custom/UserAvatar";
 
 // Icons
-import { Bell, Menu, MessagesSquare, Search, X, LogOut, User, Home } from "lucide-react";
+import {
+  Bell,
+  Menu,
+  MessagesSquare,
+  Search,
+  X,
+  LogOut,
+  User,
+  Home,
+} from "lucide-react";
 
 // Constants
 import { APP_ROUTES, SLOGAN } from "../../constants";
@@ -18,7 +27,10 @@ import { useSidebarStore } from "../../store/sidebar.store";
 
 // Logo
 import logo from "../../assets/imgs/logo.png";
-import { getCurrentUser } from "../custom/Profile/crud/profileStorage";
+import {
+  getCurrentUser,
+  clearCurrentUser,
+} from "../custom/Profile/crud/profileStorage";
 import { ROLES } from "../../roles";
 
 import { useNotifications } from "../../hooks/useNotifications";
@@ -28,7 +40,7 @@ function DashboardHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { isOpen, open, close } = useSidebarStore();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const currentUser = getCurrentUser();
 
@@ -40,17 +52,10 @@ function DashboardHeader() {
     setIsDropdownOpen(false);
   };
 
-  // const handleuserProfileClick = () => {
-  //   if (currentUser) {
-  //     if (currentUser.role === "student") {
-  //       navigate(APP_ROUTES.student.dashboard);
-  //     } else if (currentUser.role === "company") {
-  //       navigate(APP_ROUTES.company.dashboard);
-  //     }
-  //   } else {
-  //     navigate(APP_ROUTES.auth.login);
-  //   }
-  // };
+  const handleLogout = () => {
+    clearCurrentUser();
+    navigate("/");
+  };
 
   function toggleSidebar() {
     if (isOpen) close();
@@ -108,6 +113,15 @@ function DashboardHeader() {
             <img src={logo} alt={SLOGAN} className="h-10" />
           </Link>
         )}
+        {currentUser?.role === ROLES.INSTRUCTOR && (
+          <Link
+            to={APP_ROUTES.instructor.dashboard}
+            title={SLOGAN}
+            className="hidden lg:block"
+          >
+            <img src={logo} alt={SLOGAN} className="h-10" />
+          </Link>
+        )}
 
         <Searchbar />
       </div>
@@ -159,23 +173,38 @@ function DashboardHeader() {
 
         {/* User Avatar with Dropdown */}
         <div className="relative">
-          <button
+          {/*
+            FIX: this used to be <button onClick={toggleDropdown}> wrapping <UserAvatar />.
+            UserAvatar renders a shadcn <Button>, which is itself a <button> under the hood —
+            so the DOM ended up as <button><button/></button>, which is invalid HTML and is
+            exactly what caused the hydration mismatch. Swapping the outer element for a div
+            with role="button" keeps the same click + keyboard behavior without nesting buttons.
+          */}
+          <div
+            role="button"
+            tabIndex={0}
             onClick={toggleDropdown}
-            className="flex items-center"
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                toggleDropdown();
+              }
+            }}
+            className="flex items-center cursor-pointer"
             title="User menu"
+            aria-haspopup="menu"
+            aria-expanded={isDropdownOpen}
           >
             {currentUser?.role === ROLES.COMPANY && <UserAvatar />}
             {currentUser?.role === ROLES.USER && <UserAvatar />}
             {currentUser?.role === ROLES.ADMIN && <UserAvatar />}
-          </button>
+            {currentUser?.role === ROLES.INSTRUCTOR && <UserAvatar />}
+          </div>
 
           {/* Dropdown Menu */}
           {isDropdownOpen && (
             <>
-              <div
-                className="fixed inset-0 z-10"
-                onClick={closeDropdown}
-              ></div>
+              <div className="fixed inset-0 z-10" onClick={closeDropdown}></div>
               <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-20 py-2">
                 {/* Profile Link */}
                 <Link
@@ -184,6 +213,8 @@ function DashboardHeader() {
                       ? APP_ROUTES.company.profile
                       : currentUser?.role === ROLES.USER
                       ? APP_ROUTES.student.profile
+                      : currentUser?.role === ROLES.INSTRUCTOR
+                      ? APP_ROUTES.instructor.profile
                       : APP_ROUTES.admin.dashboard
                   }
                   className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors"
@@ -206,7 +237,7 @@ function DashboardHeader() {
                 {/* Logout Button */}
                 <button
                   onClick={() => {
-                    localStorage.removeItem("currentUser");
+                    handleLogout();
                     closeDropdown();
                     window.location.href = APP_ROUTES.auth.login;
                   }}

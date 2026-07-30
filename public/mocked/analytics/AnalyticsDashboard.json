@@ -1,0 +1,240 @@
+{
+  "activeCourses": [
+    {
+      "id": 1,
+      "title": "UI/UX Design Bootcamp",
+      "timeLeft": "6 hrs left",
+      "progress": 78,
+      "colorClass": "bg-primary",
+      "textClass": "text-primary"
+    },
+    {
+      "id": 2,
+      "title": "Product Management Fundamentals",
+      "timeLeft": "~8 hrs left",
+      "progress": 45,
+      "colorClass": "bg-secondary",
+      "textClass": "text-secondary"
+    }
+  ],
+  "roadmaps": [
+    {
+      "id": 1,
+      "title": "Software Engineering",
+      "subtitle": "10/22 tasks - ~4 months at current pace",
+      "value": 45,
+      "colorClass": "bg-primary",
+      "textClass": "text-primary",
+      "totalSegments": 8
+    },
+    {
+      "id": 2,
+      "title": "Product Management",
+      "subtitle": "6/20 tasks - ~5 months at current pace",
+      "value": 30,
+      "colorClass": "bg-secondary",
+      "textClass": "text-secondary",
+      "totalSegments": 8
+    }
+  ],
+  "weeklyActivity": {
+    "labels": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    "datasets": [
+      {
+        "label": "Applications",
+        "data": [1, 0, 2, 0, 1, 0, 0],
+        "backgroundColor": "#553be6"
+      },
+      {
+        "label": "Courses",
+        "data": [0, 0, 0, 0, 0, 2, 0],
+        "backgroundColor": "#0c9d61"
+      },
+      {
+        "label": "Jobs Browsed",
+        "data": [0, 0, 0, 0, 0, 0, 2],
+        "backgroundColor": "#fe9b0e"
+      }
+    ]
+  },
+  "statCards": [
+    {
+      "id": 1,
+      "iconName": "User",
+      "iconBg": "bg-primary-light",
+      "iconColor": "text-primary",
+      "badgeText": "+8% this month",
+      "badgeClass": "bg-primary-light text-primary",
+      "value": "72%",
+      "label": ""
+    },
+    {
+      "id": 2,
+      "iconName": "ChartNoAxesColumn",
+      "iconBg": "bg-success-light",
+      "iconColor": "text-success",
+      "badgeText": "+5pts this week",
+      "badgeClass": "bg-success-light text-success",
+      "value": "82/100",
+      "label": "ATS Score"
+    },
+    {
+      "id": 3,
+      "iconName": "Briefcase",
+      "iconBg": "bg-info-light",
+      "iconColor": "text-info",
+      "badgeText": "+12 new",
+      "badgeClass": "bg-info-light text-info",
+      "value": "28",
+      "label": "Job Matches"
+    },
+    {
+      "id": 4,
+      "iconName": "Target",
+      "iconBg": "bg-warning-light",
+      "iconColor": "text-warning",
+      "badgeText": "1 offer pending",
+      "badgeClass": "bg-warning-light text-warning",
+      "value": "4",
+      "label": "Applications"
+    }
+  ],
+  "aiInsights": [
+    {
+      "id": 1,
+      "title": "Profile Momentum",
+      "description": "Your profile score grew 8% this month. Adding work experience is the single action that would unlock the most — 12 more job matches and an ATS score above 90.",
+      "actionText": "Add Experience",
+      "iconName": "TrendingUp",
+      "containerClass": "bg-success-light border-[#b4e1ce]",
+      "titleClass": "text-success-dark",
+      "textClass": "text-success-darker",
+      "linkClass": "text-success-dark"
+    },
+    {
+      "id": 2,
+      "title": "Application Gap",
+      "description": "You've browsed 29 jobs but applied to only 4. Your interview conversion rate for similar profiles is ~65%. Consider applying to 3-4 more this week.",
+      "actionText": "Browse Jobs",
+      "iconName": "AlertCircle",
+      "containerClass": "bg-warning-light border-[#ffe0b4]",
+      "titleClass": "text-warning-dark",
+      "textClass": "text-warning-darker",
+      "linkClass": "text-warning-dark"
+    },
+    {
+      "id": 3,
+      "title": "Course Milestone",
+      "description": "You're 78% through the UI/UX Design Bootcamp — approximately 6 hours remain. Finishing this week adds a verified certificate to your profile.",
+      "actionText": "Continue Course",
+      "iconName": "Zap",
+      "containerClass": "bg-info-light border-[#c2d3f6]",
+      "titleClass": "text-info-dark",
+      "textClass": "text-info-darker",
+      "linkClass": "text-info-dark"
+    }
+  ],
+  "profileStrength": {
+    "sections": [
+      {
+        "id": 1,
+        "label": "Personal Info",
+        "value": 100,
+        "text": "100%",
+        "colorClass": "bg-primary",
+        "textClass": "text-primary"
+      },
+      {
+        "id": 2,
+        "label": "Education",
+        "value": 100,
+        "text": "100%",
+        "colorClass": "bg-primary",
+        "textClass": "text-primary"
+      },
+      {
+        "id": 3,
+        "label": "Skills",
+        "value": 85,
+        "text": "85%",
+        "colorClass": "bg-secondary",
+        "textClass": "text-secondary"
+      },
+      {
+        "id": 4,
+        "label": "Portfolio",
+        "value": 50,
+        "text": "50%",
+        "colorClass": "bg-secondary",
+        "textClass": "text-secondary"
+      },
+      {
+        "id": 5,
+        "label": "Languages",
+        "value": 0,
+        "text": "Not added",
+        "colorClass": "bg-light",
+        "textClass": "text-danger"
+      },
+      {
+        "id": 6,
+        "label": "Experience",
+        "value": 0,
+        "text": "Not added",
+        "colorClass": "bg-light",
+        "textClass": "text-danger"
+      },
+      {
+        "id": 7,
+        "label": "Certifications",
+        "value": 0,
+        "text": "Not added",
+        "colorClass": "bg-light",
+        "textClass": "text-danger"
+      }
+    ],
+    "overall": {
+      "score": 72,
+      "completedSections": 4,
+      "totalSections": 7,
+      "growthText": "+8% from last month"
+    }
+  },
+  "skillsGapAnalysis": [
+    {
+      "id": 1,
+      "title": "TypeScript",
+      "priority": "High Priority",
+      "priorityClass": "bg-danger-light text-danger",
+      "value": 94
+    },
+    {
+      "id": 2,
+      "title": "Jest / Vitest",
+      "priority": "High Priority",
+      "priorityClass": "bg-danger-light text-danger",
+      "value": 94
+    },
+    {
+      "id": 3,
+      "title": "AWS / Cloud",
+      "priority": "Medium Priority",
+      "priorityClass": "bg-warning-light text-warning-dark",
+      "value": 94
+    },
+    {
+      "id": 4,
+      "title": "GraphQL",
+      "priority": "Medium Priority",
+      "priorityClass": "bg-warning-light text-warning-dark",
+      "value": 94
+    },
+    {
+      "id": 5,
+      "title": "Docker",
+      "priority": "Low Priority",
+      "priorityClass": "bg-light text-normal",
+      "value": 94
+    }
+  ]
+}

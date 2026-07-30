@@ -1,0 +1,77 @@
+{
+  "stats": [
+    {
+      "id": "total_jobs",
+      "title": "Total Job Posts",
+      "count": "247",
+      "period": "5 Months",
+      "iconType": "FileText"
+    },
+    {
+      "id": "active_jobs",
+      "title": "Active Jobs",
+      "count": "5",
+      "period": "5 Months",
+      "iconType": "Briefcase"
+    },
+    {
+      "id": "total_applications",
+      "title": "Total Applications",
+      "count": "50",
+      "period": "5 Months",
+      "iconType": "Users"
+    },
+    {
+      "id": "hired_candidates",
+      "title": "Hired Candidates",
+      "count": "400",
+      "period": "5 Months",
+      "iconType": "Award"
+    }
+  ],
+  "hiringFunnel": [
+    { "label": "Applications", "width": "100%", "val": "100%" },
+    { "label": "Screened", "width": "80%", "val": "80%" },
+    { "label": "Interviewed", "width": "62%", "val": "62%" },
+    { "label": "Offers Made", "width": "30%", "val": "30%" },
+    { "label": "Hired", "width": "11%", "val": "11%" }
+  ],
+  "applicantTrends": {
+    "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    "applications": [25, 45, 60, 40, 75, 100],
+    "hires": [25, 45, 50, 40, 75, 100]
+  },
+  "timeToHire": [
+    { "label": "Engineering", "width": "60%" },
+    { "label": "Product", "width": "85%" },
+    { "label": "Marketing", "width": "95%" },
+    { "label": "Design", "width": "85%" },
+    { "label": "Analytics", "width": "90%" }
+  ],
+  "conversionBreakdown": [
+    { "label": "Under Review", "count": "1", "color": "bg-cyan-400" },
+    { "label": "Interview", "count": "1", "color": "bg-purple-500" },
+    { "label": "Offer", "count": "1", "color": "bg-emerald-500" },
+    { "label": "Rejected", "count": "1", "color": "bg-rose-500" }
+  ],
+  "aiInsights": [
+    {
+      "type": "success",
+      "title": "Best Performing Job",
+      "description": "UI/UX Designer received 124 applications, making it your highest-performing job post.",
+      "iconType": "TrendingUp"
+    },
+    {
+      "type": "warning",
+      "title": "Application Trend",
+      "description": "Applications increased by 18% compared to last month.",
+      "iconType": "AlertCircle"
+    },
+    {
+      "type": "info",
+      "title": "Hiring Recommendation",
+      "description": "Candidates with Figma and UX Research skills have the highest interview success rate.",
+      "iconType": "Zap"
+    }
+  ]
+}

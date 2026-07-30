@@ -21,7 +21,7 @@ import AdminCompanyDetails from "../components/custom/admin/companies/CompanyDet
 import AdminInstructors from "../pages/admin/Instructors";
 import AdminInstructorDetails from "../pages/admin/InstructorDetails";
 import NotFound from "../pages/NotFound";
-
+import CompanyAnalytics from "../pages/company/CompanyAnalytics";
 /* Lazy Pages */
 const Home = lazy(() => import("../pages/Home"));
 
@@ -33,11 +33,15 @@ const JobsInternshipsDashboard = lazy(
 );
 
 const JobDetails = lazy(() => import("../pages/student/JobDetails"));
+const Company = lazy(() => import("../components/custom/onBoarding/company"));
+
+const Student = lazy(() => import("../components/custom/onBoarding/student"));
 const ApplyJobPage = lazy(() => import("../pages/student/ApplyJobPage"));
 const SavedItems = lazy(() => import("../pages/student/SavedItems"));
 const Community = lazy(() => import("../pages/student/Community"));
 const Profile = lazy(() => import("../pages/student/Profile"));
 const CompanyProfile = lazy(() => import("../pages/company/CompanyProfile"));
+const ApplicantsPage = lazy(() => import("../pages/company/ApplicantsPage"));
 const PostJob = lazy(() => import("../pages/company/PostJob"));
 const Messages = lazy(() => import("../pages/student/Messages"));
 const Notifications = lazy(
@@ -48,7 +52,7 @@ const AdminRoute = lazy(() => import("./AdminRoute"));
 const StudentRoute = lazy(() => import("./StudentRoute"));
 const CompanyRoute = lazy(() => import("./CompanyRoute"));
 const PublicRoute = lazy(() => import("./PublicRoute"));
-
+const InstructorRoute = lazy(() => import("./InstructorRoute"));
 const Learning = lazy(() => import("../pages/Lessons/Learning"));
 
 const MyLearning = lazy(() => import("../pages/Lessons/MyLearning"));
@@ -72,6 +76,16 @@ const CVBuilderAI = lazy(() => import("../pages/student/cv/CVBuilderAI"));
 const AuthFlow = lazy(() => import("../pages/Auth/AuthFlow"));
 const OnBoarding = lazy(() => import("../pages/OnBoarding"));
 const ApplicationsPage = lazy(() => import("../pages/company/applications"));
+const MyCourses = lazy(() => import("../pages/instructor/MyCourses"));
+const CompanyHome = lazy(() => import("../pages/company/CompanyHome"));
+
+const AddCourse = lazy(() => import("../pages/instructor/AddCourse"));
+const StudentManagement = lazy(
+  () => import("../pages/instructor/StudentManagement"),
+);
+const Earnings = lazy(() => import("../pages/instructor/Earnings"));
+
+const EditCourse = lazy(() => import("../pages/instructor/EditCourse"));
 
 const router = createBrowserRouter([
   /* HOME */
@@ -84,10 +98,18 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: APP_ROUTES.onBoarding,
+    path: APP_ROUTES.onBoarding.student,
     element: (
       <Suspense fallback={<PageLoader />}>
-        <OnBoarding />
+        <Student />
+      </Suspense>
+    ),
+  },
+  {
+    path: APP_ROUTES.onBoarding.company,
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <Company />
       </Suspense>
     ),
   },
@@ -166,14 +188,6 @@ const router = createBrowserRouter([
             ),
           },
           {
-            path: "/student/test",
-            element: (
-              <Suspense fallback={<Loader />}>
-                <ApplicationsPage />
-              </Suspense>
-            ),
-          },
-          {
             path: APP_ROUTES.student.jobs,
             element: (
               <Suspense fallback={<Loader />}>
@@ -230,14 +244,7 @@ const router = createBrowserRouter([
               </Suspense>
             ),
           },
-          // {
-          //   path: APP_ROUTES.student.notification,
-          //   element: (
-          //     <Suspense fallback={<Loader />}>
-          //       <Notifications />
-          //     </Suspense>
-          //   ),
-          // },
+
           {
             path: APP_ROUTES.student.careerChat,
             element: (
@@ -354,7 +361,7 @@ const router = createBrowserRouter([
             path: APP_ROUTES.company.dashboard,
             element: (
               <Suspense fallback={<Loader />}>
-                <CompanyProfile />
+                <CompanyHome />
               </Suspense>
             ),
           },
@@ -363,6 +370,14 @@ const router = createBrowserRouter([
             element: (
               <Suspense fallback={<Loader />}>
                 <CompanyProfile />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.company.applicants,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <ApplicationsPage />
               </Suspense>
             ),
           },
@@ -379,6 +394,30 @@ const router = createBrowserRouter([
             element: (
               <Suspense fallback={<Loader />}>
                 <PostJob />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.company.applicants,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <ApplicantsPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.company.analytics,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <CompanyAnalytics />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.company.jobApplicants(":id"),
+            element: (
+              <Suspense fallback={<Loader />}>
+                <ApplicantsPage />
               </Suspense>
             ),
           },
@@ -452,6 +491,77 @@ const router = createBrowserRouter([
             element: (
               <Suspense fallback={<Loader />}>
                 <SettingsPage />
+              </Suspense>
+            ),
+          },
+        ],
+      },
+    ],
+  },
+  //instractor
+  {
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <InstructorRoute />
+      </Suspense>
+    ),
+    children: [
+      {
+        element: <DashboardLayout />,
+        children: [
+          {
+            path: APP_ROUTES.instructor.dashboard,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <MyCourses />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.instructor.myCourses,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <MyCourses />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.instructor.addCourse,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <AddCourse />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.instructor.studentManagement,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <StudentManagement />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.instructor.earnings,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <Earnings />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.instructor.profile,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <Profile />
+              </Suspense>
+            ),
+          },
+          {
+            path: APP_ROUTES.instructor.editCourse(":id"),
+            element: (
+              <Suspense fallback={<Loader />}>
+                <EditCourse />
               </Suspense>
             ),
           },
