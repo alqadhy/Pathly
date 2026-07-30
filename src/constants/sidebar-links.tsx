@@ -130,7 +130,7 @@ export const SIDEBAR_LINKS = {
         {
           icon: <ChartColumn />,
           text: "Analytics",
-          to: APP_ROUTES.student.analytics,
+          to: APP_ROUTES.company.analytics,
         },
       ],
     },
@@ -165,7 +165,7 @@ export const SIDEBAR_LINKS = {
         {
           icon: <UserCircle />,
           text: "Instructors",
-          to:  APP_ROUTES.admin.instructors,
+          to: APP_ROUTES.admin.instructors,
         },
       ],
     },
