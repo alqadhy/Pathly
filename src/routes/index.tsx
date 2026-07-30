@@ -77,7 +77,20 @@ const router = createBrowserRouter([
       </Suspense>
     ),
   },
-
+  {
+    path: "/test-student",
+    element: <DashboardLayout />,
+    children: [
+      {
+        index: true, // index: true معناها إن ده المسار الافتراضي لـ /test-student
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Dashboard />
+          </Suspense>
+        ),
+      },
+    ],
+  },
   /* Admin */
   {
     element: (
@@ -113,7 +126,7 @@ const router = createBrowserRouter([
               </Suspense>
             ),
           },
-           {
+          {
             path: APP_ROUTES.admin.instructors,
             element: (
               <Suspense fallback={<Loader />}>
