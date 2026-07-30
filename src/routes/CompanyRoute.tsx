@@ -1,6 +1,7 @@
 // routes/CompanyRoute.tsx
 import { Navigate, Outlet } from "react-router-dom";
 import { APP_ROUTES } from "../constants";
+import { ROLES } from "../roles";
 
 const CompanyRoute = () => {
   const currentUser = JSON.parse(
@@ -11,11 +12,11 @@ const CompanyRoute = () => {
     return <Navigate to={APP_ROUTES.auth.login} replace />;
   }
 
-  if (currentUser.role !== "company") {
-    if (currentUser.role === "admin") {
-      return <Navigate to={APP_ROUTES.Admin.adminDashboard} replace />;
+  if (currentUser.role !== ROLES.COMPANY) {
+    if (currentUser.role === ROLES.ADMIN) {
+      return <Navigate to={APP_ROUTES.admin.dashboard} replace />;
     }
-    if (currentUser.role === "user") {
+    if (currentUser.role === ROLES.USER) {
       return <Navigate to={APP_ROUTES.student.dashboard} replace />;
     }
     return <Navigate to={APP_ROUTES.auth.login} replace />;
@@ -23,5 +24,4 @@ const CompanyRoute = () => {
 
   return <Outlet />;
 };
-
 export default CompanyRoute;

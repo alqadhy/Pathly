@@ -4,10 +4,13 @@ import { Outlet, useLocation, ScrollRestoration } from "react-router-dom";
 // Layout Components
 import DashboardHeader from "../components/layout/DashboardHeader";
 import Sidebar from "../components/layout/Sidebar";
+import {generateNotifications} from "../utils/notificationGenerator";
 
 function DashboardLayout() {
   const location = useLocation();
-
+useEffect(() => {
+  generateNotifications();
+}, []);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);

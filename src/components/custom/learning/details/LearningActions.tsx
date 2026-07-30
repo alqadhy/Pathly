@@ -114,7 +114,7 @@ const LearningActions = ({
               )
             )
           }
-          className="h-[50px] w-full rounded-sm bg-success text-[23px] font-bold text-white hover:bg-success-hover md:w-[200px]"
+          className="h-[50px] px-md w-full rounded-sm bg-success text-[23px] font-bold text-white hover:bg-success-hover md:w-[200px]"
         >
           Continue Learning
         </Button>

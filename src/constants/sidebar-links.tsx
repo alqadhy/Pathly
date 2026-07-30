@@ -85,7 +85,7 @@ export const SIDEBAR_LINKS = {
         {
           icon: <Settings />,
           text: "Settings",
-          to: APP_ROUTES.student.settings,
+          to: APP_ROUTES.public.settings,
         },
       ],
     },
@@ -120,7 +120,7 @@ export const SIDEBAR_LINKS = {
         {
           icon: <UsersRound />,
           text: "Applicants",
-          to: APP_ROUTES.company.jobs,
+          to: APP_ROUTES.company.applicants,
         },
         {
           icon: <UsersRound />,
@@ -141,7 +141,7 @@ export const SIDEBAR_LINKS = {
         {
           icon: <Settings />,
           text: "Settings",
-          to: APP_ROUTES.student.settings,
+          to: APP_ROUTES.public.settings,
         },
       ],
     },
@@ -165,7 +165,7 @@ export const SIDEBAR_LINKS = {
         {
           icon: <UserCircle />,
           text: "Instructors",
-          to: "/admin/instructors",
+          to:  APP_ROUTES.admin.instructors,
         },
       ],
     },

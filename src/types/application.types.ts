@@ -35,12 +35,24 @@ export interface JobApplicationFormData {
   screeningQuestions?: ScreeningQuestion[];
 }
 
+export type InterviewType = "video" | "phone" | "onsite";
+
+export interface InterviewDetails {
+  type: InterviewType;
+  date: string; // yyyy-mm-dd
+  time: string; // HH:mm
+  notes?: string;
+}
+export type ApplicationStatus = 'pending' | 'reviewed' | 'interview' | 'rejected' | 'hired';
+
 export interface SubmittedApplication extends Omit<JobApplicationFormData, 'resumeFile'> {
   id: string;
-  jobId: string; 
+  jobId: string;
   jobTitle: string;
   companyName: string;
   submittedAt: string;
-  status: 'pending' | 'reviewed' | 'rejected' | 'hired';
-  resumeUrl?: string; 
+  status: ApplicationStatus;
+  resumeUrl?: string;
+  interviewDetails?: InterviewDetails;
+  avatarUrl?: string;
 }

@@ -1,7 +1,17 @@
 import type { Profile } from "../../../../types/profile";
+import { generateNotifications } from "../../../../utils/notificationGenerator";
 
-const PROFILE_STORAGE_KEY = "pathly.profile";
+const getProfileStorageKey = () => {
+  const currentUser = JSON.parse(
+    localStorage.getItem("currentUser") || "{}"
+  );
 
+  if (!currentUser.email) {
+    return null;
+  }
+
+  return `pathly.profile.${currentUser.email}`;
+};
 const asArray = <T>(value: unknown): T[] => {
   return Array.isArray(value) ? (value as T[]) : [];
 };
@@ -268,30 +278,55 @@ const hasLocalStorage = (): boolean => {
 export const getStoredProfile = (): Profile | null => {
   if (!hasLocalStorage()) return null;
 
-  const rawProfile = window.localStorage.getItem(PROFILE_STORAGE_KEY);
+  const key = getProfileStorageKey();
+
+  if (!key) return null;
+
+  const rawProfile =
+    window.localStorage.getItem(key);
+
   if (!rawProfile) return null;
 
   try {
-    return normalizeProfile(JSON.parse(rawProfile) as Profile);
+    return normalizeProfile(
+      JSON.parse(rawProfile) as Profile
+    );
   } catch {
-    window.localStorage.removeItem(PROFILE_STORAGE_KEY);
+    window.localStorage.removeItem(key);
     return null;
   }
 };
 
-export const saveStoredProfile = (profile: Profile): void => {
+export const saveStoredProfile = (
+  profile: Profile
+): void => {
+
   if (!hasLocalStorage()) return;
 
+  const key = getProfileStorageKey();
+
+  if (!key) return;
+  console.log(
+  "SAVING PROFILE KEY:",
+  key
+);
   window.localStorage.setItem(
-    PROFILE_STORAGE_KEY,
-    JSON.stringify(normalizeProfile(profile)),
+    key,
+    JSON.stringify(
+      normalizeProfile(profile)
+    )
   );
+  generateNotifications();
 };
 
 export const clearStoredProfile = (): void => {
   if (!hasLocalStorage()) return;
 
-  window.localStorage.removeItem(PROFILE_STORAGE_KEY);
+  const key = getProfileStorageKey();
+
+  if (!key) return;
+
+  window.localStorage.removeItem(key);
 };
 
 export const getCurrentUser = (): { id: number; fullName: string; email: string; phone: string ; role: string } | null => {
@@ -320,13 +355,27 @@ export const clearCurrentUser = (): void => {
   if (!hasLocalStorage()) return;
 
   try {
-    window.localStorage.removeItem("currentUser");
-    window.localStorage.removeItem("pathly.community.follows");
-    window.localStorage.removeItem("pathly.profile");
-    window.localStorage.removeItem("saved-items");
-  } catch {
-    // Silently fail
-  }
+    const key = getProfileStorageKey();
+
+    window.localStorage.removeItem(
+      "currentUser"
+    );
+
+    if (key) {
+      window.localStorage.removeItem(key);
+    }
+
+    window.localStorage.removeItem(
+      "pathly.community.follows"
+    );
+
+    window.localStorage.removeItem(
+      "saved-items"
+    );
+    window.localStorage.removeItem(
+      "pathly.company.profile"
+    );
+  } catch {}
 };
 
 export const loadProfile = (fallbackProfile: Profile | null): Profile | null => {

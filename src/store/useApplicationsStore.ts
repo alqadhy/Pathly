@@ -1,13 +1,19 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type  { SubmittedApplication } from '../types/application.types';
+import type { SubmittedApplication, ApplicationStatus, InterviewDetails } from '../types/application.types';
 
 interface ApplicationsStore {
   applications: SubmittedApplication[];
-  
+
   addApplication: (application: Omit<SubmittedApplication, 'id' | 'submittedAt' | 'status'>) => void;
   getApplicationsByJobId: (jobId: string) => SubmittedApplication[];
   getAllApplications: () => SubmittedApplication[];
+
+  // NEW
+  getApplicationById: (id: string) => SubmittedApplication | undefined;
+  updateApplicationStatus: (id: string, status: ApplicationStatus) => void;
+  scheduleInterview: (id: string, interviewDetails: InterviewDetails) => void;
+  seedApplications: (seed: SubmittedApplication[]) => void;
 }
 
 export const useApplicationsStore = create<ApplicationsStore>()(
@@ -26,7 +32,7 @@ export const useApplicationsStore = create<ApplicationsStore>()(
         set((state) => ({
           applications: [...state.applications, newApplication],
         }));
-        
+
         console.log('Application stored in Zustand:', newApplication);
       },
 
@@ -37,9 +43,36 @@ export const useApplicationsStore = create<ApplicationsStore>()(
       getAllApplications: () => {
         return get().applications;
       },
+
+      getApplicationById: (id) => {
+        return get().applications.find((app) => app.id === id);
+      },
+
+      updateApplicationStatus: (id, status) => {
+        set((state) => ({
+          applications: state.applications.map((app) =>
+            app.id === id ? { ...app, status } : app
+          ),
+        }));
+      },
+
+      scheduleInterview: (id, interviewDetails) => {
+        set((state) => ({
+          applications: state.applications.map((app) =>
+            app.id === id ? { ...app, status: 'interview', interviewDetails } : app
+          ),
+        }));
+      },
+
+      seedApplications: (seed) => {
+        // Never overwrite real submissions — only fills the store the first time it's empty.
+        if (get().applications.length === 0) {
+          set({ applications: seed });
+        }
+      },
     }),
     {
-      name: 'applications-storage', 
+      name: 'applications-storage',
     }
   )
 );
