@@ -1,5 +1,5 @@
 import React from 'react';
-import { Edit2, Plus, Trash2, UserPlus } from 'lucide-react';
+import { Plus, UserPlus } from 'lucide-react';
 import Card from '../Card';
 import { useFollows } from '../Community/useFollows';
 import type { TeamMember } from './types';
@@ -89,19 +89,6 @@ const PeopleSection: React.FC<PeopleSectionProps> = ({
                 viewType="profiles"
                 className="relative"
               >
-                {!isPublicView && (
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      if (onEdit) {
-                        onEdit(member, teamType);
-                      }
-                    }}
-                    className="absolute top-2 right-2 p-1.5 hover:bg-gray-100 rounded-lg transition-colors z-10"
-                  >
-                    <Edit2 className="w-4 h-4 text-gray-600" />
-                  </button>
-                )}
               </Card>
             );
           })}

@@ -22,6 +22,9 @@ import { getCurrentUser } from '../../components/custom/Profile/crud/profileStor
 import type { CompanyProfile, Job, TeamMember } from '../../components/custom/CompanyProfile/types';
 import { APP_ROUTES } from '../../constants';
 
+// Import seed applications data
+import seedApplications from '../../../public/mocked/applications/seed-applications.json';
+
 const CompanyProfile: React.FC = () => {
   const navigate = useNavigate();
   const [company, setCompany] = useState<CompanyProfile | null>(null);
@@ -31,10 +34,10 @@ const CompanyProfile: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<any>(null);
   const [deleteModal, setDeleteModal] = useState<{ section: string; title: string } | null>(null);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState(getCurrentUser());
 
   useEffect(() => {
     // Check if user is logged in as company
-    const currentUser = getCurrentUser();
     if (!currentUser || currentUser.role !== 'company') {
       // Redirect to login if not a company
       navigate(APP_ROUTES.auth.login);
@@ -42,13 +45,112 @@ const CompanyProfile: React.FC = () => {
     }
     
     fetchCompanyProfile();
-  }, [navigate]);
+  }, [navigate, currentUser]);
 
   useEffect(() => {
     if (company) {
       saveStoredCompanyProfile(company);
     }
   }, [company]);
+
+  // Sync currentUser changes to company profile
+  useEffect(() => {
+    if (!currentUser || currentUser.role !== 'company') {
+      return;
+    }
+
+    // Update company profile with currentUser data
+    setCompany((prev) => {
+      if (!prev) return prev;
+      
+      // Check if any currentUser fields have changed
+      const hasChanges = 
+        prev.id !== currentUser.id ||
+        prev.name !== currentUser.fullName ||
+        prev.email !== currentUser.email ||
+        prev.phone !== currentUser.phone;
+
+      if (!hasChanges) return prev;
+
+      // Update only the fields that come from currentUser
+      const updated = {
+        ...prev,
+        id: currentUser.id,
+        name: currentUser.fullName,
+        email: currentUser.email,
+        phone: currentUser.phone,
+      };
+
+      console.log("Syncing currentUser changes to company profile:", updated);
+      return updated;
+    });
+  }, [currentUser]); // Re-run when currentUser changes
+
+  // Load hired people from seed applications
+  useEffect(() => {
+    if (!company || !currentUser) return;
+
+    console.log('Loading hired people for company:', company.name);
+    console.log('Current company people:', company.people);
+
+    // Get hired applications for this company
+    const hiredApplications = (seedApplications as any[]).filter(
+      (app) => app.companyName === company.name && app.status === 'hired'
+    );
+
+    console.log('Found hired applications:', hiredApplications.length);
+    console.log('Hired applications:', hiredApplications);
+
+    if (hiredApplications.length === 0) {
+      console.log('No hired applications found for this company');
+      return;
+    }
+
+    // Convert applications to team members
+    const hiredTeamMembers: TeamMember[] = hiredApplications.map((app) => ({
+      id: app.id,
+      name: app.name,
+      position: app.jobTitle,
+      image: app.avatarUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(app.name)}&background=553be6&color=fff`,
+      mutualConnections: Math.floor(Math.random() * 50) + 1, // Random number for demo
+    }));
+
+    console.log('Converted to team members:', hiredTeamMembers);
+
+    // Add hired people to the people section (as management team by default)
+    setCompany((prev) => {
+      if (!prev) return prev;
+
+      // Check if we already have these people loaded
+      const existingIds = new Set([
+        ...prev.people.managementTeam.map(p => p.id),
+        ...prev.people.designerTeam.map(p => p.id)
+      ]);
+
+      const newMembers = hiredTeamMembers.filter(m => !existingIds.has(m.id));
+      
+      console.log('New members to add:', newMembers.length);
+
+      if (newMembers.length === 0) {
+        console.log('All members already exist');
+        return prev;
+      }
+
+      const updated = {
+        ...prev,
+        people: {
+          managementTeam: [...prev.people.managementTeam, ...newMembers],
+          designerTeam: prev.people.designerTeam,
+        },
+      };
+
+      console.log('Updated company with hired people:', updated.people);
+      console.log('Saved to localStorage');
+      // Explicitly save to localStorage
+      saveStoredCompanyProfile(updated);
+      return updated;
+    });
+  }, [company?.name, currentUser, saveStoredCompanyProfile]); // Only re-run when company name or currentUser changes
 
   const fetchCompanyProfile = async () => {
     try {
