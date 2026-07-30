@@ -199,7 +199,7 @@ function DashboardHeader() {
             {currentUser?.role === ROLES.USER && <UserAvatar />}
             {currentUser?.role === ROLES.ADMIN && <UserAvatar />}
             {currentUser?.role === ROLES.INSTRUCTOR && <UserAvatar />}
-          </button>
+          </div>
 
           {/* Dropdown Menu */}
           {isDropdownOpen && (
