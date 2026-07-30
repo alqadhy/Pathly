@@ -51,7 +51,7 @@ export const getUserByEmail = async (
 ) => {
   const localUsers = getLocalUsers();
 
-  const response = await fetch("/users.json");
+  const response = await fetch("/mocked/users.json");
   const adminUsers = await response.json();
 
   const users = [...adminUsers, ...localUsers];

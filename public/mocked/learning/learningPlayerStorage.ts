@@ -1,3 +1,6 @@
+import { learningCourses } from "../../../public/mocked/learning/learning";
+import { notificationService } from "../../../src/Services/notification.service";
+
 const STORAGE_KEY = "learningPlayer";
 
 export type LearningPlayerState = {
@@ -7,11 +10,11 @@ export type LearningPlayerState = {
   currentTime: number;
   completedLessons: number[];
   updatedAt: string;
+  isCompleted?: boolean;
 };
 
 const getAllStates = (): LearningPlayerState[] => {
-  const data =
-    localStorage.getItem(STORAGE_KEY);
+  const data = localStorage.getItem(STORAGE_KEY);
 
   return data ? JSON.parse(data) : [];
 };
@@ -34,10 +37,8 @@ export const savePlayerState = (
 
   const index = data.findIndex(
     (item) =>
-      item.userEmail ===
-        state.userEmail &&
-      item.courseId ===
-        state.courseId
+      item.userEmail === state.userEmail &&
+      item.courseId === state.courseId
   );
 
   if (index === -1) {
@@ -65,41 +66,56 @@ export const isLessonCompleted = (
   );
 
   return (
-    state?.completedLessons.includes(
-      lessonId
-    ) ?? false
+    state?.completedLessons.includes(lessonId) ?? false
   );
 };
+
 export const getAllPlayerStates = () => {
   return getAllStates();
 };
+
 export const completeLesson = (
   userEmail: string,
   courseId: number,
   lessonId: number
 ) => {
-  const state =
-    getPlayerState(
-      userEmail,
-      courseId
-    );
+  const state = getPlayerState(
+    userEmail,
+    courseId
+  );
 
   if (!state) return;
 
-  if (
-    state.completedLessons.includes(
-      lessonId
-    )
-  )
-    return;
+  // Prevent duplicate completion
+  if (state.completedLessons.includes(lessonId)) return;
+
+  const updatedCompletedLessons = [
+    ...state.completedLessons,
+    lessonId,
+  ];
+
+  const course = learningCourses.find(
+    (course) => course.id === courseId
+  );
+
+  const isCourseCompleted =
+    course &&
+    updatedCompletedLessons.length === course.totalLessons;
+
 
   savePlayerState({
     ...state,
-    completedLessons: [
-      ...state.completedLessons,
-      lessonId,
-    ],
+    completedLessons: updatedCompletedLessons,
+    isCompleted: Boolean(isCourseCompleted),
     updatedAt: new Date().toISOString(),
   });
-  
+
+
+  // Send notification once when course is completed
+  if (isCourseCompleted && !state.isCompleted) {
+    notificationService.courseCompleted(
+      "Congratulations 🎉",
+      "You have successfully completed the course!"
+    );
+  }
 };

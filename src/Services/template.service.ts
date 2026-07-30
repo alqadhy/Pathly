@@ -1,4 +1,4 @@
-import type { Template } from '@/types/template.types';
+import type { Template } from '../types/template.types';
 
 const BASE = '/mocked/cv';
 

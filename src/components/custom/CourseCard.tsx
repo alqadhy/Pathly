@@ -42,6 +42,24 @@ function UserIcon() {
     </div>
   );
 }
+type Props = {
+  id: number;
+  image: string;
+  title: string;
+  instructor: string;
+  rating: number;
+  reviews: string;
+  duration: string;
+  level: Course["level"];
+  hasCertificate: boolean;
+  price: number;
+  tag?: string;
+  completedLessons?: number;
+  totalLessons?: number;
+  showProgress?: boolean;
+  buttonText?: string;
+  onClickFn?: () => void;
+};
 
 function CourseCard({
   image,
@@ -59,7 +77,7 @@ function CourseCard({
   showProgress,
   buttonText = "View Details",
   onClickFn,
-}: Course) {
+}: Props) {
   return (
     <Card className="group relative flex flex-col gap-0 overflow-hidden rounded-md bg-card p-0 shadow-md ring-0 transition-all duration-300 hover:-translate-y-1 hover:shadow-card">
       {tag && (

@@ -1,6 +1,7 @@
 // routes/StudentRoute.tsx
 import { Navigate, Outlet } from "react-router-dom";
 import { APP_ROUTES } from "../constants";
+import { ROLES } from "../roles";
 
 const StudentRoute = () => {
   const currentUser = JSON.parse(
@@ -10,12 +11,11 @@ const StudentRoute = () => {
   if (!currentUser) {
     return <Navigate to={APP_ROUTES.auth.login} replace />;
   }
-
-  if (currentUser.role !== "user") {
-    if (currentUser.role === "admin") {
-      return <Navigate to={APP_ROUTES.Admin.adminDashboard} replace />;
+  if (currentUser.role !== ROLES.USER) {
+    if (currentUser.role === ROLES.ADMIN) {
+      return <Navigate to={APP_ROUTES.admin.dashboard} replace />;
     }
-    if (currentUser.role === "company") {
+    if (currentUser.role === ROLES.COMPANY) {
       return <Navigate to={APP_ROUTES.company.profile} replace />;
     }
     return <Navigate to={APP_ROUTES.auth.login} replace />;
